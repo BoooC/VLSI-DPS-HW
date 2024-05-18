@@ -17,16 +17,16 @@ module cordic #(
     output reg							finish,
 	
     //rd	
-    output reg 							rd_R,
-    input		signed	[R_LEN-1:0]     rd_data,
-    output reg			[ROW_LEN-1:0]  	rd_row_addr,
-    output reg			[COL_LEN-1:0]   rd_col_addr,
+    output reg 							rd_A,
+    input		signed	[R_LEN-1:0]     rd_data_A,
+    output reg			[ROW_LEN-1:0]  	rd_row_addr_A,
+    output reg			[COL_LEN-1:0]   rd_col_addr_A,
 	
     //wr_R			
-    output reg                      	wr,
-    output reg  signed  [R_LEN-1:0] 	wr_data,
-    output reg			[ROW_LEN-1:0]  	wr_row_addr,
-    output reg			[COL_LEN-1:0]   wr_col_addr,
+    output reg                      	wr_R,
+    output reg  signed  [R_LEN-1:0] 	wr_data_R,
+    output reg			[ROW_LEN-1:0]  	wr_row_addr_R,
+    output reg			[COL_LEN-1:0]   wr_col_addr_R,
 	
     //wr_Q
     output reg							wr_Q,
@@ -57,7 +57,9 @@ reg [Q_LEN-1:0] final_Q41;
 reg [Q_LEN-1:0] final_Q42;
 reg [Q_LEN-1:0] final_Q43;
 reg [Q_LEN-1:0] final_Q44;
-    
+
+reg qr_done;
+
 //R 
 reg [1:0] mk_cnt_gg1;
 reg [1:0] mk_cnt_gr11;
@@ -394,26 +396,26 @@ wire	signed	[R_LEN-1:0]		xo_mk3_Q;
 wire	signed	[R_LEN-1:0]		yo_mk3_Q;
 
 // control signals
-wire rd_unready 	= rd_row_addr == 3 || (rd_row_addr == 2 && rd_col_addr == 0); 
-wire rd_flag	  	= rd_row_addr == 0 && rd_col_addr == 3 && mk_cnt_gg1 >= 2;
+wire rd_unready 	= rd_row_addr_A == 3 || (rd_row_addr_A == 2 && rd_col_addr_A == 0); 
+wire rd_flag	  	= rd_row_addr_A == 0 && rd_col_addr_A == 3 && mk_cnt_gg1 >= 2;
 
-wire start_gg1  	= rd_row_addr == 3 && rd_col_addr == 0;
-wire start_gr11 	= rd_row_addr == 3 && rd_col_addr == 1;
-wire start_gr12 	= rd_row_addr == 3 && rd_col_addr == 2;
-wire start_gr13 	= rd_row_addr == 3 && rd_col_addr == 3;
-wire start_gg2  	= rd_row_addr == 1 && rd_col_addr == 1;
-wire start_gr21 	= rd_row_addr == 1 && rd_col_addr == 2;
-wire start_gr22 	= rd_row_addr == 1 && rd_col_addr == 3;
+wire start_gg1  	= rd_row_addr_A == 3 && rd_col_addr_A == 0;
+wire start_gr11 	= rd_row_addr_A == 3 && rd_col_addr_A == 1;
+wire start_gr12 	= rd_row_addr_A == 3 && rd_col_addr_A == 2;
+wire start_gr13 	= rd_row_addr_A == 3 && rd_col_addr_A == 3;
+wire start_gg2  	= rd_row_addr_A == 1 && rd_col_addr_A == 1;
+wire start_gr21 	= rd_row_addr_A == 1 && rd_col_addr_A == 2;
+wire start_gr22 	= rd_row_addr_A == 1 && rd_col_addr_A == 3;
 wire start_gg3  	= start_gr21_count == 8;
 wire start_gr31 	= start_gr21_count == 9;
 
-wire start_Q11 	= rd_row_addr == 2 && rd_col_addr == 0;
-wire start_Q12 	= rd_row_addr == 2 && rd_col_addr == 1;
-wire start_Q13 	= rd_row_addr == 2 && rd_col_addr == 2;
-wire start_Q14 	= rd_row_addr == 2 && rd_col_addr == 3;
-wire start_Q21 	= rd_row_addr == 0 && rd_col_addr == 0;
-wire start_Q22 	= rd_row_addr == 0 && rd_col_addr == 1;
-wire start_Q23 	= rd_row_addr == 0 && rd_col_addr == 2;
+wire start_Q11 	= rd_row_addr_A == 2 && rd_col_addr_A == 0;
+wire start_Q12 	= rd_row_addr_A == 2 && rd_col_addr_A == 1;
+wire start_Q13 	= rd_row_addr_A == 2 && rd_col_addr_A == 2;
+wire start_Q14 	= rd_row_addr_A == 2 && rd_col_addr_A == 3;
+wire start_Q21 	= rd_row_addr_A == 0 && rd_col_addr_A == 0;
+wire start_Q22 	= rd_row_addr_A == 0 && rd_col_addr_A == 1;
+wire start_Q23 	= rd_row_addr_A == 0 && rd_col_addr_A == 2;
 wire start_Q24 	= start_gr21_count == 5;
 wire start_Q31 	= start_gr21_count == 10;
 wire start_Q32 	= start_gr21_count == 11;
@@ -513,12 +515,11 @@ wire end_Q32  = last_multk_Q32  || (mk_cnt_Q32  == 3 && iter_Q32  == 0);
 wire end_Q33  = last_multk_Q33  || (mk_cnt_Q33  == 3 && iter_Q33  == 0);
 wire end_Q34  = last_multk_Q34  || (mk_cnt_Q34  == 3 && iter_Q34  == 0);
 
-wire qr_done = mk_cnt_Q33 == 1 && iter_Q34 == 8; //////////////////////////////
-
 wire nop_gg1 = ~(state == ROT)  || rd_unready || end_gg1;
 wire nop_gg2 = mk_cnt_gr11 <= 1 || end_gg2;
 wire nop_gg3 = mk_cnt_gr21 <= 1 || end_gg3;
 
+assign finish = qr_done;
 
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
@@ -582,24 +583,24 @@ end
 
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
-		rd_row_addr <= 3;
-		rd_col_addr <= 0;
+		rd_row_addr_A <= 3;
+		rd_col_addr_A <= 0;
 	end
 	else if(rd_flag)begin
-	    rd_row_addr <= rd_row_addr;
-		rd_col_addr <= rd_col_addr;
+	    rd_row_addr_A <= rd_row_addr_A;
+		rd_col_addr_A <= rd_col_addr_A;
 	end
-	else if (rd_R && rd_col_addr==3)begin
-	    rd_row_addr <= rd_row_addr-1;
-		rd_col_addr <= 0;
+	else if (rd_A && rd_col_addr_A==3)begin
+	    rd_row_addr_A <= rd_row_addr_A-1;
+		rd_col_addr_A <= 0;
 	end
-	else if(rd_R)begin
-	    rd_row_addr <= rd_row_addr;
-		rd_col_addr <= rd_col_addr+1;
+	else if(rd_A)begin
+	    rd_row_addr_A <= rd_row_addr_A;
+		rd_col_addr_A <= rd_col_addr_A+1;
 	end	
 	else begin
-		rd_row_addr <= rd_row_addr;
-		rd_col_addr <= rd_col_addr;
+		rd_row_addr_A <= rd_row_addr_A;
+		rd_col_addr_A <= rd_col_addr_A;
 	end
 end
 
@@ -611,25 +612,25 @@ always @(posedge clk or posedge rst) begin
 	     rd_data_Q[2] <= 0;
 	     rd_data_Q[3] <= 0;
     end
-    else if(rd_row_addr==0 && rd_col_addr==3)begin
+    else if(rd_row_addr_A==0 && rd_col_addr_A==3)begin
          rd_data_Q[0] <= 12'b0100_0000_0000;
 	     rd_data_Q[1] <= 0;
 	     rd_data_Q[2] <= 0;
 	     rd_data_Q[3] <= 0;
 	end     
-	else if(rd_row_addr==1 && rd_col_addr==3)begin
+	else if(rd_row_addr_A==1 && rd_col_addr_A==3)begin
          rd_data_Q[0] <= 0;
 	     rd_data_Q[1] <= 12'b0100_0000_0000;
 	     rd_data_Q[2] <= 0;
 	     rd_data_Q[3] <= 0;
 	end
-	else if(rd_row_addr==2 && rd_col_addr==3)begin
+	else if(rd_row_addr_A==2 && rd_col_addr_A==3)begin
          rd_data_Q[0] <= 0;
 	     rd_data_Q[1] <= 0;
 	     rd_data_Q[2] <= 12'b0100_0000_0000;
 	     rd_data_Q[3] <= 0;
 	end
-	else if(rd_row_addr==3 && rd_col_addr==3)begin
+	else if(rd_row_addr_A==3 && rd_col_addr_A==3)begin
          rd_data_Q[0] <= 0;
 	     rd_data_Q[1] <= 0;
 	     rd_data_Q[2] <= 0;
@@ -646,33 +647,33 @@ end
 //read
 always @(posedge clk or posedge rst) begin
 	if (rst) 
-	   rd_R <= 0;
+	   rd_A <= 0;
 	else if(en)
-	   rd_R <= 1;
+	   rd_A <= 1;
 	else
-	   rd_R <= 0;   
+	   rd_A <= 0;   
 end
 
 //write
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
-		wr_row_addr <= 0;
-		wr_col_addr <= 0;
+		wr_row_addr_R <= 0;
+		wr_col_addr_R <= 0;
 		wr_col_addr_count <= 0;
 	end
-	else if(wr&&wr_col_addr == 3) begin
-		wr_row_addr <= wr_row_addr + 1;
-		wr_col_addr <= wr_col_addr_count+1;
+	else if(wr_R && wr_col_addr_R == 3) begin
+		wr_row_addr_R <= wr_row_addr_R + 1;
+		wr_col_addr_R <= wr_col_addr_count+1;
 		wr_col_addr_count <= wr_col_addr_count +1;
 		end
-	else if(wr) begin
-		wr_row_addr <= wr_row_addr;
-		wr_col_addr <= wr_col_addr + 1;
+	else if(wr_R) begin
+		wr_row_addr_R <= wr_row_addr_R;
+		wr_col_addr_R <= wr_col_addr_R + 1;
 		wr_col_addr_count <= wr_col_addr_count;
 	end
 	else begin
-		wr_row_addr <= wr_row_addr;
-		wr_col_addr <= wr_col_addr;
+		wr_row_addr_R <= wr_row_addr_R;
+		wr_col_addr_R <= wr_col_addr_R;
 		wr_col_addr_count <= wr_col_addr_count; 
 	end
 end
@@ -684,12 +685,12 @@ always @(posedge clk or posedge rst) begin
 		wr_col_addr_Q <= 0;
 		wr_row_ready_count_Q <= 0;
 	end
-	else if(wr_Q&&wr_col_addr_Q == 3) begin
+	else if(wr_Q && wr_col_addr_Q == 3) begin
 		wr_row_addr_Q <= wr_row_addr_Q + 1;
 		wr_col_addr_Q <= 0;
 		wr_row_ready_count_Q <= wr_row_ready_count_Q;
 		end
-	else if(wr_Q&&wr_col_addr_Q == 2) begin
+	else if(wr_Q && wr_col_addr_Q == 2) begin
 		wr_row_addr_Q <= wr_row_addr_Q;
 		wr_col_addr_Q <= wr_col_addr_Q + 1;
 		wr_row_ready_count_Q <= wr_row_ready_count_Q+1;
@@ -707,31 +708,31 @@ always @(posedge clk or posedge rst) begin
 end
 
 
-//wr
+// wr_R
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
-		wr_data <= 0;
-		wr <= 0;
+		wr_data_R <= 0;
+		wr_R <= 0;
 	end
-	else if((last_multk_gg1||last_multk_gr11||last_multk_gr12||last_multk_gr13)&&wr_row_addr==0) begin //r11~r14
-		wr <= 1; 
-        wr_data <= xo_mk1;
+	else if((last_multk_gg1||last_multk_gr11||last_multk_gr12||last_multk_gr13)&&wr_row_addr_R==0) begin //r11~r14
+		wr_R <= 1; 
+        wr_data_R <= xo_mk1;
 	end
-	else if((last_multk_gg2||last_multk_gr21||last_multk_gr22)&&wr_row_addr==1) begin //r22~r24
-		wr <= 1; 
-        wr_data <= xo_mk2;
+	else if((last_multk_gg2||last_multk_gr21||last_multk_gr22)&&wr_row_addr_R==1) begin //r22~r24
+		wr_R <= 1; 
+        wr_data_R <= xo_mk2;
 	end
-	else if((last_multk_gg3||last_multk_gr31)&&wr_row_addr==2) begin //r33~r34
-		wr <= 1; 
-        wr_data <= xo_mk3;
+	else if((last_multk_gg3||last_multk_gr31)&&wr_row_addr_R==2) begin //r33~r34
+		wr_R <= 1; 
+        wr_data_R <= xo_mk3;
 	end
-	else if(wr_row_addr==2&&wr_col_addr==3) begin //r44
-		wr <= 1; 
-        wr_data <= final_r44;
+	else if(wr_row_addr_R==2&&wr_col_addr_R==3) begin //r44
+		wr_R <= 1; 
+        wr_data_R <= final_r44;
 	end						
 	else begin
-		wr_data <= 0;
-		wr <= 0;
+		wr_data_R <= 0;
+		wr_R <= 0;
 	end
 end
 
@@ -831,13 +832,13 @@ always @(posedge clk or posedge rst) begin
     end    
 end
 
-//finish
+//qr_done
 always @(posedge clk or posedge rst) begin
     if (rst) begin
-        finish <= 0;
+        qr_done <= 0;
 	end
 	else if(wr_row_addr_Q==3 && wr_col_addr_Q==3) begin
-        finish <= 1;
+        qr_done <= 1;
 	end
 end
 
@@ -870,10 +871,10 @@ always @(posedge clk or posedge rst) begin
 	else if (iter_gg1 == 0) begin
 		if(start_gg1) begin
 			xi_gg1 <= 0;
-			yi_gg1 <= rd_data;
+			yi_gg1 <= rd_data_A;
 		end
 		else if(nop_gg1 && !end_gg1) begin
-			xi_gg1 <= rd_data;
+			xi_gg1 <= rd_data_A;
 			yi_gg1 <= yo_gg1;
 		end
 		else begin
@@ -887,7 +888,7 @@ always @(posedge clk or posedge rst) begin
 			yi_gg1 <= yo_gg1;
 		end
 		else begin
-			xi_gg1 <= rd_data;
+			xi_gg1 <= rd_data_A;
 			yi_gg1 <= xo_mk1;
 		end
 	end
@@ -942,10 +943,10 @@ always @(posedge clk or posedge rst) begin
 	else if(iter_gr11 == 0) begin
 		if(start_gr11) begin
 			xi_gr11 <= 0;
-			yi_gr11 <= rd_data;
+			yi_gr11 <= rd_data_A;
 		end
 		else if(nop_gr11 && !end_gr11) begin
-			xi_gr11 <= rd_data;
+			xi_gr11 <= rd_data_A;
 			yi_gr11 <= yo_gr11;
 		end
 		else begin
@@ -959,7 +960,7 @@ always @(posedge clk or posedge rst) begin
 			yi_gr11 <= yo_mk1;
 		end
 		else begin
-			xi_gr11 <= rd_data;
+			xi_gr11 <= rd_data_A;
 			yi_gr11 <= xo_mk1;
 		end
 	end
@@ -1003,10 +1004,10 @@ always @(posedge clk or posedge rst) begin
 	else if (iter_gr12 == 0) begin
 		if(start_gr12) begin
 			xi_gr12 <= 0;
-			yi_gr12 <= rd_data;
+			yi_gr12 <= rd_data_A;
 		end
 		else if(nop_gr12 && !end_gr12) begin
-			xi_gr12 <= rd_data;
+			xi_gr12 <= rd_data_A;
 			yi_gr12 <= yo_gr12;
 		end
 		else begin
@@ -1020,7 +1021,7 @@ always @(posedge clk or posedge rst) begin
 			yi_gr12 <= yo_mk1;
 		end
 		else begin
-			xi_gr12 <= rd_data;
+			xi_gr12 <= rd_data_A;
 			yi_gr12 <= xo_mk1;
 		end
 	end
@@ -1063,10 +1064,10 @@ always @(posedge clk or posedge rst) begin
 	else if (iter_gr13 == 0) begin
 		if(start_gr13) begin
 			xi_gr13 <= 0;
-			yi_gr13 <= rd_data;
+			yi_gr13 <= rd_data_A;
 		end
 		else if(nop_gr13 && !end_gr13) begin
-			xi_gr13 <= rd_data;
+			xi_gr13 <= rd_data_A;
 			yi_gr13 <= yo_gr13;
 		end
 		else begin
@@ -1080,7 +1081,7 @@ always @(posedge clk or posedge rst) begin
 			yi_gr13 <= yo_mk1;
 		end
 		else begin
-			xi_gr13 <= rd_data;
+			xi_gr13 <= rd_data_A;
 			yi_gr13 <= xo_mk1;
 		end
 	end
