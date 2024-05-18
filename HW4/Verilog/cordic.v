@@ -299,11 +299,11 @@ reg     signed 	[R_LEN-1:0]     xi_gg3;
 reg     signed 	[R_LEN-1:0]     yi_gg3;
 reg				[ITER_LEN-1:0]  iter_gg3;
 reg				[ITER_LEN-1:0]  iter_gg3_n;
-reg				[1:0]       	d1_gg3;
-reg				[1:0]       	d2_gg3;
-reg				[1:0]       	d3_gg3;
-reg				[1:0]       	d4_gg3;
-reg				         		neg_gg3;
+wire			[1:0]       	d1_gg3;
+wire			[1:0]       	d2_gg3;
+wire			[1:0]       	d3_gg3;
+wire			[1:0]       	d4_gg3;
+wire			         		neg_gg3;
 wire   	signed [R_LEN-1:0] 		xo_gg3;
 wire   	signed [R_LEN-1:0] 		yo_gg3;
 
@@ -1019,39 +1019,39 @@ always @(posedge clk or posedge rst) begin
 	end
 	else if(state==ROT || state==MULT_K) begin
 	   case(iter_gg1)
-				0: begin
-					if(start_gg1) begin
-						xi_gg1 = 0;
-						yi_gg1 = rd_data;
-					end
-					else if(nop_gg1 && !end_gg1) begin
-						xi_gg1 = rd_data;
-						yi_gg1 = yo_gg1;
-					end
-					else begin
-						xi_gg1 = xo_gg1;
-						yi_gg1 = yo_gg1;
-					end
+			0: begin
+				if(start_gg1) begin
+					xi_gg1 = 0;
+					yi_gg1 = rd_data;
 				end
-				9: begin
-					if(end_gg1) begin
-						xi_gg1 = xo_gg1;
-						yi_gg1 = yo_gg1;
-					end
-					else begin
-						xi_gg1 = rd_data;
-						yi_gg1 = xo_mk1;
-					end
+				else if(nop_gg1 && !end_gg1) begin
+					xi_gg1 = rd_data;
+					yi_gg1 = yo_gg1;
 				end
-				default: begin
+				else begin
 					xi_gg1 = xo_gg1;
 					yi_gg1 = yo_gg1;
 				end
+			end
+			9: begin
+				if(end_gg1) begin
+					xi_gg1 = xo_gg1;
+					yi_gg1 = yo_gg1;
+				end
+				else begin
+					xi_gg1 = rd_data;
+					yi_gg1 = xo_mk1;
+				end
+			end
+			default: begin
+				xi_gg1 = xo_gg1;
+				yi_gg1 = yo_gg1;
+			end
 		endcase
-		else begin
-			xi_gg1 = 0;
-			yi_gg1 = 0;
-		end
+	end
+	else begin
+		xi_gg1 = 0;
+		yi_gg1 = 0;
 	end
 end
 

@@ -8,7 +8,6 @@ module GG #(
 	input				[3:0]			iter,
 		
 	output				[1:0]			d1,
-	output				[1:0]			d1,
 	output				[1:0]			d2,
 	output				[1:0]			d3,
 	output				[1:0]			d4,

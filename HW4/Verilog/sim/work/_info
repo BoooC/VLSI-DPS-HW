@@ -1,0 +1,199 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Users/p8101/Desktop/ic_design/ICDC/2024/sim
+vcordic
+!s110 1716040795
+!i10b 1
+!s100 90D:XTRX2XbaTh11I8V:W3
+Z0 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IcY_`P[;QR2AQ^7An3f^_h1
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+Z2 dC:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/sim
+w1716040785
+8C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v
+FC:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v
+!i122 11
+L0 1 3593
+Z3 OV;L;2020.1;71
+r1
+!s85 0
+31
+!s108 1716040795.000000
+!s107 C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v|
+!i113 1
+Z4 o-work work
+Z5 tCvgOpt 0
+vGG
+!s110 1716040436
+!i10b 1
+!s100 ?eA;6H@=jAfV7f1C[m1G53
+R0
+Ile[3mRKQDKnQf^kSVAY]b0
+R1
+R2
+w1716040433
+8C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GG.v
+FC:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GG.v
+!i122 4
+L0 1 123
+R3
+r1
+!s85 0
+31
+!s108 1716040436.000000
+!s107 C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GG.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GG.v|
+!i113 1
+R4
+R5
+n@g@g
+vGR
+Z6 !s110 1716040419
+!i10b 1
+!s100 4GD3fMh<k>fMW0INZAN853
+R0
+IBgfb=8CiJ1W7KM1=li>9`2
+R1
+R2
+w1716029282
+8C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GR.v
+FC:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GR.v
+!i122 0
+Z7 L0 1 114
+R3
+r1
+!s85 0
+31
+Z8 !s108 1716040419.000000
+!s107 C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GR.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GR.v|
+!i113 1
+R4
+R5
+n@g@r
+vMK
+!s110 1716040809
+!i10b 1
+!s100 PmG3>487X86]3R4FlgZLX1
+R0
+IaRcESlchUz4Olg>WSXUo;0
+R1
+R2
+w1716040806
+8C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/MK.v
+FC:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/MK.v
+!i122 13
+L0 1 25
+R3
+r1
+!s85 0
+31
+!s108 1716040809.000000
+!s107 C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/MK.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/MK.v|
+!i113 1
+R4
+R5
+n@m@k
+vQ
+R6
+!i10b 1
+!s100 DTG7b5h3S0Y;b167d?=M52
+R0
+IbNH<ELXHGTT;A@NlEX0BP2
+R1
+R2
+w1716029287
+8C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/Q.v
+FC:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/Q.v
+!i122 2
+R7
+R3
+r1
+!s85 0
+31
+R8
+!s107 C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/Q.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/Q.v|
+!i113 1
+R4
+R5
+n@q
+vqr_cordic_tb
+R6
+!i10b 1
+!s100 WcR4>kki@fAA<fI@@hK@N0
+R0
+I`^fR8ojmJjGzZE6N59cGE1
+R1
+R2
+Z9 w1716040392
+Z10 8C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v
+Z11 FC:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v
+!i122 3
+L0 11 244
+R3
+r1
+!s85 0
+31
+R8
+Z12 !s107 C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v|
+Z13 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v|
+!i113 1
+R4
+R5
+vram_16x12
+R6
+!i10b 1
+!s100 OSd]ii2HK3WW59V0FXL9<1
+R0
+IhIQX=f9e1HG75Unho=Qfk2
+R1
+R2
+R9
+R10
+R11
+!i122 3
+L0 278 26
+R3
+r1
+!s85 0
+31
+R8
+R12
+R13
+!i113 1
+R4
+R5
+vrom_16x12
+R6
+!i10b 1
+!s100 :hNnoJ3ON@_IOD:fGgJ=<1
+R0
+IE_1mW2P7a_KN^[N5n<g[U3
+R1
+R2
+R9
+R10
+R11
+!i122 3
+L0 256 21
+R3
+r1
+!s85 0
+31
+R8
+R12
+R13
+!i113 1
+R4
+R5
