@@ -53,7 +53,7 @@ cordic cordic_inst(
 	.rst(rst),
 	.en(en),
 	.finish(finish),
-	.rd(rd),
+	.rd_R(rd),
 	.rd_data(rd_data),
 	.rd_row_addr(rd_row_addr),
 	.rd_col_addr(rd_col_addr),
@@ -179,6 +179,7 @@ initial begin
 		$display("%12d %12d %12d %12d", ram_16x12_Q.ram[4*l], ram_16x12_Q.ram[4*l+1], ram_16x12_Q.ram[4*l+2], ram_16x12_Q.ram[4*l+3]);
 		l = l + 1;
 	end
+	
 	err = 0;
 	if (ram_16x12_inst.ram[0] != r_gold[0]) begin
 		err = err + 1;
@@ -235,7 +236,7 @@ initial begin
 		$display("** FAIL!!! There are %4d error in R matrix!                               **", err);
 		$display("*****************************************************************************");
 	end
-	$finish;
+	$stop;
 end
 
 
@@ -246,7 +247,7 @@ initial  begin
  	$display("**   Error!!! The simulation can't be terminated under normal operation!   **");
  	$display("**                                  FAIL!                                  **");
  	$display("*****************************************************************************");
- 	$finish;
+ 	$stop;
 end
 
 

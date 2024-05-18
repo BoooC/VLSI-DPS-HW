@@ -85,7 +85,7 @@ function A = gen_random_matrix(row, col)
 end
 
 % GG : vectoring mode
-function [X, Y, d] = GG(x, y, iter, k)
+function [X, Y, d] = GG(x, y, iter)
 	% d(i)   = -sign(x(i) * y(i))
 	% x(i+1) = x(i) - d(i) * 2^(-i) * y(i)
 	% y(i+1) = y(i) + d(i) * 2^(-i) * x(i)
@@ -95,7 +95,7 @@ function [X, Y, d] = GG(x, y, iter, k)
 end
 
 % GR : rotation mode
-function [X, Y] = GR(x, y, d, iter, k, r)
+function [X, Y] = GR(x, y, d, iter)
 	%%% x(i+1) = x(i) - d(i) * 2^(-i) * y(i)
 	%%% y(i+1) = y(i) + d(i) * 2^(-i) * x(i)
 	X = x - d * bitsra(y, iter);
@@ -133,7 +133,7 @@ function [Q_cordic, R_cordic] = Cordic_QR(K_cordic, Q_cordic, R_cordic, row, col
 				x_vect = R_cordic(q_fix  , p_fix); 
 				y_vect = R_cordic(q_fix+1, p_fix); 
 				
-				[X_vect, Y_vect, d] = GG(x_vect, y_vect, iter, p_fix);
+				[X_vect, Y_vect, d] = GG(x_vect, y_vect, iter);
 
 				if iter == iter_num-1
 					R_cordic(q_fix  , p_fix) = floor(X_vect * K_cordic * 2^(-frac_bit));
@@ -151,7 +151,7 @@ function [Q_cordic, R_cordic] = Cordic_QR(K_cordic, Q_cordic, R_cordic, row, col
 					x_rot_R = R_cordic(q_fix  , p_fix+rot_R); 
 					y_rot_R = R_cordic(q_fix+1, p_fix+rot_R); 
 					
-					[X_rot_R, Y_rot_R] = GR(x_rot_R, y_rot_R, d, iter, p_fix, rot_R);
+					[X_rot_R, Y_rot_R] = GR(x_rot_R, y_rot_R, d, iter);
 					
 					if iter == iter_num-1
 						R_cordic(q_fix  , p_fix+rot_R) = floor(X_rot_R * K_cordic * 2^(-frac_bit)); 
@@ -169,7 +169,7 @@ function [Q_cordic, R_cordic] = Cordic_QR(K_cordic, Q_cordic, R_cordic, row, col
 					x_rot_Q = Q_cordic(q_fix  , rot_Q); 
 					y_rot_Q = Q_cordic(q_fix+1, rot_Q);
 					
-					[X_rot_Q, Y_rot_Q] = GR(x_rot_Q, y_rot_Q, d, iter, p_fix, rot_Q);
+					[X_rot_Q, Y_rot_Q] = GR(x_rot_Q, y_rot_Q, d, iter);
 					if iter == iter_num-1 
 						Q_cordic(q_fix  , rot_Q) = floor(X_rot_Q * K_cordic * 2^(-frac_bit));
 						Q_cordic(q_fix+1, rot_Q) = floor(Y_rot_Q * K_cordic * 2^(-frac_bit));
