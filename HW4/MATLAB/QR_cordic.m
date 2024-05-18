@@ -1,5 +1,6 @@
 clc; 
 clear;
+format;
 
 %%% QR factorization : A = Q * R, 
 %	where Q is unitary matrix, R is upper triangular matrix
@@ -24,9 +25,11 @@ A = [  -91,    65,   112,   -52;
         40,    58,   109,    38;
        -54,   -24,  -111,    75];
 
+% A = gen_random_matrix(row, col);
+
+
 %%% Floating point QR factorization with Given's rotation
 Q 	= eye(row); % 8x8
-% A = gen_random_matrix(row, col);
 R_Q = float_QR(row, col, Q, A);
 
 % shift to int
@@ -54,14 +57,18 @@ A_fix = (Q_fix') * R_fix;
 F = fimath('RoundingMethod','Floor');
 
 % convert to 12-bit output
-Q_fix_12b = double(fi(Q_fix, 1, 12, 10, F));
-R_fix_12b = double(fi(R_fix, 1, 12, 3, F));
-A_fix_12b = double(fi(A_fix, 1, 12, 0, F));
+Q_fix_12b = fi(Q_fix, 1, 12, 10, F);
+R_fix_12b = fi(R_fix, 1, 12, 3, F);
+A_fix_12b = fi(A_fix, 1, 12, 4, F);
 
 
 %%% Display result matrix
 % format long g;
 display_result(A, Q_float, Q_fix_12b, R_float, R_fix_12b, A_float, A_fix_12b, frac_bit);
+
+
+%%% Save data into .txt in binary
+Save_data(Q_fix, R_fix);
 
 
 %%% function
@@ -195,7 +202,14 @@ function display_result(A, Q_float, Q_fix_12b, R_float, R_fix_12b, A_float, A_fi
     disp(A_float);
     disp('Matrix A_fix :');
     disp(A_fix_12b);
-
+	
+	Q_float 	= double(Q_float);
+	Q_fix_12b 	= double(Q_fix_12b);
+	R_float 	= double(R_float);
+	R_fix_12b 	= double(R_fix_12b);
+	A_float 	= double(A_float);
+	A_fix_12b 	= double(A_fix_12b);
+	
     % Compute Frobenius Distance F(A,B) = sqrt(trace((A-B)(A-B)'))
     Q_float_abs = abs(Q_float);
     Q_fix_abs 	= abs(Q_fix_12b);
@@ -241,3 +255,78 @@ function print_GR_MK_info(k, r, iter, X, Y)
 		disp(['GR', num2str(k), num2str(r), ' Multiplied by K:   ', 'X = ', num2str(X),'; Y = ', num2str(Y)])
 	end
 end
+
+
+function Save_data(Q, R)
+	F = fimath('RoundingMethod','Floor');
+	
+	Q_scaled = fi(Q, 1, 12, 10, F);
+	R_scaled = fi(R, 1, 12, 3, F);
+	
+	A = Q_scaled' * R_scaled;
+	A_scaled = fi(A, 1, 12, 4, F);
+	
+	% A_scaled = [  -90.75           65          112          -52
+	% 	         -122.56       13.938      -63.063       23.063
+	% 	          118.31      -18.875       8.3125      -75.875
+	% 	             120       -59.75       116.56       34.563
+	% 	         -96.938       64.625      -60.063       76.875
+	% 	          -8.875       101.94      -64.063         0.25
+	% 	          39.875       58.688       109.31       38.375
+	% 	          -53.75      -23.813         -111       75.375];
+	%      
+	% Q_scaled = [  0.3544921875,    0.478515625,  -0.4619140625,       -0.46875,     0.37890625,     0.03515625,       -0.15625,   0.2099609375;
+	% 	         -0.2568359375,       0.171875,  -0.1279296875,        0.15625,   -0.240234375,  -0.6962890625,           -0.5,   0.2861328125;
+	% 	           0.646484375,   0.0009765625,  -0.2353515625,       0.328125,  -0.1337890625,   -0.439453125,     0.30859375,  -0.3369140625;
+	% 	           0.337890625,     0.02734375,     0.41015625,  -0.4638671875,  -0.4150390625,       0.015625,   -0.455078125,   -0.361328125;
+	% 	         -0.5244140625,   0.2607421875,  -0.2744140625,     -0.2890625,  -0.0576171875,  -0.1669921875,      0.2265625,   -0.646484375;
+	% 	         		     0,  -0.8212890625,  -0.3701171875,  -0.3486328125,   0.1396484375,  -0.1787109375,  -0.1396484375,    -0.03515625;
+	% 	         		     0,              0,  -0.5810546875,       0.234375,   -0.548828125,    0.505859375,  -0.2333984375,  -0.0224609375;
+	% 	         		     0,              0,              0,  -0.4248046875,  -0.5419921875,     -0.1171875,     0.55078125,   0.4580078125];
+	% 																  
+	% R_scaled = [   -256,     80.25,  -114.125,     50.25;
+	% 	         -0.125,  -142.375,       -50,    16.875;
+	% 	         -0.125,         0,   215.875,   -28.375;
+	% 		          0,    -0.125,         0,  -139.625;
+	% 	         -0.125,    -0.125,    -0.125,    -0.125;
+	% 		          0,    -0.125,         0,         0;
+	% 		          0,         0,         0,    -0.125;
+	% 	         -0.125,         0,    -0.125,    -0.125];
+
+	[A_row, A_col] = size(A_scaled);
+	[Q_row, Q_col] = size(Q_scaled);
+	[R_row, R_col] = size(R_scaled);
+
+	format short g;
+	
+	% Write A matrix to a .txt file
+	fid_a = fopen('data/input_A_matrix.txt', 'w');
+	for i = 1 : A_row
+		for j = 1 : A_col
+			a_data = A_scaled(i,j);
+			fprintf(fid_a, '%s\n', a_data.bin);
+		end
+	end
+	fclose(fid_a);
+
+	% Write R matrix to a .txt file
+	fid_r = fopen('data/output_R_matrix_golden.txt', 'w');
+	for i = 1 : R_row
+		for j = 1 : R_col
+			r_data = R_scaled(i,j);
+			fprintf(fid_r, '%s\n', r_data.bin);
+		end
+	end
+	fclose(fid_r);
+
+	% Write R matrix to a .txt file
+	fid_q = fopen('data/output_Q_matrix_golden.txt', 'w');
+	for i = 1 : Q_row
+		for j = 1 : Q_col
+			q_data = Q_scaled(i,j);
+			fprintf(fid_q, '%s\n', q_data.bin);
+		end
+	end
+	fclose(fid_q);
+end
+
