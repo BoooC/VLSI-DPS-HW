@@ -10,23 +10,23 @@ z2
 cModel Technology
 dC:/Users/p8101/Desktop/ic_design/ICDC/2024/sim
 vcordic
-!s110 1716053159
+!s110 1716139836
 !i10b 1
 !s100 W3Xn4Bg?cNNm8I6`K40mF1
 Z0 !s11b Dg1SIo80bB@j0V0VzS_@n1
 IP_DZPXF]amHi]8J:ekd??0
 Z1 VDg1SIo80bB@j0V0VzS_@n1
 Z2 dC:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/sim
-w1716053157
+w1716139193
 8C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v
 FC:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v
-!i122 138
+!i122 164
 L0 1 2642
 Z3 OV;L;2020.1;71
 r1
 !s85 0
 31
-!s108 1716053159.000000
+!s108 1716139836.000000
 !s107 C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v|
 !i113 1
@@ -129,23 +129,23 @@ R4
 R5
 n@q
 vqr_cordic_tb
-Z9 !s110 1716054299
+Z9 !s110 1716140072
 !i10b 1
-!s100 DbUo7G=hYC=8RQQFnlInH1
+!s100 5AJn^[:l`oY[C2XO4>KSk0
 R0
-I50]Qkb06`^>8G1WJnT9[:3
+Infd9zHWa9ZL^h[fX@H@8C1
 R1
 R2
-Z10 w1716054296
+Z10 w1716139978
 Z11 8C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v
 Z12 FC:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v
-!i122 162
-L0 10 226
+!i122 167
+L0 17 226
 R3
 r1
 !s85 0
 31
-Z13 !s108 1716054299.000000
+Z13 !s108 1716140072.000000
 !s107 C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v|
 Z14 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v|
 !i113 1
@@ -154,16 +154,16 @@ R5
 vram_16x12
 R9
 !i10b 1
-!s100 aN3<Fm3>cLb_LZaeNSadc1
+!s100 I6VICX3eLdHD=d4l?ojzI2
 R0
-Ie`iheBW>ki6M:ZPGf446Q1
+IG<9hzEX77R1OI6RF30m`C1
 R1
 R2
 R10
 R11
 R12
-!i122 162
-L0 260 23
+!i122 167
+L0 267 23
 R3
 r1
 !s85 0
@@ -177,16 +177,16 @@ R5
 vrom_16x12
 R9
 !i10b 1
-!s100 U4Hl]hWefKO3WPYXY98ch0
+!s100 MHX^[669TLUazYTab1]lz1
 R0
-IHUCS::jXHg>Ccn7TGVnQZ1
+I0VKjke>BSZLjd2aI2bT1=2
 R1
 R2
 R10
 R11
 R12
-!i122 162
-L0 238 20
+!i122 167
+L0 245 20
 R3
 r1
 !s85 0

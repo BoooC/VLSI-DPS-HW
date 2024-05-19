@@ -3,9 +3,16 @@
 `define SDFFILE    "/home/univtrain/qr_cordic/qr_cordic_syn.sdf"*/
 `define End_CYCLE  10000
 
-`define A_MEM      "C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/HW5/Verilog/input_A_matrix.txt"
-`define R_GOLD     "C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/HW5/Verilog/output_R_matrix_golden.txt"
-`define Q_GOLD     "C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/HW5/Verilog/output_Q_matrix_golden.txt"
+`define A_MEM      "C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/input_A_matrix.txt"
+`define R_GOLD     "C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/output_R_matrix_golden.txt"
+`define Q_GOLD     "C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/output_Q_matrix_golden.txt"
+// "C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/input_A_matrix.txt"
+// "C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/output_R_matrix_golden.txt"
+// "C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/output_Q_matrix_golden.txt"
+
+// "C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/HW5/Verilog/input_A_matrix.txt"
+// "C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/HW5/Verilog/output_R_matrix_golden.txt"
+// "C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/HW5/Verilog/output_Q_matrix_golden.txt"
 
 module qr_cordic_tb;
 

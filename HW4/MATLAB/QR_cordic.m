@@ -8,10 +8,6 @@ format;
 %%% parameters setting
 iter_num = 12;
 
-sign_bit = 1;
-int_bit  = 7;
-frac_bit = 10; % offset (shift 10 bits as int for hardware)
-
 row = 8;
 col = 4;
 
@@ -25,7 +21,7 @@ A = [  -91,    65,   112,   -52;
         40,    58,   109,    38;
        -54,   -24,  -111,    75];
 
-% A = gen_random_matrix(row, col);
+A = gen_random_matrix(row, col);
 
 
 %%% Floating point QR factorization with Given's rotation
@@ -44,31 +40,48 @@ Q = eye(row);
 K = 0.607421875;
 
 % Quantization (hardware sim)
-K_scaled = 2^(frac_bit) * K;
-Q_scaled = 2^(frac_bit) * Q;
-A_scaled = 2^(frac_bit) * A;
-
-[Q_cordic, R_cordic] = Cordic_QR(K_scaled, Q_scaled, A_scaled, row, col, iter_num, frac_bit);
-
-Q_fix = Q_cordic * 2^(-frac_bit);
-R_fix = R_cordic * 2^(-frac_bit);
-A_fix = (Q_fix') * R_fix;
-
 F = fimath('RoundingMethod','Floor');
 
-% convert to 12-bit output
-Q_fix_12b = fi(Q_fix, 1, 12, 10, F);
-R_fix_12b = fi(R_fix, 1, 12, 3, F);
-A_fix_12b = fi(A_fix, 1, 12, 4, F);
+K_sign	= 1;
+K_int 	= 0;
+K_frac	= 9;
+K_len 	= K_sign + K_int + K_frac;
+
+R_sign	= 1;
+R_int 	= 9;
+R_frac	= 3;
+R_len 	= R_sign + R_int + R_frac;
+
+Q_sign	= 1;
+Q_int 	= 1;
+Q_frac	= 10;
+Q_len 	= Q_sign + Q_int + Q_frac;
+
+A_sign	= 1;
+A_int 	= 7;
+A_frac	= 4;
+A_len 	= A_sign + A_int + A_frac;
+
+K_scaled = fi(K, K_sign, K_len, K_frac, F);
+Q_scaled = fi(Q, Q_sign, Q_len, Q_frac, F);
+R_scaled = fi(A, R_sign, R_len, R_frac, F);
+
+[Q_cordic, R_cordic] = Cordic_QR(K_scaled, Q_scaled, R_scaled, row, col, iter_num, R_sign, R_len, R_frac, Q_sign, Q_len, Q_frac);
+A_cordic = Q_cordic' * R_cordic;
+
+Q_fix = fi(Q_cordic, Q_sign, Q_len, Q_frac, F);
+R_fix = fi(R_cordic, R_sign, R_len, R_frac, F);
+A_fix = fi(A_cordic, A_sign, A_len, A_frac, F);
 
 
 %%% Display result matrix
 % format long g;
-display_result(A, Q_float, Q_fix_12b, R_float, R_fix_12b, A_float, A_fix_12b, frac_bit);
+display_result(A, Q_float, Q_fix, R_float, R_fix, A_float, A_fix);
 
 
 %%% Save data into .txt in binary
-Save_data(Q_fix, R_fix);
+A_origin = fi(A, 1, 12, 4, F);
+Save_data(A_origin, Q_fix, R_fix);
 
 
 %%% function
@@ -82,24 +95,6 @@ function A = gen_random_matrix(row, col)
 			A = randi([-128 127],row,col);
 		end
 	end
-end
-
-% GG : vectoring mode
-function [X, Y, d] = GG(x, y, iter)
-	% d(i)   = -sign(x(i) * y(i))
-	% x(i+1) = x(i) - d(i) * 2^(-i) * y(i)
-	% y(i+1) = y(i) + d(i) * 2^(-i) * x(i)
-	d = -sign(x * y);
-	X = x - d * bitsra(y, iter);
-	Y = y + d * bitsra(x, iter);
-end
-
-% GR : rotation mode
-function [X, Y] = GR(x, y, d, iter)
-	%%% x(i+1) = x(i) - d(i) * 2^(-i) * y(i)
-	%%% y(i+1) = y(i) + d(i) * 2^(-i) * x(i)
-	X = x - d * bitsra(y, iter);
-	Y = y + d * bitsra(x, iter);
 end
 
 % Floating point QR factorization using Q*[A|I] = [R|Q] 
@@ -122,8 +117,39 @@ function R_Q = float_QR(row, col, Q, A)
 	end
 end
 
+
+% GG : vectoring mode
+function [X, Y, d] = GG(x, y, len, frac, iter)
+	% d(i)   = -sign(x(i) * y(i))
+	% x(i+1) = x(i) - d(i) * 2^(-i) * y(i)
+	% y(i+1) = y(i) + d(i) * 2^(-i) * x(i)
+	d = -sign(x * y);
+	X = x - d * bitsra(y, iter);
+	Y = y + d * bitsra(x, iter);
+	
+	F = fimath('RoundingMethod','Floor');
+	X = fi(X, 1, len, frac, F);
+	Y = fi(Y, 1, len, frac, F);
+end
+
+% GR : rotation mode
+function [X, Y] = GR(x, y, d, len, frac, iter)
+	%%% x(i+1) = x(i) - d(i) * 2^(-i) * y(i)
+	%%% y(i+1) = y(i) + d(i) * 2^(-i) * x(i)
+	X = x - d * bitsra(y, iter);
+	Y = y + d * bitsra(x, iter);
+	
+	F = fimath('RoundingMethod','Floor');
+	X = fi(X, 1, len, frac, F);
+	Y = fi(Y, 1, len, frac, F);
+end
+
 % Fixed point QR factorization with the CORDIC 
-function [Q_cordic, R_cordic] = Cordic_QR(K_cordic, Q_cordic, R_cordic, row, col, iter_num, frac_bit)
+function [Q_cordic, R_cordic] = Cordic_QR(K_cordic, Q_scaled, R_scaled, row, col, iter_num, R_sign, R_len, R_frac, Q_sign, Q_len, Q_frac)
+	F = fimath('RoundingMethod','Floor');
+	Q_cordic = Q_scaled;
+	R_cordic = R_scaled;
+	
     % Eliminate A(q+1,p) by A(q,p)
 	for p_fix = 1 : col
 		for q_fix = (row-1) : (-1) : p_fix
@@ -132,47 +158,45 @@ function [Q_cordic, R_cordic] = Cordic_QR(K_cordic, Q_cordic, R_cordic, row, col
 				% vectoring mode
 				x_vect = R_cordic(q_fix  , p_fix); 
 				y_vect = R_cordic(q_fix+1, p_fix); 
-				
-				[X_vect, Y_vect, d] = GG(x_vect, y_vect, iter);
+				[X_vect, Y_vect, d] = GG(x_vect, y_vect, R_len, R_frac, iter);
 
 				if iter == iter_num-1
-					R_cordic(q_fix  , p_fix) = floor(X_vect * K_cordic * 2^(-frac_bit));
-					R_cordic(q_fix+1, p_fix) = floor(Y_vect * K_cordic * 2^(-frac_bit)); 
+					R_cordic(q_fix  , p_fix) = fi((X_vect * K_cordic), R_sign, R_len, R_frac, F);
+					R_cordic(q_fix+1, p_fix) = fi((Y_vect * K_cordic), R_sign, R_len, R_frac, F);
 				else
 					R_cordic(q_fix  , p_fix) = X_vect;
 					R_cordic(q_fix+1, p_fix) = Y_vect;
 				end
 				% print info
 				print_GG_info(p_fix, iter, X_vect, Y_vect)
-				print_GG_MK_info(p_fix, iter, R_cordic(q_fix,p_fix), R_cordic(q_fix+1,p_fix))
+				print_GG_MK_info(p_fix, iter, R_cordic(q_fix, p_fix), R_cordic(q_fix+1, p_fix))
 
 				% rotation mode
 				for rot_R = 1 : (col-p_fix)
 					x_rot_R = R_cordic(q_fix  , p_fix+rot_R); 
 					y_rot_R = R_cordic(q_fix+1, p_fix+rot_R); 
-					
-					[X_rot_R, Y_rot_R] = GR(x_rot_R, y_rot_R, d, iter);
+					[X_rot_R, Y_rot_R] = GR(x_rot_R, y_rot_R, d, R_len, R_frac, iter);
 					
 					if iter == iter_num-1
-						R_cordic(q_fix  , p_fix+rot_R) = floor(X_rot_R * K_cordic * 2^(-frac_bit)); 
-						R_cordic(q_fix+1, p_fix+rot_R) = floor(Y_rot_R * K_cordic * 2^(-frac_bit)); 
+						R_cordic(q_fix  , p_fix+rot_R) = fi((X_rot_R * K_cordic), R_sign, R_len, R_frac, F);
+						R_cordic(q_fix+1, p_fix+rot_R) = fi((Y_rot_R * K_cordic), R_sign, R_len, R_frac, F);
 					else
 						R_cordic(q_fix  , p_fix+rot_R) = X_rot_R;
 						R_cordic(q_fix+1, p_fix+rot_R) = Y_rot_R;
 					end
 					% print info
 					print_GR_info(p_fix, rot_R, iter, X_rot_R, Y_rot_R);
-					print_GR_MK_info(p_fix, rot_R, iter, R_cordic(p_fix,p_fix+rot_R), R_cordic(p_fix+1,p_fix+rot_R));
+					print_GR_MK_info(p_fix, rot_R, iter, R_cordic(p_fix, p_fix+rot_R), R_cordic(p_fix+1, p_fix+rot_R));
 				end
 				% compute Q (As the processing of R)
 				for rot_Q = 1 : row
 					x_rot_Q = Q_cordic(q_fix  , rot_Q); 
 					y_rot_Q = Q_cordic(q_fix+1, rot_Q);
+					[X_rot_Q, Y_rot_Q] = GR(x_rot_Q, y_rot_Q, d, Q_len, Q_frac, iter);
 					
-					[X_rot_Q, Y_rot_Q] = GR(x_rot_Q, y_rot_Q, d, iter);
 					if iter == iter_num-1 
-						Q_cordic(q_fix  , rot_Q) = floor(X_rot_Q * K_cordic * 2^(-frac_bit));
-						Q_cordic(q_fix+1, rot_Q) = floor(Y_rot_Q * K_cordic * 2^(-frac_bit));
+						Q_cordic(q_fix  , rot_Q) = fi((X_rot_Q * K_cordic), Q_sign, Q_len, Q_frac, F);
+						Q_cordic(q_fix+1, rot_Q) = fi((Y_rot_Q * K_cordic), Q_sign, Q_len, Q_frac, F);
 					else                     
 						Q_cordic(q_fix  , rot_Q) = X_rot_Q;
 						Q_cordic(q_fix+1, rot_Q) = Y_rot_Q;
@@ -183,7 +207,7 @@ function [Q_cordic, R_cordic] = Cordic_QR(K_cordic, Q_cordic, R_cordic, row, col
 	end
 end
 
-function display_result(A, Q_float, Q_fix_12b, R_float, R_fix_12b, A_float, A_fix_12b, frac_bit)
+function display_result(A, Q_float, Q_fix_12b, R_float, R_fix_12b, A_float, A_fix_12b)
 	% display matrix results
     disp('Matrix A :');
     disp(A);
@@ -257,9 +281,10 @@ function print_GR_MK_info(k, r, iter, X, Y)
 end
 
 
-function Save_data(Q, R)
+function Save_data(A_origin, Q, R)
 	F = fimath('RoundingMethod','Floor');
 	
+	A_origin = fi(A_origin, 1, 12, 3, F);
 	Q_scaled = fi(Q, 1, 12, 10, F);
 	R_scaled = fi(R, 1, 12, 3, F);
 	
@@ -292,15 +317,25 @@ function Save_data(Q, R)
 	% 		          0,    -0.125,         0,         0;
 	% 		          0,         0,         0,    -0.125;
 	% 	         -0.125,         0,    -0.125,    -0.125];
-
+	
 	[A_row, A_col] = size(A_scaled);
 	[Q_row, Q_col] = size(Q_scaled);
 	[R_row, R_col] = size(R_scaled);
 
 	format short g;
 	
+	% Write original A matrix to a .txt file
+	fid_a_ori = fopen('data/input_A_matrix.txt', 'w');
+	for i = 1 : A_row
+		for j = 1 : A_col
+			a_o_data = A_origin(i,j);
+			fprintf(fid_a_ori, '%s\n', a_o_data.bin);
+		end
+	end
+	fclose(fid_a_ori);
+	
 	% Write A matrix to a .txt file
-	fid_a = fopen('data/input_A_matrix.txt', 'w');
+	fid_a = fopen('data/output_A_matrix.txt', 'w');
 	for i = 1 : A_row
 		for j = 1 : A_col
 			a_data = A_scaled(i,j);
