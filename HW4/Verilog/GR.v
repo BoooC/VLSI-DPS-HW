@@ -1,5 +1,5 @@
 module GR #(
-	parameter R_LEN  = 12,
+	parameter R_LEN  = 13,
 	parameter R_FRAC = 3
 )(	
 	input       						nop,

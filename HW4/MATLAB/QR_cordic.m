@@ -6,37 +6,44 @@ format;
 %	where Q is unitary matrix, R is upper triangular matrix
 
 %%% parameters setting
-iter_num = 12;
+iter_num = 16;
 
-row = 8;
-col = 4;
+row_R 	= 8;
+col_R 	= 4;
+
+col_Q	= row_R;
+row_Q	= row_R;
+
+Input_len = 8;
 
 %%% Generate a 8x4 matrix A of 8-bit random signed integers with full column rank 4
-A = [  -91,    65,   112,   -52;
-      -123,    14,   -63,    23;
-       118,   -19,     8,   -76;
-       120,   -60,   116,    34;
-       -97,    64,   -60,    76;
-        -9,   101,   -64,     0;
-        40,    58,   109,    38;
-       -54,   -24,  -111,    75];
+A = [  -123   -68   -96   -79
+         85  -122   -52   105
+        102   112   -95    72
+         87   114    38   126
+         34    68   -71   127
+         75   -89    96  -115
+        -94   116   122   -69
+         82   122  -110    76];
 
-A = gen_random_matrix(row, col);
+A_high 	=  2^(Input_len-1) - 1;
+A_low	= -2^(Input_len-1); 
+% A = gen_random_matrix(row_R, col_R, A_high, A_low);
 
 
 %%% Floating point QR factorization with Given's rotation
-Q 	= eye(row); % 8x8
-R_Q = float_QR(row, col, Q, A);
+Q 	= eye(row_Q);
+R_Q = float_QR(row_R, col_R, row_Q, Q, A);
 
 % shift to int
-Q_float	= R_Q(1 : row, col+1 : row+col);
-R_float	= R_Q(1 : row, 1 : col);
+Q_float	= R_Q(1 : row_Q, col_R+1 : col_Q+col_R);
+R_float	= R_Q(1 : row_R, 1 : col_R);
 A_float	= Q_float' * R_float;
 
 
 %%% Fixed point QR factorization with the CORDIC 
-Q = eye(row);
-% A = gen_random_matrix(row, col);
+Q = eye(row_Q);
+% A = gen_random_matrix(row_R, col_R);
 K = 0.607421875;
 
 % Quantization (hardware sim)
@@ -58,53 +65,53 @@ Q_frac	= 10;
 Q_len 	= Q_sign + Q_int + Q_frac;
 
 A_sign	= 1;
-A_int 	= 7;
-A_frac	= 4;
+A_int 	= 10;
+A_frac	= 3;
 A_len 	= A_sign + A_int + A_frac;
 
 K_scaled = fi(K, K_sign, K_len, K_frac, F);
 Q_scaled = fi(Q, Q_sign, Q_len, Q_frac, F);
 R_scaled = fi(A, R_sign, R_len, R_frac, F);
 
-[Q_cordic, R_cordic] = Cordic_QR(K_scaled, Q_scaled, R_scaled, row, col, iter_num, R_sign, R_len, R_frac, Q_sign, Q_len, Q_frac);
+[Q_cordic, R_cordic] = Cordic_QR(K_scaled, Q_scaled, R_scaled, row_R, col_R, col_Q, iter_num, R_sign, R_len, R_frac, Q_sign, Q_len, Q_frac);
 A_cordic = Q_cordic' * R_cordic;
+R_cordic = triu(R_cordic);
 
-Q_fix = fi(Q_cordic, Q_sign, Q_len, Q_frac, F);
-R_fix = fi(R_cordic, R_sign, R_len, R_frac, F);
+Q_fix = fi(Q_cordic * 2^(Q_frac), Q_sign, Q_len, 0, F);
+R_fix = fi(R_cordic * 2^(R_frac), R_sign, R_len, 0, F);
 A_fix = fi(A_cordic, A_sign, A_len, A_frac, F);
 
 
 %%% Display result matrix
-% format long g;
-display_result(A, Q_float, Q_fix, R_float, R_fix, A_float, A_fix);
+display_result(A, Q_float*2^(Q_frac), Q_fix, R_float*2^(R_frac), R_fix, A_float, A_fix);
 
 
 %%% Save data into .txt in binary
-A_origin = fi(A, 1, 12, 4, F);
+A_origin = fi(A, 1, 12, 0, F);
 Save_data(A_origin, Q_fix, R_fix);
 
 
 %%% function
 % generate a random matrix whose rank == min(row, col) and its element is INT-8
-function A = gen_random_matrix(row, col)
-	A = randi([-128 127],row,col);  
+function A = gen_random_matrix(row_R, col_R, high, low)
+	A = randi([low high], row_R, col_R);  
 	while 1
-		if rank(A) == min(row,col)
+		if rank(A) == min(row_R, col_R)
 			break
 		else
-			A = randi([-128 127],row,col);
+			A = randi([low high], row_R, col_R);
 		end
 	end
 end
 
 % Floating point QR factorization using Q*[A|I] = [R|Q] 
-function R_Q = float_QR(row, col, Q, A)
+function R_Q = float_QR(row_R, col_R, row_Q, Q, A)
 	% Q*[A|I] = [R|Q]
     R_Q = [A Q];
     % Perform Givens rotations
-	for p_float = 1 : col
-		for q_float = (row-1) : (-1) : p_float
-			Q 	  = eye(row);
+	for p_float = 1 : col_R
+		for q_float = (row_R-1) : (-1) : p_float
+			Q 	  = eye(row_Q);
 			theta = atan2(R_Q(q_float+1, p_float), R_Q(q_float, p_float));
 			% Givens Q
 			Q(q_float  , q_float  ) = cos(theta);
@@ -145,14 +152,24 @@ function [X, Y] = GR(x, y, d, len, frac, iter)
 end
 
 % Fixed point QR factorization with the CORDIC 
-function [Q_cordic, R_cordic] = Cordic_QR(K_cordic, Q_scaled, R_scaled, row, col, iter_num, R_sign, R_len, R_frac, Q_sign, Q_len, Q_frac)
+function [Q_cordic, R_cordic] = Cordic_QR(K_cordic, Q_scaled, R_scaled, row_R, col_R, col_Q, iter_num, R_sign, R_len, R_frac, Q_sign, Q_len, Q_frac)
 	F = fimath('RoundingMethod','Floor');
 	Q_cordic = Q_scaled;
 	R_cordic = R_scaled;
 	
     % Eliminate A(q+1,p) by A(q,p)
-	for p_fix = 1 : col
-		for q_fix = (row-1) : (-1) : p_fix
+	for p_fix = 1 : col_R
+		for q_fix = (row_R-1) : (-1) : p_fix
+			
+			if R_cordic(q_fix,p_fix) < 0 %Column q and column q+1 are rotated 180 degrees
+				for reverse = p_fix : col_R
+					R_cordic(q_fix  ,reverse) = -R_cordic(q_fix  ,reverse);
+					R_cordic(q_fix+1,reverse) = -R_cordic(q_fix+1,reverse);
+					Q_cordic(q_fix  ,reverse) = -Q_cordic(q_fix  ,reverse);
+					Q_cordic(q_fix+1,reverse) = -Q_cordic(q_fix+1,reverse);
+				end
+			end
+			
 			disp(['k = ', num2str(p_fix), ' row', num2str(q_fix), num2str(q_fix+1), ': '])
 			for iter = 0 : iter_num-1
 				% vectoring mode
@@ -172,7 +189,7 @@ function [Q_cordic, R_cordic] = Cordic_QR(K_cordic, Q_scaled, R_scaled, row, col
 				print_GG_MK_info(p_fix, iter, R_cordic(q_fix, p_fix), R_cordic(q_fix+1, p_fix))
 
 				% rotation mode
-				for rot_R = 1 : (col-p_fix)
+				for rot_R = 1 : (col_R-p_fix)
 					x_rot_R = R_cordic(q_fix  , p_fix+rot_R); 
 					y_rot_R = R_cordic(q_fix+1, p_fix+rot_R); 
 					[X_rot_R, Y_rot_R] = GR(x_rot_R, y_rot_R, d, R_len, R_frac, iter);
@@ -189,7 +206,7 @@ function [Q_cordic, R_cordic] = Cordic_QR(K_cordic, Q_scaled, R_scaled, row, col
 					print_GR_MK_info(p_fix, rot_R, iter, R_cordic(p_fix, p_fix+rot_R), R_cordic(p_fix+1, p_fix+rot_R));
 				end
 				% compute Q (As the processing of R)
-				for rot_Q = 1 : row
+				for rot_Q = 1 : col_Q
 					x_rot_Q = Q_cordic(q_fix  , rot_Q); 
 					y_rot_Q = Q_cordic(q_fix+1, rot_Q);
 					[X_rot_Q, Y_rot_Q] = GR(x_rot_Q, y_rot_Q, d, Q_len, Q_frac, iter);
@@ -284,40 +301,13 @@ end
 function Save_data(A_origin, Q, R)
 	F = fimath('RoundingMethod','Floor');
 	
-	A_origin = fi(A_origin, 1, 12, 3, F);
+	A_origin = fi(A_origin, 1, 13, 3, F);
 	Q_scaled = fi(Q, 1, 12, 10, F);
-	R_scaled = fi(R, 1, 12, 3, F);
+	R_scaled = fi(R, 1, 13, 0, F);
 	
 	A = Q_scaled' * R_scaled;
 	A_scaled = fi(A, 1, 12, 4, F);
-	
-	% A_scaled = [  -90.75           65          112          -52
-	% 	         -122.56       13.938      -63.063       23.063
-	% 	          118.31      -18.875       8.3125      -75.875
-	% 	             120       -59.75       116.56       34.563
-	% 	         -96.938       64.625      -60.063       76.875
-	% 	          -8.875       101.94      -64.063         0.25
-	% 	          39.875       58.688       109.31       38.375
-	% 	          -53.75      -23.813         -111       75.375];
-	%      
-	% Q_scaled = [  0.3544921875,    0.478515625,  -0.4619140625,       -0.46875,     0.37890625,     0.03515625,       -0.15625,   0.2099609375;
-	% 	         -0.2568359375,       0.171875,  -0.1279296875,        0.15625,   -0.240234375,  -0.6962890625,           -0.5,   0.2861328125;
-	% 	           0.646484375,   0.0009765625,  -0.2353515625,       0.328125,  -0.1337890625,   -0.439453125,     0.30859375,  -0.3369140625;
-	% 	           0.337890625,     0.02734375,     0.41015625,  -0.4638671875,  -0.4150390625,       0.015625,   -0.455078125,   -0.361328125;
-	% 	         -0.5244140625,   0.2607421875,  -0.2744140625,     -0.2890625,  -0.0576171875,  -0.1669921875,      0.2265625,   -0.646484375;
-	% 	         		     0,  -0.8212890625,  -0.3701171875,  -0.3486328125,   0.1396484375,  -0.1787109375,  -0.1396484375,    -0.03515625;
-	% 	         		     0,              0,  -0.5810546875,       0.234375,   -0.548828125,    0.505859375,  -0.2333984375,  -0.0224609375;
-	% 	         		     0,              0,              0,  -0.4248046875,  -0.5419921875,     -0.1171875,     0.55078125,   0.4580078125];
-	% 																  
-	% R_scaled = [   -256,     80.25,  -114.125,     50.25;
-	% 	         -0.125,  -142.375,       -50,    16.875;
-	% 	         -0.125,         0,   215.875,   -28.375;
-	% 		          0,    -0.125,         0,  -139.625;
-	% 	         -0.125,    -0.125,    -0.125,    -0.125;
-	% 		          0,    -0.125,         0,         0;
-	% 		          0,         0,         0,    -0.125;
-	% 	         -0.125,         0,    -0.125,    -0.125];
-	
+
 	[A_row, A_col] = size(A_scaled);
 	[Q_row, Q_col] = size(Q_scaled);
 	[R_row, R_col] = size(R_scaled);
@@ -325,7 +315,7 @@ function Save_data(A_origin, Q, R)
 	format short g;
 	
 	% Write original A matrix to a .txt file
-	fid_a_ori = fopen('data/input_A_matrix.txt', 'w');
+	fid_a_ori = fopen('C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/input_A_matrix.txt', 'w');
 	for i = 1 : A_row
 		for j = 1 : A_col
 			a_o_data = A_origin(i,j);
@@ -335,7 +325,7 @@ function Save_data(A_origin, Q, R)
 	fclose(fid_a_ori);
 	
 	% Write A matrix to a .txt file
-	fid_a = fopen('data/output_A_matrix.txt', 'w');
+	fid_a = fopen('C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/output_A_matrix.txt', 'w');
 	for i = 1 : A_row
 		for j = 1 : A_col
 			a_data = A_scaled(i,j);
@@ -345,7 +335,7 @@ function Save_data(A_origin, Q, R)
 	fclose(fid_a);
 
 	% Write R matrix to a .txt file
-	fid_r = fopen('data/output_R_matrix_golden.txt', 'w');
+	fid_r = fopen('C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/output_R_matrix_golden.txt', 'w');
 	for i = 1 : R_row
 		for j = 1 : R_col
 			r_data = R_scaled(i,j);
@@ -355,7 +345,7 @@ function Save_data(A_origin, Q, R)
 	fclose(fid_r);
 
 	% Write R matrix to a .txt file
-	fid_q = fopen('data/output_Q_matrix_golden.txt', 'w');
+	fid_q = fopen('C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/output_Q_matrix_golden.txt', 'w');
 	for i = 1 : Q_row
 		for j = 1 : Q_col
 			q_data = Q_scaled(i,j);

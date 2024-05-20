@@ -1,7 +1,13 @@
 # Compile of cordic.v was successful.
+# Compile of GG.v was successful.
+# Compile of GR.v was successful.
+# Compile of MK.v was successful.
+# Compile of Q.v was successful.
+# Compile of qr_cordic_tb.v was successful.
+# 6 compiles, 0 failed with no errors.
 vsim work.qr_cordic_tb
 # vsim work.qr_cordic_tb 
-# Start time: 01:20:55 on May 20,2024
+# Start time: 01:43:55 on May 21,2024
 # Loading work.qr_cordic_tb
 # Loading work.cordic
 # Loading work.GG
@@ -11,6 +17,12 @@ vsim work.qr_cordic_tb
 # Loading work.rom_16x12
 # Loading work.ram_16x12
 run -all
+# ** Warning: (vsim-PLI-3406) Too many digits (13) in data on line 1 of file "C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/input_A_matrix.txt". (Max is 12.)    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(248)
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/rom_16x12_A
+# ** Warning: (vsim-PLI-3406) Too many digits (13) in data on line 1 of file "C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/output_R_matrix_golden.txt". (Max is 12.)    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(95)
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb
+# ** Warning: (vsim-PLI-3407) Too many data words read on line 17 of file "C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/output_Q_matrix_golden.txt". (Current address [16], address range [0:15])    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(96)
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb
 # -------------------------------------------------------
 # 
 # START!!! Simulation Start .....
@@ -19,44 +31,59 @@ run -all
 # 
 # 
 # Original_Input A matrix: 
-#          -55           17           71           -8
-#           65         -109          111         -125
-#           64         -115          -95          -42
-#          -31            7           17          -87
+#            x            x            x            x
+#            x            x            x            x
+#            x            x            x            x
+#            x            x            x            x
 # Shifted_Input A matrix: 
-#         -440          136          568          -64
-#          520         -872          888        -1000
-#          512         -920         -760         -336
-#         -248           56          136         -696
+#            x            x            x            x
+#            x            x            x            x
+#            x            x            x            x
+#            x            x            x            x
 # 
 # Output R matrix golden pattern: 
-#          888        -1127         -240         -558
-#            0          606         -419          840
-#            0            0         1219         -449
-#            0            0            0          618
+#            x            x            x            x
+#            x            x            x            x
+#            x            x            x            x
+#            x            x            x            x
 # R matrix calculated result: 
-#          888        -1127         -240         -558
-#            0          606         -419          840
-#            0            0         1219         -449
-#            0            0            0          618
+#            x            x            x            x
+#            0            x            x            x
+#            0            0            x            x
+#            0            0            0            x
 # 
 # Output Q matrix golden pattern: 
-#         -510          598          589         -288
-#         -718         -356         -464         -434
-#          128          744         -686          -86
-#          503          -96          100         -886
+#        -2048         2047         2047         2047
+#        -2048        -2048        -2048         2047
+#        -2048        -2048         2047         2047
+#        -2048         2047         2047         2047
 # Q matrix calculated result: 
-#         -510          598          589         -288
-#         -718         -356         -464         -434
-#          128          744         -686          -86
-#          503          -96          100         -886
+#         -178         -178         -178          969
+#          168          156         -997         -119
+#         -173          986          112          160
+#         -977         -107         -160         -223
 # 
+# Data Q[ 0] is wrong! The output data is  -178, but the expected data is -2048.
+# Data Q[ 1] is wrong! The output data is  -178, but the expected data is  2047.
+# Data Q[ 2] is wrong! The output data is  -178, but the expected data is  2047.
+# Data Q[ 3] is wrong! The output data is   969, but the expected data is  2047.
+# Data Q[ 4] is wrong! The output data is   168, but the expected data is -2048.
+# Data Q[ 5] is wrong! The output data is   156, but the expected data is -2048.
+# Data Q[ 6] is wrong! The output data is  -997, but the expected data is -2048.
+# Data Q[ 7] is wrong! The output data is  -119, but the expected data is  2047.
+# Data Q[ 8] is wrong! The output data is  -173, but the expected data is -2048.
+# Data Q[ 9] is wrong! The output data is   986, but the expected data is -2048.
+# Data Q[10] is wrong! The output data is   112, but the expected data is  2047.
+# Data Q[11] is wrong! The output data is   160, but the expected data is  2047.
+# Data Q[12] is wrong! The output data is  -977, but the expected data is -2048.
+# Data Q[13] is wrong! The output data is  -107, but the expected data is  2047.
+# Data Q[14] is wrong! The output data is  -160, but the expected data is  2047.
+# Data Q[15] is wrong! The output data is  -223, but the expected data is  2047.
 #  
 # --------------------- S U M M A R Y -------------------
 # 
 # *****************************************************************************
-# ** Congratulations!!! R and Q data are all correct! The result is PASS!!!  **
-# ** Get finish at cycle: 37                                                 **
+# ** FAIL!!! There are  16 error in Q matrix!                                **
 # *****************************************************************************
 # ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(212)
 #    Time: 2225 ns  Iteration: 0  Instance: /qr_cordic_tb
@@ -67,75 +94,196 @@ run -all
 restart
 # ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
 # Loading work.qr_cordic_tb
-# Loading work.cordic
-# Loading work.rom_16x12
-# Loading work.ram_16x12
+# Loading work.qr_cord_Aic
+# Loading work.rom_32x13
+# Loading work.ram_32x13
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'xi'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GG.v(6).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GG1_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1306
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'yi'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GG.v(7).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GG1_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1306
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'xo'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GG.v(15).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GG1_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1306
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'yo'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GG.v(16).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GG1_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1306
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'xi'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GR.v(6).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GR11_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1320
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'yi'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GR.v(7).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GR11_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1320
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'xo'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GR.v(14).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GR11_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1320
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'yo'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GR.v(15).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GR11_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1320
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'xi'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GR.v(6).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GR12_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1334
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'yi'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GR.v(7).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GR12_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1334
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'xo'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GR.v(14).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GR12_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1334
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'yo'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GR.v(15).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GR12_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1334
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'xi'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GR.v(6).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GR13_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1348
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'yi'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GR.v(7).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GR13_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1348
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'xo'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GR.v(14).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GR13_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1348
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'yo'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GR.v(15).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GR13_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1348
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'xi'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GG.v(6).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GG2_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1362
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'yi'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GG.v(7).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GG2_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1362
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'xo'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GG.v(15).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GG2_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1362
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'yo'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GG.v(16).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GG2_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1362
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'xi'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GR.v(6).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GR21_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1376
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'yi'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GR.v(7).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GR21_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1376
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'xo'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GR.v(14).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GR21_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1376
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'yo'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GR.v(15).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GR21_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1376
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'xi'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GR.v(6).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GR22_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1390
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'yi'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GR.v(7).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GR22_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1390
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'xo'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GR.v(14).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GR22_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1390
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'yo'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GR.v(15).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GR22_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1390
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'xi'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GG.v(6).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GG3_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1404
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'yi'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GG.v(7).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GG3_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1404
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'xo'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GG.v(15).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GG3_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1404
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'yo'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GG.v(16).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GG3_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1404
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'xi'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GR.v(6).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GR31_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1418
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'yi'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GR.v(7).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GR31_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1418
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'xo'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GR.v(14).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GR31_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1418
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'yo'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GR.v(15).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GR31_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1418
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'xi'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GG.v(6).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GG4_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1432
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'yi'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GG.v(7).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GG4_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1432
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'xo'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GG.v(15).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GG4_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1432
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'yo'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GG.v(16).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/GG4_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1432
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'xi'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/MK.v(7).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/MK1_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1446
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'yi'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/MK.v(8).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/MK1_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1446
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'xo'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/MK.v(9).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/MK1_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1446
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'yo'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/MK.v(10).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/MK1_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1446
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'xi'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/MK.v(7).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/MK2_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1453
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'yi'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/MK.v(8).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/MK2_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1453
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'xo'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/MK.v(9).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/MK2_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1453
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'yo'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/MK.v(10).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/MK2_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1453
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'xi'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/MK.v(7).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/MK3_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1460
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'yi'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/MK.v(8).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/MK3_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1460
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'xo'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/MK.v(9).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/MK3_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1460
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'yo'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/MK.v(10).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/MK3_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1460
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'xi'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/MK.v(7).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/MK4_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1467
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'yi'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/MK.v(8).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/MK4_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1467
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'xo'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/MK.v(9).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/MK4_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1467
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (13) for port 'yo'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/MK.v(10).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cord_Aic_inst/MK4_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 1467
+# Compile of GG.v was successful.
+# Compile of GR.v was successful.
+# Compile of MK.v was successful.
+# 3 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.GG
+# Loading work.GR
+# Loading work.MK
 run -all
 # GetModuleFileName: тぃ﹚家舱
 # 
 # 
-# ** Warning: (vsim-7) Failed to open readmem file "C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/output_Q_matrix.txt" in read mode.
-# No such file or directory. (errno = ENOENT)    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(102)
-#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb
-# ** Warning: (vsim-7) Failed to open readmem file "C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/output_R_matrix.txt" in read mode.
-# No such file or directory. (errno = ENOENT)    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(103)
-#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb
 # -------------------------------------------------------
 # 
 # START!!! Simulation Start .....
 # 
 # -------------------------------------------------------
 # 
-# 
-# Original_Input A matrix: 
-#          -87          -41          -63          117
-#          -98           21            1           12
-#           -1          -71           50          -93
-#          117           64          100          -90
-# Shifted_Input A matrix: 
-#         -696         -328         -504          936
-#         -784          168            8           96
-#           -8         -568          400         -744
-#          936          512          800         -720
-# 
+# Input A matrix: 
+#          -984          -544          -768          -632
+#           680          -976          -416           840
+#           816           896          -760           576
+#           696           912           304          1008
+#           272           544          -568          1016
+#           600          -712           768          -920
+#          -752           928           976          -552
+#           656           976          -880           608
 # Output R matrix golden pattern: 
-#            x            x            x            x
-#            x            x            x            x
-#            x            x            x            x
-#            x            x            x            x
+#          2014           448          -479          1446
+#             0          2316           -74           698
+#             0             0          1969          -824
+#             0             0             0          1329
+#             0             0             0             0
+#             0             0             0             0
+#             0             0             0             0
+#             0             0             0             0
+# 
 # R matrix calculated result: 
-#         1243         -319         -652          699
-#            0          787          176          -18
-#            0            0          775        -1148
-#            0            0            0          391
-# 
-# Output Q matrix golden pattern: 
-#            x            x            x            x
-#            x            x            x            x
-#            x            x            x            x
-#            x            x            x            x
-# Q matrix calculated result: 
-#          100          652            7         -783
-#         -385          485         -737          349
-#         -496          451          708          320
-#          803          429           82          464
-# 
+#          2014           448          -479          1446
+#             0          2316           -74           698
+#             0             0          1969          -824
+#             0             0             0          1329
+#             0             0             0             0
+#             0             0             0             0
+#             0             0             0             0
+#             0             0             0             0
 #  
+# -------------------------------------------------------
+# 
 # --------------------- S U M M A R Y -------------------
 # 
 # *****************************************************************************
-# ** Congratulations!!! R and Q data are all correct! The result is PASS!!!  **
-# ** Get finish at cycle: 37                                                 **
+# ** Congratulations!!! R matrix data are all correct! The result is PASS!!! **
+# ** Get valid at cycle:  62                                                 **
 # *****************************************************************************
-# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(219)
-#    Time: 2225 ns  Iteration: 0  Instance: /qr_cordic_tb
-# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 219
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(201)
+#    Time: 3375 ns  Iteration: 1  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 201
+# Compile of cordic.v was successful.
+# Compile of GG.v was successful.
+# Compile of GR.v was successful.
+# Compile of MK.v was successful.
+# Compile of Q.v was successful.
 # Compile of qr_cordic_tb.v was successful.
+# 6 compiles, 0 failed with no errors.
 restart
 # ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
 # Loading work.qr_cordic_tb
-# Loading work.rom_16x12
-# Loading work.ram_16x12
+# Loading work.qr_cord_Aic
+# Loading work.GG
+# Loading work.GR
+# Loading work.MK
+# Loading work.rom_32x13
+# Loading work.ram_32x13
 run -all
 # GetModuleFileName: тぃ﹚家舱
 # 
@@ -146,84 +294,46 @@ run -all
 # 
 # -------------------------------------------------------
 # 
-# 
-# Original_Input A matrix: 
-#          -87          -41          -63          117
-#          -98           21            1           12
-#           -1          -71           50          -93
-#          117           64          100          -90
-# Shifted_Input A matrix: 
-#         -696         -328         -504          936
-#         -784          168            8           96
-#           -8         -568          400         -744
-#          936          512          800         -720
-# 
+# Input A matrix: 
+#           200          -448           808          -360
+#          -720           352           664           -96
+#           816           336          -232           432
+#          -104          -776            -8           784
+#          -608          -192           392           448
+#           816          -464           680          -992
+#           536           440           224           352
+#           776          -448           152          -128
 # Output R matrix golden pattern: 
-#          507          570            5         -684
-#         -171          551         -781          329
-#         -173          640          661          413
-#          857          -99          -24          554
+#          1783          -209            17          -413
+#             0          1293          -436           131
+#             0             0          1284          -658
+#             0             0             0          1295
+#             0             0             0             0
+#             0             0             0             0
+#             0             0             0             0
+#             0             0             0             0
+# 
 # R matrix calculated result: 
-#         1243         -319         -652          699
-#            0          787          176          -18
-#            0            0          775        -1148
-#            0            0            0          391
-# 
-# Output Q matrix golden pattern: 
-#        -1407         -414         -777          992
-#           -1          742           39          232
-#           -1           -1          672         -871
-#           -1           -1           -1          403
-# Q matrix calculated result: 
-#          100          652            7         -783
-#         -385          485         -737          349
-#         -496          451          708          320
-#          803          429           82          464
-# Data R[ 0] is wrong! The output data is  1243, but the expected data is   507.
-# Data R[ 1] is wrong! The output data is  -319, but the expected data is   570.
-# Data R[ 2] is wrong! The output data is  -652, but the expected data is     5.
-# Data R[ 3] is wrong! The output data is   699, but the expected data is  -684.
-# Data R[ 4] is wrong! The output data is     0, but the expected data is  -171.
-# Data R[ 5] is wrong! The output data is   787, but the expected data is   551.
-# Data R[ 6] is wrong! The output data is   176, but the expected data is  -781.
-# Data R[ 7] is wrong! The output data is   -18, but the expected data is   329.
-# Data R[ 8] is wrong! The output data is     0, but the expected data is  -173.
-# Data R[ 9] is wrong! The output data is     0, but the expected data is   640.
-# Data R[10] is wrong! The output data is   775, but the expected data is   661.
-# Data R[11] is wrong! The output data is -1148, but the expected data is   413.
-# Data R[12] is wrong! The output data is     0, but the expected data is   857.
-# Data R[13] is wrong! The output data is     0, but the expected data is   -99.
-# Data R[14] is wrong! The output data is     0, but the expected data is   -24.
-# Data R[15] is wrong! The output data is   391, but the expected data is   554.
-# 
-# Data Q[ 0] is wrong! The output data is   100, but the expected data is -1407.
-# Data Q[ 1] is wrong! The output data is   652, but the expected data is  -414.
-# Data Q[ 2] is wrong! The output data is     7, but the expected data is  -777.
-# Data Q[ 3] is wrong! The output data is  -783, but the expected data is   992.
-# Data Q[ 4] is wrong! The output data is  -385, but the expected data is    -1.
-# Data Q[ 5] is wrong! The output data is   485, but the expected data is   742.
-# Data Q[ 6] is wrong! The output data is  -737, but the expected data is    39.
-# Data Q[ 7] is wrong! The output data is   349, but the expected data is   232.
-# Data Q[ 8] is wrong! The output data is  -496, but the expected data is    -1.
-# Data Q[ 9] is wrong! The output data is   451, but the expected data is    -1.
-# Data Q[10] is wrong! The output data is   708, but the expected data is   672.
-# Data Q[11] is wrong! The output data is   320, but the expected data is  -871.
-# Data Q[12] is wrong! The output data is   803, but the expected data is    -1.
-# Data Q[13] is wrong! The output data is   429, but the expected data is    -1.
-# Data Q[14] is wrong! The output data is    82, but the expected data is    -1.
-# Data Q[15] is wrong! The output data is   464, but the expected data is   403.
+#          1783          -209            17          -413
+#             0          1293          -436           131
+#             0             0          1284          -658
+#             0             0             0          1295
+#             0             0             0             0
+#             0             0             0             0
+#             0             0             0             0
+#             0             0             0             0
 #  
+# -------------------------------------------------------
+# 
 # --------------------- S U M M A R Y -------------------
 # 
 # *****************************************************************************
-# ** FAIL!!! There are  16 error in R matrix!                                **
+# ** Congratulations!!! R matrix data are all correct! The result is PASS!!! **
+# ** Get valid at cycle:  62                                                 **
 # *****************************************************************************
-# *****************************************************************************
-# ** FAIL!!! There are  16 error in Q matrix!                                **
-# *****************************************************************************
-# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(219)
-#    Time: 2225 ns  Iteration: 0  Instance: /qr_cordic_tb
-# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 219
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(201)
+#    Time: 3375 ns  Iteration: 1  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 201
 restart
 run -all
 # GetModuleFileName: тぃ﹚家舱
@@ -235,178 +345,46 @@ run -all
 # 
 # -------------------------------------------------------
 # 
-# 
-# Original_Input A matrix: 
-#          -87          -41          -63          117
-#          -98           21            1           12
-#           -1          -71           50          -93
-#          117           64          100          -90
-# Shifted_Input A matrix: 
-#         -696         -328         -504          936
-#         -784          168            8           96
-#           -8         -568          400         -744
-#          936          512          800         -720
-# 
+# Input A matrix: 
+#          -128           120           672            80
+#          -792          -216          -752          -832
+#           640          -216          -904          -728
+#          -360            24          -856           264
+#          -520           320          -696           728
+#          -328           920          -360           968
+#          -256           448          -408           144
+#            88          -208         -1008          1016
 # Output R matrix golden pattern: 
-#          507          570            5         -684
-#         -171          551         -781          329
-#         -173          640          661          413
-#          857          -99          -24          554
+#          1284          -473           577          -443
+#             0          1050           160          1081
+#             0             0          2014          -378
+#             0             0             0          1528
+#             0             0             0             0
+#             0             0             0             0
+#             0             0             0             0
+#             0             0             0             0
+# 
 # R matrix calculated result: 
-#         1243         -319         -652          699
-#            0          787          176          -18
-#            0            0          775        -1148
-#            0            0            0          391
-# 
-# Output Q matrix golden pattern: 
-#        -1407         -414         -777          992
-#           -1          742           39          232
-#           -1           -1          672         -871
-#           -1           -1           -1          403
-# Q matrix calculated result: 
-#          100          652            7         -783
-#         -385          485         -737          349
-#         -496          451          708          320
-#          803          429           82          464
-# Data R[ 0] is wrong! The output data is  1243, but the expected data is   507.
-# Data R[ 1] is wrong! The output data is  -319, but the expected data is   570.
-# Data R[ 2] is wrong! The output data is  -652, but the expected data is     5.
-# Data R[ 3] is wrong! The output data is   699, but the expected data is  -684.
-# Data R[ 4] is wrong! The output data is     0, but the expected data is  -171.
-# Data R[ 5] is wrong! The output data is   787, but the expected data is   551.
-# Data R[ 6] is wrong! The output data is   176, but the expected data is  -781.
-# Data R[ 7] is wrong! The output data is   -18, but the expected data is   329.
-# Data R[ 8] is wrong! The output data is     0, but the expected data is  -173.
-# Data R[ 9] is wrong! The output data is     0, but the expected data is   640.
-# Data R[10] is wrong! The output data is   775, but the expected data is   661.
-# Data R[11] is wrong! The output data is -1148, but the expected data is   413.
-# Data R[12] is wrong! The output data is     0, but the expected data is   857.
-# Data R[13] is wrong! The output data is     0, but the expected data is   -99.
-# Data R[14] is wrong! The output data is     0, but the expected data is   -24.
-# Data R[15] is wrong! The output data is   391, but the expected data is   554.
-# 
-# Data Q[ 0] is wrong! The output data is   100, but the expected data is -1407.
-# Data Q[ 1] is wrong! The output data is   652, but the expected data is  -414.
-# Data Q[ 2] is wrong! The output data is     7, but the expected data is  -777.
-# Data Q[ 3] is wrong! The output data is  -783, but the expected data is   992.
-# Data Q[ 4] is wrong! The output data is  -385, but the expected data is    -1.
-# Data Q[ 5] is wrong! The output data is   485, but the expected data is   742.
-# Data Q[ 6] is wrong! The output data is  -737, but the expected data is    39.
-# Data Q[ 7] is wrong! The output data is   349, but the expected data is   232.
-# Data Q[ 8] is wrong! The output data is  -496, but the expected data is    -1.
-# Data Q[ 9] is wrong! The output data is   451, but the expected data is    -1.
-# Data Q[10] is wrong! The output data is   708, but the expected data is   672.
-# Data Q[11] is wrong! The output data is   320, but the expected data is  -871.
-# Data Q[12] is wrong! The output data is   803, but the expected data is    -1.
-# Data Q[13] is wrong! The output data is   429, but the expected data is    -1.
-# Data Q[14] is wrong! The output data is    82, but the expected data is    -1.
-# Data Q[15] is wrong! The output data is   464, but the expected data is   403.
+#          1284          -473           577          -443
+#             0          1050           160          1081
+#             0             0          2014          -378
+#             0             0             0          1528
+#             0             0             0             0
+#             0             0             0             0
+#             0             0             0             0
+#             0             0             0             0
 #  
+# -------------------------------------------------------
+# 
 # --------------------- S U M M A R Y -------------------
 # 
 # *****************************************************************************
-# ** FAIL!!! There are  16 error in R matrix!                                **
+# ** Congratulations!!! R matrix data are all correct! The result is PASS!!! **
+# ** Get valid at cycle:  62                                                 **
 # *****************************************************************************
-# *****************************************************************************
-# ** FAIL!!! There are  16 error in Q matrix!                                **
-# *****************************************************************************
-# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(219)
-#    Time: 2225 ns  Iteration: 0  Instance: /qr_cordic_tb
-# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 219
-# Compile of qr_cordic_tb.v was successful.
-restart
-# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
-# Loading work.qr_cordic_tb
-# Loading work.rom_16x12
-# Loading work.ram_16x12
-run -all
-# GetModuleFileName: тぃ﹚家舱
-# 
-# 
-# -------------------------------------------------------
-# 
-# START!!! Simulation Start .....
-# 
-# -------------------------------------------------------
-# 
-# 
-# Original_Input A matrix: 
-#          -87          -41          -63          117
-#          -98           21            1           12
-#           -1          -71           50          -93
-#          117           64          100          -90
-# Shifted_Input A matrix: 
-#         -696         -328         -504          936
-#         -784          168            8           96
-#           -8         -568          400         -744
-#          936          512          800         -720
-# 
-# Output R matrix golden pattern: 
-#        -1407         -414         -777          992
-#           -1          742           39          232
-#           -1           -1          672         -871
-#           -1           -1           -1          403
-# R matrix calculated result: 
-#         1243         -319         -652          699
-#            0          787          176          -18
-#            0            0          775        -1148
-#            0            0            0          391
-# 
-# Output Q matrix golden pattern: 
-#          507          570            5         -684
-#         -171          551         -781          329
-#         -173          640          661          413
-#          857          -99          -24          554
-# Q matrix calculated result: 
-#          100          652            7         -783
-#         -385          485         -737          349
-#         -496          451          708          320
-#          803          429           82          464
-# Data R[ 0] is wrong! The output data is  1243, but the expected data is -1407.
-# Data R[ 1] is wrong! The output data is  -319, but the expected data is  -414.
-# Data R[ 2] is wrong! The output data is  -652, but the expected data is  -777.
-# Data R[ 3] is wrong! The output data is   699, but the expected data is   992.
-# Data R[ 4] is wrong! The output data is     0, but the expected data is    -1.
-# Data R[ 5] is wrong! The output data is   787, but the expected data is   742.
-# Data R[ 6] is wrong! The output data is   176, but the expected data is    39.
-# Data R[ 7] is wrong! The output data is   -18, but the expected data is   232.
-# Data R[ 8] is wrong! The output data is     0, but the expected data is    -1.
-# Data R[ 9] is wrong! The output data is     0, but the expected data is    -1.
-# Data R[10] is wrong! The output data is   775, but the expected data is   672.
-# Data R[11] is wrong! The output data is -1148, but the expected data is  -871.
-# Data R[12] is wrong! The output data is     0, but the expected data is    -1.
-# Data R[13] is wrong! The output data is     0, but the expected data is    -1.
-# Data R[14] is wrong! The output data is     0, but the expected data is    -1.
-# Data R[15] is wrong! The output data is   391, but the expected data is   403.
-# 
-# Data Q[ 0] is wrong! The output data is   100, but the expected data is   507.
-# Data Q[ 1] is wrong! The output data is   652, but the expected data is   570.
-# Data Q[ 2] is wrong! The output data is     7, but the expected data is     5.
-# Data Q[ 3] is wrong! The output data is  -783, but the expected data is  -684.
-# Data Q[ 4] is wrong! The output data is  -385, but the expected data is  -171.
-# Data Q[ 5] is wrong! The output data is   485, but the expected data is   551.
-# Data Q[ 6] is wrong! The output data is  -737, but the expected data is  -781.
-# Data Q[ 7] is wrong! The output data is   349, but the expected data is   329.
-# Data Q[ 8] is wrong! The output data is  -496, but the expected data is  -173.
-# Data Q[ 9] is wrong! The output data is   451, but the expected data is   640.
-# Data Q[10] is wrong! The output data is   708, but the expected data is   661.
-# Data Q[11] is wrong! The output data is   320, but the expected data is   413.
-# Data Q[12] is wrong! The output data is   803, but the expected data is   857.
-# Data Q[13] is wrong! The output data is   429, but the expected data is   -99.
-# Data Q[14] is wrong! The output data is    82, but the expected data is   -24.
-# Data Q[15] is wrong! The output data is   464, but the expected data is   554.
-#  
-# --------------------- S U M M A R Y -------------------
-# 
-# *****************************************************************************
-# ** FAIL!!! There are  16 error in R matrix!                                **
-# *****************************************************************************
-# *****************************************************************************
-# ** FAIL!!! There are  16 error in Q matrix!                                **
-# *****************************************************************************
-# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(219)
-#    Time: 2225 ns  Iteration: 0  Instance: /qr_cordic_tb
-# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 219
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(201)
+#    Time: 3375 ns  Iteration: 1  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 201
 restart
 # ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
 run -all
@@ -419,1321 +397,43 @@ run -all
 # 
 # -------------------------------------------------------
 # 
-# 
-# Original_Input A matrix: 
-#          -87          -41          -63          117
-#          -98           21            1           12
-#           -1          -71           50          -93
-#          117           64          100          -90
-# Shifted_Input A matrix: 
-#         -696         -328         -504          936
-#         -784          168            8           96
-#           -8         -568          400         -744
-#          936          512          800         -720
-# 
+# Input A matrix: 
+#          -984          -544          -768          -632
+#           680          -976          -416           840
+#           816           896          -760           576
+#           696           912           304          1008
+#           272           544          -568          1016
+#           600          -712           768          -920
+#          -752           928           976          -552
+#           656           976          -880           608
 # Output R matrix golden pattern: 
-#        -1407         -414         -777          992
-#           -1          742           39          232
-#           -1           -1          672         -871
-#           -1           -1           -1          403
+#          2014           448          -479          1446
+#             0          2316           -74           698
+#             0             0          1969          -824
+#             0             0             0          1329
+#             0             0             0             0
+#             0             0             0             0
+#             0             0             0             0
+#             0             0             0             0
+# 
 # R matrix calculated result: 
-#         1243         -319         -652          699
-#            0          787          176          -18
-#            0            0          775        -1148
-#            0            0            0          391
-# 
-# Output Q matrix golden pattern: 
-#          507          570            5         -684
-#         -171          551         -781          329
-#         -173          640          661          413
-#          857          -99          -24          554
-# Q matrix calculated result: 
-#          100          652            7         -783
-#         -385          485         -737          349
-#         -496          451          708          320
-#          803          429           82          464
-# Data R[ 0] is wrong! The output data is  1243, but the expected data is -1407.
-# Data R[ 1] is wrong! The output data is  -319, but the expected data is  -414.
-# Data R[ 2] is wrong! The output data is  -652, but the expected data is  -777.
-# Data R[ 3] is wrong! The output data is   699, but the expected data is   992.
-# Data R[ 4] is wrong! The output data is     0, but the expected data is    -1.
-# Data R[ 5] is wrong! The output data is   787, but the expected data is   742.
-# Data R[ 6] is wrong! The output data is   176, but the expected data is    39.
-# Data R[ 7] is wrong! The output data is   -18, but the expected data is   232.
-# Data R[ 8] is wrong! The output data is     0, but the expected data is    -1.
-# Data R[ 9] is wrong! The output data is     0, but the expected data is    -1.
-# Data R[10] is wrong! The output data is   775, but the expected data is   672.
-# Data R[11] is wrong! The output data is -1148, but the expected data is  -871.
-# Data R[12] is wrong! The output data is     0, but the expected data is    -1.
-# Data R[13] is wrong! The output data is     0, but the expected data is    -1.
-# Data R[14] is wrong! The output data is     0, but the expected data is    -1.
-# Data R[15] is wrong! The output data is   391, but the expected data is   403.
-# 
-# Data Q[ 0] is wrong! The output data is   100, but the expected data is   507.
-# Data Q[ 1] is wrong! The output data is   652, but the expected data is   570.
-# Data Q[ 2] is wrong! The output data is     7, but the expected data is     5.
-# Data Q[ 3] is wrong! The output data is  -783, but the expected data is  -684.
-# Data Q[ 4] is wrong! The output data is  -385, but the expected data is  -171.
-# Data Q[ 5] is wrong! The output data is   485, but the expected data is   551.
-# Data Q[ 6] is wrong! The output data is  -737, but the expected data is  -781.
-# Data Q[ 7] is wrong! The output data is   349, but the expected data is   329.
-# Data Q[ 8] is wrong! The output data is  -496, but the expected data is  -173.
-# Data Q[ 9] is wrong! The output data is   451, but the expected data is   640.
-# Data Q[10] is wrong! The output data is   708, but the expected data is   661.
-# Data Q[11] is wrong! The output data is   320, but the expected data is   413.
-# Data Q[12] is wrong! The output data is   803, but the expected data is   857.
-# Data Q[13] is wrong! The output data is   429, but the expected data is   -99.
-# Data Q[14] is wrong! The output data is    82, but the expected data is   -24.
-# Data Q[15] is wrong! The output data is   464, but the expected data is   554.
+#          2014           448          -479          1446
+#             0          2316           -74           698
+#             0             0          1969          -824
+#             0             0             0          1329
+#             0             0             0             0
+#             0             0             0             0
+#             0             0             0             0
+#             0             0             0             0
 #  
+# -------------------------------------------------------
+# 
 # --------------------- S U M M A R Y -------------------
 # 
 # *****************************************************************************
-# ** FAIL!!! There are  16 error in R matrix!                                **
+# ** Congratulations!!! R matrix data are all correct! The result is PASS!!! **
+# ** Get valid at cycle:  62                                                 **
 # *****************************************************************************
-# *****************************************************************************
-# ** FAIL!!! There are  16 error in Q matrix!                                **
-# *****************************************************************************
-# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(219)
-#    Time: 2225 ns  Iteration: 0  Instance: /qr_cordic_tb
-# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 219
-restart
-# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
-run -all
-# GetModuleFileName: тぃ﹚家舱
-# 
-# 
-# -------------------------------------------------------
-# 
-# START!!! Simulation Start .....
-# 
-# -------------------------------------------------------
-# 
-# 
-# Original_Input A matrix: 
-#          -87          -41          -63          117
-#          -98           21            1           12
-#           -1          -71           50          -93
-#          117           64          100          -90
-# Shifted_Input A matrix: 
-#         -696         -328         -504          936
-#         -784          168            8           96
-#           -8         -568          400         -744
-#          936          512          800         -720
-# 
-# Output R matrix golden pattern: 
-#        -1407         -414         -777          992
-#           -1          742           39          232
-#           -1           -1          672         -871
-#           -1           -1           -1          403
-# R matrix calculated result: 
-#         1243         -319         -652          699
-#            0          787          176          -18
-#            0            0          775        -1148
-#            0            0            0          391
-# 
-# Output Q matrix golden pattern: 
-#          507          570            5         -684
-#         -171          551         -781          329
-#         -173          640          661          413
-#          857          -99          -24          554
-# Q matrix calculated result: 
-#          100          652            7         -783
-#         -385          485         -737          349
-#         -496          451          708          320
-#          803          429           82          464
-# Data R[ 0] is wrong! The output data is  1243, but the expected data is -1407.
-# Data R[ 1] is wrong! The output data is  -319, but the expected data is  -414.
-# Data R[ 2] is wrong! The output data is  -652, but the expected data is  -777.
-# Data R[ 3] is wrong! The output data is   699, but the expected data is   992.
-# Data R[ 4] is wrong! The output data is     0, but the expected data is    -1.
-# Data R[ 5] is wrong! The output data is   787, but the expected data is   742.
-# Data R[ 6] is wrong! The output data is   176, but the expected data is    39.
-# Data R[ 7] is wrong! The output data is   -18, but the expected data is   232.
-# Data R[ 8] is wrong! The output data is     0, but the expected data is    -1.
-# Data R[ 9] is wrong! The output data is     0, but the expected data is    -1.
-# Data R[10] is wrong! The output data is   775, but the expected data is   672.
-# Data R[11] is wrong! The output data is -1148, but the expected data is  -871.
-# Data R[12] is wrong! The output data is     0, but the expected data is    -1.
-# Data R[13] is wrong! The output data is     0, but the expected data is    -1.
-# Data R[14] is wrong! The output data is     0, but the expected data is    -1.
-# Data R[15] is wrong! The output data is   391, but the expected data is   403.
-# 
-# Data Q[ 0] is wrong! The output data is   100, but the expected data is   507.
-# Data Q[ 1] is wrong! The output data is   652, but the expected data is   570.
-# Data Q[ 2] is wrong! The output data is     7, but the expected data is     5.
-# Data Q[ 3] is wrong! The output data is  -783, but the expected data is  -684.
-# Data Q[ 4] is wrong! The output data is  -385, but the expected data is  -171.
-# Data Q[ 5] is wrong! The output data is   485, but the expected data is   551.
-# Data Q[ 6] is wrong! The output data is  -737, but the expected data is  -781.
-# Data Q[ 7] is wrong! The output data is   349, but the expected data is   329.
-# Data Q[ 8] is wrong! The output data is  -496, but the expected data is  -173.
-# Data Q[ 9] is wrong! The output data is   451, but the expected data is   640.
-# Data Q[10] is wrong! The output data is   708, but the expected data is   661.
-# Data Q[11] is wrong! The output data is   320, but the expected data is   413.
-# Data Q[12] is wrong! The output data is   803, but the expected data is   857.
-# Data Q[13] is wrong! The output data is   429, but the expected data is   -99.
-# Data Q[14] is wrong! The output data is    82, but the expected data is   -24.
-# Data Q[15] is wrong! The output data is   464, but the expected data is   554.
-#  
-# --------------------- S U M M A R Y -------------------
-# 
-# *****************************************************************************
-# ** FAIL!!! There are  16 error in R matrix!                                **
-# *****************************************************************************
-# *****************************************************************************
-# ** FAIL!!! There are  16 error in Q matrix!                                **
-# *****************************************************************************
-# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(219)
-#    Time: 2225 ns  Iteration: 0  Instance: /qr_cordic_tb
-# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 219
-restart
-run -all
-# GetModuleFileName: тぃ﹚家舱
-# 
-# 
-# ** Warning: (vsim-PLI-3407) Too many data words read on line 17 of file "C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/input_A_matrix.txt". (Current address [16], address range [0:15])    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(255)
-#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/rom_16x12_A
-# ** Warning: (vsim-PLI-3407) Too many data words read on line 17 of file "C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/output_R_matrix_golden.txt". (Current address [16], address range [0:15])    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(102)
-#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb
-# ** Warning: (vsim-PLI-3407) Too many data words read on line 17 of file "C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/output_Q_matrix_golden.txt". (Current address [16], address range [0:15])    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(103)
-#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb
-# -------------------------------------------------------
-# 
-# START!!! Simulation Start .....
-# 
-# -------------------------------------------------------
-# 
-# 
-# Original_Input A matrix: 
-#          -91           65          112          -52
-#         -123           14          -63           23
-#          118          -19            8          -76
-#          120          -60          116           34
-# Shifted_Input A matrix: 
-#         -728          520          896         -416
-#         -984          112         -504          184
-#          944         -152           64         -608
-#          960         -480          928          272
-# 
-# Output R matrix golden pattern: 
-#        -2048          636         -920          402
-#            0        -1158         -408          132
-#            0            0         1740         -212
-#            0            0           -2        -1134
-# R matrix calculated result: 
-#         1237           84          -24         -155
-#            0          731          416         -304
-#            0            0         1119          427
-#            0            0            0         -595
-# 
-# Output Q matrix golden pattern: 
-#          363          487         -472         -481
-#          387           34         -165          217
-#         -260          171         -132          164
-#         -243         -711         -514          299
-# Q matrix calculated result: 
-#          -81         -911         -150         -433
-#          744          262         -195         -627
-#         -689          379         -376         -544
-#         -135           60          922         -426
-# Data R[ 0] is wrong! The output data is  1237, but the expected data is -2048.
-# Data R[ 1] is wrong! The output data is    84, but the expected data is   636.
-# Data R[ 2] is wrong! The output data is   -24, but the expected data is  -920.
-# Data R[ 3] is wrong! The output data is  -155, but the expected data is   402.
-# Data R[ 5] is wrong! The output data is   731, but the expected data is -1158.
-# Data R[ 6] is wrong! The output data is   416, but the expected data is  -408.
-# Data R[ 7] is wrong! The output data is  -304, but the expected data is   132.
-# Data R[10] is wrong! The output data is  1119, but the expected data is  1740.
-# Data R[11] is wrong! The output data is   427, but the expected data is  -212.
-# Data R[14] is wrong! The output data is     0, but the expected data is    -2.
-# Data R[15] is wrong! The output data is  -595, but the expected data is -1134.
-# 
-# Data Q[ 0] is wrong! The output data is   -81, but the expected data is   363.
-# Data Q[ 1] is wrong! The output data is  -911, but the expected data is   487.
-# Data Q[ 2] is wrong! The output data is  -150, but the expected data is  -472.
-# Data Q[ 3] is wrong! The output data is  -433, but the expected data is  -481.
-# Data Q[ 4] is wrong! The output data is   744, but the expected data is   387.
-# Data Q[ 5] is wrong! The output data is   262, but the expected data is    34.
-# Data Q[ 6] is wrong! The output data is  -195, but the expected data is  -165.
-# Data Q[ 7] is wrong! The output data is  -627, but the expected data is   217.
-# Data Q[ 8] is wrong! The output data is  -689, but the expected data is  -260.
-# Data Q[ 9] is wrong! The output data is   379, but the expected data is   171.
-# Data Q[10] is wrong! The output data is  -376, but the expected data is  -132.
-# Data Q[11] is wrong! The output data is  -544, but the expected data is   164.
-# Data Q[12] is wrong! The output data is  -135, but the expected data is  -243.
-# Data Q[13] is wrong! The output data is    60, but the expected data is  -711.
-# Data Q[14] is wrong! The output data is   922, but the expected data is  -514.
-# Data Q[15] is wrong! The output data is  -426, but the expected data is   299.
-#  
-# --------------------- S U M M A R Y -------------------
-# 
-# *****************************************************************************
-# ** FAIL!!! There are  11 error in R matrix!                                **
-# *****************************************************************************
-# *****************************************************************************
-# ** FAIL!!! There are  16 error in Q matrix!                                **
-# *****************************************************************************
-# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(219)
-#    Time: 2225 ns  Iteration: 0  Instance: /qr_cordic_tb
-# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 219
-restart
-# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
-run -all
-# GetModuleFileName: тぃ﹚家舱
-# 
-# 
-# -------------------------------------------------------
-# 
-# START!!! Simulation Start .....
-# 
-# -------------------------------------------------------
-# 
-# 
-# Original_Input A matrix: 
-#          -55           17           71           -8
-#           65         -109          111         -125
-#           64         -115          -95          -42
-#          -31            7           17          -87
-# Shifted_Input A matrix: 
-#         -440          136          568          -64
-#          520         -872          888        -1000
-#          512         -920         -760         -336
-#         -248           56          136         -696
-# 
-# Output R matrix golden pattern: 
-#         -894         1132          234          558
-#            0         -604          416         -832
-#            0            0         1220         -452
-#            0            0            0          624
-# R matrix calculated result: 
-#          888        -1127         -240         -558
-#            0          606         -419          840
-#            0            0         1219         -449
-#            0            0            0          618
-# 
-# Output Q matrix golden pattern: 
-#          506         -602         -592          283
-#          723          349          471          430
-#          131          745         -684          -84
-#          499          -97          100         -887
-# Q matrix calculated result: 
-#         -510          598          589         -288
-#         -718         -356         -464         -434
-#          128          744         -686          -86
-#          503          -96          100         -886
-# Data R[ 0] is wrong! The output data is   888, but the expected data is  -894.
-# Data R[ 1] is wrong! The output data is -1127, but the expected data is  1132.
-# Data R[ 2] is wrong! The output data is  -240, but the expected data is   234.
-# Data R[ 3] is wrong! The output data is  -558, but the expected data is   558.
-# Data R[ 5] is wrong! The output data is   606, but the expected data is  -604.
-# Data R[ 6] is wrong! The output data is  -419, but the expected data is   416.
-# Data R[ 7] is wrong! The output data is   840, but the expected data is  -832.
-# Data R[10] is wrong! The output data is  1219, but the expected data is  1220.
-# Data R[11] is wrong! The output data is  -449, but the expected data is  -452.
-# Data R[15] is wrong! The output data is   618, but the expected data is   624.
-# 
-# Data Q[ 0] is wrong! The output data is  -510, but the expected data is   506.
-# Data Q[ 1] is wrong! The output data is   598, but the expected data is  -602.
-# Data Q[ 2] is wrong! The output data is   589, but the expected data is  -592.
-# Data Q[ 3] is wrong! The output data is  -288, but the expected data is   283.
-# Data Q[ 4] is wrong! The output data is  -718, but the expected data is   723.
-# Data Q[ 5] is wrong! The output data is  -356, but the expected data is   349.
-# Data Q[ 6] is wrong! The output data is  -464, but the expected data is   471.
-# Data Q[ 7] is wrong! The output data is  -434, but the expected data is   430.
-# Data Q[ 8] is wrong! The output data is   128, but the expected data is   131.
-# Data Q[ 9] is wrong! The output data is   744, but the expected data is   745.
-# Data Q[10] is wrong! The output data is  -686, but the expected data is  -684.
-# Data Q[11] is wrong! The output data is   -86, but the expected data is   -84.
-# Data Q[12] is wrong! The output data is   503, but the expected data is   499.
-# Data Q[13] is wrong! The output data is   -96, but the expected data is   -97.
-# Data Q[15] is wrong! The output data is  -886, but the expected data is  -887.
-#  
-# --------------------- S U M M A R Y -------------------
-# 
-# *****************************************************************************
-# ** FAIL!!! There are  10 error in R matrix!                                **
-# *****************************************************************************
-# *****************************************************************************
-# ** FAIL!!! There are  15 error in Q matrix!                                **
-# *****************************************************************************
-# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(219)
-#    Time: 2225 ns  Iteration: 0  Instance: /qr_cordic_tb
-# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 219
-restart
-run -all
-# GetModuleFileName: тぃ﹚家舱
-# 
-# 
-# -------------------------------------------------------
-# 
-# START!!! Simulation Start .....
-# 
-# -------------------------------------------------------
-# 
-# 
-# Original_Input A matrix: 
-#          -55           17           71           -8
-#           65         -109          111         -125
-#           64         -115          -95          -42
-#          -31            7           17          -87
-# Shifted_Input A matrix: 
-#         -440          136          568          -64
-#          520         -872          888        -1000
-#          512         -920         -760         -336
-#         -248           56          136         -696
-# 
-# Output R matrix golden pattern: 
-#         -894         1132          234          558
-#            0         -604          416         -832
-#            0            0         1220         -452
-#            0            0            0          624
-# R matrix calculated result: 
-#          888        -1127         -240         -558
-#            0          606         -419          840
-#            0            0         1219         -449
-#            0            0            0          618
-# 
-# Output Q matrix golden pattern: 
-#          506         -602         -592          283
-#          723          349          471          430
-#          131          745         -684          -84
-#          499          -97          100         -887
-# Q matrix calculated result: 
-#         -510          598          589         -288
-#         -718         -356         -464         -434
-#          128          744         -686          -86
-#          503          -96          100         -886
-# Data R[ 0] is wrong! The output data is   888, but the expected data is  -894.
-# Data R[ 1] is wrong! The output data is -1127, but the expected data is  1132.
-# Data R[ 2] is wrong! The output data is  -240, but the expected data is   234.
-# Data R[ 3] is wrong! The output data is  -558, but the expected data is   558.
-# Data R[ 5] is wrong! The output data is   606, but the expected data is  -604.
-# Data R[ 6] is wrong! The output data is  -419, but the expected data is   416.
-# Data R[ 7] is wrong! The output data is   840, but the expected data is  -832.
-# Data R[10] is wrong! The output data is  1219, but the expected data is  1220.
-# Data R[11] is wrong! The output data is  -449, but the expected data is  -452.
-# Data R[15] is wrong! The output data is   618, but the expected data is   624.
-# 
-# Data Q[ 0] is wrong! The output data is  -510, but the expected data is   506.
-# Data Q[ 1] is wrong! The output data is   598, but the expected data is  -602.
-# Data Q[ 2] is wrong! The output data is   589, but the expected data is  -592.
-# Data Q[ 3] is wrong! The output data is  -288, but the expected data is   283.
-# Data Q[ 4] is wrong! The output data is  -718, but the expected data is   723.
-# Data Q[ 5] is wrong! The output data is  -356, but the expected data is   349.
-# Data Q[ 6] is wrong! The output data is  -464, but the expected data is   471.
-# Data Q[ 7] is wrong! The output data is  -434, but the expected data is   430.
-# Data Q[ 8] is wrong! The output data is   128, but the expected data is   131.
-# Data Q[ 9] is wrong! The output data is   744, but the expected data is   745.
-# Data Q[10] is wrong! The output data is  -686, but the expected data is  -684.
-# Data Q[11] is wrong! The output data is   -86, but the expected data is   -84.
-# Data Q[12] is wrong! The output data is   503, but the expected data is   499.
-# Data Q[13] is wrong! The output data is   -96, but the expected data is   -97.
-# Data Q[15] is wrong! The output data is  -886, but the expected data is  -887.
-#  
-# --------------------- S U M M A R Y -------------------
-# 
-# *****************************************************************************
-# ** FAIL!!! There are  10 error in R matrix!                                **
-# *****************************************************************************
-# *****************************************************************************
-# ** FAIL!!! There are  15 error in Q matrix!                                **
-# *****************************************************************************
-# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(219)
-#    Time: 2225 ns  Iteration: 0  Instance: /qr_cordic_tb
-# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 219
-restart
-run -all
-# GetModuleFileName: тぃ﹚家舱
-# 
-# 
-# -------------------------------------------------------
-# 
-# START!!! Simulation Start .....
-# 
-# -------------------------------------------------------
-# 
-# 
-# Original_Input A matrix: 
-#           75           26           63          105
-#          -49          -61          -13          -89
-#            7           39         -107           83
-#          -86           48          -70            9
-# Shifted_Input A matrix: 
-#          600          208          504          840
-#         -392         -488         -104         -712
-#           56          312         -856          664
-#         -688          384         -560           72
-# 
-# Output R matrix golden pattern: 
-#         1002           68          688          768
-#            0          720         -514          970
-#            0            0          770         -186
-#           -2            0            0          282
-# R matrix calculated result: 
-#          997           66          685          771
-#            0          721         -519          973
-#            0            0          761         -180
-#            0            0            0          282
-# 
-# Output Q matrix golden pattern: 
-#          613         -404           55         -712
-#          236         -661          425          608
-#          281         -217         -911          298
-#          735          634          163          283
-# Q matrix calculated result: 
-#          615         -404           56         -712
-#          237         -657          433          608
-#          287         -221         -909          303
-#          730          641          169          282
-# Data R[ 0] is wrong! The output data is   997, but the expected data is  1002.
-# Data R[ 1] is wrong! The output data is    66, but the expected data is    68.
-# Data R[ 2] is wrong! The output data is   685, but the expected data is   688.
-# Data R[ 3] is wrong! The output data is   771, but the expected data is   768.
-# Data R[ 5] is wrong! The output data is   721, but the expected data is   720.
-# Data R[ 6] is wrong! The output data is  -519, but the expected data is  -514.
-# Data R[ 7] is wrong! The output data is   973, but the expected data is   970.
-# Data R[10] is wrong! The output data is   761, but the expected data is   770.
-# Data R[11] is wrong! The output data is  -180, but the expected data is  -186.
-# Data R[12] is wrong! The output data is     0, but the expected data is    -2.
-# 
-# Data Q[ 0] is wrong! The output data is   615, but the expected data is   613.
-# Data Q[ 2] is wrong! The output data is    56, but the expected data is    55.
-# Data Q[ 4] is wrong! The output data is   237, but the expected data is   236.
-# Data Q[ 5] is wrong! The output data is  -657, but the expected data is  -661.
-# Data Q[ 6] is wrong! The output data is   433, but the expected data is   425.
-# Data Q[ 8] is wrong! The output data is   287, but the expected data is   281.
-# Data Q[ 9] is wrong! The output data is  -221, but the expected data is  -217.
-# Data Q[10] is wrong! The output data is  -909, but the expected data is  -911.
-# Data Q[11] is wrong! The output data is   303, but the expected data is   298.
-# Data Q[12] is wrong! The output data is   730, but the expected data is   735.
-# Data Q[13] is wrong! The output data is   641, but the expected data is   634.
-# Data Q[14] is wrong! The output data is   169, but the expected data is   163.
-# Data Q[15] is wrong! The output data is   282, but the expected data is   283.
-#  
-# --------------------- S U M M A R Y -------------------
-# 
-# *****************************************************************************
-# ** FAIL!!! There are  10 error in R matrix!                                **
-# *****************************************************************************
-# *****************************************************************************
-# ** FAIL!!! There are  13 error in Q matrix!                                **
-# *****************************************************************************
-# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(219)
-#    Time: 2225 ns  Iteration: 0  Instance: /qr_cordic_tb
-# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 219
-restart
-run -all
-# GetModuleFileName: тぃ﹚家舱
-# 
-# 
-# -------------------------------------------------------
-# 
-# START!!! Simulation Start .....
-# 
-# -------------------------------------------------------
-# 
-# 
-# Original_Input A matrix: 
-#          -55           17           71           -8
-#           65         -109          111         -125
-#           64         -115          -95          -42
-#          -31            7           17          -87
-# Shifted_Input A matrix: 
-#         -440          136          568          -64
-#          520         -872          888        -1000
-#          512         -920         -760         -336
-#         -248           56          136         -696
-# 
-# Output R matrix golden pattern: 
-#         -890         1126          236          555
-#            0         -607          419         -842
-#            0            0         1220         -446
-#            0            0           -1          622
-# R matrix calculated result: 
-#          888        -1127         -240         -558
-#            0          606         -419          840
-#            0            0         1219         -449
-#            0            0            0          618
-# 
-# Output Q matrix golden pattern: 
-#          507         -601         -592          285
-#          717          354          464          434
-#          131          745         -685          -88
-#          506          -96          106         -880
-# Q matrix calculated result: 
-#         -510          598          589         -288
-#         -718         -356         -464         -434
-#          128          744         -686          -86
-#          503          -96          100         -886
-# Data R[ 0] is wrong! The output data is   888, but the expected data is  -890.
-# Data R[ 1] is wrong! The output data is -1127, but the expected data is  1126.
-# Data R[ 2] is wrong! The output data is  -240, but the expected data is   236.
-# Data R[ 3] is wrong! The output data is  -558, but the expected data is   555.
-# Data R[ 5] is wrong! The output data is   606, but the expected data is  -607.
-# Data R[ 6] is wrong! The output data is  -419, but the expected data is   419.
-# Data R[ 7] is wrong! The output data is   840, but the expected data is  -842.
-# Data R[10] is wrong! The output data is  1219, but the expected data is  1220.
-# Data R[11] is wrong! The output data is  -449, but the expected data is  -446.
-# Data R[14] is wrong! The output data is     0, but the expected data is    -1.
-# Data R[15] is wrong! The output data is   618, but the expected data is   622.
-# 
-# Data Q[ 0] is wrong! The output data is  -510, but the expected data is   507.
-# Data Q[ 1] is wrong! The output data is   598, but the expected data is  -601.
-# Data Q[ 2] is wrong! The output data is   589, but the expected data is  -592.
-# Data Q[ 3] is wrong! The output data is  -288, but the expected data is   285.
-# Data Q[ 4] is wrong! The output data is  -718, but the expected data is   717.
-# Data Q[ 5] is wrong! The output data is  -356, but the expected data is   354.
-# Data Q[ 6] is wrong! The output data is  -464, but the expected data is   464.
-# Data Q[ 7] is wrong! The output data is  -434, but the expected data is   434.
-# Data Q[ 8] is wrong! The output data is   128, but the expected data is   131.
-# Data Q[ 9] is wrong! The output data is   744, but the expected data is   745.
-# Data Q[10] is wrong! The output data is  -686, but the expected data is  -685.
-# Data Q[11] is wrong! The output data is   -86, but the expected data is   -88.
-# Data Q[12] is wrong! The output data is   503, but the expected data is   506.
-# Data Q[14] is wrong! The output data is   100, but the expected data is   106.
-# Data Q[15] is wrong! The output data is  -886, but the expected data is  -880.
-#  
-# --------------------- S U M M A R Y -------------------
-# 
-# *****************************************************************************
-# ** FAIL!!! There are  11 error in R matrix!                                **
-# *****************************************************************************
-# *****************************************************************************
-# ** FAIL!!! There are  15 error in Q matrix!                                **
-# *****************************************************************************
-# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(219)
-#    Time: 2225 ns  Iteration: 0  Instance: /qr_cordic_tb
-# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 219
-restart
-run -all
-# GetModuleFileName: тぃ﹚家舱
-# 
-# 
-# -------------------------------------------------------
-# 
-# START!!! Simulation Start .....
-# 
-# -------------------------------------------------------
-# 
-# 
-# Original_Input A matrix: 
-#          -55           17           71           -8
-#           65         -109          111         -125
-#           64         -115          -95          -42
-#          -31            7           17          -87
-# Shifted_Input A matrix: 
-#         -440          136          568          -64
-#          520         -872          888        -1000
-#          512         -920         -760         -336
-#         -248           56          136         -696
-# 
-# Output R matrix golden pattern: 
-#          890        -1134         -240         -560
-#            0          602         -416          830
-#            0            0         1220         -452
-#            0            0            2          626
-# R matrix calculated result: 
-#          888        -1127         -240         -558
-#            0          606         -419          840
-#            0            0         1219         -449
-#            0            0            0          618
-# 
-# Output Q matrix golden pattern: 
-#         -510          600          589         -284
-#         -722         -352         -473         -434
-#          133          745         -684          -85
-#          503          -94          106         -884
-# Q matrix calculated result: 
-#         -510          598          589         -288
-#         -718         -356         -464         -434
-#          128          744         -686          -86
-#          503          -96          100         -886
-# Data R[ 0] is wrong! The output data is   888, but the expected data is   890.
-# Data R[ 1] is wrong! The output data is -1127, but the expected data is -1134.
-# Data R[ 3] is wrong! The output data is  -558, but the expected data is  -560.
-# Data R[ 5] is wrong! The output data is   606, but the expected data is   602.
-# Data R[ 6] is wrong! The output data is  -419, but the expected data is  -416.
-# Data R[ 7] is wrong! The output data is   840, but the expected data is   830.
-# Data R[10] is wrong! The output data is  1219, but the expected data is  1220.
-# Data R[11] is wrong! The output data is  -449, but the expected data is  -452.
-# Data R[14] is wrong! The output data is     0, but the expected data is     2.
-# Data R[15] is wrong! The output data is   618, but the expected data is   626.
-# 
-# Data Q[ 1] is wrong! The output data is   598, but the expected data is   600.
-# Data Q[ 3] is wrong! The output data is  -288, but the expected data is  -284.
-# Data Q[ 4] is wrong! The output data is  -718, but the expected data is  -722.
-# Data Q[ 5] is wrong! The output data is  -356, but the expected data is  -352.
-# Data Q[ 6] is wrong! The output data is  -464, but the expected data is  -473.
-# Data Q[ 8] is wrong! The output data is   128, but the expected data is   133.
-# Data Q[ 9] is wrong! The output data is   744, but the expected data is   745.
-# Data Q[10] is wrong! The output data is  -686, but the expected data is  -684.
-# Data Q[11] is wrong! The output data is   -86, but the expected data is   -85.
-# Data Q[13] is wrong! The output data is   -96, but the expected data is   -94.
-# Data Q[14] is wrong! The output data is   100, but the expected data is   106.
-# Data Q[15] is wrong! The output data is  -886, but the expected data is  -884.
-#  
-# --------------------- S U M M A R Y -------------------
-# 
-# *****************************************************************************
-# ** FAIL!!! There are  10 error in R matrix!                                **
-# *****************************************************************************
-# *****************************************************************************
-# ** FAIL!!! There are  12 error in Q matrix!                                **
-# *****************************************************************************
-# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(219)
-#    Time: 2225 ns  Iteration: 0  Instance: /qr_cordic_tb
-# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 219
-restart
-# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
-run -all
-# GetModuleFileName: тぃ﹚家舱
-# 
-# 
-# -------------------------------------------------------
-# 
-# START!!! Simulation Start .....
-# 
-# -------------------------------------------------------
-# 
-# 
-# Original_Input A matrix: 
-#          -55           17           71           -8
-#           65         -109          111         -125
-#           64         -115          -95          -42
-#          -31            7           17          -87
-# Shifted_Input A matrix: 
-#         -440          136          568          -64
-#          520         -872          888        -1000
-#          512         -920         -760         -336
-#         -248           56          136         -696
-# 
-# Output R matrix golden pattern: 
-#          890        -1134         -240         -560
-#            0          602         -416          830
-#            0            0         1220         -452
-#            0            0            2          626
-# R matrix calculated result: 
-#          888        -1127         -240         -558
-#            0          606         -419          840
-#            0            0         1219         -449
-#            0            0            0          618
-# 
-# Output Q matrix golden pattern: 
-#         -510          600          589         -284
-#         -722         -352         -473         -434
-#          133          745         -684          -85
-#          503          -94          106         -884
-# Q matrix calculated result: 
-#         -510          598          589         -288
-#         -718         -356         -464         -434
-#          128          744         -686          -86
-#          503          -96          100         -886
-# Data R[ 0] is wrong! The output data is   888, but the expected data is   890.
-# Data R[ 1] is wrong! The output data is -1127, but the expected data is -1134.
-# Data R[ 3] is wrong! The output data is  -558, but the expected data is  -560.
-# Data R[ 5] is wrong! The output data is   606, but the expected data is   602.
-# Data R[ 6] is wrong! The output data is  -419, but the expected data is  -416.
-# Data R[ 7] is wrong! The output data is   840, but the expected data is   830.
-# Data R[10] is wrong! The output data is  1219, but the expected data is  1220.
-# Data R[11] is wrong! The output data is  -449, but the expected data is  -452.
-# Data R[14] is wrong! The output data is     0, but the expected data is     2.
-# Data R[15] is wrong! The output data is   618, but the expected data is   626.
-# 
-# Data Q[ 1] is wrong! The output data is   598, but the expected data is   600.
-# Data Q[ 3] is wrong! The output data is  -288, but the expected data is  -284.
-# Data Q[ 4] is wrong! The output data is  -718, but the expected data is  -722.
-# Data Q[ 5] is wrong! The output data is  -356, but the expected data is  -352.
-# Data Q[ 6] is wrong! The output data is  -464, but the expected data is  -473.
-# Data Q[ 8] is wrong! The output data is   128, but the expected data is   133.
-# Data Q[ 9] is wrong! The output data is   744, but the expected data is   745.
-# Data Q[10] is wrong! The output data is  -686, but the expected data is  -684.
-# Data Q[11] is wrong! The output data is   -86, but the expected data is   -85.
-# Data Q[13] is wrong! The output data is   -96, but the expected data is   -94.
-# Data Q[14] is wrong! The output data is   100, but the expected data is   106.
-# Data Q[15] is wrong! The output data is  -886, but the expected data is  -884.
-#  
-# --------------------- S U M M A R Y -------------------
-# 
-# *****************************************************************************
-# ** FAIL!!! There are  10 error in R matrix!                                **
-# *****************************************************************************
-# *****************************************************************************
-# ** FAIL!!! There are  12 error in Q matrix!                                **
-# *****************************************************************************
-# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(219)
-#    Time: 2225 ns  Iteration: 0  Instance: /qr_cordic_tb
-# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 219
-restart
-run -all
-# GetModuleFileName: тぃ﹚家舱
-# 
-# 
-# -------------------------------------------------------
-# 
-# START!!! Simulation Start .....
-# 
-# -------------------------------------------------------
-# 
-# 
-# Original_Input A matrix: 
-#          -55           17           71           -8
-#           65         -109          111         -125
-#           64         -115          -95          -42
-#          -31            7           17          -87
-# Shifted_Input A matrix: 
-#         -440          136          568          -64
-#          520         -872          888        -1000
-#          512         -920         -760         -336
-#         -248           56          136         -696
-# 
-# Output R matrix golden pattern: 
-#          888        -1127         -240         -558
-#            0          606         -419          840
-#            0           -2         1219         -449
-#            0            0           -1          618
-# R matrix calculated result: 
-#          888        -1127         -240         -558
-#            0          606         -419          840
-#            0            0         1219         -449
-#            0            0            0          618
-# 
-# Output Q matrix golden pattern: 
-#         -510          598          589         -288
-#         -718         -356         -464         -434
-#          128          744         -686          -86
-#          503          -96          100         -886
-# Q matrix calculated result: 
-#         -510          598          589         -288
-#         -718         -356         -464         -434
-#          128          744         -686          -86
-#          503          -96          100         -886
-# Data R[ 9] is wrong! The output data is     0, but the expected data is    -2.
-# Data R[14] is wrong! The output data is     0, but the expected data is    -1.
-# 
-#  
-# --------------------- S U M M A R Y -------------------
-# 
-# *****************************************************************************
-# ** FAIL!!! There are   2 error in R matrix!                                **
-# *****************************************************************************
-# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(219)
-#    Time: 2225 ns  Iteration: 0  Instance: /qr_cordic_tb
-# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 219
-restart
-run -all
-# GetModuleFileName: тぃ﹚家舱
-# 
-# 
-# -------------------------------------------------------
-# 
-# START!!! Simulation Start .....
-# 
-# -------------------------------------------------------
-# 
-# 
-# Original_Input A matrix: 
-#          -24           54          -47          -61
-#           24          -72          -20           77
-#          -61          -98            2         -121
-#           26          -53         -107          109
-# Shifted_Input A matrix: 
-#         -192          432         -376         -488
-#          192         -576         -160          616
-#         -488         -784           16         -968
-#          208         -424         -856          872
-# 
-# Output R matrix golden pattern: 
-#          601          171         -245         1243
-#            0         1134          281         -389
-#            0            0          874         -225
-#           -1            0            0           68
-# R matrix calculated result: 
-#          601          171         -245         -996
-#            0         1134          281         -505
-#            0            0          874          659
-#            0            0            0          291
-# 
-# Output Q matrix golden pattern: 
-#         -327          331         -839          357
-#         -441         -573         -585         -440
-#         -677          -92          -29         -767
-#         -543          781           68          381
-# Q matrix calculated result: 
-#         -327          331         -839          357
-#          440         -573         -585         -440
-#         -675           91          -29         -767
-#         -542         -782           68          381
-# Data R[ 3] is wrong! The output data is  -996, but the expected data is  1243.
-# Data R[ 7] is wrong! The output data is  -505, but the expected data is  -389.
-# Data R[11] is wrong! The output data is   659, but the expected data is  -225.
-# Data R[12] is wrong! The output data is     0, but the expected data is    -1.
-# Data R[15] is wrong! The output data is   291, but the expected data is    68.
-# 
-# Data Q[ 4] is wrong! The output data is   440, but the expected data is  -441.
-# Data Q[ 8] is wrong! The output data is  -675, but the expected data is  -677.
-# Data Q[ 9] is wrong! The output data is    91, but the expected data is   -92.
-# Data Q[12] is wrong! The output data is  -542, but the expected data is  -543.
-# Data Q[13] is wrong! The output data is  -782, but the expected data is   781.
-#  
-# --------------------- S U M M A R Y -------------------
-# 
-# *****************************************************************************
-# ** FAIL!!! There are   5 error in R matrix!                                **
-# *****************************************************************************
-# *****************************************************************************
-# ** FAIL!!! There are   5 error in Q matrix!                                **
-# *****************************************************************************
-# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(219)
-#    Time: 2225 ns  Iteration: 0  Instance: /qr_cordic_tb
-# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 219
-restart
-run -all
-# GetModuleFileName: тぃ﹚家舱
-# 
-# 
-# -------------------------------------------------------
-# 
-# START!!! Simulation Start .....
-# 
-# -------------------------------------------------------
-# 
-# 
-# Original_Input A matrix: 
-#          -26           32          123          -78
-#            6          -54          -86           -3
-#          -22          -18         -101          -42
-#           40         -125          -33          115
-# Shifted_Input A matrix: 
-#         -208          256          984         -624
-#           48         -432         -688          -24
-#         -176         -144         -808         -336
-#          320        -1000         -264          920
-# 
-# Output R matrix golden pattern: 
-#          424         -874         -428         1137
-#            0          722          781          -42
-#            0            0         1175          -45
-#            0            0            0         -217
-# R matrix calculated result: 
-#          424         -874         -428         1137
-#            0          722          781          -42
-#            0            0         1175          -45
-#            0            0            0         -217
-# 
-# Output Q matrix golden pattern: 
-#         -505          114         -429          771
-#         -248         -478         -724         -488
-#          841         -244         -379          375
-#          167          866         -450         -266
-# Q matrix calculated result: 
-#         -505          114         -429          771
-#         -248         -478         -724         -488
-#          841         -244         -379          375
-#          167          866         -450         -266
-# 
-#  
-# --------------------- S U M M A R Y -------------------
-# 
-# *****************************************************************************
-# ** Congratulations!!! R and Q data are all correct! The result is PASS!!!  **
-# ** Get finish at cycle: 37                                                 **
-# *****************************************************************************
-# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(219)
-#    Time: 2225 ns  Iteration: 0  Instance: /qr_cordic_tb
-# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 219
-restart
-run -all
-# GetModuleFileName: тぃ﹚家舱
-# 
-# 
-# -------------------------------------------------------
-# 
-# START!!! Simulation Start .....
-# 
-# -------------------------------------------------------
-# 
-# 
-# Original_Input A matrix: 
-#          -84           -9           60          -52
-#          -75          105           15          -94
-#          103         -102          -81          -74
-#           44           62           24          101
-# Shifted_Input A matrix: 
-#         -672          -72          480         -416
-#         -600          840          120         -752
-#          824         -816         -648         -592
-#          352          496          192          808
-# 
-# Output R matrix golden pattern: 
-#         1274         -756         -682          410
-#            0         1036          174          574
-#           -2           -4          456          930
-#            0            0            0         -612
-# R matrix calculated result: 
-#         1243          741          681         -418
-#            0         1039          180          570
-#            0            0          453          949
-#            0            0            0          583
-# 
-# Output Q matrix golden pattern: 
-#         -542         -485          663          283
-#         -466          487         -321          700
-#          444         -634         -347          575
-#          581          420          616          382
-# Q matrix calculated result: 
-#          560          479         -655         -279
-#         -472          489         -340          687
-#          431         -640         -347          580
-#         -576         -416         -619         -403
-# Data R[ 0] is wrong! The output data is  1243, but the expected data is  1274.
-# Data R[ 1] is wrong! The output data is   741, but the expected data is  -756.
-# Data R[ 2] is wrong! The output data is   681, but the expected data is  -682.
-# Data R[ 3] is wrong! The output data is  -418, but the expected data is   410.
-# Data R[ 5] is wrong! The output data is  1039, but the expected data is  1036.
-# Data R[ 6] is wrong! The output data is   180, but the expected data is   174.
-# Data R[ 7] is wrong! The output data is   570, but the expected data is   574.
-# Data R[ 8] is wrong! The output data is     0, but the expected data is    -2.
-# Data R[ 9] is wrong! The output data is     0, but the expected data is    -4.
-# Data R[10] is wrong! The output data is   453, but the expected data is   456.
-# Data R[11] is wrong! The output data is   949, but the expected data is   930.
-# Data R[15] is wrong! The output data is   583, but the expected data is  -612.
-# 
-# Data Q[ 0] is wrong! The output data is   560, but the expected data is  -542.
-# Data Q[ 1] is wrong! The output data is   479, but the expected data is  -485.
-# Data Q[ 2] is wrong! The output data is  -655, but the expected data is   663.
-# Data Q[ 3] is wrong! The output data is  -279, but the expected data is   283.
-# Data Q[ 4] is wrong! The output data is  -472, but the expected data is  -466.
-# Data Q[ 5] is wrong! The output data is   489, but the expected data is   487.
-# Data Q[ 6] is wrong! The output data is  -340, but the expected data is  -321.
-# Data Q[ 7] is wrong! The output data is   687, but the expected data is   700.
-# Data Q[ 8] is wrong! The output data is   431, but the expected data is   444.
-# Data Q[ 9] is wrong! The output data is  -640, but the expected data is  -634.
-# Data Q[11] is wrong! The output data is   580, but the expected data is   575.
-# Data Q[12] is wrong! The output data is  -576, but the expected data is   581.
-# Data Q[13] is wrong! The output data is  -416, but the expected data is   420.
-# Data Q[14] is wrong! The output data is  -619, but the expected data is   616.
-# Data Q[15] is wrong! The output data is  -403, but the expected data is   382.
-#  
-# --------------------- S U M M A R Y -------------------
-# 
-# *****************************************************************************
-# ** FAIL!!! There are  12 error in R matrix!                                **
-# *****************************************************************************
-# *****************************************************************************
-# ** FAIL!!! There are  15 error in Q matrix!                                **
-# *****************************************************************************
-# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(219)
-#    Time: 2225 ns  Iteration: 0  Instance: /qr_cordic_tb
-# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 219
-restart
-run -all
-# GetModuleFileName: тぃ﹚家舱
-# 
-# 
-# -------------------------------------------------------
-# 
-# START!!! Simulation Start .....
-# 
-# -------------------------------------------------------
-# 
-# 
-# Original_Input A matrix: 
-#          -34          -76           36         -103
-#          -76          -29           -4          -53
-#         -106           13          -90          -68
-#           69          -70           72            7
-# Shifted_Input A matrix: 
-#         -272         -608          288         -824
-#         -608         -232          -32         -424
-#         -848          104         -720         -544
-#          552         -560          576           56
-# 
-# Output R matrix golden pattern: 
-#         1213          -76          716          804
-#            0          862         -596          661
-#            0            0          258           63
-#            0            0            0          261
-# R matrix calculated result: 
-#         1213          -76          716          804
-#            0          862         -596          661
-#            0            0          258           63
-#            0            0            0          261
-# 
-# Output Q matrix golden pattern: 
-#         -230         -517         -717          465
-#         -743         -324           59         -629
-#           78          560         -725         -454
-#         -664          603           94          483
-# Q matrix calculated result: 
-#         -230         -517         -717          465
-#         -743         -324           59         -629
-#           78          560         -725         -454
-#         -664          603           94          483
-# 
-#  
-# --------------------- S U M M A R Y -------------------
-# 
-# *****************************************************************************
-# ** Congratulations!!! R and Q data are all correct! The result is PASS!!!  **
-# ** Get finish at cycle: 37                                                 **
-# *****************************************************************************
-# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(219)
-#    Time: 2225 ns  Iteration: 0  Instance: /qr_cordic_tb
-# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 219
-restart
-# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
-run -all
-# GetModuleFileName: тぃ﹚家舱
-# 
-# 
-# -------------------------------------------------------
-# 
-# START!!! Simulation Start .....
-# 
-# -------------------------------------------------------
-# 
-# 
-# Original_Input A matrix: 
-#          -95           39           33          -92
-#         -105           57          -96          -85
-#         -126            7          -94          -78
-#          -20         -101         -103          -47
-# Shifted_Input A matrix: 
-#         -760          312          264         -736
-#         -840          456         -768         -680
-#        -1008           56         -752         -624
-#         -160         -808         -824         -376
-# 
-# Output R matrix golden pattern: 
-#        -1529          358         -878        -1195
-#            0         -921         -735         -175
-#            0            0          775          -84
-#            0            0            0         -273
-# R matrix calculated result: 
-#         1242          131        -1111         -913
-#            0          976          519         -150
-#            0            0          635          276
-#            0            0            0          778
-# 
-# Output Q matrix golden pattern: 
-#          510          563          677          108
-#         -149         -294          202          946
-#          782         -658          -37          -73
-#          390          468         -737          366
-# Q matrix calculated result: 
-#           16          430          917          146
-#          326          427          -66         -870
-#          188         -831          439         -367
-#         -952           -8           83         -364
-# Data R[ 0] is wrong! The output data is  1242, but the expected data is -1529.
-# Data R[ 1] is wrong! The output data is   131, but the expected data is   358.
-# Data R[ 2] is wrong! The output data is -1111, but the expected data is  -878.
-# Data R[ 3] is wrong! The output data is  -913, but the expected data is -1195.
-# Data R[ 5] is wrong! The output data is   976, but the expected data is  -921.
-# Data R[ 6] is wrong! The output data is   519, but the expected data is  -735.
-# Data R[ 7] is wrong! The output data is  -150, but the expected data is  -175.
-# Data R[10] is wrong! The output data is   635, but the expected data is   775.
-# Data R[11] is wrong! The output data is   276, but the expected data is   -84.
-# Data R[15] is wrong! The output data is   778, but the expected data is  -273.
-# 
-# Data Q[ 0] is wrong! The output data is    16, but the expected data is   510.
-# Data Q[ 1] is wrong! The output data is   430, but the expected data is   563.
-# Data Q[ 2] is wrong! The output data is   917, but the expected data is   677.
-# Data Q[ 3] is wrong! The output data is   146, but the expected data is   108.
-# Data Q[ 4] is wrong! The output data is   326, but the expected data is  -149.
-# Data Q[ 5] is wrong! The output data is   427, but the expected data is  -294.
-# Data Q[ 6] is wrong! The output data is   -66, but the expected data is   202.
-# Data Q[ 7] is wrong! The output data is  -870, but the expected data is   946.
-# Data Q[ 8] is wrong! The output data is   188, but the expected data is   782.
-# Data Q[ 9] is wrong! The output data is  -831, but the expected data is  -658.
-# Data Q[10] is wrong! The output data is   439, but the expected data is   -37.
-# Data Q[11] is wrong! The output data is  -367, but the expected data is   -73.
-# Data Q[12] is wrong! The output data is  -952, but the expected data is   390.
-# Data Q[13] is wrong! The output data is    -8, but the expected data is   468.
-# Data Q[14] is wrong! The output data is    83, but the expected data is  -737.
-# Data Q[15] is wrong! The output data is  -364, but the expected data is   366.
-#  
-# --------------------- S U M M A R Y -------------------
-# 
-# *****************************************************************************
-# ** FAIL!!! There are  10 error in R matrix!                                **
-# *****************************************************************************
-# *****************************************************************************
-# ** FAIL!!! There are  16 error in Q matrix!                                **
-# *****************************************************************************
-# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(219)
-#    Time: 2225 ns  Iteration: 0  Instance: /qr_cordic_tb
-# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 219
-restart
-run -all
-# GetModuleFileName: тぃ﹚家舱
-# 
-# 
-# -------------------------------------------------------
-# 
-# START!!! Simulation Start .....
-# 
-# -------------------------------------------------------
-# 
-# 
-# Original_Input A matrix: 
-#          -47           52         -109          -48
-#          -73           14          105          -86
-#          -64          -81           52           31
-#          100          -74           14          124
-# Shifted_Input A matrix: 
-#         -376          416         -872         -384
-#         -584          112          840         -688
-#         -512         -648          416          248
-#          800         -592          112          992
-# 
-# Output R matrix golden pattern: 
-#        -1181          308          241        -1032
-#            0         -934          725          717
-#            0            0        -1033          291
-#            0            0            0          -19
-# R matrix calculated result: 
-#         1179         -309         -243         1033
-#            0          928         -734         -720
-#            0            0         1026         -298
-#            0            0            0           15
-# 
-# Output Q matrix golden pattern: 
-#          327          505          448         -698
-#         -349           40          862          420
-#          696         -689          298           21
-#          575          564         -100          620
-# Q matrix calculated result: 
-#         -327         -510         -445          698
-#          352          -47         -866         -422
-#         -697          683         -311          -27
-#         -579         -565           97         -622
-# Data R[ 0] is wrong! The output data is  1179, but the expected data is -1181.
-# Data R[ 1] is wrong! The output data is  -309, but the expected data is   308.
-# Data R[ 2] is wrong! The output data is  -243, but the expected data is   241.
-# Data R[ 3] is wrong! The output data is  1033, but the expected data is -1032.
-# Data R[ 5] is wrong! The output data is   928, but the expected data is  -934.
-# Data R[ 6] is wrong! The output data is  -734, but the expected data is   725.
-# Data R[ 7] is wrong! The output data is  -720, but the expected data is   717.
-# Data R[10] is wrong! The output data is  1026, but the expected data is -1033.
-# Data R[11] is wrong! The output data is  -298, but the expected data is   291.
-# Data R[15] is wrong! The output data is    15, but the expected data is   -19.
-# 
-# Data Q[ 0] is wrong! The output data is  -327, but the expected data is   327.
-# Data Q[ 1] is wrong! The output data is  -510, but the expected data is   505.
-# Data Q[ 2] is wrong! The output data is  -445, but the expected data is   448.
-# Data Q[ 3] is wrong! The output data is   698, but the expected data is  -698.
-# Data Q[ 4] is wrong! The output data is   352, but the expected data is  -349.
-# Data Q[ 5] is wrong! The output data is   -47, but the expected data is    40.
-# Data Q[ 6] is wrong! The output data is  -866, but the expected data is   862.
-# Data Q[ 7] is wrong! The output data is  -422, but the expected data is   420.
-# Data Q[ 8] is wrong! The output data is  -697, but the expected data is   696.
-# Data Q[ 9] is wrong! The output data is   683, but the expected data is  -689.
-# Data Q[10] is wrong! The output data is  -311, but the expected data is   298.
-# Data Q[11] is wrong! The output data is   -27, but the expected data is    21.
-# Data Q[12] is wrong! The output data is  -579, but the expected data is   575.
-# Data Q[13] is wrong! The output data is  -565, but the expected data is   564.
-# Data Q[14] is wrong! The output data is    97, but the expected data is  -100.
-# Data Q[15] is wrong! The output data is  -622, but the expected data is   620.
-#  
-# --------------------- S U M M A R Y -------------------
-# 
-# *****************************************************************************
-# ** FAIL!!! There are  10 error in R matrix!                                **
-# *****************************************************************************
-# *****************************************************************************
-# ** FAIL!!! There are  16 error in Q matrix!                                **
-# *****************************************************************************
-# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(219)
-#    Time: 2225 ns  Iteration: 0  Instance: /qr_cordic_tb
-# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 219
-restart
-run -all
-# GetModuleFileName: тぃ﹚家舱
-# 
-# 
-# -------------------------------------------------------
-# 
-# START!!! Simulation Start .....
-# 
-# -------------------------------------------------------
-# 
-# 
-# Original_Input A matrix: 
-#          -85           47           30           66
-#          -63          -25          -89           95
-#          -27          123          -31          -39
-#         -110          -26          -87           47
-# Shifted_Input A matrix: 
-#         -680          376          240          528
-#         -504         -200         -712          760
-#         -216          984         -248         -312
-#         -880         -208         -696          376
-# 
-# Output R matrix golden pattern: 
-#         1239         -149          694         -811
-#            0         1082          218         -425
-#           -1           -1          761           75
-#           -1           -1            0          501
-# R matrix calculated result: 
-#         1243          146         -700          808
-#            0         1083          216         -427
-#            0            0          763           80
-#            0            0            0         -509
-# 
-# Output Q matrix golden pattern: 
-#         -562         -417         -179         -727
-#          278         -247          906         -297
-#          755         -507         -432         -188
-#          291          746          -93         -631
-# Q matrix calculated result: 
-#          558          414          179          728
-#          280         -248          905         -298
-#          756         -505         -431         -186
-#         -293         -754           91          626
-# Data R[ 0] is wrong! The output data is  1243, but the expected data is  1239.
-# Data R[ 1] is wrong! The output data is   146, but the expected data is  -149.
-# Data R[ 2] is wrong! The output data is  -700, but the expected data is   694.
-# Data R[ 3] is wrong! The output data is   808, but the expected data is  -811.
-# Data R[ 5] is wrong! The output data is  1083, but the expected data is  1082.
-# Data R[ 6] is wrong! The output data is   216, but the expected data is   218.
-# Data R[ 7] is wrong! The output data is  -427, but the expected data is  -425.
-# Data R[ 8] is wrong! The output data is     0, but the expected data is    -1.
-# Data R[ 9] is wrong! The output data is     0, but the expected data is    -1.
-# Data R[10] is wrong! The output data is   763, but the expected data is   761.
-# Data R[11] is wrong! The output data is    80, but the expected data is    75.
-# Data R[12] is wrong! The output data is     0, but the expected data is    -1.
-# Data R[13] is wrong! The output data is     0, but the expected data is    -1.
-# Data R[15] is wrong! The output data is  -509, but the expected data is   501.
-# 
-# Data Q[ 0] is wrong! The output data is   558, but the expected data is  -562.
-# Data Q[ 1] is wrong! The output data is   414, but the expected data is  -417.
-# Data Q[ 2] is wrong! The output data is   179, but the expected data is  -179.
-# Data Q[ 3] is wrong! The output data is   728, but the expected data is  -727.
-# Data Q[ 4] is wrong! The output data is   280, but the expected data is   278.
-# Data Q[ 5] is wrong! The output data is  -248, but the expected data is  -247.
-# Data Q[ 6] is wrong! The output data is   905, but the expected data is   906.
-# Data Q[ 7] is wrong! The output data is  -298, but the expected data is  -297.
-# Data Q[ 8] is wrong! The output data is   756, but the expected data is   755.
-# Data Q[ 9] is wrong! The output data is  -505, but the expected data is  -507.
-# Data Q[10] is wrong! The output data is  -431, but the expected data is  -432.
-# Data Q[11] is wrong! The output data is  -186, but the expected data is  -188.
-# Data Q[12] is wrong! The output data is  -293, but the expected data is   291.
-# Data Q[13] is wrong! The output data is  -754, but the expected data is   746.
-# Data Q[14] is wrong! The output data is    91, but the expected data is   -93.
-# Data Q[15] is wrong! The output data is   626, but the expected data is  -631.
-#  
-# --------------------- S U M M A R Y -------------------
-# 
-# *****************************************************************************
-# ** FAIL!!! There are  14 error in R matrix!                                **
-# *****************************************************************************
-# *****************************************************************************
-# ** FAIL!!! There are  16 error in Q matrix!                                **
-# *****************************************************************************
-# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(219)
-#    Time: 2225 ns  Iteration: 0  Instance: /qr_cordic_tb
-# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 219
-# End time: 04:24:43 on May 20,2024, Elapsed time: 3:03:48
-# Errors: 0, Warnings: 1
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(201)
+#    Time: 3375 ns  Iteration: 1  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 201

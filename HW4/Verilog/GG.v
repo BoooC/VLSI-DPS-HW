@@ -1,5 +1,5 @@
 module GG #(
-	parameter R_LEN  = 12,
+	parameter R_LEN  = 13,
 	parameter R_FRAC = 3
 )(
 	input 								nop,
@@ -29,7 +29,7 @@ reg   signed [R_LEN-1:0]                   xo_2;
 reg   signed [R_LEN-1:0]                   yo_2;
 
 // check whether xi is positive or negative
-assign neg = xi[R_LEN-1]; //== 1;
+assign neg = xi[R_LEN-1];
 
 // decide the rotation direction: 1 means counterclockwise(+), 0 means clockwise(-)
 assign d1 = (yi_0==0) ? 2: xi_0[R_LEN-1] ^ yi_0[R_LEN-1];
