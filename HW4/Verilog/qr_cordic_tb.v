@@ -11,13 +11,18 @@
 
 module qr_cordic_tb;
 
-parameter Q_len		= 64;
-parameter R_len		= 32;
+parameter Q_row	= 8;
+parameter Q_col	= 8;
+parameter R_row	= 8;
+parameter R_col	= 4;
+
+parameter Q_len		= Q_row * Q_col;
+parameter R_len		= R_row * R_col;
 parameter OUT_WIDTH = 12;
 
-parameter A_ROM_SIZE = 32;
-parameter R_RAM_SIZE = 32;
-parameter Q_RAM_SIZE = 64;
+parameter A_ROM_SIZE = R_len;
+parameter Q_RAM_SIZE = Q_len;
+parameter R_RAM_SIZE = R_len;
 
 
 reg	rst = 0;
@@ -58,6 +63,10 @@ qr_cordic qr_cordic_inst(
 	.wr_R_data		(wr_R_data		),
 	.wr_R_row_addr	(wr_R_row_addr	),
 	.wr_R_col_addr	(wr_R_col_addr	),
+	.wr_Q			(wr_Q			),
+	.wr_Q_data		(wr_Q_data		),
+	.wr_Q_row_addr	(wr_Q_row_addr	),
+	.wr_Q_col_addr	(wr_Q_col_addr	),
 	.valid			(valid			)
 );
 
@@ -145,45 +154,49 @@ initial begin
  	$display("START!!! Simulation Start .....\n");
  	$display("-------------------------------------------------------\n");
 	$display("Input A matrix: ");
-	while(i<8) begin
-		$display("%13d %13d %13d %13d", ROM_A_inst.ROM[4*i], ROM_A_inst.ROM[4*i+1], ROM_A_inst.ROM[4*i+2], ROM_A_inst.ROM[4*i+3]);
+	while(i < R_row) begin
+		$display("%8d %8d %8d %8d", ROM_A_inst.ROM[4*i], ROM_A_inst.ROM[4*i+1], ROM_A_inst.ROM[4*i+2], ROM_A_inst.ROM[4*i+3]);
 		i = i + 1;
 	end
 	
 	wait (valid);
 	
+	
+	/***********************************************************************************/
+	/**                                 Display matrix                                **/
+	/***********************************************************************************/
 	// display matrix R
 	$display("");
 	$display("Output R matrix golden pattern: ");
-	while(k<8) begin
-		$display("%13d %13d %13d %13d", R_gold[4*k], R_gold[4*k+1], R_gold[4*k+2], R_gold[4*k+3]);
+	while(k < R_row) begin
+		$display("%8d %8d %8d %8d", R_gold[R_col*k], R_gold[R_col*k+1], R_gold[R_col*k+2], R_gold[R_col*k+3]);
 		k = k + 1;
 	end
 	
 	$display("R matrix calculated result: ");
 	@(posedge clk);
-	while(j<8) begin
-		$display("%13d %13d %13d %13d", RAM_R_inst.RAM[4*j], RAM_R_inst.RAM[4*j+1], RAM_R_inst.RAM[4*j+2], RAM_R_inst.RAM[4*j+3]);
+	while(j < R_row) begin
+		$display("%8d %8d %8d %8d", RAM_R_inst.RAM[R_col*j], RAM_R_inst.RAM[R_col*j+1], RAM_R_inst.RAM[R_col*j+2], RAM_R_inst.RAM[R_col*j+3]);
 		j = j + 1;
 	end
 	
-	/*
 	// display matrix Q
 	$display("");
 	$display("Output Q matrix golden pattern: ");
-	while(m<4) begin
-		$display("%12d %12d %12d %12d", Q_gold[4*m], Q_gold[4*m+1], Q_gold[4*m+2], Q_gold[4*m+3]);
+	while(m < Q_row) begin
+		$display("%8d %8d %8d %8d %8d %8d %8d %8d", Q_gold[Q_col*m+0], Q_gold[Q_col*m+1], Q_gold[Q_col*m+2], Q_gold[Q_col*m+3], Q_gold[Q_col*m+4], Q_gold[Q_col*m+5], Q_gold[Q_col*m+6], Q_gold[Q_col*m+7]);
 		m = m + 1;
 	end
 	$display("Q matrix calculated result: ");
 	@(posedge clk);
-	while(l<4) begin
-		$display("%12d %12d %12d %12d", RAM_Q_inst.RAM[4*l+0], RAM_Q_inst.RAM[4*l+1], RAM_Q_inst.RAM[4*l+2], RAM_Q_inst.RAM[4*l+3],
-										RAM_Q_inst.RAM[4*l+4], RAM_Q_inst.RAM[4*l+5], RAM_Q_inst.RAM[4*l+6], RAM_Q_inst.RAM[4*l+7]);
+	while(l < Q_row) begin
+		$display("%8d %8d %8d %8d %8d %8d %8d %8d", RAM_Q_inst.RAM[Q_col*l+0], RAM_Q_inst.RAM[Q_col*l+1], RAM_Q_inst.RAM[Q_col*l+2], RAM_Q_inst.RAM[Q_col*l+3], RAM_Q_inst.RAM[Q_col*l+4], RAM_Q_inst.RAM[Q_col*l+5], RAM_Q_inst.RAM[Q_col*l+6], RAM_Q_inst.RAM[Q_col*l+7]);
 		l = l + 1;
 	end
-	*/
 	
+	/***********************************************************************************/
+	/**                                  Check Matrix                                 **/
+	/***********************************************************************************/
 	// check R matrix
 	err_R = 0;
 	for(u=0; u<R_len; u=u+1) begin
@@ -196,15 +209,15 @@ initial begin
 	
 	// check Q matrix
 	err_Q = 0;
-	/*
 	for(v=0; v<Q_len; v=v+1) begin
 		if (RAM_Q_inst.RAM[v] != Q_gold[v]) begin
 			err_Q = err_Q + 1;
-			$display("Data Q[%2d] is wrong! The output data is %5d, but the expected data is %5d.", v, RAM_Q_inst.RAM[v], Q_gold[v]);
+			// $display("Data Q[%2d] is wrong! The output data is %5d, but the expected data is %5d.", v, RAM_Q_inst.RAM[v], Q_gold[v]);
 		end
 	end
-	*/
-	
+	/***********************************************************************************/
+	/**                                     SUMMARY                                   **/
+	/***********************************************************************************/
 	$display(" ");
 	$display("-------------------------------------------------------\n");
 	$display("--------------------- S U M M A R Y -------------------\n");
@@ -215,26 +228,20 @@ initial begin
 		$display("*****************************************************************************");
 	end
 	else begin
+		$display("*****************************************************************************");
 		if(err_R != 0) begin
-			$display("*****************************************************************************");
-			$display("** FAIL!!! There are %3d error in R matrix!                                **", err_R);
-			$display("*****************************************************************************");
+			$display("** FAIL!!!  There are %5d error in R matrix!                             **", err_R);
 		end
 		else begin
-			$display("*****************************************************************************");
-			$display("** PASS!!! all data are correct in R matrix!                                **", err_R);
-			$display("*****************************************************************************");
+			$display("** PASS!!!  All data are correct in R matrix!                              **");
 		end
 		if(err_Q != 0) begin
-			$display("*****************************************************************************");
-			$display("** FAIL!!! There are %3d error in Q matrix!                                **", err_Q);
-			$display("*****************************************************************************");
+			$display("** FAIL!!!  There are %5d error in Q matrix!                             **", err_Q);
 		end
 		else begin
-			$display("*****************************************************************************");
-			$display("** PASS!!! All data are correct in Q matrix!                                **", err_R);
-			$display("*****************************************************************************");
+			$display("** PASS!!!  All data are correct in Q matrix!                              **");
 		end
+		$display("*****************************************************************************");
 	end
 	#(`CYCLE); $stop;
 end
