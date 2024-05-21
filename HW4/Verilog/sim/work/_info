@@ -178,48 +178,48 @@ R11
 R12
 n@q_one_iter
 vqr_cordic
-!s110 1716311628
+!s110 1716314264
 !i10b 1
-!s100 c4k;hjC[5VBTAQm931`L63
+!s100 VPbQ21PjSZGh<01<KXSKB0
 R1
-I`dFeBh2mAll9:z8flEYk11
+I=nR:0F9n]k5>hBTZE6IHO2
 R2
 R3
-w1716311626
+w1716314262
 8C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v
 FC:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v
-!i122 466
-L0 1 2444
+!i122 479
+L0 1 2609
 R7
 r1
 !s85 0
 31
-!s108 1716311628.000000
+!s108 1716314264.000000
 !s107 C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v|
 !i113 1
 R11
 R12
 vqr_cordic_tb
-Z29 !s110 1716312466
+Z29 !s110 1716314236
 !i10b 1
-!s100 3mGCIlg_;696__omMZ9aC3
+!s100 b]M?:S7oNEQQZUD?1ZeVz0
 R1
-IPi2jf0KTGQ3c6dla:S^_E3
+Ie_3?3:RB2]I6lCl_RNZKb0
 R2
 R3
-Z30 w1716312465
+Z30 w1716314235
 Z31 8C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v
 Z32 FC:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v
-!i122 474
+!i122 478
 L0 12 262
 R7
 r1
 !s85 0
 31
-Z33 !s108 1716312466.000000
-!s107 C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v|
-Z34 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v|
+Z33 !s108 1716314236.000000
+Z34 !s107 C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v|
+Z35 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v|
 !i113 1
 R11
 R12
@@ -234,15 +234,15 @@ R3
 R30
 R31
 R32
-!i122 474
+!i122 478
 L0 303 30
 R7
 r1
 !s85 0
 31
 R33
-Z35 !s107 C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v|
 R34
+R35
 !i113 1
 R11
 R12
@@ -258,15 +258,15 @@ R3
 R30
 R31
 R32
-!i122 474
+!i122 478
 L0 276 25
 R7
 r1
 !s85 0
 31
 R33
-R35
 R34
+R35
 !i113 1
 R11
 R12

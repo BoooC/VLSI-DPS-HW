@@ -262,10 +262,10 @@ end
 always@(posedge clk) begin
 	if(cycle > `End_CYCLE) begin
 		$display("");
-		$display("********************************************************************");
-		$display("**  Failed waiting Valid signal, Simulation STOP at cycle %4d    **",cycle);
-		$display("**  If needed, You can increase End_CYCLE                         **");
-		$display("********************************************************************");
+		$display("***************************************************************************");
+		$display("**  Failed waiting Valid signal, Simulation STOP at cycle %4d           **",cycle);
+		$display("**  The simulation can't be terminated under normal operation!           **");
+		$display("***************************************************************************");
 		$stop;
 	end
 end
