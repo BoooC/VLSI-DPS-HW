@@ -1,6 +1,6 @@
 module GR #(
-	parameter R_LEN  = 13,
-	parameter R_FRAC = 3
+	parameter R_LEN  = 12,
+	parameter R_FRAC = 2
 )(	
 	input       						nop,
 	input        signed [R_LEN-1:0] 	xi,

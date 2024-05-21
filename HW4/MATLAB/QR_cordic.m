@@ -56,7 +56,7 @@ K_len 	= K_sign + K_int + K_frac;
 
 R_sign	= 1;
 R_int 	= 9;
-R_frac	= 3;
+R_frac	= 2;
 R_len 	= R_sign + R_int + R_frac;
 
 Q_sign	= 1;
@@ -301,9 +301,9 @@ end
 function Save_data(A_origin, Q, R)
 	F = fimath('RoundingMethod','Floor');
 	
-	A_origin = fi(A_origin, 1, 13, 3, F);
+	A_origin = fi(A_origin, 1, 12, 2, F);
 	Q_scaled = fi(Q, 1, 12, 10, F);
-	R_scaled = fi(R, 1, 13, 0, F);
+	R_scaled = fi(R, 1, 12, 0, F);
 	
 	A = Q_scaled' * R_scaled;
 	A_scaled = fi(A, 1, 12, 4, F);

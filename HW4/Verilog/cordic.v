@@ -1,8 +1,8 @@
-module qr_cord_Aic #(
-	parameter R_LEN     = 13,
-	parameter R_FRAC    = 10,
-	parameter K_LEN     = 11,
-	parameter K_FRAC    = 10,
+module qr_cordic #(
+	parameter R_LEN     = 12,
+	parameter R_FRAC    = 2,
+	parameter K_LEN     = 10,
+	parameter K_FRAC    = 9,
 	parameter ROW_LEN   = 3,
 	parameter COL_LEN   = 2,
 	parameter ITER_NUM  = 8,
@@ -55,154 +55,154 @@ reg                   [2:0]                mk_cnt_gg4;
 //                                                              signals of other modules                                                                 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //GG1
-reg            signed [R_LEN-1:0]           xi_gg1;
-reg            signed [R_LEN-1:0]           yi_gg1;
-reg                   [ITER_LEN-1:0]        iter_gg1;
-wire                  [1:0]                 d1_gg1;
-wire                  [1:0]					d2_gg1;
-wire                  [1:0]					d3_gg1;
-wire                  [1:0]					d4_gg1;
-wire                                        neg_gg1;
-wire           signed [R_LEN-1:0]           xo_gg1;
-wire           signed [R_LEN-1:0]           yo_gg1;
+reg            signed 	[R_LEN-1:0]         xi_gg1;
+reg            signed 	[R_LEN-1:0]         yi_gg1;
+reg                   	[ITER_LEN-1:0]      iter_gg1;
+wire                  	[1:0]               d1_gg1;
+wire                  	[1:0]				d2_gg1;
+wire                  	[1:0]				d3_gg1;
+wire                  	[1:0]				d4_gg1;
+wire                  	                    neg_gg1;
+wire           signed 	[R_LEN-1:0]         xo_gg1;
+wire           signed 	[R_LEN-1:0]         yo_gg1;
 
 //GR11
 reg                                         nop_gr11;
-reg            signed [R_LEN-1:0]           xi_gr11;
-reg            signed [R_LEN-1:0]           yi_gr11;
-reg                   [ITER_LEN-1:0]        iter_gr11;
-reg                   [1:0]                 d1_gr11;
-reg                   [1:0]					d2_gr11;
-reg                  [1:0]					d3_gr11;
-reg                  [1:0]					d4_gr11;
+reg            signed	[R_LEN-1:0]         xi_gr11;
+reg            signed	[R_LEN-1:0]         yi_gr11;
+reg                  	[ITER_LEN-1:0]      iter_gr11;
+reg                  	[1:0]               d1_gr11;
+reg                  	[1:0]				d2_gr11;
+reg                  	[1:0]				d3_gr11;
+reg                  	[1:0]				d4_gr11;
 reg                                         neg_gr11;
-wire           signed [R_LEN-1:0]           xo_gr11;
-wire           signed [R_LEN-1:0]           yo_gr11;
+wire           signed 	[R_LEN-1:0]         xo_gr11;
+wire           signed 	[R_LEN-1:0]         yo_gr11;
 
 //GR12
 reg                                         nop_gr12;
-reg            signed [R_LEN-1:0]           xi_gr12;
-reg            signed [R_LEN-1:0]           yi_gr12;
-reg                   [ITER_LEN-1:0]        iter_gr12;
-reg                   [1:0]                 d1_gr12;
-reg                   [1:0]					d2_gr12;
-reg                  [1:0]					d3_gr12;
-reg                  [1:0]					d4_gr12;
+reg            signed	[R_LEN-1:0]         xi_gr12;
+reg            signed	[R_LEN-1:0]         yi_gr12;
+reg                  	[ITER_LEN-1:0]      iter_gr12;
+reg                  	[1:0]               d1_gr12;
+reg                  	[1:0]				d2_gr12;
+reg                  	[1:0]				d3_gr12;
+reg                  	[1:0]				d4_gr12;
 reg                                         neg_gr12;
-wire           signed [R_LEN-1:0]           xo_gr12;
-wire           signed [R_LEN-1:0]           yo_gr12;
+wire           signed 	[R_LEN-1:0]         xo_gr12;
+wire           signed 	[R_LEN-1:0]         yo_gr12;
 
 //GR13
 reg                                         nop_gr13;
-reg            signed [R_LEN-1:0]           xi_gr13;
-reg            signed [R_LEN-1:0]           yi_gr13;
-reg                   [ITER_LEN-1:0]        iter_gr13;
-reg                   [1:0]                 d1_gr13;
-reg                   [1:0]					d2_gr13;
-reg                  [1:0]					d3_gr13;
-reg                  [1:0]					d4_gr13;
+reg            signed	[R_LEN-1:0]         xi_gr13;
+reg            signed	[R_LEN-1:0]         yi_gr13;
+reg                  	[ITER_LEN-1:0]      iter_gr13;
+reg                  	[1:0]               d1_gr13;
+reg                  	[1:0]				d2_gr13;
+reg                  	[1:0]				d3_gr13;
+reg                  	[1:0]				d4_gr13;
 reg                                         neg_gr13;
-wire           signed [R_LEN-1:0]           xo_gr13;
-wire           signed [R_LEN-1:0]           yo_gr13;
+wire           signed 	[R_LEN-1:0]         xo_gr13;
+wire           signed 	[R_LEN-1:0]         yo_gr13;
 
 //GG2
-reg            signed [R_LEN-1:0]           xi_gg2;
-reg            signed [R_LEN-1:0]           yi_gg2;
-reg                   [ITER_LEN-1:0]        iter_gg2;
-wire                  [1:0]                 d1_gg2;
-wire                  [1:0]					d2_gg2;
-wire                  [1:0]					d3_gg2;
-wire                  [1:0]					d4_gg2;
-wire                                        neg_gg2;
-wire           signed [R_LEN-1:0]           xo_gg2;
-wire           signed [R_LEN-1:0]           yo_gg2;
+reg            signed 	[R_LEN-1:0]         xi_gg2;
+reg            signed 	[R_LEN-1:0]         yi_gg2;
+reg                   	[ITER_LEN-1:0]      iter_gg2;
+wire                  	[1:0]               d1_gg2;
+wire                  	[1:0]				d2_gg2;
+wire                  	[1:0]				d3_gg2;
+wire                  	[1:0]				d4_gg2;
+wire                  	                    neg_gg2;
+wire           signed 	[R_LEN-1:0]         xo_gg2;
+wire           signed 	[R_LEN-1:0]         yo_gg2;
 
 //GR21
 reg                                         nop_gr21;
-reg            signed [R_LEN-1:0]           xi_gr21;
-reg            signed [R_LEN-1:0]           yi_gr21;
-reg                   [ITER_LEN-1:0]        iter_gr21;
-reg                   [1:0]                 d1_gr21;
-reg                   [1:0]					d2_gr21;
+reg            signed	[R_LEN-1:0]         xi_gr21;
+reg            signed	[R_LEN-1:0]         yi_gr21;
+reg                  	[ITER_LEN-1:0]      iter_gr21;
+reg                  	[1:0]               d1_gr21;
+reg                  	[1:0]				d2_gr21;
 reg                  	[1:0]				d3_gr21;
 reg                  	[1:0]				d4_gr21;
 reg                                         neg_gr21;
-wire           signed [R_LEN-1:0]           xo_gr21;
-wire           signed [R_LEN-1:0]           yo_gr21;
+wire           signed 	[R_LEN-1:0]         xo_gr21;
+wire           signed 	[R_LEN-1:0]         yo_gr21;
 
 //GR22
 reg                                         nop_gr22;
-reg            signed [R_LEN-1:0]           xi_gr22;
-reg            signed [R_LEN-1:0]           yi_gr22;
-reg                   [ITER_LEN-1:0]        iter_gr22;
-reg                   [1:0]                 d1_gr22;
-reg                   [1:0]					d2_gr22;
+reg            signed 	[R_LEN-1:0]         xi_gr22;
+reg            signed 	[R_LEN-1:0]         yi_gr22;
+reg                   	[ITER_LEN-1:0]      iter_gr22;
+reg                   	[1:0]               d1_gr22;
+reg                   	[1:0]				d2_gr22;
 reg                  	[1:0]				d3_gr22;
 reg                  	[1:0]				d4_gr22;
-reg                                         neg_gr22;
-wire           signed [R_LEN-1:0]           xo_gr22;
-wire           signed [R_LEN-1:0]           yo_gr22;
+reg                   	                    neg_gr22;
+wire           signed 	[R_LEN-1:0]         xo_gr22;
+wire           signed 	[R_LEN-1:0]         yo_gr22;
 
 //GG3
-reg            signed [R_LEN-1:0]           xi_gg3;
-reg            signed [R_LEN-1:0]           yi_gg3;
-reg                   [ITER_LEN-1:0]        iter_gg3;
-wire                  [1:0]                 d1_gg3;
-wire                  [1:0]					d2_gg3;
-wire                  [1:0]					d3_gg3;
-wire                  [1:0]					d4_gg3;
-wire                                        neg_gg3;
-wire           signed [R_LEN-1:0]           xo_gg3;
-wire           signed [R_LEN-1:0]           yo_gg3;
+reg            signed 	[R_LEN-1:0]         xi_gg3;
+reg            signed 	[R_LEN-1:0]         yi_gg3;
+reg                   	[ITER_LEN-1:0]      iter_gg3;
+wire                  	[1:0]               d1_gg3;
+wire                  	[1:0]				d2_gg3;
+wire                  	[1:0]				d3_gg3;
+wire                  	[1:0]				d4_gg3;
+wire                  	                    neg_gg3;
+wire           signed 	[R_LEN-1:0]         xo_gg3;
+wire           signed 	[R_LEN-1:0]         yo_gg3;
 
 //GR31
 reg                                         nop_gr31;
-reg            signed [R_LEN-1:0]           xi_gr31;
-reg            signed [R_LEN-1:0]           yi_gr31;
-reg                   [ITER_LEN-1:0]        iter_gr31;
-reg                   [1:0]                 d1_gr31;
-reg                   [1:0]					d2_gr31;
-reg                  [1:0]					d3_gr31;
-reg                  [1:0]					d4_gr31;
-reg                                         neg_gr31;
-wire           signed [R_LEN-1:0]           xo_gr31;
-wire           signed [R_LEN-1:0]           yo_gr31;
+reg            signed 	[R_LEN-1:0]         xi_gr31;
+reg            signed 	[R_LEN-1:0]         yi_gr31;
+reg                   	[ITER_LEN-1:0]      iter_gr31;
+reg                   	[1:0]               d1_gr31;
+reg                   	[1:0]				d2_gr31;
+reg                  	[1:0]				d3_gr31;
+reg                  	[1:0]				d4_gr31;
+reg                   	                    neg_gr31;
+wire           signed 	[R_LEN-1:0]         xo_gr31;
+wire           signed 	[R_LEN-1:0]         yo_gr31;
 
 //GG4
-reg            signed [R_LEN-1:0]           xi_gg4;
-reg            signed [R_LEN-1:0]           yi_gg4;
-reg                   [ITER_LEN-1:0]        iter_gg4;
-wire                  [1:0]                 d1_gg4;
-wire                  [1:0]					d2_gg4;
-wire                  [1:0]					d3_gg4;
-wire                  [1:0]					d4_gg4;
-wire                                        neg_gg4;
-wire           signed [R_LEN-1:0]           xo_gg4;
-wire           signed [R_LEN-1:0]           yo_gg4;
+reg            signed 	[R_LEN-1:0]         xi_gg4;
+reg            signed 	[R_LEN-1:0]         yi_gg4;
+reg                   	[ITER_LEN-1:0]      iter_gg4;
+wire                  	[1:0]               d1_gg4;
+wire                  	[1:0]				d2_gg4;
+wire                  	[1:0]				d3_gg4;
+wire                  	[1:0]				d4_gg4;
+wire                  	                    neg_gg4;
+wire           signed 	[R_LEN-1:0]         xo_gg4;
+wire           signed 	[R_LEN-1:0]         yo_gg4;
 
 // MK1
-reg            signed [R_LEN-1:0]           xi_mk1;
-reg            signed [R_LEN-1:0]           yi_mk1;
-wire           signed [R_LEN-1:0]           xo_mk1;
-wire           signed [R_LEN-1:0]           yo_mk1;
-
-// MK2
-reg            signed [R_LEN-1:0]           xi_mk2;
-reg            signed [R_LEN-1:0]           yi_mk2;
-wire           signed [R_LEN-1:0]           xo_mk2;
-wire           signed [R_LEN-1:0]           yo_mk2;
-
-// MK3
-reg            signed [R_LEN-1:0]           xi_mk3;
-reg            signed [R_LEN-1:0]           yi_mk3;
-wire           signed [R_LEN-1:0]           xo_mk3;
-wire           signed [R_LEN-1:0]           yo_mk3;
-
-// MK4
-reg            signed [R_LEN-1:0]           xi_mk4;
-reg            signed [R_LEN-1:0]           yi_mk4;
-wire           signed [R_LEN-1:0]           xo_mk4;
-wire           signed [R_LEN-1:0]           yo_mk4;
+reg            signed	[R_LEN-1:0]         xi_mk1;
+reg            signed	[R_LEN-1:0]         yi_mk1;
+wire           signed	[R_LEN-1:0]         xo_mk1;
+wire           signed	[R_LEN-1:0]         yo_mk1;
+	
+// MK2	
+reg            signed	[R_LEN-1:0]         xi_mk2;
+reg            signed	[R_LEN-1:0]         yi_mk2;
+wire           signed	[R_LEN-1:0]         xo_mk2;
+wire           signed	[R_LEN-1:0]         yo_mk2;
+	
+// MK3	
+reg            signed	[R_LEN-1:0]         xi_mk3;
+reg            signed	[R_LEN-1:0]         yi_mk3;
+wire           signed	[R_LEN-1:0]         xo_mk3;
+wire           signed	[R_LEN-1:0]         yo_mk3;
+	
+// MK4	
+reg            signed	[R_LEN-1:0]         xi_mk4;
+reg            signed	[R_LEN-1:0]         yi_mk4;
+wire           signed	[R_LEN-1:0]         xo_mk4;
+wire           signed	[R_LEN-1:0]         yo_mk4;
 
 
 // state wire
@@ -277,10 +277,10 @@ wire finish_gg3 	= multk_gg3_last  || (mk_cnt_gg3  == 5 && iter_gg3  == 0);
 wire finish_gr31	= multk_gr31_last || (mk_cnt_gr31 == 5 && iter_gr31 == 0);
 wire finish_gg4 	= multk_gg4_last  || (mk_cnt_gg4  == 4 && iter_gg4  <= 3);
 
-wire nop_gg1 		= (state != ROT) | read_store | finish_gg1;
-wire nop_gg2 		= (state != ROT & state != MUL_K) | mk_cnt_gr11 <= 1 | finish_gg2 | multk_gg2;
-wire nop_gg3 		= (state != ROT & state != MUL_K) | mk_cnt_gr21 <= 1 | finish_gg3 | multk_gg3;
-wire nop_gg4 		= (state != ROT & state != MUL_K) | mk_cnt_gr31 <= 1 | finish_gg4 | multk_gg4;
+wire nop_gg1 		= (~OP_wire) | read_store | finish_gg1;
+wire nop_gg2 		= (~OP_wire) | mk_cnt_gr11 <= 1 | finish_gg2 | multk_gg2;
+wire nop_gg3 		= (~OP_wire) | mk_cnt_gr21 <= 1 | finish_gg3 | multk_gg3;
+wire nop_gg4 		= (~OP_wire) | mk_cnt_gr31 <= 1 | finish_gg4 | multk_gg4;
 
 wire qr_finish		= mk_cnt_gg4 == 4 && iter_gg4 == 2;
 
