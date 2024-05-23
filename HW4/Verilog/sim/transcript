@@ -3564,3 +3564,2970 @@ add wave -position end  sim:/qr_cordic_tb/qr_cordic_inst/yo_mk5_q
 add wave -position end  sim:/qr_cordic_tb/qr_cordic_inst/yo_mk6_q
 add wave -position end  sim:/qr_cordic_tb/qr_cordic_inst/yo_mk7_q
 add wave -position end  sim:/qr_cordic_tb/qr_cordic_inst/yo_mk8_q
+add wave -position 9  sim:/qr_cordic_tb/qr_cordic_inst/mk_cnt_q11
+add wave -position 15  sim:/qr_cordic_tb/qr_cordic_inst/mk_cnt_q12
+add wave -position 22  sim:/qr_cordic_tb/qr_cordic_inst/mk_cnt_q13
+restart
+run -all
+# GetModuleFileName: тぃ﹚家舱
+# 
+# 
+# -------------------------------------------------------
+# 
+# START!!! Simulation Start .....
+# 
+# -------------------------------------------------------
+# 
+# Input A matrix: 
+#     -492     -272     -384     -316
+#      340     -488     -208      420
+#      408      448     -380      288
+#      348      456      152      504
+#      136      272     -284      508
+#      300     -356      384     -460
+#     -376      464      488     -276
+#      328      488     -440      304
+# 
+# Output R matrix golden pattern: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# R matrix calculated result: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# 
+# Output Q matrix golden pattern: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#     -677      -19      233      639       60      337      157      -56
+#        0      662     -177     -268     -223      -44      629      240
+#        0        0      731      -48      -49     -124       13     -705
+#        0        0        0      348     -855     -378     -219       94
+# Q matrix calculated result: 
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+# 
+#  
+# -------------------------------------------------------
+# 
+# --------------------- S U M M A R Y -------------------
+# 
+# *****************************************************************************
+# ** PASS!!!  All data are correct in R matrix!                              **
+# ** FAIL!!!  There are    58 error in Q matrix!                             **
+# *****************************************************************************
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(246)
+#    Time: 3725 ns  Iteration: 0  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 246
+add wave -position 231  sim:/qr_cordic_tb/qr_cordic_inst/xi_mk1_q
+add wave -position 232  sim:/qr_cordic_tb/qr_cordic_inst/xi_mk2_q
+add wave -position 233  sim:/qr_cordic_tb/qr_cordic_inst/xi_mk3_q
+add wave -position 234  sim:/qr_cordic_tb/qr_cordic_inst/xi_mk4_q
+add wave -position 235  sim:/qr_cordic_tb/qr_cordic_inst/xi_mk5_q
+add wave -position 236  sim:/qr_cordic_tb/qr_cordic_inst/xi_mk6_q
+add wave -position 237  sim:/qr_cordic_tb/qr_cordic_inst/xi_mk7_q
+add wave -position 238  sim:/qr_cordic_tb/qr_cordic_inst/xi_mk8_q
+add wave -position 239  sim:/qr_cordic_tb/qr_cordic_inst/yi_mk1_q
+add wave -position 240  sim:/qr_cordic_tb/qr_cordic_inst/yi_mk2_q
+add wave -position 241  sim:/qr_cordic_tb/qr_cordic_inst/yi_mk3_q
+add wave -position 242  sim:/qr_cordic_tb/qr_cordic_inst/yi_mk4_q
+add wave -position 243  sim:/qr_cordic_tb/qr_cordic_inst/yi_mk5_q
+add wave -position 244  sim:/qr_cordic_tb/qr_cordic_inst/yi_mk6_q
+add wave -position 245  sim:/qr_cordic_tb/qr_cordic_inst/yi_mk7_q
+add wave -position 246  sim:/qr_cordic_tb/qr_cordic_inst/yi_mk8_q
+add wave -position 11  sim:/qr_cordic_tb/qr_cordic_inst/last_multk_q11
+add wave -position 12  sim:/qr_cordic_tb/qr_cordic_inst/last_multk_q11_reg
+restart
+run -all
+# GetModuleFileName: тぃ﹚家舱
+# 
+# 
+# -------------------------------------------------------
+# 
+# START!!! Simulation Start .....
+# 
+# -------------------------------------------------------
+# 
+# Input A matrix: 
+#     -492     -272     -384     -316
+#      340     -488     -208      420
+#      408      448     -380      288
+#      348      456      152      504
+#      136      272     -284      508
+#      300     -356      384     -460
+#     -376      464      488     -276
+#      328      488     -440      304
+# 
+# Output R matrix golden pattern: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# R matrix calculated result: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# 
+# Output Q matrix golden pattern: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#     -677      -19      233      639       60      337      157      -56
+#        0      662     -177     -268     -223      -44      629      240
+#        0        0      731      -48      -49     -124       13     -705
+#        0        0        0      348     -855     -378     -219       94
+# Q matrix calculated result: 
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+# 
+#  
+# -------------------------------------------------------
+# 
+# --------------------- S U M M A R Y -------------------
+# 
+# *****************************************************************************
+# ** PASS!!!  All data are correct in R matrix!                              **
+# ** FAIL!!!  There are    58 error in Q matrix!                             **
+# *****************************************************************************
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(246)
+#    Time: 3725 ns  Iteration: 0  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 246
+add wave -position 11  sim:/qr_cordic_tb/qr_cordic_inst/finish_q11
+restart
+run -all
+# GetModuleFileName: тぃ﹚家舱
+# 
+# 
+# -------------------------------------------------------
+# 
+# START!!! Simulation Start .....
+# 
+# -------------------------------------------------------
+# 
+# Input A matrix: 
+#     -492     -272     -384     -316
+#      340     -488     -208      420
+#      408      448     -380      288
+#      348      456      152      504
+#      136      272     -284      508
+#      300     -356      384     -460
+#     -376      464      488     -276
+#      328      488     -440      304
+# 
+# Output R matrix golden pattern: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# R matrix calculated result: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# 
+# Output Q matrix golden pattern: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#     -677      -19      233      639       60      337      157      -56
+#        0      662     -177     -268     -223      -44      629      240
+#        0        0      731      -48      -49     -124       13     -705
+#        0        0        0      348     -855     -378     -219       94
+# Q matrix calculated result: 
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+# 
+#  
+# -------------------------------------------------------
+# 
+# --------------------- S U M M A R Y -------------------
+# 
+# *****************************************************************************
+# ** PASS!!!  All data are correct in R matrix!                              **
+# ** FAIL!!!  There are    58 error in Q matrix!                             **
+# *****************************************************************************
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(246)
+#    Time: 3725 ns  Iteration: 0  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 246
+# Compile of cordic.v was successful.
+# Compile of qr_cordic_tb.v was successful.
+# 2 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.qr_cordic_tb
+# Loading work.qr_cordic
+# Loading work.ROM
+# Loading work.RAM
+run -all
+# GetModuleFileName: тぃ﹚家舱
+# 
+# 
+# -------------------------------------------------------
+# 
+# START!!! Simulation Start .....
+# 
+# -------------------------------------------------------
+# 
+# Input A matrix: 
+#     -492     -272     -384     -316
+#      340     -488     -208      420
+#      408      448     -380      288
+#      348      456      152      504
+#      136      272     -284      508
+#      300     -356      384     -460
+#     -376      464      488     -276
+#      328      488     -440      304
+# 
+# Output R matrix golden pattern: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# R matrix calculated result: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# 
+# Output Q matrix golden pattern: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#     -677      -19      233      639       60      337      157      -56
+#        0      662     -177     -268     -223      -44      629      240
+#        0        0      731      -48      -49     -124       13     -705
+#        0        0        0      348     -855     -378     -219       94
+# Q matrix calculated result: 
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+# 
+#  
+# -------------------------------------------------------
+# 
+# --------------------- S U M M A R Y -------------------
+# 
+# *****************************************************************************
+# ** PASS!!!  All data are correct in R matrix!                              **
+# ** FAIL!!!  There are    58 error in Q matrix!                             **
+# *****************************************************************************
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(245)
+#    Time: 3725 ns  Iteration: 0  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 245
+# Compile of cordic.v was successful.
+# Compile of qr_cordic_tb.v was successful.
+# 2 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.qr_cordic_tb
+# Loading work.qr_cordic
+# Loading work.ROM
+# Loading work.RAM
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (1) for port 'wr_Q_data_1'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v(34).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cordic_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v Line: 54
+# ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (1) for port 'wr_Q_addr_1'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v(35).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cordic_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v Line: 54
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (1) for port 'wr_R_addr'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(311).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/RAM_Q_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v Line: 101
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (1) for port 'wr_R_data'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(312).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/RAM_Q_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v Line: 101
+# Compile of qr_cordic_tb.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.qr_cordic_tb
+# Loading work.ROM
+# Loading work.RAM
+# ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (1) for port 'wr_Q_addr_1'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v(35).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cordic_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v Line: 54
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (1) for port 'wr_R_addr'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(311).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/RAM_Q_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v Line: 101
+# Compile of cordic.v was successful.
+# Compile of qr_cordic_tb.v was successful.
+# 2 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.qr_cordic_tb
+# Loading work.qr_cordic
+# Loading work.ROM
+# Loading work.RAM
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (1) for port 'wr_Q_data_2'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v(34).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cordic_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v Line: 54
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (1) for port 'wr_Q_data_3'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v(34).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cordic_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v Line: 54
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (1) for port 'wr_Q_data_4'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v(34).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cordic_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v Line: 54
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (1) for port 'wr_Q_data_5'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v(34).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cordic_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v Line: 54
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (1) for port 'wr_Q_data_6'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v(34).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cordic_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v Line: 54
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (1) for port 'wr_Q_data_7'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v(34).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cordic_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v Line: 54
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (1) for port 'wr_Q_data_8'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v(34).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cordic_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v Line: 54
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (3) for port 'wr_R_addr'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(332).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/RAM_Q_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v Line: 122
+# Compile of qr_cordic_tb.v failed with 2 errors.
+restart
+# Compile of qr_cordic_tb.v failed with 2 errors.
+# Compile of qr_cordic_tb.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.qr_cordic_tb
+# Loading work.ROM
+# Loading work.RAM
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (3) for port 'wr_R_addr'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(333).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/RAM_Q_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v Line: 123
+run -all
+# GetModuleFileName: тぃ﹚家舱
+# 
+# 
+# -------------------------------------------------------
+# 
+# START!!! Simulation Start .....
+# 
+# -------------------------------------------------------
+# 
+# Input A matrix: 
+#     -492     -272     -384     -316
+#      340     -488     -208      420
+#      408      448     -380      288
+#      348      456      152      504
+#      136      272     -284      508
+#      300     -356      384     -460
+#     -376      464      488     -276
+#      328      488     -440      304
+# 
+# Output R matrix golden pattern: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# R matrix calculated result: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# 
+# Output Q matrix golden pattern: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#     -677      -19      233      639       60      337      157      -56
+#        0      662     -177     -268     -223      -44      629      240
+#        0        0      731      -48      -49     -124       13     -705
+#        0        0        0      348     -855     -378     -219       94
+# Q matrix calculated result: 
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+# 
+#  
+# -------------------------------------------------------
+# 
+# --------------------- S U M M A R Y -------------------
+# 
+# *****************************************************************************
+# ** PASS!!!  All data are correct in R matrix!                              **
+# ** FAIL!!!  There are    58 error in Q matrix!                             **
+# *****************************************************************************
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(267)
+#    Time: 3725 ns  Iteration: 0  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 267
+# Compile of qr_cordic_tb.v failed with 1 errors.
+# Compile of qr_cordic_tb.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.qr_cordic_tb
+# Loading work.ROM
+# Loading work.RAM_R
+# Loading work.RAM_Q
+# ** Warning: (vsim-3008) [CNNODP] - Component name (RAM) is not on a downward path.
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v Line: 236
+# ** Error: (vsim-3043) Unresolved reference to 'RAM' in RAM_Q_inst.RAM.
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v Line: 236
+# ** Warning: (vsim-3008) [CNNODP] - Component name (RAM) is not on a downward path.
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v Line: 222
+# ** Error: (vsim-3043) Unresolved reference to 'RAM' in RAM_R_inst.RAM.
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v Line: 222
+# Compile of qr_cordic_tb.v was successful.
+vsim work.qr_cordic_tb
+# vsim work.qr_cordic_tb 
+# Start time: 10:01:04 on May 23,2024
+# Loading work.qr_cordic_tb
+# Loading work.qr_cordic
+# Loading work.GG
+# Loading work.GG_one_iter
+# Loading work.GR
+# Loading work.GR_one_iter
+# Loading work.MK
+# Loading work.Q
+# Loading work.Q_one_iter
+# Loading work.ROM
+# Loading work.RAM_R
+# Loading work.RAM_Q
+run -all
+# GetModuleFileName: тぃ﹚家舱
+# 
+# 
+# -------------------------------------------------------
+# 
+# START!!! Simulation Start .....
+# 
+# -------------------------------------------------------
+# 
+# Input A matrix: 
+#     -492     -272     -384     -316
+#      340     -488     -208      420
+#      408      448     -380      288
+#      348      456      152      504
+#      136      272     -284      508
+#      300     -356      384     -460
+#     -376      464      488     -276
+#      328      488     -440      304
+# 
+# Output R matrix golden pattern: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# R matrix calculated result: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# 
+# Output Q matrix golden pattern: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#     -677      -19      233      639       60      337      157      -56
+#        0      662     -177     -268     -223      -44      629      240
+#        0        0      731      -48      -49     -124       13     -705
+#        0        0        0      348     -855     -378     -219       94
+# Q matrix calculated result: 
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+# 
+#  
+# -------------------------------------------------------
+# 
+# --------------------- S U M M A R Y -------------------
+# 
+# *****************************************************************************
+# ** PASS!!!  All data are correct in R matrix!                              **
+# ** FAIL!!!  There are    58 error in Q matrix!                             **
+# *****************************************************************************
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(289)
+#    Time: 3725 ns  Iteration: 0  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 289
+# Compile of cordic.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.qr_cordic
+add wave -position end  sim:/qr_cordic_tb/qr_cordic_inst/wr_Q_1
+add wave -position end  sim:/qr_cordic_tb/qr_cordic_inst/wr_Q_addr_1
+add wave -position end  sim:/qr_cordic_tb/qr_cordic_inst/wr_Q_data_1
+run -all
+# GetModuleFileName: тぃ﹚家舱
+# 
+# 
+# -------------------------------------------------------
+# 
+# START!!! Simulation Start .....
+# 
+# -------------------------------------------------------
+# 
+# Input A matrix: 
+#     -492     -272     -384     -316
+#      340     -488     -208      420
+#      408      448     -380      288
+#      348      456      152      504
+#      136      272     -284      508
+#      300     -356      384     -460
+#     -376      464      488     -276
+#      328      488     -440      304
+# 
+# Output R matrix golden pattern: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# R matrix calculated result: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# 
+# Output Q matrix golden pattern: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#     -677      -19      233      639       60      337      157      -56
+#        0      662     -177     -268     -223      -44      629      240
+#        0        0      731      -48      -49     -124       13     -705
+#        0        0        0      348     -855     -378     -219       94
+# Q matrix calculated result: 
+#        0      416      354      141      307     -394      337        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+# 
+#  
+# -------------------------------------------------------
+# 
+# --------------------- S U M M A R Y -------------------
+# 
+# *****************************************************************************
+# ** PASS!!!  All data are correct in R matrix!                              **
+# ** FAIL!!!  There are    58 error in Q matrix!                             **
+# *****************************************************************************
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(289)
+#    Time: 3725 ns  Iteration: 0  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 289
+# Compile of cordic.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.qr_cordic
+run -all
+# GetModuleFileName: тぃ﹚家舱
+# 
+# 
+# -------------------------------------------------------
+# 
+# START!!! Simulation Start .....
+# 
+# -------------------------------------------------------
+# 
+# Input A matrix: 
+#     -492     -272     -384     -316
+#      340     -488     -208      420
+#      408      448     -380      288
+#      348      456      152      504
+#      136      272     -284      508
+#      300     -356      384     -460
+#     -376      464      488     -276
+#      328      488     -440      304
+# 
+# Output R matrix golden pattern: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# R matrix calculated result: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# 
+# Output Q matrix golden pattern: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#     -677      -19      233      639       60      337      157      -56
+#        0      662     -177     -268     -223      -44      629      240
+#        0        0      731      -48      -49     -124       13     -705
+#        0        0        0      348     -855     -378     -219       94
+# Q matrix calculated result: 
+#        0      342      416      354      141      307     -394      337
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+# 
+#  
+# -------------------------------------------------------
+# 
+# --------------------- S U M M A R Y -------------------
+# 
+# *****************************************************************************
+# ** PASS!!!  All data are correct in R matrix!                              **
+# ** FAIL!!!  There are    51 error in Q matrix!                             **
+# *****************************************************************************
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(289)
+#    Time: 3725 ns  Iteration: 0  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 289
+# Compile of cordic.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.qr_cordic
+run -all
+# GetModuleFileName: тぃ﹚家舱
+# 
+# 
+# -------------------------------------------------------
+# 
+# START!!! Simulation Start .....
+# 
+# -------------------------------------------------------
+# 
+# Input A matrix: 
+#     -492     -272     -384     -316
+#      340     -488     -208      420
+#      408      448     -380      288
+#      348      456      152      504
+#      136      272     -284      508
+#      300     -356      384     -460
+#     -376      464      488     -276
+#      328      488     -440      304
+# 
+# Output R matrix golden pattern: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# R matrix calculated result: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# 
+# Output Q matrix golden pattern: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#     -677      -19      233      639       60      337      157      -56
+#        0      662     -177     -268     -223      -44      629      240
+#        0        0      731      -48      -49     -124       13     -705
+#        0        0        0      348     -855     -378     -219       94
+# Q matrix calculated result: 
+#        0      416      354      141      307     -394      337        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+# 
+#  
+# -------------------------------------------------------
+# 
+# --------------------- S U M M A R Y -------------------
+# 
+# *****************************************************************************
+# ** PASS!!!  All data are correct in R matrix!                              **
+# ** FAIL!!!  There are    58 error in Q matrix!                             **
+# *****************************************************************************
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(289)
+#    Time: 3725 ns  Iteration: 0  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 289
+# Compile of cordic.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.qr_cordic
+run -all
+# GetModuleFileName: тぃ﹚家舱
+# 
+# 
+# -------------------------------------------------------
+# 
+# START!!! Simulation Start .....
+# 
+# -------------------------------------------------------
+# 
+# Input A matrix: 
+#     -492     -272     -384     -316
+#      340     -488     -208      420
+#      408      448     -380      288
+#      348      456      152      504
+#      136      272     -284      508
+#      300     -356      384     -460
+#     -376      464      488     -276
+#      328      488     -440      304
+# 
+# Output R matrix golden pattern: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# R matrix calculated result: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# 
+# Output Q matrix golden pattern: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#     -677      -19      233      639       60      337      157      -56
+#        0      662     -177     -268     -223      -44      629      240
+#        0        0      731      -48      -49     -124       13     -705
+#        0        0        0      348     -855     -378     -219       94
+# Q matrix calculated result: 
+#        0      342      416      354      141      307     -394        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+# 
+#  
+# -------------------------------------------------------
+# 
+# --------------------- S U M M A R Y -------------------
+# 
+# *****************************************************************************
+# ** PASS!!!  All data are correct in R matrix!                              **
+# ** FAIL!!!  There are    52 error in Q matrix!                             **
+# *****************************************************************************
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(289)
+#    Time: 3725 ns  Iteration: 0  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 289
+# Compile of cordic.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.qr_cordic
+run -all
+# GetModuleFileName: тぃ﹚家舱
+# 
+# 
+# -------------------------------------------------------
+# 
+# START!!! Simulation Start .....
+# 
+# -------------------------------------------------------
+# 
+# Input A matrix: 
+#     -492     -272     -384     -316
+#      340     -488     -208      420
+#      408      448     -380      288
+#      348      456      152      504
+#      136      272     -284      508
+#      300     -356      384     -460
+#     -376      464      488     -276
+#      328      488     -440      304
+# 
+# Output R matrix golden pattern: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# R matrix calculated result: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# 
+# Output Q matrix golden pattern: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#     -677      -19      233      639       60      337      157      -56
+#        0      662     -177     -268     -223      -44      629      240
+#        0        0      731      -48      -49     -124       13     -705
+#        0        0        0      348     -855     -378     -219       94
+# Q matrix calculated result: 
+#        0      342      416      354      141      307     -394      337
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+# 
+#  
+# -------------------------------------------------------
+# 
+# --------------------- S U M M A R Y -------------------
+# 
+# *****************************************************************************
+# ** PASS!!!  All data are correct in R matrix!                              **
+# ** FAIL!!!  There are    51 error in Q matrix!                             **
+# *****************************************************************************
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(289)
+#    Time: 3725 ns  Iteration: 0  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 289
+# Compile of cordic.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.qr_cordic
+run -all
+# GetModuleFileName: тぃ﹚家舱
+# 
+# 
+# -------------------------------------------------------
+# 
+# START!!! Simulation Start .....
+# 
+# -------------------------------------------------------
+# 
+# Input A matrix: 
+#     -492     -272     -384     -316
+#      340     -488     -208      420
+#      408      448     -380      288
+#      348      456      152      504
+#      136      272     -284      508
+#      300     -356      384     -460
+#     -376      464      488     -276
+#      328      488     -440      304
+# 
+# Output R matrix golden pattern: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# R matrix calculated result: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# 
+# Output Q matrix golden pattern: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#     -677      -19      233      639       60      337      157      -56
+#        0      662     -177     -268     -223      -44      629      240
+#        0        0      731      -48      -49     -124       13     -705
+#        0        0        0      348     -855     -378     -219       94
+# Q matrix calculated result: 
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+# 
+#  
+# -------------------------------------------------------
+# 
+# --------------------- S U M M A R Y -------------------
+# 
+# *****************************************************************************
+# ** PASS!!!  All data are correct in R matrix!                              **
+# ** FAIL!!!  There are    58 error in Q matrix!                             **
+# *****************************************************************************
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(289)
+#    Time: 3725 ns  Iteration: 0  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 289
+# Compile of cordic.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.qr_cordic
+run -all
+# GetModuleFileName: тぃ﹚家舱
+# 
+# 
+# -------------------------------------------------------
+# 
+# START!!! Simulation Start .....
+# 
+# -------------------------------------------------------
+# 
+# Input A matrix: 
+#     -492     -272     -384     -316
+#      340     -488     -208      420
+#      408      448     -380      288
+#      348      456      152      504
+#      136      272     -284      508
+#      300     -356      384     -460
+#     -376      464      488     -276
+#      328      488     -440      304
+# 
+# Output R matrix golden pattern: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# R matrix calculated result: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# 
+# Output Q matrix golden pattern: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#     -677      -19      233      639       60      337      157      -56
+#        0      662     -177     -268     -223      -44      629      240
+#        0        0      731      -48      -49     -124       13     -705
+#        0        0        0      348     -855     -378     -219       94
+# Q matrix calculated result: 
+#        0      342      416      354      141      307     -394      337
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+# 
+#  
+# -------------------------------------------------------
+# 
+# --------------------- S U M M A R Y -------------------
+# 
+# *****************************************************************************
+# ** PASS!!!  All data are correct in R matrix!                              **
+# ** FAIL!!!  There are    51 error in Q matrix!                             **
+# *****************************************************************************
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(289)
+#    Time: 3725 ns  Iteration: 0  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 289
+add wave -position end  sim:/qr_cordic_tb/qr_cordic_inst/wr_Q_1_end
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+run -all
+# GetModuleFileName: тぃ﹚家舱
+# 
+# 
+# -------------------------------------------------------
+# 
+# START!!! Simulation Start .....
+# 
+# -------------------------------------------------------
+# 
+# Input A matrix: 
+#     -492     -272     -384     -316
+#      340     -488     -208      420
+#      408      448     -380      288
+#      348      456      152      504
+#      136      272     -284      508
+#      300     -356      384     -460
+#     -376      464      488     -276
+#      328      488     -440      304
+# 
+# Output R matrix golden pattern: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# R matrix calculated result: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# 
+# Output Q matrix golden pattern: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#     -677      -19      233      639       60      337      157      -56
+#        0      662     -177     -268     -223      -44      629      240
+#        0        0      731      -48      -49     -124       13     -705
+#        0        0        0      348     -855     -378     -219       94
+# Q matrix calculated result: 
+#        0      342      416      354      141      307     -394      337
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+# 
+#  
+# -------------------------------------------------------
+# 
+# --------------------- S U M M A R Y -------------------
+# 
+# *****************************************************************************
+# ** PASS!!!  All data are correct in R matrix!                              **
+# ** FAIL!!!  There are    51 error in Q matrix!                             **
+# *****************************************************************************
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(289)
+#    Time: 3725 ns  Iteration: 0  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 289
+# Compile of cordic.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.qr_cordic
+run -all
+# GetModuleFileName: тぃ﹚家舱
+# 
+# 
+# -------------------------------------------------------
+# 
+# START!!! Simulation Start .....
+# 
+# -------------------------------------------------------
+# 
+# Input A matrix: 
+#     -492     -272     -384     -316
+#      340     -488     -208      420
+#      408      448     -380      288
+#      348      456      152      504
+#      136      272     -284      508
+#      300     -356      384     -460
+#     -376      464      488     -276
+#      328      488     -440      304
+# 
+# Output R matrix golden pattern: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# R matrix calculated result: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# 
+# Output Q matrix golden pattern: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#     -677      -19      233      639       60      337      157      -56
+#        0      662     -177     -268     -223      -44      629      240
+#        0        0      731      -48      -49     -124       13     -705
+#        0        0        0      348     -855     -378     -219       94
+# Q matrix calculated result: 
+#     -499      342      416      354      141      307     -394        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+# 
+#  
+# -------------------------------------------------------
+# 
+# --------------------- S U M M A R Y -------------------
+# 
+# *****************************************************************************
+# ** PASS!!!  All data are correct in R matrix!                              **
+# ** FAIL!!!  There are    51 error in Q matrix!                             **
+# *****************************************************************************
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(289)
+#    Time: 3725 ns  Iteration: 0  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 289
+add wave -position end  sim:/qr_cordic_tb/RAM_Q_inst/wr_Q_1
+add wave -position end  sim:/qr_cordic_tb/RAM_Q_inst/wr_Q_addr_1
+add wave -position end  sim:/qr_cordic_tb/RAM_Q_inst/wr_Q_data_1
+restart
+run -all
+# GetModuleFileName: тぃ﹚家舱
+# 
+# 
+# -------------------------------------------------------
+# 
+# START!!! Simulation Start .....
+# 
+# -------------------------------------------------------
+# 
+# Input A matrix: 
+#     -492     -272     -384     -316
+#      340     -488     -208      420
+#      408      448     -380      288
+#      348      456      152      504
+#      136      272     -284      508
+#      300     -356      384     -460
+#     -376      464      488     -276
+#      328      488     -440      304
+# 
+# Output R matrix golden pattern: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# R matrix calculated result: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# 
+# Output Q matrix golden pattern: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#     -677      -19      233      639       60      337      157      -56
+#        0      662     -177     -268     -223      -44      629      240
+#        0        0      731      -48      -49     -124       13     -705
+#        0        0        0      348     -855     -378     -219       94
+# Q matrix calculated result: 
+#     -499      342      416      354      141      307     -394        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+# 
+#  
+# -------------------------------------------------------
+# 
+# --------------------- S U M M A R Y -------------------
+# 
+# *****************************************************************************
+# ** PASS!!!  All data are correct in R matrix!                              **
+# ** FAIL!!!  There are    51 error in Q matrix!                             **
+# *****************************************************************************
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(289)
+#    Time: 3725 ns  Iteration: 0  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 289
+add wave -position end  sim:/qr_cordic_tb/RAM_Q_inst/RAM_Q
+restart
+run -all
+# GetModuleFileName: тぃ﹚家舱
+# 
+# 
+# -------------------------------------------------------
+# 
+# START!!! Simulation Start .....
+# 
+# -------------------------------------------------------
+# 
+# Input A matrix: 
+#     -492     -272     -384     -316
+#      340     -488     -208      420
+#      408      448     -380      288
+#      348      456      152      504
+#      136      272     -284      508
+#      300     -356      384     -460
+#     -376      464      488     -276
+#      328      488     -440      304
+# 
+# Output R matrix golden pattern: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# R matrix calculated result: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# 
+# Output Q matrix golden pattern: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#     -677      -19      233      639       60      337      157      -56
+#        0      662     -177     -268     -223      -44      629      240
+#        0        0      731      -48      -49     -124       13     -705
+#        0        0        0      348     -855     -378     -219       94
+# Q matrix calculated result: 
+#     -499      342      416      354      141      307     -394        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+# 
+#  
+# -------------------------------------------------------
+# 
+# --------------------- S U M M A R Y -------------------
+# 
+# *****************************************************************************
+# ** PASS!!!  All data are correct in R matrix!                              **
+# ** FAIL!!!  There are    51 error in Q matrix!                             **
+# *****************************************************************************
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(289)
+#    Time: 3725 ns  Iteration: 0  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 289
+# Compile of qr_cordic_tb.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.qr_cordic_tb
+# Loading work.ROM
+# Loading work.RAM_R
+# Loading work.RAM_Q
+run -all
+# GetModuleFileName: тぃ﹚家舱
+# 
+# 
+# -------------------------------------------------------
+# 
+# START!!! Simulation Start .....
+# 
+# -------------------------------------------------------
+# 
+# Input A matrix: 
+#     -492     -272     -384     -316
+#      340     -488     -208      420
+#      408      448     -380      288
+#      348      456      152      504
+#      136      272     -284      508
+#      300     -356      384     -460
+#     -376      464      488     -276
+#      328      488     -440      304
+# 
+# Output R matrix golden pattern: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# R matrix calculated result: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# 
+# Output Q matrix golden pattern: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#     -677      -19      233      639       60      337      157      -56
+#        0      662     -177     -268     -223      -44      629      240
+#        0        0      731      -48      -49     -124       13     -705
+#        0        0        0      348     -855     -378     -219       94
+# Q matrix calculated result: 
+#     -499      342      416      354      141      307     -394      337
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+# 
+#  
+# -------------------------------------------------------
+# 
+# --------------------- S U M M A R Y -------------------
+# 
+# *****************************************************************************
+# ** PASS!!!  All data are correct in R matrix!                              **
+# ** FAIL!!!  There are    50 error in Q matrix!                             **
+# *****************************************************************************
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(289)
+#    Time: 3725 ns  Iteration: 0  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 289
+# Compile of cordic.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.qr_cordic
+run -all
+# GetModuleFileName: тぃ﹚家舱
+# 
+# 
+# -------------------------------------------------------
+# 
+# START!!! Simulation Start .....
+# 
+# -------------------------------------------------------
+# 
+# Input A matrix: 
+#     -492     -272     -384     -316
+#      340     -488     -208      420
+#      408      448     -380      288
+#      348      456      152      504
+#      136      272     -284      508
+#      300     -356      384     -460
+#     -376      464      488     -276
+#      328      488     -440      304
+# 
+# Output R matrix golden pattern: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# R matrix calculated result: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# 
+# Output Q matrix golden pattern: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#     -677      -19      233      639       60      337      157      -56
+#        0      662     -177     -268     -223      -44      629      240
+#        0        0      731      -48      -49     -124       13     -705
+#        0        0        0      348     -855     -378     -219       94
+# Q matrix calculated result: 
+#     -499      342      416      354      141      307     -394      337
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+#        0        0        0        0        0        0        0        0
+# 
+#  
+# -------------------------------------------------------
+# 
+# --------------------- S U M M A R Y -------------------
+# 
+# *****************************************************************************
+# ** PASS!!!  All data are correct in R matrix!                              **
+# ** FAIL!!!  There are    50 error in Q matrix!                             **
+# *****************************************************************************
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(289)
+#    Time: 3725 ns  Iteration: 0  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 289
+# Compile of cordic.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.qr_cordic
+run -all
+# GetModuleFileName: тぃ﹚家舱
+# 
+# 
+# -------------------------------------------------------
+# 
+# START!!! Simulation Start .....
+# 
+# -------------------------------------------------------
+# 
+# Input A matrix: 
+#     -492     -272     -384     -316
+#      340     -488     -208      420
+#      408      448     -380      288
+#      348      456      152      504
+#      136      272     -284      508
+#      300     -356      384     -460
+#     -376      464      488     -276
+#      328      488     -440      304
+# 
+# Output R matrix golden pattern: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# R matrix calculated result: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# 
+# Output Q matrix golden pattern: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#     -677      -19      233      639       60      337      157      -56
+#        0      662     -177     -268     -223      -44      629      240
+#        0        0      731      -48      -49     -124       13     -705
+#        0        0        0      348     -855     -378     -219       94
+# Q matrix calculated result: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486     -356      369      359     -571        3     -321
+#      199      486     -356      369      359     -571        3     -321
+#      199      486     -356      369      359     -571        3     -321
+#      199      486     -356      369      359     -571        3     -321
+#      199      486     -356      369      359     -571        3     -321
+# 
+#  
+# -------------------------------------------------------
+# 
+# --------------------- S U M M A R Y -------------------
+# 
+# *****************************************************************************
+# ** PASS!!!  All data are correct in R matrix!                              **
+# ** FAIL!!!  There are    33 error in Q matrix!                             **
+# *****************************************************************************
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(289)
+#    Time: 3725 ns  Iteration: 0  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 289
+# Compile of cordic.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.qr_cordic
+run -all
+# GetModuleFileName: тぃ﹚家舱
+# 
+# 
+# -------------------------------------------------------
+# 
+# START!!! Simulation Start .....
+# 
+# -------------------------------------------------------
+# 
+# Input A matrix: 
+#     -492     -272     -384     -316
+#      340     -488     -208      420
+#      408      448     -380      288
+#      348      456      152      504
+#      136      272     -284      508
+#      300     -356      384     -460
+#     -376      464      488     -276
+#      328      488     -440      304
+# 
+# Output R matrix golden pattern: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# R matrix calculated result: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# 
+# Output Q matrix golden pattern: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#     -677      -19      233      639       60      337      157      -56
+#        0      662     -177     -268     -223      -44      629      240
+#        0        0      731      -48      -49     -124       13     -705
+#        0        0        0      348     -855     -378     -219       94
+# Q matrix calculated result: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486     -356      369      359     -571        3     -321
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+# 
+#  
+# -------------------------------------------------------
+# 
+# --------------------- S U M M A R Y -------------------
+# 
+# *****************************************************************************
+# ** PASS!!!  All data are correct in R matrix!                              **
+# ** FAIL!!!  There are     1 error in Q matrix!                             **
+# *****************************************************************************
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(289)
+#    Time: 3725 ns  Iteration: 0  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 289
+# Compile of qr_cordic_tb.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.qr_cordic_tb
+# Loading work.ROM
+# Loading work.RAM_R
+# Loading work.RAM_Q
+run -all
+# GetModuleFileName: тぃ﹚家舱
+# 
+# 
+# -------------------------------------------------------
+# 
+# START!!! Simulation Start .....
+# 
+# -------------------------------------------------------
+# 
+# Input A matrix: 
+#     -492     -272     -384     -316
+#      340     -488     -208      420
+#      408      448     -380      288
+#      348      456      152      504
+#      136      272     -284      508
+#      300     -356      384     -460
+#     -376      464      488     -276
+#      328      488     -440      304
+# 
+# Output R matrix golden pattern: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# R matrix calculated result: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# 
+# Output Q matrix golden pattern: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#     -677      -19      233      639       60      337      157      -56
+#        0      662     -177     -268     -223      -44      629      240
+#        0        0      731      -48      -49     -124       13     -705
+#        0        0        0      348     -855     -378     -219       94
+# Q matrix calculated result: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486     -356      369      359     -571        3     -321
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+# 
+# Data Q[26] is wrong! The output data is  -356, but the expected data is   274.
+#  
+# -------------------------------------------------------
+# 
+# --------------------- S U M M A R Y -------------------
+# 
+# *****************************************************************************
+# ** PASS!!!  All data are correct in R matrix!                              **
+# ** FAIL!!!  There are     1 error in Q matrix!                             **
+# *****************************************************************************
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(289)
+#    Time: 3725 ns  Iteration: 0  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 289
+# Compile of qr_cordic_tb.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.qr_cordic_tb
+# Loading work.ROM
+# Loading work.RAM_R
+# Loading work.RAM_Q
+run -all
+# GetModuleFileName: тぃ﹚家舱
+# 
+# 
+# -------------------------------------------------------
+# 
+# START!!! Simulation Start .....
+# 
+# -------------------------------------------------------
+# 
+# Input A matrix: 
+#     -492     -272     -384     -316
+#      340     -488     -208      420
+#      408      448     -380      288
+#      348      456      152      504
+#      136      272     -284      508
+#      300     -356      384     -460
+#     -376      464      488     -276
+#      328      488     -440      304
+# 
+# Output R matrix golden pattern: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# R matrix calculated result: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# 
+# Output Q matrix golden pattern: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#     -677      -19      233      639       60      337      157      -56
+#        0      662     -177     -268     -223      -44      629      240
+#        0        0      731      -48      -49     -124       13     -705
+#        0        0        0      348     -855     -378     -219       94
+# Q matrix calculated result: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486     -356      369      359     -571        3     -321
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+# 
+# Data Q[26] is wrong! The output data is  -356, but the expected data is   274.
+#  
+# -------------------------------------------------------
+# 
+# --------------------- S U M M A R Y -------------------
+# 
+# *****************************************************************************
+# ** PASS!!!  All data are correct in R matrix!                              **
+# ** FAIL!!!  There are     1 error in Q matrix!                             **
+# *****************************************************************************
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(289)
+#    Time: 3725 ns  Iteration: 0  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 289
+# Compile of qr_cordic_tb.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.qr_cordic_tb
+# Loading work.ROM
+# Loading work.RAM_R
+# Loading work.RAM_Q
+run -all
+# GetModuleFileName: тぃ﹚家舱
+# 
+# 
+# -------------------------------------------------------
+# 
+# START!!! Simulation Start .....
+# 
+# -------------------------------------------------------
+# 
+# Input A matrix: 
+#     -492     -272     -384     -316
+#      340     -488     -208      420
+#      408      448     -380      288
+#      348      456      152      504
+#      136      272     -284      508
+#      300     -356      384     -460
+#     -376      464      488     -276
+#      328      488     -440      304
+# 
+# Output R matrix golden pattern: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# R matrix calculated result: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# 
+# Output Q matrix golden pattern: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#     -677      -19      233      639       60      337      157      -56
+#        0      662     -177     -268     -223      -44      629      240
+#        0        0      731      -48      -49     -124       13     -705
+#        0        0        0      348     -855     -378     -219       94
+# Q matrix calculated result: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486     -356      369      359     -571        3     -321
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+# 
+# Data Q[26] is wrong! The output data is  -356, but the expected data is   274.
+#  
+# -------------------------------------------------------
+# 
+# --------------------- S U M M A R Y -------------------
+# 
+# *****************************************************************************
+# ** PASS!!!  All data are correct in R matrix!                              **
+# ** FAIL!!!  There are     1 error in Q matrix!                             **
+# *****************************************************************************
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(289)
+#    Time: 3725 ns  Iteration: 0  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 289
+# Compile of qr_cordic_tb.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.qr_cordic_tb
+# Loading work.ROM
+# Loading work.RAM_R
+# Loading work.RAM_Q
+run -all
+# GetModuleFileName: тぃ﹚家舱
+# 
+# 
+# -------------------------------------------------------
+# 
+# START!!! Simulation Start .....
+# 
+# -------------------------------------------------------
+# 
+# Input A matrix: 
+#     -492     -272     -384     -316
+#      340     -488     -208      420
+#      408      448     -380      288
+#      348      456      152      504
+#      136      272     -284      508
+#      300     -356      384     -460
+#     -376      464      488     -276
+#      328      488     -440      304
+# 
+# Output R matrix golden pattern: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# R matrix calculated result: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# 
+# Output Q matrix golden pattern: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#     -677      -19      233      639       60      337      157      -56
+#        0      662     -177     -268     -223      -44      629      240
+#        0        0      731      -48      -49     -124       13     -705
+#        0        0        0      348     -855     -378     -219       94
+# Q matrix calculated result: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486     -356      369      359     -571        3     -321
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+# 
+# Data Q[26] is wrong! The output data is  -356, but the expected data is   274.
+#  
+# -------------------------------------------------------
+# 
+# --------------------- S U M M A R Y -------------------
+# 
+# *****************************************************************************
+# ** PASS!!!  All data are correct in R matrix!                              **
+# ** FAIL!!!  There are     1 error in Q matrix!                             **
+# *****************************************************************************
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(289)
+#    Time: 3725 ns  Iteration: 0  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 289
+# Compile of qr_cordic_tb.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.qr_cordic_tb
+# Loading work.ROM
+# Loading work.RAM_R
+# Loading work.RAM_Q
+run -all
+# GetModuleFileName: тぃ﹚家舱
+# 
+# 
+# -------------------------------------------------------
+# 
+# START!!! Simulation Start .....
+# 
+# -------------------------------------------------------
+# 
+# Input A matrix: 
+#     -492     -272     -384     -316
+#      340     -488     -208      420
+#      408      448     -380      288
+#      348      456      152      504
+#      136      272     -284      508
+#      300     -356      384     -460
+#     -376      464      488     -276
+#      328      488     -440      304
+# 
+# Output R matrix golden pattern: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# R matrix calculated result: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# 
+# Output Q matrix golden pattern: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#     -677      -19      233      639       60      337      157      -56
+#        0      662     -177     -268     -223      -44      629      240
+#        0        0      731      -48      -49     -124       13     -705
+#        0        0        0      348     -855     -378     -219       94
+# Q matrix calculated result: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486     -356      369      359     -571        3     -321
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+# 
+# Data Q[26] is wrong! The output data is  -356, but the expected data is   274.
+# Data Q[32] is wrong! The output data is     x, but the expected data is  -677.
+# Data Q[33] is wrong! The output data is     x, but the expected data is   -19.
+# Data Q[34] is wrong! The output data is     x, but the expected data is   233.
+# Data Q[35] is wrong! The output data is     x, but the expected data is   639.
+# Data Q[36] is wrong! The output data is     x, but the expected data is    60.
+# Data Q[37] is wrong! The output data is     x, but the expected data is   337.
+# Data Q[38] is wrong! The output data is     x, but the expected data is   157.
+# Data Q[39] is wrong! The output data is     x, but the expected data is   -56.
+# Data Q[40] is wrong! The output data is     x, but the expected data is     0.
+# Data Q[41] is wrong! The output data is     x, but the expected data is   662.
+# Data Q[42] is wrong! The output data is     x, but the expected data is  -177.
+# Data Q[43] is wrong! The output data is     x, but the expected data is  -268.
+# Data Q[44] is wrong! The output data is     x, but the expected data is  -223.
+# Data Q[45] is wrong! The output data is     x, but the expected data is   -44.
+# Data Q[46] is wrong! The output data is     x, but the expected data is   629.
+# Data Q[47] is wrong! The output data is     x, but the expected data is   240.
+# Data Q[48] is wrong! The output data is     x, but the expected data is     0.
+# Data Q[49] is wrong! The output data is     x, but the expected data is     0.
+# Data Q[50] is wrong! The output data is     x, but the expected data is   731.
+# Data Q[51] is wrong! The output data is     x, but the expected data is   -48.
+# Data Q[52] is wrong! The output data is     x, but the expected data is   -49.
+# Data Q[53] is wrong! The output data is     x, but the expected data is  -124.
+# Data Q[54] is wrong! The output data is     x, but the expected data is    13.
+# Data Q[55] is wrong! The output data is     x, but the expected data is  -705.
+# Data Q[56] is wrong! The output data is     x, but the expected data is     0.
+# Data Q[57] is wrong! The output data is     x, but the expected data is     0.
+# Data Q[58] is wrong! The output data is     x, but the expected data is     0.
+# Data Q[59] is wrong! The output data is     x, but the expected data is   348.
+# Data Q[60] is wrong! The output data is     x, but the expected data is  -855.
+# Data Q[61] is wrong! The output data is     x, but the expected data is  -378.
+# Data Q[62] is wrong! The output data is     x, but the expected data is  -219.
+# Data Q[63] is wrong! The output data is     x, but the expected data is    94.
+#  
+# -------------------------------------------------------
+# 
+# --------------------- S U M M A R Y -------------------
+# 
+# *****************************************************************************
+# ** PASS!!!  All data are correct in R matrix!                              **
+# ** FAIL!!!  There are    33 error in Q matrix!                             **
+# *****************************************************************************
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(289)
+#    Time: 3725 ns  Iteration: 0  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 289
+# Compile of cordic.v was successful.
+# Compile of qr_cordic_tb.v was successful.
+# 2 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.qr_cordic_tb
+# Loading work.qr_cordic
+# Loading work.ROM
+# Loading work.RAM_R
+# Loading work.RAM_Q
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (32) for port 'neg'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/Q.v(13).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cordic_inst/Q46_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 5491
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (32) for port 'neg'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/Q.v(13).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cordic_inst/Q47_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 5505
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (32) for port 'neg'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/Q.v(13).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cordic_inst/Q48_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 5519
+# Compile of cordic.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.qr_cordic
+run -all
+# GetModuleFileName: тぃ﹚家舱
+# 
+# 
+# -------------------------------------------------------
+# 
+# START!!! Simulation Start .....
+# 
+# -------------------------------------------------------
+# 
+# Input A matrix: 
+#     -492     -272     -384     -316
+#      340     -488     -208      420
+#      408      448     -380      288
+#      348      456      152      504
+#      136      272     -284      508
+#      300     -356      384     -460
+#     -376      464      488     -276
+#      328      488     -440      304
+# 
+# Output R matrix golden pattern: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# R matrix calculated result: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# 
+# Output Q matrix golden pattern: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#     -677      -19      233      639       60      337      157      -56
+#        0      662     -177     -268     -223      -44      629      240
+#        0        0      731      -48      -49     -124       13     -705
+#        0        0        0      348     -855     -378     -219       94
+# Q matrix calculated result: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+# 
+#  
+# -------------------------------------------------------
+# 
+# --------------------- S U M M A R Y -------------------
+# 
+# *****************************************************************************
+# ** PASS!!!  All data are correct in R matrix!                              **
+# ** FAIL!!!  There are    32 error in Q matrix!                             **
+# *****************************************************************************
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(289)
+#    Time: 3725 ns  Iteration: 0  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 289
+# Compile of qr_cordic_tb.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.qr_cordic_tb
+# Loading work.ROM
+# Loading work.RAM_R
+# Loading work.RAM_Q
+run -all
+# GetModuleFileName: тぃ﹚家舱
+# 
+# 
+# -------------------------------------------------------
+# 
+# START!!! Simulation Start .....
+# 
+# -------------------------------------------------------
+# 
+# Input A matrix: 
+#     -492     -272     -384     -316
+#      340     -488     -208      420
+#      408      448     -380      288
+#      348      456      152      504
+#      136      272     -284      508
+#      300     -356      384     -460
+#     -376      464      488     -276
+#      328      488     -440      304
+# 
+# Output R matrix golden pattern: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# R matrix calculated result: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# 
+# Output Q matrix golden pattern: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#     -677      -19      233      639       60      337      157      -56
+#        0      662     -177     -268     -223      -44      629      240
+#        0        0      731      -48      -49     -124       13     -705
+#        0        0        0      348     -855     -378     -219       94
+# Q matrix calculated result: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+# 
+# Data Q[32] is wrong! The output data is     x, but the expected data is  -677.
+# Data Q[33] is wrong! The output data is     x, but the expected data is   -19.
+# Data Q[34] is wrong! The output data is     x, but the expected data is   233.
+# Data Q[35] is wrong! The output data is     x, but the expected data is   639.
+# Data Q[36] is wrong! The output data is     x, but the expected data is    60.
+# Data Q[37] is wrong! The output data is     x, but the expected data is   337.
+# Data Q[38] is wrong! The output data is     x, but the expected data is   157.
+# Data Q[39] is wrong! The output data is     x, but the expected data is   -56.
+# Data Q[40] is wrong! The output data is     x, but the expected data is     0.
+# Data Q[41] is wrong! The output data is     x, but the expected data is   662.
+# Data Q[42] is wrong! The output data is     x, but the expected data is  -177.
+# Data Q[43] is wrong! The output data is     x, but the expected data is  -268.
+# Data Q[44] is wrong! The output data is     x, but the expected data is  -223.
+# Data Q[45] is wrong! The output data is     x, but the expected data is   -44.
+# Data Q[46] is wrong! The output data is     x, but the expected data is   629.
+# Data Q[47] is wrong! The output data is     x, but the expected data is   240.
+# Data Q[48] is wrong! The output data is     x, but the expected data is     0.
+# Data Q[49] is wrong! The output data is     x, but the expected data is     0.
+# Data Q[50] is wrong! The output data is     x, but the expected data is   731.
+# Data Q[51] is wrong! The output data is     x, but the expected data is   -48.
+# Data Q[52] is wrong! The output data is     x, but the expected data is   -49.
+# Data Q[53] is wrong! The output data is     x, but the expected data is  -124.
+# Data Q[54] is wrong! The output data is     x, but the expected data is    13.
+# Data Q[55] is wrong! The output data is     x, but the expected data is  -705.
+# Data Q[56] is wrong! The output data is     x, but the expected data is     0.
+# Data Q[57] is wrong! The output data is     x, but the expected data is     0.
+# Data Q[58] is wrong! The output data is     x, but the expected data is     0.
+# Data Q[59] is wrong! The output data is     x, but the expected data is   348.
+# Data Q[60] is wrong! The output data is     x, but the expected data is  -855.
+# Data Q[61] is wrong! The output data is     x, but the expected data is  -378.
+# Data Q[62] is wrong! The output data is     x, but the expected data is  -219.
+# Data Q[63] is wrong! The output data is     x, but the expected data is    94.
+#  
+# -------------------------------------------------------
+# 
+# --------------------- S U M M A R Y -------------------
+# 
+# *****************************************************************************
+# ** PASS!!!  All data are correct in R matrix!                              **
+# ** FAIL!!!  There are    32 error in Q matrix!                             **
+# *****************************************************************************
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(289)
+#    Time: 3725 ns  Iteration: 0  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 289
+# Compile of qr_cordic_tb.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.qr_cordic_tb
+# Loading work.ROM
+# Loading work.RAM_R
+# Loading work.RAM_Q
+run -all
+# GetModuleFileName: тぃ﹚家舱
+# 
+# 
+# -------------------------------------------------------
+# 
+# START!!! Simulation Start .....
+# 
+# -------------------------------------------------------
+# 
+# Input A matrix: 
+#     -492     -272     -384     -316
+#      340     -488     -208      420
+#      408      448     -380      288
+#      348      456      152      504
+#      136      272     -284      508
+#      300     -356      384     -460
+#     -376      464      488     -276
+#      328      488     -440      304
+# 
+# Output R matrix golden pattern: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# R matrix calculated result: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# 
+# Output Q matrix golden pattern: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#     -677      -19      233      639       60      337      157      -56
+#        0      662     -177     -268     -223      -44      629      240
+#        0        0      731      -48      -49     -124       13     -705
+#        0        0        0      348     -855     -378     -219       94
+# Q matrix calculated result: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+# 
+#  
+# -------------------------------------------------------
+# 
+# --------------------- S U M M A R Y -------------------
+# 
+# *****************************************************************************
+# ** PASS!!!  All data are correct in R matrix!                              **
+# ** FAIL!!!  There are    32 error in Q matrix!                             **
+# *****************************************************************************
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(289)
+#    Time: 3725 ns  Iteration: 0  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 289
+# Compile of cordic.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.qr_cordic
+run -all
+# GetModuleFileName: тぃ﹚家舱
+# 
+# 
+# -------------------------------------------------------
+# 
+# START!!! Simulation Start .....
+# 
+# -------------------------------------------------------
+# 
+# Input A matrix: 
+#     -492     -272     -384     -316
+#      340     -488     -208      420
+#      408      448     -380      288
+#      348      456      152      504
+#      136      272     -284      508
+#      300     -356      384     -460
+#     -376      464      488     -276
+#      328      488     -440      304
+# 
+# Output R matrix golden pattern: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# R matrix calculated result: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# 
+# Output Q matrix golden pattern: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#     -677      -19      233      639       60      337      157      -56
+#        0      662     -177     -268     -223      -44      629      240
+#        0        0      731      -48      -49     -124       13     -705
+#        0        0        0      348     -855     -378     -219       94
+# Q matrix calculated result: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21      284      254     -252      463      435     -368
+#      199      486     -254      369      359     -571        3     -321
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+# 
+#  
+# -------------------------------------------------------
+# 
+# --------------------- S U M M A R Y -------------------
+# 
+# *****************************************************************************
+# ** PASS!!!  All data are correct in R matrix!                              **
+# ** FAIL!!!  There are    34 error in Q matrix!                             **
+# *****************************************************************************
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(289)
+#    Time: 3725 ns  Iteration: 0  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 289
+# Compile of cordic.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.qr_cordic
+run -all
+# GetModuleFileName: тぃ﹚家舱
+# 
+# 
+# -------------------------------------------------------
+# 
+# START!!! Simulation Start .....
+# 
+# -------------------------------------------------------
+# 
+# Input A matrix: 
+#     -492     -272     -384     -316
+#      340     -488     -208      420
+#      408      448     -380      288
+#      348      456      152      504
+#      136      272     -284      508
+#      300     -356      384     -460
+#     -376      464      488     -276
+#      328      488     -440      304
+# 
+# Output R matrix golden pattern: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# R matrix calculated result: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# 
+# Output Q matrix golden pattern: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#     -677      -19      233      639       60      337      157      -56
+#        0      662     -177     -268     -223      -44      629      240
+#        0        0      731      -48      -49     -124       13     -705
+#        0        0        0      348     -855     -378     -219       94
+# Q matrix calculated result: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+# 
+#  
+# -------------------------------------------------------
+# 
+# --------------------- S U M M A R Y -------------------
+# 
+# *****************************************************************************
+# ** PASS!!!  All data are correct in R matrix!                              **
+# ** FAIL!!!  There are    32 error in Q matrix!                             **
+# *****************************************************************************
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(289)
+#    Time: 3725 ns  Iteration: 0  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 289
+# Compile of cordic.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.qr_cordic
+# ** Error (suppressible): (vsim-3053) Illegal output or inout port connection for port 'yo'.
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cordic_inst/Q38_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 5407
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (1) for port 'yo'. The port definition is at: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/Q.v(16).
+#    Time: 0 ps  Iteration: 0  Instance: /qr_cordic_tb/qr_cordic_inst/Q38_inst File: C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v Line: 5407
+# Compile of cordic.v was successful.
+vsim work.qr_cordic_tb
+# vsim work.qr_cordic_tb 
+# Start time: 10:01:04 on May 23,2024
+# Loading work.qr_cordic_tb
+# Loading work.qr_cordic
+# Loading work.GG
+# Loading work.GG_one_iter
+# Loading work.GR
+# Loading work.GR_one_iter
+# Loading work.MK
+# Loading work.Q
+# Loading work.Q_one_iter
+# Loading work.ROM
+# Loading work.RAM_R
+# Loading work.RAM_Q
+run -all
+# GetModuleFileName: тぃ﹚家舱
+# 
+# 
+# -------------------------------------------------------
+# 
+# START!!! Simulation Start .....
+# 
+# -------------------------------------------------------
+# 
+# Input A matrix: 
+#     -492     -272     -384     -316
+#      340     -488     -208      420
+#      408      448     -380      288
+#      348      456      152      504
+#      136      272     -284      508
+#      300     -356      384     -460
+#     -376      464      488     -276
+#      328      488     -440      304
+# 
+# Output R matrix golden pattern: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# R matrix calculated result: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# 
+# Output Q matrix golden pattern: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#     -677      -19      233      639       60      337      157      -56
+#        0      662     -177     -268     -223      -44      629      240
+#        0        0      731      -48      -49     -124       13     -705
+#        0        0        0      348     -855     -378     -219       94
+# Q matrix calculated result: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+# 
+#  
+# -------------------------------------------------------
+# 
+# --------------------- S U M M A R Y -------------------
+# 
+# *****************************************************************************
+# ** PASS!!!  All data are correct in R matrix!                              **
+# ** FAIL!!!  There are    32 error in Q matrix!                             **
+# *****************************************************************************
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(289)
+#    Time: 3725 ns  Iteration: 0  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 289
+# Compile of cordic.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.qr_cordic
+run -all
+# GetModuleFileName: тぃ﹚家舱
+# 
+# 
+# -------------------------------------------------------
+# 
+# START!!! Simulation Start .....
+# 
+# -------------------------------------------------------
+# 
+# Input A matrix: 
+#     -492     -272     -384     -316
+#      340     -488     -208      420
+#      408      448     -380      288
+#      348      456      152      504
+#      136      272     -284      508
+#      300     -356      384     -460
+#     -376      464      488     -276
+#      328      488     -440      304
+# 
+# Output R matrix golden pattern: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# R matrix calculated result: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# 
+# Output Q matrix golden pattern: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#     -677      -19      233      639       60      337      157      -56
+#        0      662     -177     -268     -223      -44      629      240
+#        0        0      731      -48      -49     -124       13     -705
+#        0        0        0      348     -855     -378     -219       94
+# Q matrix calculated result: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+# 
+#  
+# -------------------------------------------------------
+# 
+# --------------------- S U M M A R Y -------------------
+# 
+# *****************************************************************************
+# ** PASS!!!  All data are correct in R matrix!                              **
+# ** FAIL!!!  There are    32 error in Q matrix!                             **
+# *****************************************************************************
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(289)
+#    Time: 3725 ns  Iteration: 0  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 289
+add wave -position 102  sim:/qr_cordic_tb/qr_cordic_inst/Q28_inst/neg
+add wave -position 97  sim:/qr_cordic_tb/qr_cordic_inst/Q27_inst/neg
+add wave -position 92  sim:/qr_cordic_tb/qr_cordic_inst/Q26_inst/neg
+restart
+run -all
+# GetModuleFileName: тぃ﹚家舱
+# 
+# 
+# -------------------------------------------------------
+# 
+# START!!! Simulation Start .....
+# 
+# -------------------------------------------------------
+# 
+# Input A matrix: 
+#     -492     -272     -384     -316
+#      340     -488     -208      420
+#      408      448     -380      288
+#      348      456      152      504
+#      136      272     -284      508
+#      300     -356      384     -460
+#     -376      464      488     -276
+#      328      488     -440      304
+# 
+# Output R matrix golden pattern: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# R matrix calculated result: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# 
+# Output Q matrix golden pattern: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#     -677      -19      233      639       60      337      157      -56
+#        0      662     -177     -268     -223      -44      629      240
+#        0        0      731      -48      -49     -124       13     -705
+#        0        0        0      348     -855     -378     -219       94
+# Q matrix calculated result: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+# 
+#  
+# -------------------------------------------------------
+# 
+# --------------------- S U M M A R Y -------------------
+# 
+# *****************************************************************************
+# ** PASS!!!  All data are correct in R matrix!                              **
+# ** FAIL!!!  There are    32 error in Q matrix!                             **
+# *****************************************************************************
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(289)
+#    Time: 3725 ns  Iteration: 0  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 289
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+run -all
+# GetModuleFileName: тぃ﹚家舱
+# 
+# 
+# -------------------------------------------------------
+# 
+# START!!! Simulation Start .....
+# 
+# -------------------------------------------------------
+# 
+# Input A matrix: 
+#     -416      -16     -476     -340
+#     -228      304      356      208
+#       48     -368      444     -480
+#      468      -84      180     -232
+#      476      424      260     -468
+#     -352      296      248     -416
+#      480      468     -112      328
+#      468      156      156      196
+# 
+# Output R matrix golden pattern: 
+#     1122      244      244      120
+#        0      833       36      114
+#        0        0      831     -347
+#        0        0        0      921
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# R matrix calculated result: 
+#     1122      244      244      120
+#        0      833       36      114
+#        0        0      831     -347
+#        0        0        0      921
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# 
+# Output Q matrix golden pattern: 
+#     -384     -208       37      425      436     -329      436      429
+#      -94      439     -466     -235      396      467      447       63
+#     -481     -487      552      100      172      379     -297       52
+#     -524     -396      -92     -248     -567     -335      146      177
+#      623     -506      446      167     -140     -266       93      439
+#        0     -422      -62      367      297     -453     -156     -602
+#        0        0     -558     -401       34     -188      598     -436
+#        0        0        0     -647      498     -395     -401      250
+# Q matrix calculated result: 
+#     -384     -208       37      425      436     -329      436      429
+#      -94      439     -466     -235      396      467      447       63
+#     -481     -487      552      100      172      379     -297       52
+#     -524     -396      -92     -248     -567     -335      146      177
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+# 
+#  
+# -------------------------------------------------------
+# 
+# --------------------- S U M M A R Y -------------------
+# 
+# *****************************************************************************
+# ** PASS!!!  All data are correct in R matrix!                              **
+# ** FAIL!!!  There are    32 error in Q matrix!                             **
+# *****************************************************************************
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(289)
+#    Time: 3725 ns  Iteration: 0  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 289
+restart
+run -all
+# GetModuleFileName: тぃ﹚家舱
+# 
+# 
+# -------------------------------------------------------
+# 
+# START!!! Simulation Start .....
+# 
+# -------------------------------------------------------
+# 
+# Input A matrix: 
+#     -492     -272     -384     -316
+#      340     -488     -208      420
+#      408      448     -380      288
+#      348      456      152      504
+#      136      272     -284      508
+#      300     -356      384     -460
+#     -376      464      488     -276
+#      328      488     -440      304
+# 
+# Output R matrix golden pattern: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# R matrix calculated result: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# 
+# Output Q matrix golden pattern: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#     -677      -19      233      639       60      337      157      -56
+#        0      662     -177     -268     -223      -44      629      240
+#        0        0      731      -48      -49     -124       13     -705
+#        0        0        0      348     -855     -378     -219       94
+# Q matrix calculated result: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+# 
+#  
+# -------------------------------------------------------
+# 
+# --------------------- S U M M A R Y -------------------
+# 
+# *****************************************************************************
+# ** PASS!!!  All data are correct in R matrix!                              **
+# ** FAIL!!!  There are    32 error in Q matrix!                             **
+# *****************************************************************************
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(289)
+#    Time: 3725 ns  Iteration: 0  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 289
+# Compile of cordic.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.qr_cordic
+run -all
+# GetModuleFileName: тぃ﹚家舱
+# 
+# 
+# -------------------------------------------------------
+# 
+# START!!! Simulation Start .....
+# 
+# -------------------------------------------------------
+# 
+# Input A matrix: 
+#     -492     -272     -384     -316
+#      340     -488     -208      420
+#      408      448     -380      288
+#      348      456      152      504
+#      136      272     -284      508
+#      300     -356      384     -460
+#     -376      464      488     -276
+#      328      488     -440      304
+# 
+# Output R matrix golden pattern: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# R matrix calculated result: 
+#     1008      222     -242      721
+#        0     1160      -36      345
+#        0        0      988     -412
+#        0        0        0      663
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+#        0        0        0        0
+# 
+# Output Q matrix golden pattern: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#     -677      -19      233      639       60      337      157      -56
+#        0      662     -177     -268     -223      -44      629      240
+#        0        0      731      -48      -49     -124       13     -705
+#        0        0        0      348     -855     -378     -219       94
+# Q matrix calculated result: 
+#     -499      342      416      354      141      307     -394      337
+#     -144     -502      315      334      213     -379      493      368
+#      527      -21     -284      254     -252      463      435     -368
+#      199      486      274      369      359     -571        3     -321
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+#        x        x        x        x        x        x        x        x
+# 
+#  
+# -------------------------------------------------------
+# 
+# --------------------- S U M M A R Y -------------------
+# 
+# *****************************************************************************
+# ** PASS!!!  All data are correct in R matrix!                              **
+# ** FAIL!!!  There are    32 error in Q matrix!                             **
+# *****************************************************************************
+# ** Note: $stop    : C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v(289)
+#    Time: 3725 ns  Iteration: 0  Instance: /qr_cordic_tb
+# Break in Module qr_cordic_tb at C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v line 289

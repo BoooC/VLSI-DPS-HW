@@ -30,10 +30,9 @@ module qr_cordic #(
 	output reg           [ROW_LEN_R-1:0]    wr_R_row_addr,
 	output reg           [COL_LEN_R-1:0]    wr_R_col_addr,
 	
-	output reg                              wr_Q,
-	output reg signed    [Q_LEN-1:0]        wr_Q_data,
-	output reg           [ROW_LEN_Q-1:0]    wr_Q_row_addr,
-	output reg           [COL_LEN_Q-1:0]    wr_Q_col_addr,
+	output                               	wr_Q_1, wr_Q_2, wr_Q_3, wr_Q_4, wr_Q_5, wr_Q_6, wr_Q_7, wr_Q_8, 
+	output reg signed    [Q_LEN-1:0]        wr_Q_data_1, wr_Q_data_2, wr_Q_data_3, wr_Q_data_4, wr_Q_data_5, wr_Q_data_6, wr_Q_data_7, wr_Q_data_8, 
+	output reg           [2:0]    			wr_Q_addr_1, wr_Q_addr_2, wr_Q_addr_3, wr_Q_addr_4, wr_Q_addr_5, wr_Q_addr_6, wr_Q_addr_7, wr_Q_addr_8, 
 	
 	output reg                              valid
 );
@@ -791,8 +790,9 @@ reg last_multk_q47_reg;
 reg last_multk_q48_reg;
 
 reg [Q_LEN-1:0] rd_data_Q [0:7][0:7];
-reg nop_q18_reg, nop_q28_reg, nop_q38_reg;
 reg [2:0] q_col_1, q_col_2, q_col_3, q_col_4, q_col_5, q_col_6, q_col_7, q_col_8;
+
+reg wr_Q_1_end, wr_Q_2_end, wr_Q_3_end, wr_Q_4_end, wr_Q_5_end, wr_Q_6_end, wr_Q_7_end, wr_Q_8_end;
 
 /***********************************************************************************/
 /**                                 Combination                                   **/
@@ -813,11 +813,6 @@ wire start_gg1		= rd_A_row_addr == 7 && rd_A_col_addr == 0;
 wire start_gg2  	= rd_A_row_addr == 5 && rd_A_col_addr == 1;
 wire start_gg3  	= rd_A_row_addr == 3 && rd_A_col_addr == 2;
 wire start_gg4  	= rd_A_row_addr == 1 && rd_A_col_addr == 3;
-
-wire nop_q18_H2L = ~nop_q18 & nop_q18_reg;
-wire nop_q28_H2L = ~nop_q28 & nop_q28_reg;
-wire nop_q38_H2L = ~nop_q38 & nop_q38_reg;
-
 
 wire iter_last_gg1  = iter_gg1  == ITER_NUM;
 wire iter_last_gr11 = iter_gr11 == ITER_NUM;
@@ -1006,6 +1001,24 @@ wire qr_finish		= last_multk_q48;
 // output
 assign rd_A = en && (~iter_last_gg1);
 
+assign wr_Q_1 		= finish_q11 & (!wr_Q_1_end);
+assign wr_Q_2 		= finish_q21 & (!wr_Q_2_end);
+assign wr_Q_3 		= finish_q31 & (!wr_Q_3_end);
+assign wr_Q_4 		= finish_q41 & (!wr_Q_4_end);
+assign wr_Q_5 		= finish_q41 & (!wr_Q_5_end);
+assign wr_Q_6 		= finish_q41 & (!wr_Q_6_end);
+assign wr_Q_7 		= finish_q41 & (!wr_Q_7_end);
+assign wr_Q_8 		= finish_q41 & (!wr_Q_8_end);
+
+assign wr_Q_data_1 	= (wr_Q_addr_1 >= 4) ? xo_mk1_q : xo_mk2_q;
+assign wr_Q_data_2 	= (wr_Q_addr_2 >= 4) ? xo_mk3_q : xo_mk4_q;
+assign wr_Q_data_3 	= (wr_Q_addr_3 >= 4) ? xo_mk5_q : xo_mk6_q;
+assign wr_Q_data_4 	= (wr_Q_addr_4 >= 4) ? xo_mk7_q : xo_mk8_q;
+// assign wr_Q_data_5 	= (wr_Q_addr_5 >= 4) ? xo_mk7_q : xo_mk8_q;
+// assign wr_Q_data_6 	= (wr_Q_addr_6 >= 4) ? xo_mk7_q : xo_mk8_q;
+// assign wr_Q_data_7 	= (wr_Q_addr_7 >= 4) ? xo_mk7_q : xo_mk8_q;
+// assign wr_Q_data_8 	= (wr_Q_addr_8 >= 4) ? xo_mk7_q : xo_mk8_q;
+
 
 /*****************************************************************/
 /**                              FSM                            **/
@@ -1112,6 +1125,54 @@ always @(posedge clk or posedge rst) begin
 	end
 end
 
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		wr_Q_addr_1 <= 7;
+		wr_Q_addr_2 <= 7;
+		wr_Q_addr_3 <= 7;
+		wr_Q_addr_4 <= 7;
+		wr_Q_addr_5 <= 7;
+		wr_Q_addr_6 <= 7;
+		wr_Q_addr_7 <= 7;
+		wr_Q_addr_8 <= 7;
+	end
+	else begin
+		wr_Q_addr_1 <= wr_Q_1 ? (wr_Q_addr_1 - 1) : wr_Q_addr_1;
+		wr_Q_addr_2 <= wr_Q_2 ? (wr_Q_addr_2 - 1) : wr_Q_addr_2;
+		wr_Q_addr_3 <= wr_Q_3 ? (wr_Q_addr_3 - 1) : wr_Q_addr_3;
+		wr_Q_addr_4 <= wr_Q_4 ? (wr_Q_addr_4 - 1) : wr_Q_addr_4;
+		wr_Q_addr_5 <= wr_Q_5 ? (wr_Q_addr_5 - 1) : wr_Q_addr_5;
+		wr_Q_addr_6 <= wr_Q_6 ? (wr_Q_addr_6 - 1) : wr_Q_addr_6;
+		wr_Q_addr_7 <= wr_Q_7 ? (wr_Q_addr_7 - 1) : wr_Q_addr_7;
+		wr_Q_addr_8 <= wr_Q_8 ? (wr_Q_addr_8 - 1) : wr_Q_addr_8;
+	end
+end
+
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		wr_Q_1_end <= 0;
+		wr_Q_2_end <= 0;
+		wr_Q_3_end <= 0;
+		wr_Q_4_end <= 0;
+		wr_Q_5_end <= 0;
+		wr_Q_6_end <= 0;
+		wr_Q_7_end <= 0;
+		wr_Q_8_end <= 0;
+	end
+	else begin
+		wr_Q_1_end <= (wr_Q_addr_1 == 0) ? 1 : wr_Q_1_end;
+		wr_Q_2_end <= (wr_Q_addr_2 == 0) ? 1 : wr_Q_2_end;
+		wr_Q_3_end <= (wr_Q_addr_3 == 0) ? 1 : wr_Q_3_end;
+		wr_Q_4_end <= (wr_Q_addr_4 == 0) ? 1 : wr_Q_4_end;
+		wr_Q_5_end <= (wr_Q_addr_5 == 0) ? 1 : wr_Q_5_end;
+		wr_Q_6_end <= (wr_Q_addr_6 == 0) ? 1 : wr_Q_6_end;
+		wr_Q_7_end <= (wr_Q_addr_7 == 0) ? 1 : wr_Q_7_end;
+		wr_Q_8_end <= (wr_Q_addr_8 == 0) ? 1 : wr_Q_8_end;
+	end
+end
+
+
+
 // valid
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
@@ -1145,19 +1206,6 @@ end
 /*****************************************************************/
 /**                           Control                           **/
 /*****************************************************************/
-always @(posedge clk or posedge rst) begin
-	if (rst) begin
-		nop_q18_reg <= 0;
-		nop_q28_reg <= 0;
-		nop_q38_reg <= 0;
-	end
-	else begin
-		nop_q18_reg <= nop_q18;
-		nop_q28_reg <= nop_q28;
-		nop_q38_reg <= nop_q38;
-	end
-end
-
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		start_gr11_reg	<= 0;
@@ -5250,7 +5298,7 @@ Q Q28_inst (
 	.d2   (d2_q28),
 	.d3   (d3_q28),
 	.d4   (d4_q28),
-	.neg  (neg_q28),
+	.neg  (1'b0),
 	.xo   (xo_q28),
 	.yo   (yo_q28)
 );
@@ -5348,7 +5396,7 @@ Q Q37_inst (
 	.d2   (d2_q37),
 	.d3   (d3_q37),
 	.d4   (d4_q37),
-	.neg  (neg_q36),
+	.neg  (1'b0),
 	.xo   (xo_q37),
 	.yo   (yo_q37)
 );
@@ -5362,7 +5410,7 @@ Q Q38_inst (
 	.d2   (d2_q38),
 	.d3   (d3_q38),
 	.d4   (d4_q38),
-	.neg  (neg_q37),
+	.neg  (1'b0),
 	.xo   (xo_q38),
 	.yo   (yo_q38)
 );
@@ -5446,7 +5494,7 @@ Q Q46_inst (
 	.d2   (d2_q46),
 	.d3   (d3_q46),
 	.d4   (d4_q46),
-	.neg  (neg_q46),
+	.neg  (1'b0),
 	.xo   (xo_q46),
 	.yo   (yo_q46)
 );
@@ -5460,7 +5508,7 @@ Q Q47_inst (
 	.d2   (d2_q47),
 	.d3   (d3_q47),
 	.d4   (d4_q47),
-	.neg  (neg_q46),
+	.neg  (1'b0),
 	.xo   (xo_q47),
 	.yo   (yo_q47)
 );
@@ -5474,7 +5522,7 @@ Q Q48_inst (
 	.d2   (d2_q48),
 	.d3   (d3_q48),
 	.d4   (d4_q48),
-	.neg  (neg_q47),
+	.neg  (1'b0),
 	.xo   (xo_q48),
 	.yo   (yo_q48)
 );

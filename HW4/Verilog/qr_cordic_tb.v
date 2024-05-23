@@ -31,22 +31,23 @@ reg	en 	= 0;
 
 wire rd_A;
 wire wr_R;
-wire wr_Q;
+wire wr_Q_1, wr_Q_2, wr_Q_3, wr_Q_4, wr_Q_5, wr_Q_6, wr_Q_7, wr_Q_8;
 
 wire signed [OUT_WIDTH-1:0] rd_A_data;
 wire signed [OUT_WIDTH-1:0]	wr_R_data;
-wire signed [OUT_WIDTH-1:0]	wr_Q_data;
+wire signed [OUT_WIDTH-1:0]	wr_Q_data_1, wr_Q_data_2, wr_Q_data_3, wr_Q_data_4, wr_Q_data_5, wr_Q_data_6, wr_Q_data_7, wr_Q_data_8;
 
 wire [2:0]	rd_A_row_addr;
 wire [1:0]	rd_A_col_addr;
 wire [2:0]	wr_R_row_addr;
 wire [1:0]	wr_R_col_addr;
-wire [2:0]	wr_Q_row_addr;
-wire [2:0]	wr_Q_col_addr;
+wire [2:0]	wr_Q_1_row_addr;
+wire [2:0]	wr_Q_1_col_addr_1;
 
-wire [4:0] rd_A_addr = 4*rd_A_row_addr + rd_A_col_addr;
-wire [4:0] wr_R_addr = 4*wr_R_row_addr + wr_R_col_addr;
-wire [5:0] wr_Q_addr = 8*wr_Q_row_addr + wr_Q_col_addr;
+wire [4:0] rd_A_addr = R_col*rd_A_row_addr + rd_A_col_addr;
+wire [4:0] wr_R_addr = R_col*wr_R_row_addr + wr_R_col_addr;
+
+wire [2:0]  wr_Q_addr_1, wr_Q_addr_2, wr_Q_addr_3, wr_Q_addr_4, wr_Q_addr_5, wr_Q_addr_6, wr_Q_addr_7, wr_Q_addr_8;
 
 wire valid;
 
@@ -63,10 +64,30 @@ qr_cordic qr_cordic_inst(
 	.wr_R_data		(wr_R_data		),
 	.wr_R_row_addr	(wr_R_row_addr	),
 	.wr_R_col_addr	(wr_R_col_addr	),
-	.wr_Q			(wr_Q			),
-	.wr_Q_data		(wr_Q_data		),
-	.wr_Q_row_addr	(wr_Q_row_addr	),
-	.wr_Q_col_addr	(wr_Q_col_addr	),
+	.wr_Q_1			(wr_Q_1			),
+	.wr_Q_data_1	(wr_Q_data_1	),
+	.wr_Q_addr_1	(wr_Q_addr_1	),
+	.wr_Q_2			(wr_Q_2			),
+	.wr_Q_data_2	(wr_Q_data_2	),
+	.wr_Q_addr_2	(wr_Q_addr_2	),
+	.wr_Q_3			(wr_Q_3			),
+	.wr_Q_data_3	(wr_Q_data_3	),
+	.wr_Q_addr_3	(wr_Q_addr_3	),
+	.wr_Q_4			(wr_Q_4			),
+	.wr_Q_data_4	(wr_Q_data_4	),
+	.wr_Q_addr_4	(wr_Q_addr_4	),
+	.wr_Q_5			(wr_Q_5			),
+	.wr_Q_data_5	(wr_Q_data_5	),
+	.wr_Q_addr_5	(wr_Q_addr_5	),
+	.wr_Q_6			(wr_Q_6			),
+	.wr_Q_data_6	(wr_Q_data_6	),
+	.wr_Q_addr_6	(wr_Q_addr_6	),
+	.wr_Q_7			(wr_Q_7			),
+	.wr_Q_data_7	(wr_Q_data_7	),
+	.wr_Q_addr_7	(wr_Q_addr_7	),
+	.wr_Q_8			(wr_Q_8			),
+	.wr_Q_data_8	(wr_Q_data_8	),
+	.wr_Q_addr_8	(wr_Q_addr_8	),
 	.valid			(valid			)
 );
 
@@ -81,7 +102,7 @@ ROM_A_inst(
 	.rd_A_data	(rd_A_data	)
 );
 
-RAM  #(
+RAM_R  #(
 	.OUT_WIDTH	(OUT_WIDTH), 
 	.RAM_SIZE	(R_RAM_SIZE),
 	.ADDR_WID	(5)
@@ -94,18 +115,40 @@ RAM_R_inst(
 	.wr_R_data	(wr_R_data	)
 );
 
-RAM #(
+RAM_Q #(
 	.OUT_WIDTH	(OUT_WIDTH), 
 	.RAM_SIZE	(Q_RAM_SIZE),
-	.ADDR_WID	(6)
+	.ADDR_WID	(3)
 ) 
 RAM_Q_inst(
 	.clk		(clk		),
 	.rst		(rst		),
-	.wr_R		(wr_Q		),
-	.wr_R_addr	(wr_Q_addr	),
-	.wr_R_data	(wr_Q_data	)
+	.wr_Q_1		(wr_Q_1		),
+	.wr_Q_data_1(wr_Q_data_1),
+	.wr_Q_addr_1(wr_Q_addr_1),
+	.wr_Q_2		(wr_Q_2		),
+	.wr_Q_data_2(wr_Q_data_2),
+	.wr_Q_addr_2(wr_Q_addr_2),
+	.wr_Q_3		(wr_Q_3		),
+	.wr_Q_data_3(wr_Q_data_3),
+	.wr_Q_addr_3(wr_Q_addr_3),
+	.wr_Q_4		(wr_Q_4		),
+	.wr_Q_data_4(wr_Q_data_4),
+	.wr_Q_addr_4(wr_Q_addr_4),
+	.wr_Q_5		(wr_Q_5		),
+	.wr_Q_data_5(wr_Q_data_5),
+	.wr_Q_addr_5(wr_Q_addr_5),
+	.wr_Q_6		(wr_Q_6		),
+	.wr_Q_data_6(wr_Q_data_6),
+	.wr_Q_addr_6(wr_Q_addr_6),
+	.wr_Q_7		(wr_Q_7		),
+	.wr_Q_data_7(wr_Q_data_7),
+	.wr_Q_addr_7(wr_Q_addr_7),
+	.wr_Q_8		(wr_Q_8		),
+	.wr_Q_data_8(wr_Q_data_8),
+	.wr_Q_addr_8(wr_Q_addr_8)
 );
+
 
 `ifdef SDF
 	initial $sdf_annotate(`SDFFILE, qr_cord_Aic_inst);
@@ -176,7 +219,7 @@ initial begin
 	$display("R matrix calculated result: ");
 	@(posedge clk);
 	while(j < R_row) begin
-		$display("%8d %8d %8d %8d", RAM_R_inst.RAM[R_col*j], RAM_R_inst.RAM[R_col*j+1], RAM_R_inst.RAM[R_col*j+2], RAM_R_inst.RAM[R_col*j+3]);
+		$display("%8d %8d %8d %8d", RAM_R_inst.RAM_R[R_col*j], RAM_R_inst.RAM_R[R_col*j+1], RAM_R_inst.RAM_R[R_col*j+2], RAM_R_inst.RAM_R[R_col*j+3]);
 		j = j + 1;
 	end
 	
@@ -190,7 +233,7 @@ initial begin
 	$display("Q matrix calculated result: ");
 	@(posedge clk);
 	while(l < Q_row) begin
-		$display("%8d %8d %8d %8d %8d %8d %8d %8d", RAM_Q_inst.RAM[Q_col*l+0], RAM_Q_inst.RAM[Q_col*l+1], RAM_Q_inst.RAM[Q_col*l+2], RAM_Q_inst.RAM[Q_col*l+3], RAM_Q_inst.RAM[Q_col*l+4], RAM_Q_inst.RAM[Q_col*l+5], RAM_Q_inst.RAM[Q_col*l+6], RAM_Q_inst.RAM[Q_col*l+7]);
+		$display("%8d %8d %8d %8d %8d %8d %8d %8d", RAM_Q_inst.RAM_Q[Q_col*l+0], RAM_Q_inst.RAM_Q[Q_col*l+1], RAM_Q_inst.RAM_Q[Q_col*l+2], RAM_Q_inst.RAM_Q[Q_col*l+3], RAM_Q_inst.RAM_Q[Q_col*l+4], RAM_Q_inst.RAM_Q[Q_col*l+5], RAM_Q_inst.RAM_Q[Q_col*l+6], RAM_Q_inst.RAM_Q[Q_col*l+7]);
 		l = l + 1;
 	end
 	
@@ -200,9 +243,9 @@ initial begin
 	// check R matrix
 	err_R = 0;
 	for(u=0; u<R_len; u=u+1) begin
-		if (RAM_R_inst.RAM[u] != R_gold[u]) begin
+		if (RAM_R_inst.RAM_R[u] != R_gold[u]) begin
 			err_R = err_R + 1;
-			$display("Data R[%2d] is wrong! The output data is %5d, but the expected data is %5d.", u, RAM_R_inst.RAM[u], R_gold[u]);
+			$display("Data R[%2d] is wrong! The output data is %5d, but the expected data is %5d.", u, RAM_R_inst.RAM_R[u], R_gold[u]);
 		end
 	end
 	$display("");
@@ -210,9 +253,9 @@ initial begin
 	// check Q matrix
 	err_Q = 0;
 	for(v=0; v<Q_len; v=v+1) begin
-		if (RAM_Q_inst.RAM[v] != Q_gold[v]) begin
+		if (RAM_Q_inst.RAM_Q[v] != Q_gold[v] || ^RAM_Q_inst.RAM_Q[v] === 1'bz || ^RAM_Q_inst.RAM_Q[v] === 1'bx) begin
 			err_Q = err_Q + 1;
-			// $display("Data Q[%2d] is wrong! The output data is %5d, but the expected data is %5d.", v, RAM_Q_inst.RAM[v], Q_gold[v]);
+			// $display("Data Q[%2d] is wrong! The output data is %5d, but the expected data is %5d.", v, RAM_Q_inst.RAM_Q[v], Q_gold[v]);
 		end
 	end
 	/***********************************************************************************/
@@ -300,33 +343,65 @@ end
 endmodule
 
 
-module RAM #(
+module RAM_R #(
 	parameter OUT_WIDTH = 12,
 	parameter RAM_SIZE 	= 32,
-	parameter ADDR_WID	= 5
+	parameter ADDR_WID	= 3
 )
-(
-	input	       	       			clk,
+(	input	       	       			clk,
 	input							rst,
 	input	       	       			wr_R,
 	input	       	[ADDR_WID-1:0] 	wr_R_addr,
 	input	 signed	[OUT_WIDTH-1:0] wr_R_data
 );
 
-
-reg signed [OUT_WIDTH-1:0] RAM [0:RAM_SIZE-1];
+reg signed [OUT_WIDTH-1:0] RAM_R [0:RAM_SIZE-1];
 
 integer i;
 always @(posedge clk) begin
 	if(rst) begin
 		for(i=0; i<RAM_SIZE; i=i+1) begin
-			RAM[i] <= 0;
+			RAM_R[i] <= 0;
 		end
 	end
 	else if(wr_R) begin
-		RAM[wr_R_addr] <= wr_R_data;
+		RAM_R[wr_R_addr] <= wr_R_data;
 	end
 end
 
+endmodule
+
+module RAM_Q #(
+	parameter OUT_WIDTH = 12,
+	parameter RAM_SIZE 	= 64,
+	parameter ADDR_WID	= 5
+)
+(	input	       	       			clk,
+	input							rst,
+	input	       	       			wr_Q_1, wr_Q_2, wr_Q_3, wr_Q_4, wr_Q_5, wr_Q_6, wr_Q_7, wr_Q_8,
+	input	       	[ADDR_WID-1:0] 	wr_Q_addr_1, wr_Q_addr_2, wr_Q_addr_3, wr_Q_addr_4, wr_Q_addr_5, wr_Q_addr_6, wr_Q_addr_7, wr_Q_addr_8,
+	input	 signed	[OUT_WIDTH-1:0] wr_Q_data_1, wr_Q_data_2, wr_Q_data_3, wr_Q_data_4, wr_Q_data_5, wr_Q_data_6, wr_Q_data_7, wr_Q_data_8
+);
+
+reg signed [OUT_WIDTH-1:0] RAM_Q [0:RAM_SIZE-1];
+
+integer i;
+always @(posedge clk) begin
+	if(rst) begin
+		for(i=0; i<RAM_SIZE; i=i+1) begin
+			RAM_Q[i] <= 0;
+		end
+	end
+	else begin
+		RAM_Q[wr_Q_addr_1 + 0*8] <= wr_Q_1 ? wr_Q_data_1 : RAM_Q[wr_Q_addr_1 + 0*8];
+		RAM_Q[wr_Q_addr_2 + 1*8] <= wr_Q_2 ? wr_Q_data_2 : RAM_Q[wr_Q_addr_2 + 1*8];
+		RAM_Q[wr_Q_addr_3 + 2*8] <= wr_Q_3 ? wr_Q_data_3 : RAM_Q[wr_Q_addr_3 + 2*8];
+		RAM_Q[wr_Q_addr_4 + 3*8] <= wr_Q_4 ? wr_Q_data_4 : RAM_Q[wr_Q_addr_4 + 3*8];
+		RAM_Q[wr_Q_addr_5 + 4*8] <= wr_Q_5 ? wr_Q_data_5 : RAM_Q[wr_Q_addr_5 + 4*8];
+		RAM_Q[wr_Q_addr_6 + 5*8] <= wr_Q_6 ? wr_Q_data_6 : RAM_Q[wr_Q_addr_6 + 5*8];
+		RAM_Q[wr_Q_addr_7 + 6*8] <= wr_Q_7 ? wr_Q_data_7 : RAM_Q[wr_Q_addr_7 + 6*8];
+		RAM_Q[wr_Q_addr_8 + 7*8] <= wr_Q_8 ? wr_Q_data_8 : RAM_Q[wr_Q_addr_8 + 7*8];
+	end
+end
 
 endmodule
