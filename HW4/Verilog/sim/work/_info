@@ -58,23 +58,23 @@ R11
 R12
 n@g@g_one_iter
 vGR
-Z13 !s110 1716310042
+Z13 !s110 1716434830
 !i10b 1
 !s100 Qd=5C^_aD?lIl3B:WJeZY2
 R1
 IokmIhI@QOb`0R`3Y8i4233
 R2
 R3
-Z14 w1716310041
+Z14 w1716434828
 Z15 8C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GR.v
 Z16 FC:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GR.v
-!i122 444
+!i122 554
 Z17 L0 1 79
 R7
 r1
 !s85 0
 31
-Z18 !s108 1716310042.000000
+Z18 !s108 1716434830.000000
 Z19 !s107 C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GR.v|
 Z20 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GR.v|
 !i113 1
@@ -92,7 +92,7 @@ R3
 R14
 R15
 R16
-!i122 444
+!i122 554
 Z21 L0 82 28
 R7
 r1
@@ -178,23 +178,23 @@ R11
 R12
 n@q_one_iter
 vqr_cordic
-!s110 1716400235
+!s110 1716441933
 !i10b 1
-!s100 2ZhgBSVK_0=3Fj1?S]jZF1
+!s100 >8T=P`?c53=A[z8PT?A7O1
 R1
-I1PI9dYeK`P]QIH2:]bH[n1
+IWoALeA=z>OCb?Kc5l]m6c3
 R2
 R3
-w1716400234
+w1716441932
 8C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v
 FC:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v
-!i122 540
+!i122 565
 L0 1 5541
 R7
 r1
 !s85 0
 31
-!s108 1716400235.000000
+!s108 1716441933.000000
 !s107 C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/cordic.v|
 !i113 1

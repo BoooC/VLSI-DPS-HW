@@ -171,7 +171,8 @@ function [Q_cordic, R_cordic] = Cordic_QR(K_cordic, Q_scaled, R_scaled, row_R, c
 					Q_cordic(q_fix+1,reverse_Q) = -Q_cordic(q_fix+1,reverse_Q);
 				end
 			end
-			
+			x_pre = zeros(col_Q, 1);
+			y_pre = zeros(col_Q, 1);
 			disp(['k = ', num2str(p_fix), ' row', num2str(q_fix), num2str(q_fix+1), ': '])
 			for iter = 0 : iter_num-1
 				% vectoring mode
@@ -186,6 +187,15 @@ function [Q_cordic, R_cordic] = Cordic_QR(K_cordic, Q_scaled, R_scaled, row_R, c
 					R_cordic(q_fix  , p_fix) = X_vect;
 					R_cordic(q_fix+1, p_fix) = Y_vect;
 				end
+				
+				if iter == 0 || iter == 4 || iter == 8 || iter == 12
+					fprintf('\nd = ');
+				end
+				fprintf('%g ', d);
+				if iter == 3 || iter == 7 || iter == 11 || iter == 15
+					fprintf('\n');
+				end
+				
 				% print info
 				print_GG_info(p_fix, iter, X_vect, Y_vect, R_frac)
 				print_GG_MK_info(p_fix, iter, R_cordic(q_fix, p_fix), R_cordic(q_fix+1, p_fix), R_frac)
@@ -221,8 +231,14 @@ function [Q_cordic, R_cordic] = Cordic_QR(K_cordic, Q_scaled, R_scaled, row_R, c
 						Q_cordic(q_fix+1, rot_Q) = Y_rot_Q;
 					end
 					
+					
+					if iter == 0 || iter == 4 || iter == 8 || iter == 12
+						x_pre(rot_Q) = fi(x_rot_Q, Q_sign, Q_len, Q_frac, F);
+						y_pre(rot_Q) = fi(y_rot_Q, Q_sign, Q_len, Q_frac, F);
+					end
 					% print info
-					print_Q_info(p_fix, rot_Q, iter, X_rot_Q, Y_rot_Q, Q_frac);
+					print_Q_info(p_fix, rot_Q, iter, x_pre(rot_Q), y_pre(rot_Q), X_rot_Q, Y_rot_Q, Q_frac);
+					print_Q_MK_info(p_fix, rot_Q, iter, Q_cordic(q_fix , rot_Q), Q_cordic(q_fix+1, rot_Q), Q_frac);
 				end
 			end
 		end
@@ -296,31 +312,33 @@ end
 function print_GG_info(k, iter, X, Y, R_frac)
 	X = X * 2^(R_frac);
 	Y = Y * 2^(R_frac);
-	if iter == 3 || iter == 7 || iter == 11
-		disp(['GG', num2str(k), '  Iteration ', num2str(iter+1),' times: ', 'X = ', num2str(X),'; Y = ', num2str(Y)])
+	if iter == 3 || iter == 7 || iter == 11 || iter == 14
+		disp(['GG', num2str(k), '  Iteration ', num2str(iter+1),' times: ', 'X = ', num2str(X),'; Y = ', num2str(Y), num2str(X)])
 	end
 end
 
 function print_GR_info(k, r, iter, X, Y, R_frac)
 	X = X * 2^(R_frac);
 	Y = Y * 2^(R_frac);
-    if iter == 3 || iter == 7 || iter == 11
+    if iter == 3 || iter == 7 || iter == 11 || iter == 14
         disp(['GR', num2str(k), num2str(r), ' Iteration ', num2str(iter+1),' times: ', 'X = ', num2str(X),'; Y = ', num2str(Y)])
     end
 end
 
-function print_Q_info(k, r, iter, X, Y, R_frac)
-	X = X * 2^(R_frac);
-	Y = Y * 2^(R_frac);
-    if iter == 3 || iter == 7 || iter == 11
-        disp(['Q', num2str(k), num2str(r), '  Iteration ', num2str(iter+1),' times: ', 'X = ', num2str(X),'; Y = ', num2str(Y)])
+function print_Q_info(k, r, iter, x, y, X, Y, Q_frac)
+	X = X * 2^(Q_frac);
+	Y = Y * 2^(Q_frac);
+	x = x * 2^(Q_frac);
+	y = y * 2^(Q_frac);
+    if iter == 3 || iter == 7 || iter == 11 || iter == 14
+        disp(['Q', num2str(k), num2str(r), '  Iteration ', num2str(iter+1), ' times: ', 'input: ', 'X = ', sprintf('%5d', x), '; Y = ', sprintf('%5d', y), ' output: ', 'X = ', sprintf('%5d', X), '; Y = ', sprintf('%5d', Y)])
     end
 end
 
 function print_GG_MK_info(k, iter, X, Y, R_frac)
 	X = X * 2^(R_frac);
 	Y = Y * 2^(R_frac);
-	if iter == 11
+	if iter == 15
 		disp(['GG', num2str(k), '  Multiplied by K:   ', 'X = ', num2str(X),'; Y = ', num2str(Y)])
     end
 end
@@ -328,10 +346,19 @@ end
 function print_GR_MK_info(k, r, iter, X, Y, R_frac)
 	X = X * 2^(R_frac);
 	Y = Y * 2^(R_frac);
-	if iter == 11  
+	if iter == 15  
 		disp(['GR', num2str(k), num2str(r), ' Multiplied by K:   ', 'X = ', num2str(X),'; Y = ', num2str(Y)])
 	end
 end
+
+function print_Q_MK_info(k, r, iter, X, Y, Q_frac)
+	X = X * 2^(Q_frac);
+	Y = Y * 2^(Q_frac);
+	if iter == 15  
+		disp(['Q', num2str(k), num2str(r), ' Multiplied by K:   ', 'X = ', num2str(X),'; Y = ', num2str(Y)])
+	end
+end
+
 
 
 function Save_data(A_origin, Q, R)

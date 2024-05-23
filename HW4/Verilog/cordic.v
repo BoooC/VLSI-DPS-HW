@@ -943,10 +943,10 @@ wire last_multk_q41	= mk_cnt_q41  == 3 && multk_q41;
 wire last_multk_q42	= mk_cnt_q42  == 3 && multk_q42;
 wire last_multk_q43	= mk_cnt_q43  == 3 && multk_q43;
 wire last_multk_q44	= mk_cnt_q44  == 3 && multk_q44;
-wire last_multk_q45	= mk_cnt_q45  == 4 && multk_q45;
-wire last_multk_q46	= mk_cnt_q46  == 4 && multk_q46;
-wire last_multk_q47	= mk_cnt_q47  == 4 && multk_q47;
-wire last_multk_q48	= mk_cnt_q48  == 4 && multk_q48;
+wire last_multk_q45	= mk_cnt_q45  == 3 && multk_q45;
+wire last_multk_q46	= mk_cnt_q46  == 3 && multk_q46;
+wire last_multk_q47	= mk_cnt_q47  == 3 && multk_q47;
+wire last_multk_q48	= mk_cnt_q48  == 3 && multk_q48;
 
 wire finish_gg1		= last_multk_gg1  || last_multk_gg1_reg;
 wire finish_gr11	= last_multk_gr11 || last_multk_gr11_reg;
@@ -1001,7 +1001,7 @@ wire nop_gg2 		= (~OP_wire) | mk_cnt_gr11 <= 1 | finish_gg2 | multk_gg2;
 wire nop_gg3 		= (~OP_wire) | mk_cnt_gr21 <= 1 | finish_gg3 | multk_gg3;
 wire nop_gg4 		= (~OP_wire) | mk_cnt_gr31 <= 1 | finish_gg4 | multk_gg4;
 
-wire qr_finish		= mk_cnt_q48 == 4;
+wire qr_finish		= last_multk_q48;
 
 // output
 assign rd_A = en && (~iter_last_gg1);
@@ -2307,8 +2307,8 @@ always @(posedge clk or posedge rst) begin
 			ITER_NUM: q_col_1 <= q_col_1 + 1;
 			ITER_K: begin
 				if(finish_q11) begin
-					xi_q11 <= xo_mk1_q;
-					yi_q11 <= yo_mk1_q;
+					xi_q11 <= 0;
+					yi_q11 <= 0;
 				end
 				else begin
 					xi_q11 <= rd_data_Q[q_col_1+1][0];
@@ -2380,8 +2380,8 @@ always @(posedge clk or posedge rst) begin
 			ITER_NUM: q_col_2 <= q_col_2 + 1;
 			ITER_K: begin
 				if(finish_q12) begin
-					xi_q12 <= xo_mk1_q;
-					yi_q12 <= yo_mk1_q;
+					xi_q12 <= 0;
+					yi_q12 <= 0;
 				end
 				else begin
 					xi_q12 <= rd_data_Q[q_col_2+1][1];
@@ -2453,8 +2453,8 @@ always @(posedge clk or posedge rst) begin
 			ITER_NUM: q_col_3 <= q_col_3 + 1;
 			ITER_K: begin
 				if(finish_q13) begin
-					xi_q13 <= xo_mk1_q;
-					yi_q13 <= yo_mk1_q;
+					xi_q13 <= 0;
+					yi_q13 <= 0;
 				end
 				else begin
 					xi_q13 <= rd_data_Q[q_col_3+1][2];
@@ -2528,8 +2528,8 @@ always @(posedge clk or posedge rst) begin
 			ITER_NUM: q_col_4 <= q_col_4 + 1;
 			ITER_K: begin
 				if(finish_q14) begin
-					xi_q14 <= xo_mk1_q;
-					yi_q14 <= yo_mk1_q;
+					xi_q14 <= 0;
+					yi_q14 <= 0;
 				end
 				else begin
 					xi_q14 <= rd_data_Q[q_col_4+1][3];
@@ -2601,8 +2601,8 @@ always @(posedge clk or posedge rst) begin
 			ITER_NUM: q_col_5 <= q_col_5 + 1;
 			ITER_K: begin
 				if(finish_q15) begin
-					xi_q15 <= xo_mk2_q;
-					yi_q15 <= yo_mk2_q;
+					xi_q15 <= 0;
+					yi_q15 <= 0;
 				end
 				else begin
 					xi_q15 <= rd_data_Q[q_col_5+1][4];
@@ -2674,8 +2674,8 @@ always @(posedge clk or posedge rst) begin
 			ITER_NUM: q_col_6 <= q_col_6 + 1;
 			ITER_K: begin
 				if(finish_q16) begin
-					xi_q16 <= xo_mk2_q;
-					yi_q16 <= yo_mk2_q;
+					xi_q16 <= 0;
+					yi_q16 <= 0;
 				end
 				else begin
 					xi_q16 <= rd_data_Q[q_col_6+1][5];
@@ -2747,8 +2747,8 @@ always @(posedge clk or posedge rst) begin
 			ITER_NUM: q_col_7 <= q_col_7 + 1;
 			ITER_K: begin
 				if(finish_q17) begin
-					xi_q17 <= xo_mk2_q;
-					yi_q17 <= yo_mk2_q;
+					xi_q17 <= 0;
+					yi_q17 <= 0;
 				end
 				else begin
 					xi_q17 <= rd_data_Q[q_col_7+1][6];
@@ -2820,8 +2820,8 @@ always @(posedge clk or posedge rst) begin
 			ITER_NUM: q_col_8 <= q_col_8 + 1;
 			ITER_K: begin
 				if(finish_q18) begin
-					xi_q18 <= xo_mk2_q;
-					yi_q18 <= yo_mk2_q;
+					xi_q18 <= 0;
+					yi_q18 <= 0;
 				end
 				else begin
 					xi_q18 <= rd_data_Q[q_col_8+1][7];
@@ -5031,7 +5031,7 @@ MK MK4_inst (
 
 
 
-GR Q11_inst (
+Q Q11_inst (
 	.nop  (nop_q11),
 	.xi   (xi_q11),
 	.yi   (yi_q11),
@@ -5045,7 +5045,7 @@ GR Q11_inst (
 	.yo   (yo_q11)
 );
 
-GR Q12_inst (
+Q Q12_inst (
 	.nop  (nop_q12),
 	.xi   (xi_q12),
 	.yi   (yi_q12),
@@ -5059,7 +5059,7 @@ GR Q12_inst (
 	.yo   (yo_q12)
 );
 
-GR Q13_inst (
+Q Q13_inst (
 	.nop  (nop_q13),
 	.xi   (xi_q13),
 	.yi   (yi_q13),
@@ -5073,7 +5073,7 @@ GR Q13_inst (
 	.yo   (yo_q13)
 );
 
-GR Q14_inst (
+Q Q14_inst (
 	.nop  (nop_q14),
 	.xi   (xi_q14),
 	.yi   (yi_q14),
@@ -5087,7 +5087,7 @@ GR Q14_inst (
 	.yo   (yo_q14)
 );
 
-GR Q15_inst (
+Q Q15_inst (
 	.nop  (nop_q15),
 	.xi   (xi_q15),
 	.yi   (yi_q15),
@@ -5101,7 +5101,7 @@ GR Q15_inst (
 	.yo   (yo_q15)
 );
 
-GR Q16_inst (
+Q Q16_inst (
 	.nop  (nop_q16),
 	.xi   (xi_q16),
 	.yi   (yi_q16),
@@ -5115,7 +5115,7 @@ GR Q16_inst (
 	.yo   (yo_q16)
 );
 
-GR Q17_inst (
+Q Q17_inst (
 	.nop  (nop_q17),
 	.xi   (xi_q17),
 	.yi   (yi_q17),
@@ -5129,7 +5129,7 @@ GR Q17_inst (
 	.yo   (yo_q17)
 );
 
-GR Q18_inst (
+Q Q18_inst (
 	.nop  (nop_q18),
 	.xi   (xi_q18),
 	.yi   (yi_q18),
@@ -5143,7 +5143,7 @@ GR Q18_inst (
 	.yo   (yo_q18)
 );
 
-GR Q21_inst (
+Q Q21_inst (
 	.nop  (nop_q21),
 	.xi   (xi_q21),
 	.yi   (yi_q21),
@@ -5157,7 +5157,7 @@ GR Q21_inst (
 	.yo   (yo_q21)
 );
 
-GR Q22_inst (
+Q Q22_inst (
 	.nop  (nop_q22),
 	.xi   (xi_q22),
 	.yi   (yi_q22),
@@ -5171,7 +5171,7 @@ GR Q22_inst (
 	.yo   (yo_q22)
 );
 
-GR Q23_inst (
+Q Q23_inst (
 	.nop  (nop_q23),
 	.xi   (xi_q23),
 	.yi   (yi_q23),
@@ -5185,7 +5185,7 @@ GR Q23_inst (
 	.yo   (yo_q23)
 );
 
-GR Q24_inst (
+Q Q24_inst (
 	.nop  (nop_q24),
 	.xi   (xi_q24),
 	.yi   (yi_q24),
@@ -5199,7 +5199,7 @@ GR Q24_inst (
 	.yo   (yo_q24)
 );
 
-GR Q25_inst (
+Q Q25_inst (
 	.nop  (nop_q25),
 	.xi   (xi_q25),
 	.yi   (yi_q25),
@@ -5213,7 +5213,7 @@ GR Q25_inst (
 	.yo   (yo_q25)
 );
 
-GR Q26_inst (
+Q Q26_inst (
 	.nop  (nop_q26),
 	.xi   (xi_q26),
 	.yi   (yi_q26),
@@ -5227,7 +5227,7 @@ GR Q26_inst (
 	.yo   (yo_q26)
 );
 
-GR Q27_inst (
+Q Q27_inst (
 	.nop  (nop_q27),
 	.xi   (xi_q27),
 	.yi   (yi_q27),
@@ -5241,7 +5241,7 @@ GR Q27_inst (
 	.yo   (yo_q27)
 );
 
-GR Q28_inst (
+Q Q28_inst (
 	.nop  (nop_q28),
 	.xi   (xi_q28),
 	.yi   (yi_q28),
@@ -5255,7 +5255,7 @@ GR Q28_inst (
 	.yo   (yo_q28)
 );
 
-GR Q31_inst (
+Q Q31_inst (
 	.nop  (nop_q31),
 	.xi   (xi_q31),
 	.yi   (yi_q31),
@@ -5269,7 +5269,7 @@ GR Q31_inst (
 	.yo   (yo_q31)
 );
 
-GR Q32_inst (
+Q Q32_inst (
 	.nop  (nop_q32),
 	.xi   (xi_q32),
 	.yi   (yi_q32),
@@ -5283,7 +5283,7 @@ GR Q32_inst (
 	.yo   (yo_q32)
 );
 
-GR Q33_inst (
+Q Q33_inst (
 	.nop  (nop_q33),
 	.xi   (xi_q33),
 	.yi   (yi_q33),
@@ -5297,7 +5297,7 @@ GR Q33_inst (
 	.yo   (yo_q33)
 );
 
-GR Q34_inst (
+Q Q34_inst (
 	.nop  (nop_q34),
 	.xi   (xi_q34),
 	.yi   (yi_q34),
@@ -5311,7 +5311,7 @@ GR Q34_inst (
 	.yo   (yo_q34)
 );
 
-GR Q35_inst (
+Q Q35_inst (
 	.nop  (nop_q35),
 	.xi   (xi_q35),
 	.yi   (yi_q35),
@@ -5325,7 +5325,7 @@ GR Q35_inst (
 	.yo   (yo_q35)
 );
 
-GR Q36_inst (
+Q Q36_inst (
 	.nop  (nop_q36),
 	.xi   (xi_q36),
 	.yi   (yi_q36),
@@ -5339,7 +5339,7 @@ GR Q36_inst (
 	.yo   (yo_q36)
 );
 
-GR Q37_inst (
+Q Q37_inst (
 	.nop  (nop_q37),
 	.xi   (xi_q37),
 	.yi   (yi_q37),
@@ -5348,12 +5348,12 @@ GR Q37_inst (
 	.d2   (d2_q37),
 	.d3   (d3_q37),
 	.d4   (d4_q37),
-	.neg  (neg_q37),
+	.neg  (neg_q36),
 	.xo   (xo_q37),
 	.yo   (yo_q37)
 );
 
-GR Q38_inst (
+Q Q38_inst (
 	.nop  (nop_q38),
 	.xi   (xi_q38),
 	.yi   (yi_q38),
@@ -5362,12 +5362,12 @@ GR Q38_inst (
 	.d2   (d2_q38),
 	.d3   (d3_q38),
 	.d4   (d4_q38),
-	.neg  (neg_q38),
+	.neg  (neg_q37),
 	.xo   (xo_q38),
 	.yo   (yo_q38)
 );
 
-GR Q41_inst (
+Q Q41_inst (
 	.nop  (nop_q41),
 	.xi   (xi_q41),
 	.yi   (yi_q41),
@@ -5381,7 +5381,7 @@ GR Q41_inst (
 	.yo   (yo_q41)
 );
 
-GR Q42_inst (
+Q Q42_inst (
 	.nop  (nop_q42),
 	.xi   (xi_q42),
 	.yi   (yi_q42),
@@ -5395,7 +5395,7 @@ GR Q42_inst (
 	.yo   (yo_q42)
 );
 
-GR Q43_inst (
+Q Q43_inst (
 	.nop  (nop_q43),
 	.xi   (xi_q43),
 	.yi   (yi_q43),
@@ -5409,7 +5409,7 @@ GR Q43_inst (
 	.yo   (yo_q43)
 );
 
-GR Q44_inst (
+Q Q44_inst (
 	.nop  (nop_q44),
 	.xi   (xi_q44),
 	.yi   (yi_q44),
@@ -5423,7 +5423,7 @@ GR Q44_inst (
 	.yo   (yo_q44)
 );
 
-GR Q45_inst (
+Q Q45_inst (
 	.nop  (nop_q45),
 	.xi   (xi_q45),
 	.yi   (yi_q45),
@@ -5437,7 +5437,7 @@ GR Q45_inst (
 	.yo   (yo_q45)
 );
 
-GR Q46_inst (
+Q Q46_inst (
 	.nop  (nop_q46),
 	.xi   (xi_q46),
 	.yi   (yi_q46),
@@ -5451,7 +5451,7 @@ GR Q46_inst (
 	.yo   (yo_q46)
 );
 
-GR Q47_inst (
+Q Q47_inst (
 	.nop  (nop_q47),
 	.xi   (xi_q47),
 	.yi   (yi_q47),
@@ -5460,12 +5460,12 @@ GR Q47_inst (
 	.d2   (d2_q47),
 	.d3   (d3_q47),
 	.d4   (d4_q47),
-	.neg  (neg_q47),
+	.neg  (neg_q46),
 	.xo   (xo_q47),
 	.yo   (yo_q47)
 );
 
-GR Q48_inst (
+Q Q48_inst (
 	.nop  (nop_q48),
 	.xi   (xi_q48),
 	.yi   (yi_q48),
@@ -5474,7 +5474,7 @@ GR Q48_inst (
 	.d2   (d2_q48),
 	.d3   (d3_q48),
 	.d4   (d4_q48),
-	.neg  (neg_q48),
+	.neg  (neg_q47),
 	.xo   (xo_q48),
 	.yo   (yo_q48)
 );
