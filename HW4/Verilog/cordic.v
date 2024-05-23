@@ -1010,20 +1010,19 @@ assign wr_Q_1 		= finish_q11 & (!wr_Q_1_end);
 assign wr_Q_2 		= finish_q21 & (!wr_Q_2_end);
 assign wr_Q_3 		= finish_q31 & (!wr_Q_3_end);
 assign wr_Q_4 		= finish_q41 & (!wr_Q_4_end);
-assign wr_Q_5 		= finish_q41 & (!wr_Q_5_end);
-assign wr_Q_6 		= finish_q41 & (!wr_Q_6_end);
-assign wr_Q_7 		= finish_q41 & (!wr_Q_7_end);
-assign wr_Q_8 		= finish_q41 & (!wr_Q_8_end);
+assign wr_Q_5 		= finish_q36 & (!wr_Q_5_end);
+assign wr_Q_6 		= finish_q31 & (!wr_Q_6_end);
+assign wr_Q_7 		= finish_q21 & (!wr_Q_7_end);
+assign wr_Q_8 		= finish_q11 & (!wr_Q_8_end);
 
 assign wr_Q_data_1 	= (wr_Q_addr_1 >= 4) ? xo_mk1_q : xo_mk2_q;
 assign wr_Q_data_2 	= (wr_Q_addr_2 >= 4) ? xo_mk3_q : xo_mk4_q;
 assign wr_Q_data_3 	= (wr_Q_addr_3 >= 4) ? xo_mk5_q : xo_mk6_q;
 assign wr_Q_data_4 	= (wr_Q_addr_4 >= 4) ? xo_mk7_q : xo_mk8_q;
-// assign wr_Q_data_5 	= (wr_Q_addr_5 >= 4) ? xo_mk7_q : xo_mk8_q;
-// assign wr_Q_data_6 	= (wr_Q_addr_6 >= 4) ? xo_mk7_q : xo_mk8_q;
-// assign wr_Q_data_7 	= (wr_Q_addr_7 >= 4) ? xo_mk7_q : xo_mk8_q;
-// assign wr_Q_data_8 	= (wr_Q_addr_8 >= 4) ? xo_mk7_q : xo_mk8_q;
-
+assign wr_Q_data_5 	= (wr_Q_addr_5 >= 4) ? yo_mk7_q : yo_mk8_q;
+assign wr_Q_data_6 	= (wr_Q_addr_6 >= 4) ? yo_mk7_q : yo_mk8_q;
+assign wr_Q_data_7 	= (wr_Q_addr_7 >= 4) ? yo_mk7_q : yo_mk8_q;
+assign wr_Q_data_8 	= (wr_Q_addr_8 >= 4) ? yo_mk7_q : yo_mk8_q;
 
 /*****************************************************************/
 /**                              FSM                            **/
