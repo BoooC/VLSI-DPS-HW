@@ -1,0 +1,142 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : qr_cordic
+Version: U-2022.12
+Date   : Thu May 23 18:44:36 2024
+****************************************
+
+Operating Conditions: slow   Library: slow
+Wire Load Model Mode: top
+
+  Startpoint: yi_gg3_reg[0]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: wr_R_data_reg[10]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  qr_cordic          tsmc13_wl10           slow
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.50       0.50
+  yi_gg3_reg[0]/CK (DFFRX1)                               0.00       0.50 r
+  yi_gg3_reg[0]/Q (DFFRX1)                                0.77       1.27 f
+  U29135/Y (NOR2XL)                                       0.72       2.00 r
+  U34690/Y (NAND2X1)                                      0.36       2.36 f
+  U34691/Y (NOR2X1)                                       0.42       2.78 r
+  U34692/Y (NAND2X1)                                      0.28       3.05 f
+  U29234/Y (NOR2XL)                                       0.67       3.72 r
+  U29277/Y (NAND2XL)                                      0.46       4.18 f
+  U29329/Y (NOR2XL)                                       0.76       4.94 r
+  U34693/Y (NAND2X1)                                      0.36       5.30 f
+  U34694/Y (NOR2X1)                                       0.41       5.70 r
+  U29614/Y (NAND2XL)                                      0.49       6.20 f
+  U30882/Y (NAND2XL)                                      0.42       6.62 r
+  U34695/Y (XNOR2X1)                                      0.51       7.12 r
+  U29007/Y (CLKINVX1)                                     0.44       7.57 f
+  U30830/Y (OAI21XL)                                      0.51       8.08 r
+  U29003/Y (CLKBUFX3)                                     0.63       8.72 r
+  U34707/Y (NOR2X1)                                       0.21       8.92 f
+  U33290/Y (CLKBUFX3)                                     0.66       9.58 f
+  U60820/Y (XOR2X1)                                       0.40       9.98 f
+  DP_OP_3167J1_173_994/U13/CO (ADDFXL)                    0.54      10.52 f
+  DP_OP_3167J1_173_994/U12/CO (ADDFXL)                    0.53      11.04 f
+  DP_OP_3167J1_173_994/U11/CO (ADDFXL)                    0.53      11.57 f
+  DP_OP_3167J1_173_994/U10/CO (ADDFXL)                    0.53      12.10 f
+  DP_OP_3167J1_173_994/U9/CO (ADDFXL)                     0.53      12.63 f
+  DP_OP_3167J1_173_994/U8/CO (ADDFXL)                     0.53      13.15 f
+  DP_OP_3167J1_173_994/U7/CO (ADDFXL)                     0.53      13.68 f
+  DP_OP_3167J1_173_994/U6/CO (ADDFXL)                     0.53      14.21 f
+  DP_OP_3167J1_173_994/U5/CO (ADDFXL)                     0.53      14.74 f
+  DP_OP_3167J1_173_994/U4/CO (ADDFXL)                     0.53      15.26 f
+  DP_OP_3167J1_173_994/U3/CO (ADDFXL)                     0.53      15.79 f
+  U33309/Y (XOR2X1)                                       0.35      16.13 f
+  U30764/Y (NAND4BBXL)                                    0.46      16.59 f
+  U34719/Y (NAND2X1)                                      0.53      17.13 r
+  U29690/Y (CLKINVX2)                                     0.82      17.95 f
+  U30754/Y (NAND3XL)                                      0.52      18.46 r
+  U30752/Y (OAI21XL)                                      0.26      18.72 f
+  U33321/Y (CLKBUFX3)                                     0.71      19.43 f
+  U29328/Y (NOR2XL)                                       0.56      19.99 r
+  U28889/Y (CLKBUFX3)                                     0.57      20.56 r
+  U60778/Y (XOR2X1)                                       0.36      20.92 f
+  DP_OP_3161J1_167_5076/U13/CO (ADDFXL)                   0.54      21.46 f
+  DP_OP_3161J1_167_5076/U12/CO (ADDFXL)                   0.53      21.99 f
+  DP_OP_3161J1_167_5076/U11/CO (ADDFXL)                   0.53      22.52 f
+  DP_OP_3161J1_167_5076/U10/CO (ADDFXL)                   0.53      23.04 f
+  DP_OP_3161J1_167_5076/U9/CO (ADDFXL)                    0.53      23.57 f
+  DP_OP_3161J1_167_5076/U8/CO (ADDFXL)                    0.53      24.10 f
+  DP_OP_3161J1_167_5076/U7/CO (ADDFXL)                    0.53      24.62 f
+  DP_OP_3161J1_167_5076/U6/CO (ADDFXL)                    0.53      25.15 f
+  DP_OP_3161J1_167_5076/U5/CO (ADDFXL)                    0.53      25.68 f
+  DP_OP_3161J1_167_5076/U4/CO (ADDFXL)                    0.53      26.21 f
+  DP_OP_3161J1_167_5076/U3/CO (ADDFXL)                    0.72      26.93 f
+  U35217/Y (INVXL)                                        0.35      27.28 r
+  U30698/Y (NAND4BBXL)                                    0.34      27.61 r
+  U35225/Y (AND2X2)                                       0.67      28.28 r
+  U30674/Y (NAND3XL)                                      0.34      28.62 f
+  U30663/Y (OAI21XL)                                      0.35      28.97 r
+  U28822/Y (CLKBUFX3)                                     0.60      29.57 r
+  U39686/Y (NOR2X1)                                       0.20      29.77 f
+  U33289/Y (CLKBUFX3)                                     0.59      30.36 f
+  U60689/Y (XOR2X1)                                       0.37      30.73 f
+  DP_OP_3155J1_161_8682/U13/CO (ADDFXL)                   0.53      31.26 f
+  DP_OP_3155J1_161_8682/U12/CO (ADDFXL)                   0.53      31.79 f
+  DP_OP_3155J1_161_8682/U11/CO (ADDFXL)                   0.53      32.32 f
+  DP_OP_3155J1_161_8682/U10/CO (ADDFXL)                   0.53      32.84 f
+  DP_OP_3155J1_161_8682/U9/CO (ADDFXL)                    0.53      33.37 f
+  DP_OP_3155J1_161_8682/U8/CO (ADDFXL)                    0.53      33.90 f
+  DP_OP_3155J1_161_8682/U7/CO (ADDFXL)                    0.53      34.43 f
+  DP_OP_3155J1_161_8682/U6/CO (ADDFXL)                    0.53      34.95 f
+  DP_OP_3155J1_161_8682/U5/CO (ADDFXL)                    0.53      35.48 f
+  DP_OP_3155J1_161_8682/U4/CO (ADDFXL)                    0.53      36.01 f
+  DP_OP_3155J1_161_8682/U3/CO (ADDFXL)                    0.52      36.52 f
+  U30365/Y (INVX1)                                        0.37      36.90 r
+  U30330/Y (NAND4BBXL)                                    0.36      37.25 r
+  U30246/Y (NAND2X1)                                      0.52      37.77 f
+  U35244/Y (NOR2BX1)                                      0.32      38.10 r
+  U35245/Y (CLKBUFX3)                                     0.54      38.64 r
+  U60605/Y (XOR2X1)                                       0.36      39.00 f
+  DP_OP_3878J1_884_5620/U13/CO (ADDFXL)                   0.54      39.54 f
+  DP_OP_3878J1_884_5620/U12/CO (ADDFXL)                   0.53      40.06 f
+  DP_OP_3878J1_884_5620/U11/CO (ADDFXL)                   0.53      40.59 f
+  DP_OP_3878J1_884_5620/U10/CO (ADDFXL)                   0.53      41.12 f
+  DP_OP_3878J1_884_5620/U9/CO (ADDFXL)                    0.53      41.65 f
+  DP_OP_3878J1_884_5620/U8/CO (ADDFXL)                    0.53      42.17 f
+  DP_OP_3878J1_884_5620/U7/CO (ADDFXL)                    0.53      42.70 f
+  DP_OP_3878J1_884_5620/U6/CO (ADDFXL)                    0.53      43.23 f
+  DP_OP_3878J1_884_5620/U5/CO (ADDFXL)                    0.53      43.75 f
+  DP_OP_3878J1_884_5620/U4/CO (ADDFXL)                    0.53      44.28 f
+  DP_OP_3878J1_884_5620/U3/S (ADDFXL)                     0.58      44.86 r
+  U36290/Y (AOI22X1)                                      0.33      45.19 f
+  U36291/Y (OAI22XL)                                      0.60      45.79 r
+  U36292/Y (AOI211X1)                                     0.24      46.03 f
+  U36293/Y (OAI21XL)                                      0.31      46.34 r
+  U36304/Y (NAND3BX1)                                     0.29      46.63 r
+  U29856/Y (INVX1)                                        0.14      46.77 f
+  U36305/Y (AOI2BB2X1)                                    0.28      47.05 r
+  wr_R_data_reg[10]/D (DFFRX1)                            0.00      47.05 r
+  data arrival time                                                 47.05
+
+  clock clk (rise edge)                                  50.00      50.00
+  clock network delay (ideal)                             0.50      50.50
+  clock uncertainty                                      -0.10      50.40
+  wr_R_data_reg[10]/CK (DFFRX1)                           0.00      50.40 r
+  library setup time                                     -0.27      50.13
+  data required time                                                50.13
+  --------------------------------------------------------------------------
+  data required time                                                50.13
+  data arrival time                                                -47.05
+  --------------------------------------------------------------------------
+  slack (MET)                                                        3.08
+
+
+1
