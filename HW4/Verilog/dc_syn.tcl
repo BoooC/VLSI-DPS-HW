@@ -14,9 +14,10 @@ set_fix_multiple_port_nets -all -buffer_constants [get_designs *]
 #compile -map_effort high -area_effort high
 #compile -map_effort high -area_effort high -inc
 #compile_ultra
-compile
+compile_ultra -area
+#compile
 
-write -format ddc     -hierarchy -output "LASER_syn.ddc"
+write -format ddc     -hierarchy -output "qr_cordic_syn.ddc"
 write_sdf -version 1.0  qr_cordic_syn.sdf
 write -format verilog -hierarchy -output qr_cordic_syn.v
 report_area > area.log

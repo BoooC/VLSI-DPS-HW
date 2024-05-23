@@ -1,12 +1,23 @@
 `timescale 1ns/10ps
-`define CYCLE      30.0
+`define CYCLE      50.0
 `define SDFFILE    "qr_cordic_syn.sdf"
 `define End_CYCLE  1000
-    
+`define P1
 
-`define A_MEM      "C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/input_A_matrix.txt"
-`define R_GOLD     "C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/output_R_matrix_golden.txt"
-`define Q_GOLD     "C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/output_Q_matrix_golden.txt"
+`ifdef P1
+	`define A_MEM 	"C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/pattern1/input_A_matrix.txt"
+	`define R_GOLD 	"C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/pattern1/output_R_matrix_golden.txt"
+	`define Q_GOLD 	"C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/pattern1/output_Q_matrix_golden.txt"
+`elsif P2
+	`define A_MEM  	"C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/pattern2/input_A_matrix.txt"
+	`define R_GOLD 	"C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/pattern2/output_R_matrix_golden.txt"
+	`define Q_GOLD 	"C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/pattern2/output_Q_matrix_golden.txt"
+`else
+	`define A_MEM  	"C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/pattern3/input_A_matrix.txt"
+	`define R_GOLD 	"C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/pattern3/output_R_matrix_golden.txt"
+	`define Q_GOLD 	"C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/pattern3/output_Q_matrix_golden.txt"
+`endif
+
 
 module qr_cordic_tb;
 
@@ -48,7 +59,7 @@ wire [4:0] wr_R_addr = R_col*wr_R_row_addr + wr_R_col_addr;
 
 wire [2:0]  wr_Q_addr_1, wr_Q_addr_2, wr_Q_addr_3, wr_Q_addr_4, wr_Q_addr_5, wr_Q_addr_6, wr_Q_addr_7, wr_Q_addr_8;
 
-wire valid;
+wire done;
 
 
 qr_cordic qr_cordic_inst(
@@ -87,7 +98,7 @@ qr_cordic qr_cordic_inst(
 	.wr_Q_8			(wr_Q_8			),
 	.wr_Q_data_8	(wr_Q_data_8	),
 	.wr_Q_addr_8	(wr_Q_addr_8	),
-	.valid			(valid			)
+	.done			(done			)
 );
 
 ROM  #(
@@ -157,7 +168,7 @@ RAM_Q_inst(
 always #(`CYCLE/2) clk = ~clk;
 
 
-//expected result
+// Golden Patterns
 reg signed [OUT_WIDTH-1:0] R_gold [0:R_RAM_SIZE-1];
 reg signed [OUT_WIDTH-1:0] Q_gold [0:Q_RAM_SIZE-1];
 
@@ -171,10 +182,11 @@ initial begin
 	@(negedge clk); #1; rst = 1'b1;
 	#(`CYCLE*2); 	#1; en 	= 1'b1;
    	#(`CYCLE);   	#1; rst = 1'b0;
-   	wait(valid); 	#1	en 	= 1'b0;
+   	wait(done); 	#1	en 	= 1'b0;
 end
 
 
+// print Info
 integer err_R, err_Q;
 integer i = 0;
 integer j = 0;
@@ -193,7 +205,7 @@ initial begin
 		$display("%8d %8d %8d %8d", ROM_A_inst.ROM[4*i], ROM_A_inst.ROM[4*i+1], ROM_A_inst.ROM[4*i+2], ROM_A_inst.ROM[4*i+3]);
 		i = i + 1;
 	end
-	wait (valid);
+	wait (done);
 	/***********************************************************************************/
 	/**                                 Display matrix                                **/
 	/***********************************************************************************/
@@ -242,7 +254,7 @@ initial begin
 	for(v=0; v<Q_len; v=v+1) begin
 		if (RAM_Q_inst.RAM_Q[v] != Q_gold[v] || ^RAM_Q_inst.RAM_Q[v] === 1'bz || ^RAM_Q_inst.RAM_Q[v] === 1'bx) begin
 			err_Q = err_Q + 1;
-			// $display("Data Q[%2d] is wrong! The output data is %5d, but the expected data is %5d.", v, RAM_Q_inst.RAM_Q[v], Q_gold[v]);
+			$display("Data Q[%2d] is wrong! The output data is %5d, but the expected data is %5d.", v, RAM_Q_inst.RAM_Q[v], Q_gold[v]);
 		end
 	end
 	/***********************************************************************************/
@@ -273,7 +285,7 @@ initial begin
 		end
 		$display("*****************************************************************************");
 	end
-	#(`CYCLE); $stop;
+	#(`CYCLE); $finish;
 end
 
 
@@ -283,7 +295,7 @@ always@(posedge clk) begin
 	if(rst) begin
 		cycle <= 0;
 	end
-	else if(~valid) begin
+	else if(~done) begin
 		cycle = cycle + 1;
 	end
 end
@@ -292,10 +304,10 @@ always@(posedge clk) begin
 	if(cycle > `End_CYCLE) begin
 		$display("");
 		$display("***************************************************************************");
-		$display("**  Failed waiting Valid signal, Simulation STOP at cycle %4d           **",cycle);
+		$display("**  Failed waiting Valid signal, Simulation finish at cycle %4d           **",cycle);
 		$display("**  The simulation can't be terminated under normal operation!           **");
 		$display("***************************************************************************");
-		$stop;
+		$finish;
 	end
 end
 

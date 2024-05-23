@@ -1,6 +1,6 @@
 # operating conditions and boundary conditions #
 
-set cycle 30.0
+set cycle 50.0
 create_clock -name clk  -period $cycle   [get_ports  clk] 
 
 set_dont_touch_network      [all_clocks]

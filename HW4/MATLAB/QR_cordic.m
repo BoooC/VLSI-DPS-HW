@@ -28,7 +28,7 @@ A = [  -123   -68   -96   -79
 
 A_high 	=  2^(Input_len-1) - 1;
 A_low	= -2^(Input_len-1); 
-% A = gen_random_matrix(row_R, col_R, A_high, A_low);
+A = gen_random_matrix(row_R, col_R, A_high, A_low);
 
 
 %%% Floating point QR factorization with Given's rotation
@@ -367,18 +367,15 @@ function Save_data(A_origin, Q, R)
 	A_origin = fi(A_origin, 1, 12, 2, F);
 	Q_scaled = fi(Q, 1, 12, 0, F);
 	R_scaled = fi(R, 1, 12, 0, F);
-	
-	A = Q_scaled' * R_scaled;
-	A_scaled = fi(A, 1, 12, 4, F);
 
-	[A_row, A_col] = size(A_scaled);
+	[A_row, A_col] = size(A_origin);
 	[Q_row, Q_col] = size(Q_scaled);
 	[R_row, R_col] = size(R_scaled);
 
 	format short g;
 	
 	% Write original A matrix to a .txt file
-	fid_a_ori = fopen('C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/input_A_matrix.txt', 'w');
+	fid_a_ori = fopen('C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/input_A_matrix.txt', 'w');
 	for i = 1 : A_row
 		for j = 1 : A_col
 			a_o_data = A_origin(i,j);
@@ -387,18 +384,8 @@ function Save_data(A_origin, Q, R)
 	end
 	fclose(fid_a_ori);
 	
-	% Write A matrix to a .txt file
-	fid_a = fopen('C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/output_A_matrix.txt', 'w');
-	for i = 1 : A_row
-		for j = 1 : A_col
-			a_data = A_scaled(i,j);
-			fprintf(fid_a, '%s\n', a_data.bin);
-		end
-	end
-	fclose(fid_a);
-
 	% Write R matrix to a .txt file
-	fid_r = fopen('C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/output_R_matrix_golden.txt', 'w');
+	fid_r = fopen('C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/output_R_matrix_golden.txt', 'w');
 	for i = 1 : R_row
 		for j = 1 : R_col
 			r_data = R_scaled(i,j);
@@ -407,8 +394,8 @@ function Save_data(A_origin, Q, R)
 	end
 	fclose(fid_r);
 
-	% Write R matrix to a .txt file
-	fid_q = fopen('C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/output_Q_matrix_golden.txt', 'w');
+	% Write Q matrix to a .txt file
+	fid_q = fopen('C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/output_Q_matrix_golden.txt', 'w');
 	for i = 1 : Q_row
 		for j = 1 : Q_col
 			q_data = Q_scaled(i,j);
