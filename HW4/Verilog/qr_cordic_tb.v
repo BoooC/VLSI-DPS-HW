@@ -2,7 +2,7 @@
 `define CYCLE      50.0
 `define SDFFILE    "qr_cordic_syn.sdf"
 `define End_CYCLE  1000
-// `define P3
+`define P1
 
 `ifdef P1
 	`define A_MEM 	"C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/pattern1/input_A_matrix.txt"
@@ -204,47 +204,112 @@ initial begin
 	$display("-------------------------------------------------------\n");
  	$display("START!!! Simulation Start .....\n");
  	$display("-------------------------------------------------------\n");
+	/***********************************************************************************/
+	/**                                 Display matrix                                **/
+	/***********************************************************************************/
+	display_A_input;
+	
+	wait (done);
+	// display matrix R
+	display_R_golden;
+	display_R_result;
+	$display("\n");
+
+	// display matrix Q
+	display_Q_golden;
+	display_Q_result;
+	$display("\n");
+	
+	/***********************************************************************************/
+	/**                                  Check Matrix                                 **/
+	/***********************************************************************************/
+	Check_R_result;	// check R matrix
+	$display("\n");
+	Check_Q_result;	// check Q matrix
+	/***********************************************************************************/
+	/**                                     SUMMARY                                   **/
+	/***********************************************************************************/
+	display_Summary;
+	#(2*`CYCLE); $finish;
+end
+
+
+// Calculate the numbers of cycle
+reg [9:0] cycle;
+always@(posedge clk) begin
+	if(rst) begin
+		cycle <= 0;
+	end
+	else if(~done) begin
+		cycle = cycle + 1;
+	end
+end
+
+// Avoid falling into an infinite loop
+always@(posedge clk) begin
+	if(cycle > `End_CYCLE) begin
+		$display("");
+		$display("***************************************************************************");
+		$display("**  Failed waiting Valid signal, Simulation finish at cycle %4d           **",cycle);
+		$display("**  The simulation can't be terminated under normal operation!           **");
+		$display("***************************************************************************");
+		$finish;
+	end
+end
+
+
+/***********************************************************************************/
+/**                                    TASK Def                                   **/
+/***********************************************************************************/
+task display_A_input; begin
 	$display("Input A matrix: ");
 	while(i < R_row) begin
 		$display("%8d %8d %8d %8d", ROM_A_inst.ROM[4*i], ROM_A_inst.ROM[4*i+1], ROM_A_inst.ROM[4*i+2], ROM_A_inst.ROM[4*i+3]);
 		i = i + 1;
 	end
-	wait (done);
-	/***********************************************************************************/
-	/**                                 Display matrix                                **/
-	/***********************************************************************************/
-	// display matrix R
+end 
+endtask	
+
+task display_R_golden; begin
 	$display("");
 	$display("Output R matrix golden pattern: ");
 	while(k < R_row) begin
 		$display("%8d %8d %8d %8d", R_gold[R_col*k], R_gold[R_col*k+1], R_gold[R_col*k+2], R_gold[R_col*k+3]);
 		k = k + 1;
 	end
-	
+end 
+endtask	
+
+task display_R_result; begin
 	$display("R matrix calculated result: ");
 	@(posedge clk);
 	while(j < R_row) begin
 		$display("%8d %8d %8d %8d", RAM_R_inst.RAM_R[R_col*j], RAM_R_inst.RAM_R[R_col*j+1], RAM_R_inst.RAM_R[R_col*j+2], RAM_R_inst.RAM_R[R_col*j+3]);
 		j = j + 1;
 	end
-	// display matrix Q
-	$display("");
+end 
+endtask	
+
+task display_Q_golden; begin
 	$display("Output Q matrix golden pattern: ");
 	while(m < Q_row) begin
 		$display("%8d %8d %8d %8d %8d %8d %8d %8d", Q_gold[Q_col*m+0], Q_gold[Q_col*m+1], Q_gold[Q_col*m+2], Q_gold[Q_col*m+3], Q_gold[Q_col*m+4], Q_gold[Q_col*m+5], Q_gold[Q_col*m+6], Q_gold[Q_col*m+7]);
 		m = m + 1;
 	end
+end 
+endtask	
+
+task display_Q_result; begin
 	$display("Q matrix calculated result: ");
 	@(posedge clk);
 	while(l < Q_row) begin
 		$display("%8d %8d %8d %8d %8d %8d %8d %8d", RAM_Q_inst.RAM_Q[Q_col*l+0], RAM_Q_inst.RAM_Q[Q_col*l+1], RAM_Q_inst.RAM_Q[Q_col*l+2], RAM_Q_inst.RAM_Q[Q_col*l+3], RAM_Q_inst.RAM_Q[Q_col*l+4], RAM_Q_inst.RAM_Q[Q_col*l+5], RAM_Q_inst.RAM_Q[Q_col*l+6], RAM_Q_inst.RAM_Q[Q_col*l+7]);
 		l = l + 1;
 	end
-	/***********************************************************************************/
-	/**                                  Check Matrix                                 **/
-	/***********************************************************************************/
-	// check R matrix
-	$display("");
+end 
+endtask	
+
+task Check_R_result; begin
 	err_R = 0;
 	for(u=0; u<R_len; u=u+1) begin
 		if (RAM_R_inst.RAM_R[u] != R_gold[u]) begin
@@ -254,8 +319,10 @@ initial begin
 			$display("Data R[%2d] is wrong! The output data is %5d, but the expected data is %5d.", u, RAM_R_inst.RAM_R[u], R_gold[u]);
 		end
 	end
-	// check Q matrix
-	$display("");
+end 
+endtask	
+
+task Check_Q_result; begin
 	err_Q = 0;
 	for(v=0; v<Q_len; v=v+1) begin
 		if (RAM_Q_inst.RAM_Q[v] != Q_gold[v] || ^RAM_Q_inst.RAM_Q[v] === 1'bz || ^RAM_Q_inst.RAM_Q[v] === 1'bx) begin
@@ -265,13 +332,13 @@ initial begin
 			$display("Data Q[%2d] is wrong! The output data is %5d, but the expected data is %5d.", v, RAM_Q_inst.RAM_Q[v], Q_gold[v]);
 		end
 	end
-	/***********************************************************************************/
-	/**                                     SUMMARY                                   **/
-	/***********************************************************************************/
-	$display(" ");
+end 
+endtask	
+
+task display_Summary; begin
 	$display("-----------------------------------------------------------------------------");
-	$display("----------------------------  S U M M A R Y  --------------------------------");
-	$display("-----------------------------------------------------------------------------");
+	$display("--------------------------    S U M M A R Y    ------------------------------");
+	$display("*****************************************************************************");
 	if(err_R != 0) begin
 		$display("**              FAIL!!  There are %3d errors in R matrix!                  **", err_R);
 	end
@@ -289,36 +356,41 @@ initial begin
 		$display("**    The simulation results are all Pass!!                                **");
 		$display("**    Get finish at cycle:%3d                                              **", cycle);
 		$display("*****************************************************************************");
+		display_pass_task;
 	end
 	else begin
 		$display("*****************************************************************************");
+		display_fail_task;
 	end
-	#(`CYCLE); $finish;
-end
+end 
+endtask	
 
+// display emoticon
+task display_fail_task; begin
+	$display("\n");
+	$display("        ----------------------------               ");
+	$display("        --                        --       |\__||  ");
+	$display("        --  OOPS!!                --      / X,X  | ");
+	$display("        --                        --    /_____   | ");
+	$display("        --  \033[0;31mSimulation Failed!!\033[m   --   /^ ^ ^ \\  |");
+	$display("        --                        --  |^ ^ ^ ^ |w| ");
+	$display("        ----------------------------   \\m___m__|_|");
+	$display("\n");
+end 
+endtask
 
-// Calculate the numbers of cycle
-reg [9:0] cycle;
-always@(posedge clk) begin
-	if(rst) begin
-		cycle <= 0;
-	end
-	else if(~done) begin
-		cycle = cycle + 1;
-	end
-end
-
-always@(posedge clk) begin
-	if(cycle > `End_CYCLE) begin
-		$display("");
-		$display("***************************************************************************");
-		$display("**  Failed waiting Valid signal, Simulation finish at cycle %4d           **",cycle);
-		$display("**  The simulation can't be terminated under normal operation!           **");
-		$display("***************************************************************************");
-		$finish;
-	end
-end
-
+task display_pass_task; begin
+	$display("\n");
+	$display("        ----------------------------               ");
+	$display("        --                        --       |\__||  ");
+	$display("        --  Congratulations !!    --      / O.O  | ");
+	$display("        --                        --    /_____   | ");
+	$display("        --  \033[0;32mSimulation PASS!!\033[m     --   /^ ^ ^ \\  |");
+	$display("        --                        --  |^ ^ ^ ^ |w| ");
+	$display("        ----------------------------   \\m___m__|_|");
+	$display("\n");
+end 
+endtask
 
 endmodule
 

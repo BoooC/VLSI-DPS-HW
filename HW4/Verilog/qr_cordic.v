@@ -17,24 +17,24 @@ module qr_cordic #(
 	parameter ITER_NUM 	= 12,	parameter ITER_K 	= 13, 	parameter ITER_ONE_CYCLE= 4,
 	parameter ITER_WID 	= 4
 )
-(	input                                   clk,
-	input                                   rst,
-	input                                   en,
-	
-	output                                  rd_A,
-	input      signed	[A_WID-1:0]        	rd_A_data,
-	output reg       	[ROW_WID_R-1:0]    	rd_A_row_addr,
-	output reg       	[COL_WID_R-1:0]    	rd_A_col_addr,
-		
-	output reg       	                   	wr_R,
-	output reg signed	[R_WID-1:0]        	wr_R_data,
-	output reg       	[ROW_WID_R-1:0]    	wr_R_row_addr,
-	output reg       	[COL_WID_R-1:0]    	wr_R_col_addr,
+(	input 	   	      	                     clk,
+	input 	   	      	                     rst,
+	input 	   	      	                     en,
+				
+	output	   	      	                     rd_A,
+	input 	   	signed	[A_WID-1:0]        	rd_A_data,
+	output	reg	      	[ROW_WID_R-1:0]    	rd_A_row_addr,
+	output	reg	      	[COL_WID_R-1:0]    	rd_A_col_addr,
+					
+	output	reg	      	                   	wr_R,
+	output	reg	signed	[R_WID-1:0]        	wr_R_data,
+	output	reg	      	[ROW_WID_R-1:0]    	wr_R_row_addr,
+	output	reg	      	[COL_WID_R-1:0]    	wr_R_col_addr,
 	
 	// Store data separately for each row as multiple records may be output simultaneously
 	output           	                	wr_Q_1, wr_Q_2, wr_Q_3, wr_Q_4, wr_Q_5, wr_Q_6, wr_Q_7, wr_Q_8, 
-	output 	   signed	[Q_WID-1:0]        	wr_Q_data_1, wr_Q_data_2, wr_Q_data_3, wr_Q_data_4, wr_Q_data_5, wr_Q_data_6, wr_Q_data_7, wr_Q_data_8, 
-	output reg	       	[COL_WID_Q-1:0]    	wr_Q_addr_1, wr_Q_addr_2, wr_Q_addr_3, wr_Q_addr_4, wr_Q_addr_5, wr_Q_addr_6, wr_Q_addr_7, wr_Q_addr_8, 
+	output 	   	signed	[Q_WID-1:0]        	wr_Q_data_1, wr_Q_data_2, wr_Q_data_3, wr_Q_data_4, wr_Q_data_5, wr_Q_data_6, wr_Q_data_7, wr_Q_data_8, 
+	output 	reg	       	[COL_WID_Q-1:0]    	wr_Q_addr_1, wr_Q_addr_2, wr_Q_addr_3, wr_Q_addr_4, wr_Q_addr_5, wr_Q_addr_6, wr_Q_addr_7, wr_Q_addr_8, 
 	
 	output 	                              	done
 );
