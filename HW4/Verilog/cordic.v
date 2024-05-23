@@ -628,7 +628,26 @@ reg            signed	[Q_LEN-1:0]         xi_mk4_q;
 reg            signed	[Q_LEN-1:0]         yi_mk4_q;
 wire           signed	[Q_LEN-1:0]         xo_mk4_q;
 wire           signed	[Q_LEN-1:0]         yo_mk4_q;
-
+// Q_MK5
+reg            signed	[Q_LEN-1:0]         xi_mk5_q;
+reg            signed	[Q_LEN-1:0]         yi_mk5_q;
+wire           signed	[Q_LEN-1:0]         xo_mk5_q;
+wire           signed	[Q_LEN-1:0]         yo_mk5_q;
+// Q_MK6
+reg            signed	[Q_LEN-1:0]         xi_mk6_q;
+reg            signed	[Q_LEN-1:0]         yi_mk6_q;
+wire           signed	[Q_LEN-1:0]         xo_mk6_q;
+wire           signed	[Q_LEN-1:0]         yo_mk6_q;
+// Q_MK7
+reg            signed	[Q_LEN-1:0]         xi_mk7_q;
+reg            signed	[Q_LEN-1:0]         yi_mk7_q;
+wire           signed	[Q_LEN-1:0]         xo_mk7_q;
+wire           signed	[Q_LEN-1:0]         yo_mk7_q;
+// Q_MK8
+reg            signed	[Q_LEN-1:0]         xi_mk8_q;
+reg            signed	[Q_LEN-1:0]         yi_mk8_q;
+wire           signed	[Q_LEN-1:0]         xo_mk8_q;
+wire           signed	[Q_LEN-1:0]         yo_mk8_q;
 
 /***********************************************************************************/
 /**                                state parameters                               **/
@@ -644,7 +663,7 @@ localparam DONE		= 3;
 /***********************************************************************************/
 reg	[3:0]	state, next_state;
 
-// R mult k counter
+// mult k counter
 reg	[2:0]	mk_cnt_gg1;
 reg	[2:0]	mk_cnt_gr11;
 reg	[2:0]	mk_cnt_gr12;
@@ -655,8 +674,6 @@ reg	[2:0]	mk_cnt_gr22;
 reg	[2:0]	mk_cnt_gg3;
 reg	[2:0]	mk_cnt_gr31;
 reg	[2:0]	mk_cnt_gg4;
-
-// Q mult k counter
 reg	[2:0]	mk_cnt_q11;
 reg	[2:0]	mk_cnt_q12;
 reg	[2:0]	mk_cnt_q13;
@@ -690,6 +707,92 @@ reg	[2:0]	mk_cnt_q46;
 reg	[2:0]	mk_cnt_q47;
 reg	[2:0]	mk_cnt_q48;
 
+// control signals (reg)
+reg start_gr11_reg;
+reg start_gr12_reg;
+reg start_gr13_reg;
+reg start_gr21_reg;
+reg start_gr22_reg;
+reg start_gr31_reg;
+reg start_q11_reg;
+reg start_q12_reg;
+reg start_q13_reg;
+reg start_q14_reg;
+reg start_q15_reg;
+reg start_q16_reg;
+reg start_q17_reg;
+reg start_q18_reg;
+reg start_q21_reg;
+reg start_q22_reg;
+reg start_q23_reg;
+reg start_q24_reg;
+reg start_q25_reg;
+reg start_q26_reg;
+reg start_q27_reg;
+reg start_q28_reg;
+reg start_q31_reg;
+reg start_q32_reg;
+reg start_q33_reg;
+reg start_q34_reg;
+reg start_q35_reg;
+reg start_q36_reg;
+reg start_q37_reg;
+reg start_q38_reg;
+reg start_q41_reg;
+reg start_q42_reg;
+reg start_q43_reg;
+reg start_q44_reg;
+reg start_q45_reg;
+reg start_q46_reg;
+reg start_q47_reg;
+reg start_q48_reg;
+
+reg last_multk_gg1_reg;
+reg last_multk_gr11_reg; 
+reg last_multk_gr12_reg; 
+reg last_multk_gr13_reg; 
+reg last_multk_gg2_reg; 
+reg last_multk_gr21_reg; 
+reg last_multk_gr22_reg; 
+reg last_multk_gg3_reg; 
+reg last_multk_gr31_reg; 
+reg last_multk_gg4_reg; 
+reg last_multk_q11_reg;
+reg last_multk_q12_reg;
+reg last_multk_q13_reg;
+reg last_multk_q14_reg;
+reg last_multk_q15_reg;
+reg last_multk_q16_reg;
+reg last_multk_q17_reg;
+reg last_multk_q18_reg;
+reg last_multk_q21_reg;
+reg last_multk_q22_reg;
+reg last_multk_q23_reg;
+reg last_multk_q24_reg;
+reg last_multk_q25_reg;
+reg last_multk_q26_reg;
+reg last_multk_q27_reg;
+reg last_multk_q28_reg;
+reg last_multk_q31_reg;
+reg last_multk_q32_reg;
+reg last_multk_q33_reg;
+reg last_multk_q34_reg;
+reg last_multk_q35_reg;
+reg last_multk_q36_reg;
+reg last_multk_q37_reg;
+reg last_multk_q38_reg;
+reg last_multk_q41_reg;
+reg last_multk_q42_reg;
+reg last_multk_q43_reg;
+reg last_multk_q44_reg;
+reg last_multk_q45_reg;
+reg last_multk_q46_reg;
+reg last_multk_q47_reg;
+reg last_multk_q48_reg;
+
+reg [Q_LEN-1:0] rd_data_Q [0:7][0:7];
+reg nop_q18_reg, nop_q28_reg, nop_q38_reg;
+reg [2:0] q_col_1, q_col_2, q_col_3, q_col_4, q_col_5, q_col_6, q_col_7, q_col_8;
 
 /***********************************************************************************/
 /**                                 Combination                                   **/
@@ -702,20 +805,19 @@ wire DONE_wire 	= state == DONE;
 wire OP_wire 	= ROT_wire | MUL_K_wire;
 
 // control signals
-wire read_store 	= rd_A_row_addr == 7 || (rd_A_row_addr == 6 && rd_A_col_addr == 0);
+wire initial_read 	= rd_A_row_addr == 7 || (rd_A_row_addr == 6 && rd_A_col_addr == 0);
 wire rd_A_col_end 	= rd_A_col_addr == 3;
 wire rd_A_end		= rd_A_row_addr == 0 && rd_A_col_end && mk_cnt_gg1 >= 6;
 
 wire start_gg1		= rd_A_row_addr == 7 && rd_A_col_addr == 0;
-wire start_gr11 	= rd_A_row_addr == 7 && rd_A_col_addr == 1;
-wire start_gr12 	= rd_A_row_addr == 7 && rd_A_col_addr == 2;
-wire start_gr13 	= rd_A_row_addr == 7 && rd_A_col_addr == 3;
 wire start_gg2  	= rd_A_row_addr == 5 && rd_A_col_addr == 1;
-wire start_gr21 	= rd_A_row_addr == 5 && rd_A_col_addr == 2;
-wire start_gr22 	= rd_A_row_addr == 5 && rd_A_col_addr == 3;
 wire start_gg3  	= rd_A_row_addr == 3 && rd_A_col_addr == 2;
-wire start_gr31 	= rd_A_row_addr == 3 && rd_A_col_addr == 3;
 wire start_gg4  	= rd_A_row_addr == 1 && rd_A_col_addr == 3;
+
+wire nop_q18_H2L = ~nop_q18 & nop_q18_reg;
+wire nop_q28_H2L = ~nop_q28 & nop_q28_reg;
+wire nop_q38_H2L = ~nop_q38 & nop_q38_reg;
+
 
 wire iter_last_gg1  = iter_gg1  == ITER_NUM;
 wire iter_last_gr11 = iter_gr11 == ITER_NUM;
@@ -727,6 +829,38 @@ wire iter_last_gr22 = iter_gr22 == ITER_NUM;
 wire iter_last_gg3  = iter_gg3  == ITER_NUM;
 wire iter_last_gr31 = iter_gr31 == ITER_NUM;
 wire iter_last_gg4	= iter_gg4  == ITER_NUM;
+wire iter_last_q11	= iter_q11  == ITER_NUM;
+wire iter_last_q12	= iter_q12  == ITER_NUM;
+wire iter_last_q13	= iter_q13  == ITER_NUM;
+wire iter_last_q14	= iter_q14  == ITER_NUM;
+wire iter_last_q15	= iter_q15  == ITER_NUM;
+wire iter_last_q16	= iter_q16  == ITER_NUM;
+wire iter_last_q17	= iter_q17  == ITER_NUM;
+wire iter_last_q18	= iter_q18  == ITER_NUM;
+wire iter_last_q21	= iter_q21  == ITER_NUM;
+wire iter_last_q22	= iter_q22  == ITER_NUM;
+wire iter_last_q23	= iter_q23  == ITER_NUM;
+wire iter_last_q24	= iter_q24  == ITER_NUM;
+wire iter_last_q25	= iter_q25  == ITER_NUM;
+wire iter_last_q26	= iter_q26  == ITER_NUM;
+wire iter_last_q27	= iter_q27  == ITER_NUM;
+wire iter_last_q28	= iter_q28  == ITER_NUM;
+wire iter_last_q31	= iter_q31  == ITER_NUM;
+wire iter_last_q32	= iter_q32  == ITER_NUM;
+wire iter_last_q33	= iter_q33  == ITER_NUM;
+wire iter_last_q34	= iter_q34  == ITER_NUM;
+wire iter_last_q35	= iter_q35  == ITER_NUM;
+wire iter_last_q36	= iter_q36  == ITER_NUM;
+wire iter_last_q37	= iter_q37  == ITER_NUM;
+wire iter_last_q38	= iter_q38  == ITER_NUM;
+wire iter_last_q41	= iter_q41  == ITER_NUM;
+wire iter_last_q42	= iter_q42  == ITER_NUM;
+wire iter_last_q43	= iter_q43  == ITER_NUM;
+wire iter_last_q44	= iter_q44  == ITER_NUM;
+wire iter_last_q45	= iter_q45  == ITER_NUM;
+wire iter_last_q46	= iter_q46  == ITER_NUM;
+wire iter_last_q47	= iter_q47  == ITER_NUM;
+wire iter_last_q48	= iter_q48  == ITER_NUM;
 
 wire multk_gg1		= iter_gg1  == ITER_K;
 wire multk_gr11 	= iter_gr11 == ITER_K;
@@ -738,208 +872,139 @@ wire multk_gr22 	= iter_gr22 == ITER_K;
 wire multk_gg3  	= iter_gg3  == ITER_K;
 wire multk_gr31 	= iter_gr31 == ITER_K;
 wire multk_gg4  	= iter_gg4  == ITER_K;
+wire multk_q11		= iter_q11  == ITER_K;
+wire multk_q12		= iter_q12  == ITER_K;
+wire multk_q13		= iter_q13  == ITER_K;
+wire multk_q14		= iter_q14  == ITER_K;
+wire multk_q15		= iter_q15  == ITER_K;
+wire multk_q16		= iter_q16  == ITER_K;
+wire multk_q17		= iter_q17  == ITER_K;
+wire multk_q18		= iter_q18  == ITER_K;
+wire multk_q21		= iter_q21  == ITER_K;
+wire multk_q22		= iter_q22  == ITER_K;
+wire multk_q23		= iter_q23  == ITER_K;
+wire multk_q24		= iter_q24  == ITER_K;
+wire multk_q25		= iter_q25  == ITER_K;
+wire multk_q26		= iter_q26  == ITER_K;
+wire multk_q27		= iter_q27  == ITER_K;
+wire multk_q28		= iter_q28  == ITER_K;
+wire multk_q31		= iter_q31  == ITER_K;
+wire multk_q32		= iter_q32  == ITER_K;
+wire multk_q33		= iter_q33  == ITER_K;
+wire multk_q34		= iter_q34  == ITER_K;
+wire multk_q35		= iter_q35  == ITER_K;
+wire multk_q36		= iter_q36  == ITER_K;
+wire multk_q37		= iter_q37  == ITER_K;
+wire multk_q38		= iter_q38  == ITER_K;
+wire multk_q41		= iter_q41  == ITER_K;
+wire multk_q42		= iter_q42  == ITER_K;
+wire multk_q43		= iter_q43  == ITER_K;
+wire multk_q44		= iter_q44  == ITER_K;
+wire multk_q45		= iter_q45  == ITER_K;
+wire multk_q46		= iter_q46  == ITER_K;
+wire multk_q47		= iter_q47  == ITER_K;
+wire multk_q48		= iter_q48  == ITER_K;
 
-wire multk_gg1_last	= mk_cnt_gg1  == 6 && multk_gg1;
-wire multk_gr11_last= mk_cnt_gr11 == 6 && multk_gr11;
-wire multk_gr12_last= mk_cnt_gr12 == 6 && multk_gr12;
-wire multk_gr13_last= mk_cnt_gr13 == 6 && multk_gr13;
-wire multk_gg2_last = mk_cnt_gg2  == 5 && multk_gg2;
-wire multk_gr21_last= mk_cnt_gr21 == 5 && multk_gr21;
-wire multk_gr22_last= mk_cnt_gr22 == 5 && multk_gr22;
-wire multk_gg3_last = mk_cnt_gg3  == 4 && multk_gg3;
-wire multk_gr31_last= mk_cnt_gr31 == 4 && multk_gr31;
-wire multk_gg4_last = mk_cnt_gg4  == 3 && multk_gg4;
+wire last_multk_gg1	= mk_cnt_gg1  == 6 && multk_gg1;
+wire last_multk_gr11= mk_cnt_gr11 == 6 && multk_gr11;
+wire last_multk_gr12= mk_cnt_gr12 == 6 && multk_gr12;
+wire last_multk_gr13= mk_cnt_gr13 == 6 && multk_gr13;
+wire last_multk_gg2 = mk_cnt_gg2  == 5 && multk_gg2;
+wire last_multk_gr21= mk_cnt_gr21 == 5 && multk_gr21;
+wire last_multk_gr22= mk_cnt_gr22 == 5 && multk_gr22;
+wire last_multk_gg3 = mk_cnt_gg3  == 4 && multk_gg3;
+wire last_multk_gr31= mk_cnt_gr31 == 4 && multk_gr31;
+wire last_multk_gg4 = mk_cnt_gg4  == 3 && multk_gg4;
+wire last_multk_q11	= mk_cnt_q11  == 6 && multk_q11;
+wire last_multk_q12	= mk_cnt_q12  == 6 && multk_q12;
+wire last_multk_q13	= mk_cnt_q13  == 6 && multk_q13;
+wire last_multk_q14	= mk_cnt_q14  == 6 && multk_q14;
+wire last_multk_q15	= mk_cnt_q15  == 6 && multk_q15;
+wire last_multk_q16	= mk_cnt_q16  == 6 && multk_q16;
+wire last_multk_q17	= mk_cnt_q17  == 6 && multk_q17;
+wire last_multk_q18	= mk_cnt_q18  == 6 && multk_q18;
+wire last_multk_q21	= mk_cnt_q21  == 5 && multk_q21;
+wire last_multk_q22	= mk_cnt_q22  == 5 && multk_q22;
+wire last_multk_q23	= mk_cnt_q23  == 5 && multk_q23;
+wire last_multk_q24	= mk_cnt_q24  == 5 && multk_q24;
+wire last_multk_q25	= mk_cnt_q25  == 5 && multk_q25;
+wire last_multk_q26	= mk_cnt_q26  == 5 && multk_q26;
+wire last_multk_q27	= mk_cnt_q27  == 5 && multk_q27;
+wire last_multk_q28	= mk_cnt_q28  == 5 && multk_q28;
+wire last_multk_q31	= mk_cnt_q31  == 4 && multk_q31;
+wire last_multk_q32	= mk_cnt_q32  == 4 && multk_q32;
+wire last_multk_q33	= mk_cnt_q33  == 4 && multk_q33;
+wire last_multk_q34	= mk_cnt_q34  == 4 && multk_q34;
+wire last_multk_q35	= mk_cnt_q35  == 4 && multk_q35;
+wire last_multk_q36	= mk_cnt_q36  == 4 && multk_q36;
+wire last_multk_q37	= mk_cnt_q37  == 4 && multk_q37;
+wire last_multk_q38	= mk_cnt_q38  == 4 && multk_q38;
+wire last_multk_q41	= mk_cnt_q41  == 3 && multk_q41;
+wire last_multk_q42	= mk_cnt_q42  == 3 && multk_q42;
+wire last_multk_q43	= mk_cnt_q43  == 3 && multk_q43;
+wire last_multk_q44	= mk_cnt_q44  == 3 && multk_q44;
+wire last_multk_q45	= mk_cnt_q45  == 4 && multk_q45;
+wire last_multk_q46	= mk_cnt_q46  == 4 && multk_q46;
+wire last_multk_q47	= mk_cnt_q47  == 4 && multk_q47;
+wire last_multk_q48	= mk_cnt_q48  == 4 && multk_q48;
 
-wire finish_gg1		= multk_gg1_last  || (mk_cnt_gg1  == 7 && iter_gg1  == 0);
-wire finish_gr11	= multk_gr11_last || (mk_cnt_gr11 == 7 && iter_gr11 == 0);
-wire finish_gr12	= multk_gr12_last || (mk_cnt_gr12 == 7 && iter_gr12 == 0);
-wire finish_gr13	= multk_gr13_last || (mk_cnt_gr13 == 7 && iter_gr13 == 0);
-wire finish_gg2 	= multk_gg2_last  || (mk_cnt_gg2  == 6 && iter_gg2  == 0);
-wire finish_gr21	= multk_gr21_last || (mk_cnt_gr21 == 6 && iter_gr21 == 0);
-wire finish_gr22	= multk_gr22_last || (mk_cnt_gr22 == 6 && iter_gr22 == 0);
-wire finish_gg3 	= multk_gg3_last  || (mk_cnt_gg3  == 5 && iter_gg3  == 0);
-wire finish_gr31	= multk_gr31_last || (mk_cnt_gr31 == 5 && iter_gr31 == 0);
-wire finish_gg4 	= multk_gg4_last  || (mk_cnt_gg4  == 4 && iter_gg4  <= 3);
-
-// wire start_Q11 		= rd_row_addr ==  && rd_col_addr == ;
-// wire start_Q12 		= rd_row_addr ==  && rd_col_addr == ;
-// wire start_Q13 		= rd_row_addr ==  && rd_col_addr == ;
-// wire start_Q14 		= rd_row_addr ==  && rd_col_addr == ;
-// wire start_Q15 		= rd_row_addr ==  && rd_col_addr == ;
-// wire start_Q16 		= rd_row_addr ==  && rd_col_addr == ;
-// wire start_Q17 		= rd_row_addr ==  && rd_col_addr == ;
-// wire start_Q18 		= rd_row_addr ==  && rd_col_addr == ;
-// wire start_Q21 		= rd_row_addr ==  && rd_col_addr == ;
-// wire start_Q22 		= rd_row_addr ==  && rd_col_addr == ;
-// wire start_Q23 		= rd_row_addr ==  && rd_col_addr == ;
-// wire start_Q24 		= rd_row_addr ==  && rd_col_addr == ;
-// wire start_Q25 		= rd_row_addr ==  && rd_col_addr == ;
-// wire start_Q26 		= rd_row_addr ==  && rd_col_addr == ;
-// wire start_Q27 		= rd_row_addr ==  && rd_col_addr == ;
-// wire start_Q28 		= rd_row_addr ==  && rd_col_addr == ;
-// wire start_Q31 		= rd_row_addr ==  && rd_col_addr == ;
-// wire start_Q32 		= rd_row_addr ==  && rd_col_addr == ;
-// wire start_Q33 		= rd_row_addr ==  && rd_col_addr == ;
-// wire start_Q34 		= rd_row_addr ==  && rd_col_addr == ;
-// wire start_Q35 		= rd_row_addr ==  && rd_col_addr == ;
-// wire start_Q36 		= rd_row_addr ==  && rd_col_addr == ;
-// wire start_Q37 		= rd_row_addr ==  && rd_col_addr == ;
-// wire start_Q38 		= rd_row_addr ==  && rd_col_addr == ;
-// wire start_Q41 		= rd_row_addr ==  && rd_col_addr == ;
-// wire start_Q42 		= rd_row_addr ==  && rd_col_addr == ;
-// wire start_Q43 		= rd_row_addr ==  && rd_col_addr == ;
-// wire start_Q44 		= rd_row_addr ==  && rd_col_addr == ;
-// wire start_Q45 		= rd_row_addr ==  && rd_col_addr == ;
-// wire start_Q46 		= rd_row_addr ==  && rd_col_addr == ;
-// wire start_Q47 		= rd_row_addr ==  && rd_col_addr == ;
-// wire start_Q48 		= rd_row_addr ==  && rd_col_addr == ;
-// 
-// wire iter_last_Q11	= iter_Q11  == ;
-// wire iter_last_Q12	= iter_Q12  == ;
-// wire iter_last_Q13	= iter_Q13  == ;
-// wire iter_last_Q14	= iter_Q14  == ;
-// wire iter_last_Q15	= iter_Q15  == ;
-// wire iter_last_Q16	= iter_Q16  == ;
-// wire iter_last_Q17	= iter_Q17  == ;
-// wire iter_last_Q18	= iter_Q18  == ;
-// wire iter_last_Q21	= iter_Q21  == ;
-// wire iter_last_Q22	= iter_Q22  == ;
-// wire iter_last_Q23	= iter_Q23  == ;
-// wire iter_last_Q24	= iter_Q24  == ;
-// wire iter_last_Q25	= iter_Q25  == ;
-// wire iter_last_Q26	= iter_Q26  == ;
-// wire iter_last_Q27	= iter_Q27  == ;
-// wire iter_last_Q28	= iter_Q28  == ;
-// wire iter_last_Q31	= iter_Q31  == ;
-// wire iter_last_Q32	= iter_Q32  == ;
-// wire iter_last_Q33	= iter_Q33  == ;
-// wire iter_last_Q34	= iter_Q34  == ;
-// wire iter_last_Q35	= iter_Q35  == ;
-// wire iter_last_Q36	= iter_Q36  == ;
-// wire iter_last_Q37	= iter_Q37  == ;
-// wire iter_last_Q38	= iter_Q38  == ;
-// wire iter_last_Q41	= iter_Q41  == ;
-// wire iter_last_Q42	= iter_Q42  == ;
-// wire iter_last_Q43	= iter_Q43  == ;
-// wire iter_last_Q44	= iter_Q44  == ;
-// wire iter_last_Q45	= iter_Q45  == ;
-// wire iter_last_Q46	= iter_Q46  == ;
-// wire iter_last_Q47	= iter_Q47  == ;
-// wire iter_last_Q48	= iter_Q48  == ;
-// 
-// wire multk_Q11		= iter_Q11  == ;
-// wire multk_Q12		= iter_Q12  == ;
-// wire multk_Q13		= iter_Q13  == ;
-// wire multk_Q14		= iter_Q14  == ;
-// wire multk_Q15		= iter_Q15  == ;
-// wire multk_Q16		= iter_Q16  == ;
-// wire multk_Q17		= iter_Q17  == ;
-// wire multk_Q18		= iter_Q18  == ;
-// wire multk_Q21		= iter_Q21  == ;
-// wire multk_Q22		= iter_Q22  == ;
-// wire multk_Q23		= iter_Q23  == ;
-// wire multk_Q24		= iter_Q24  == ;
-// wire multk_Q25		= iter_Q25  == ;
-// wire multk_Q26		= iter_Q26  == ;
-// wire multk_Q27		= iter_Q27  == ;
-// wire multk_Q28		= iter_Q28  == ;
-// wire multk_Q31		= iter_Q31  == ;
-// wire multk_Q32		= iter_Q32  == ;
-// wire multk_Q33		= iter_Q33  == ;
-// wire multk_Q34		= iter_Q34  == ;
-// wire multk_Q35		= iter_Q35  == ;
-// wire multk_Q36		= iter_Q36  == ;
-// wire multk_Q37		= iter_Q37  == ;
-// wire multk_Q38		= iter_Q38  == ;
-// wire multk_Q41		= iter_Q41  == ;
-// wire multk_Q42		= iter_Q42  == ;
-// wire multk_Q43		= iter_Q43  == ;
-// wire multk_Q44		= iter_Q44  == ;
-// wire multk_Q45		= iter_Q45  == ;
-// wire multk_Q46		= iter_Q46  == ;
-// wire multk_Q47		= iter_Q47  == ;
-// wire multk_Q48		= iter_Q48  == ;
-// 
-// wire last_multk_Q11	= mk_cnt_Q11  ==  && multk_Q11;
-// wire last_multk_Q12	= mk_cnt_Q12  ==  && multk_Q12;
-// wire last_multk_Q13	= mk_cnt_Q13  ==  && multk_Q13;
-// wire last_multk_Q14	= mk_cnt_Q14  ==  && multk_Q14;
-// wire last_multk_Q15	= mk_cnt_Q15  ==  && multk_Q15;
-// wire last_multk_Q16	= mk_cnt_Q16  ==  && multk_Q16;
-// wire last_multk_Q17	= mk_cnt_Q17  ==  && multk_Q17;
-// wire last_multk_Q18	= mk_cnt_Q18  ==  && multk_Q18;
-// wire last_multk_Q21	= mk_cnt_Q21  ==  && multk_Q21;
-// wire last_multk_Q22	= mk_cnt_Q22  ==  && multk_Q22;
-// wire last_multk_Q23	= mk_cnt_Q23  ==  && multk_Q23;
-// wire last_multk_Q24	= mk_cnt_Q24  ==  && multk_Q24;
-// wire last_multk_Q25	= mk_cnt_Q25  ==  && multk_Q25;
-// wire last_multk_Q26	= mk_cnt_Q26  ==  && multk_Q26;
-// wire last_multk_Q27	= mk_cnt_Q27  ==  && multk_Q27;
-// wire last_multk_Q28	= mk_cnt_Q28  ==  && multk_Q28;
-// wire last_multk_Q31	= mk_cnt_Q31  ==  && multk_Q31;
-// wire last_multk_Q32	= mk_cnt_Q32  ==  && multk_Q32;
-// wire last_multk_Q33	= mk_cnt_Q33  ==  && multk_Q33;
-// wire last_multk_Q34	= mk_cnt_Q34  ==  && multk_Q34;
-// wire last_multk_Q35	= mk_cnt_Q35  ==  && multk_Q35;
-// wire last_multk_Q36	= mk_cnt_Q36  ==  && multk_Q36;
-// wire last_multk_Q37	= mk_cnt_Q37  ==  && multk_Q37;
-// wire last_multk_Q38	= mk_cnt_Q38  ==  && multk_Q38;
-// wire last_multk_Q41	= mk_cnt_Q41  ==  && multk_Q41;
-// wire last_multk_Q42	= mk_cnt_Q42  ==  && multk_Q42;
-// wire last_multk_Q43	= mk_cnt_Q43  ==  && multk_Q43;
-// wire last_multk_Q44	= mk_cnt_Q44  ==  && multk_Q44;
-// wire last_multk_Q45	= mk_cnt_Q45  ==  && multk_Q45;
-// wire last_multk_Q46	= mk_cnt_Q46  ==  && multk_Q46;
-// wire last_multk_Q47	= mk_cnt_Q47  ==  && multk_Q47;
-// wire last_multk_Q48	= mk_cnt_Q48  ==  && multk_Q48;
-
-// wire end_Q11  = last_multk_Q11  || (mk_cnt_Q11  ==  && iter_Q11  == );
-// wire end_Q12  = last_multk_Q12  || (mk_cnt_Q12  ==  && iter_Q12  == );
-// wire end_Q13  = last_multk_Q13  || (mk_cnt_Q13  ==  && iter_Q13  == );
-// wire end_Q14  = last_multk_Q14  || (mk_cnt_Q14  ==  && iter_Q14  == );
-// wire end_Q15  = last_multk_Q15  || (mk_cnt_Q15  ==  && iter_Q15  == );
-// wire end_Q16  = last_multk_Q16  || (mk_cnt_Q16  ==  && iter_Q16  == );
-// wire end_Q17  = last_multk_Q17  || (mk_cnt_Q17  ==  && iter_Q17  == );
-// wire end_Q18  = last_multk_Q18  || (mk_cnt_Q18  ==  && iter_Q18  == );
-// wire end_Q21  = last_multk_Q21  || (mk_cnt_Q21  ==  && iter_Q21  == );
-// wire end_Q22  = last_multk_Q22  || (mk_cnt_Q22  ==  && iter_Q22  == );
-// wire end_Q23  = last_multk_Q23  || (mk_cnt_Q23  ==  && iter_Q23  == );
-// wire end_Q24  = last_multk_Q24  || (mk_cnt_Q24  ==  && iter_Q24  == );
-// wire end_Q25  = last_multk_Q25  || (mk_cnt_Q25  ==  && iter_Q25  == );
-// wire end_Q26  = last_multk_Q26  || (mk_cnt_Q26  ==  && iter_Q26  == );
-// wire end_Q27  = last_multk_Q27  || (mk_cnt_Q27  ==  && iter_Q27  == );
-// wire end_Q28  = last_multk_Q28  || (mk_cnt_Q28  ==  && iter_Q28  == );
-// wire end_Q31  = last_multk_Q31  || (mk_cnt_Q31  ==  && iter_Q31  == );
-// wire end_Q32  = last_multk_Q32  || (mk_cnt_Q32  ==  && iter_Q32  == );
-// wire end_Q33  = last_multk_Q33  || (mk_cnt_Q33  ==  && iter_Q33  == );
-// wire end_Q34  = last_multk_Q34  || (mk_cnt_Q34  ==  && iter_Q34  == );
-// wire end_Q35  = last_multk_Q35  || (mk_cnt_Q35  ==  && iter_Q35  == );
-// wire end_Q36  = last_multk_Q36  || (mk_cnt_Q36  ==  && iter_Q36  == );
-// wire end_Q37  = last_multk_Q37  || (mk_cnt_Q37  ==  && iter_Q37  == );
-// wire end_Q38  = last_multk_Q38  || (mk_cnt_Q38  ==  && iter_Q38  == );
-// wire end_Q41  = last_multk_Q41  || (mk_cnt_Q41  ==  && iter_Q41  == );
-// wire end_Q42  = last_multk_Q42  || (mk_cnt_Q42  ==  && iter_Q42  == );
-// wire end_Q43  = last_multk_Q43  || (mk_cnt_Q43  ==  && iter_Q43  == );
-// wire end_Q44  = last_multk_Q44  || (mk_cnt_Q44  ==  && iter_Q44  == );
-// wire end_Q45  = last_multk_Q45  || (mk_cnt_Q45  ==  && iter_Q45  == );
-// wire end_Q46  = last_multk_Q46  || (mk_cnt_Q46  ==  && iter_Q46  == );
-// wire end_Q47  = last_multk_Q47  || (mk_cnt_Q47  ==  && iter_Q47  == );
-// wire end_Q48  = last_multk_Q48  || (mk_cnt_Q48  ==  && iter_Q48  == );
+wire finish_gg1		= last_multk_gg1  || last_multk_gg1_reg;
+wire finish_gr11	= last_multk_gr11 || last_multk_gr11_reg;
+wire finish_gr12	= last_multk_gr12 || last_multk_gr12_reg;
+wire finish_gr13	= last_multk_gr13 || last_multk_gr13_reg;
+wire finish_gg2 	= last_multk_gg2  || last_multk_gg2_reg; 
+wire finish_gr21	= last_multk_gr21 || last_multk_gr21_reg;
+wire finish_gr22	= last_multk_gr22 || last_multk_gr22_reg;
+wire finish_gg3 	= last_multk_gg3  || last_multk_gg3_reg; 
+wire finish_gr31	= last_multk_gr31 || last_multk_gr31_reg;
+wire finish_gg4 	= last_multk_gg4  || last_multk_gg4_reg; 
+wire finish_q11		= last_multk_q11  || last_multk_q11_reg;
+wire finish_q12		= last_multk_q12  || last_multk_q12_reg;
+wire finish_q13		= last_multk_q13  || last_multk_q13_reg;
+wire finish_q14		= last_multk_q14  || last_multk_q14_reg;
+wire finish_q15		= last_multk_q15  || last_multk_q15_reg;
+wire finish_q16		= last_multk_q16  || last_multk_q16_reg;
+wire finish_q17		= last_multk_q17  || last_multk_q17_reg;
+wire finish_q18		= last_multk_q18  || last_multk_q18_reg;
+wire finish_q21		= last_multk_q21  || last_multk_q21_reg;
+wire finish_q22		= last_multk_q22  || last_multk_q22_reg;
+wire finish_q23		= last_multk_q23  || last_multk_q23_reg;
+wire finish_q24		= last_multk_q24  || last_multk_q24_reg;
+wire finish_q25		= last_multk_q25  || last_multk_q25_reg;
+wire finish_q26		= last_multk_q26  || last_multk_q26_reg;
+wire finish_q27		= last_multk_q27  || last_multk_q27_reg;
+wire finish_q28		= last_multk_q28  || last_multk_q28_reg;
+wire finish_q31		= last_multk_q31  || last_multk_q31_reg;
+wire finish_q32		= last_multk_q32  || last_multk_q32_reg;
+wire finish_q33		= last_multk_q33  || last_multk_q33_reg;
+wire finish_q34		= last_multk_q34  || last_multk_q34_reg;
+wire finish_q35		= last_multk_q35  || last_multk_q35_reg;
+wire finish_q36		= last_multk_q36  || last_multk_q36_reg;
+wire finish_q37		= last_multk_q37  || last_multk_q37_reg;
+wire finish_q38		= last_multk_q38  || last_multk_q38_reg;
+wire finish_q41		= last_multk_q41  || last_multk_q41_reg;
+wire finish_q42		= last_multk_q42  || last_multk_q42_reg;
+wire finish_q43		= last_multk_q43  || last_multk_q43_reg;
+wire finish_q44		= last_multk_q44  || last_multk_q44_reg;
+wire finish_q45		= last_multk_q45  || last_multk_q45_reg;
+wire finish_q46		= last_multk_q46  || last_multk_q46_reg;
+wire finish_q47		= last_multk_q47  || last_multk_q47_reg;
+wire finish_q48		= last_multk_q48  || last_multk_q48_reg;
 
 wire wr_R_r13 		= mk_cnt_gg4 == 3 && iter_gg4 == 0;
 wire wr_R_r34 		= mk_cnt_gg4 == 4 && iter_gg4 == 0;
 wire wr_R_r24 		= mk_cnt_gg4 == 4 && iter_gg4 == 1;
 wire wr_R_r14 		= mk_cnt_gg4 == 4 && iter_gg4 == 2;
 
-wire nop_gg1 		= (~OP_wire) | read_store 		| finish_gg1;
+wire nop_gg1 		= (~OP_wire) | initial_read 	| finish_gg1;
 wire nop_gg2 		= (~OP_wire) | mk_cnt_gr11 <= 1 | finish_gg2 | multk_gg2;
 wire nop_gg3 		= (~OP_wire) | mk_cnt_gr21 <= 1 | finish_gg3 | multk_gg3;
 wire nop_gg4 		= (~OP_wire) | mk_cnt_gr31 <= 1 | finish_gg4 | multk_gg4;
 
-wire qr_finish		= mk_cnt_gg4 == 4 && iter_gg4 == 2;
+wire qr_finish		= mk_cnt_q48 == 4;
 
 // output
-assign rd_A = (!rst) && en && (~iter_last_gg1);
+assign rd_A = en && (~iter_last_gg1);
 
 
 /*****************************************************************/
@@ -973,7 +1038,7 @@ end
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		rd_A_row_addr <= 0;
-		rd_A_col_addr <= 3;
+		rd_A_col_addr <= 3;	// rd_A_col_end
 	end
 	else if(rd_A & ~rd_A_end) begin
 		if(rd_A_col_end) begin
@@ -994,7 +1059,7 @@ always @(posedge clk or posedge rst) begin
 		wr_R_col_addr <= 0;
 	end
 	else if(ROT_wire) begin
-		if(multk_gg2_last || multk_gg3_last || multk_gg4_last) begin
+		if(last_multk_gg2 || last_multk_gg3 || last_multk_gg4) begin
 			wr_R_row_addr = wr_R_col_addr + 1;
 			wr_R_col_addr = wr_R_col_addr + 1;
 		end
@@ -1010,19 +1075,19 @@ always @(posedge clk or posedge rst) begin
 end
 
 
-//wr_R_data, wr_R
+// wr_R_data, wr_R
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		wr_R_data <= 0;
 	end
 	else if(OP_wire) begin
 		case(1)
-			multk_gg1_last 	: wr_R_data <= xo_mk1;
-			multk_gg2_last 	: wr_R_data <= xo_mk2;
-			multk_gg3_last 	: wr_R_data <= xo_mk3;
-			multk_gg4_last 	: wr_R_data <= xo_mk4;
-			multk_gr21_last : wr_R_data <= xo_gg2;
-			multk_gr31_last : wr_R_data <= xo_gg3;
+			last_multk_gg1 	: wr_R_data <= xo_mk1;
+			last_multk_gg2 	: wr_R_data <= xo_mk2;
+			last_multk_gg3 	: wr_R_data <= xo_mk3;
+			last_multk_gg4 	: wr_R_data <= xo_mk4;
+			last_multk_gr21 : wr_R_data <= xo_gg2;
+			last_multk_gr31 : wr_R_data <= xo_gg3;
 			wr_R_r13 		: wr_R_data <= yo_gg3;
 			wr_R_r34 		: wr_R_data <= xo_gg4;
 			wr_R_r24 		: wr_R_data <= yo_gg4;
@@ -1040,7 +1105,7 @@ always @(posedge clk or posedge rst) begin
 		wr_R <= 0;
 	end
 	else if(OP_wire) begin
-		wr_R <= multk_gg1_last | multk_gg2_last | multk_gg3_last | multk_gg4_last | multk_gr21_last | multk_gr31_last | wr_R_r13 | wr_R_r34 | wr_R_r24 | wr_R_r14;
+		wr_R <= last_multk_gg1 | last_multk_gg2 | last_multk_gg3 | last_multk_gg4 | last_multk_gr21 | last_multk_gr31 | wr_R_r13 | wr_R_r34 | wr_R_r24 | wr_R_r14;
 	end
 	else begin
 		wr_R <= 0;
@@ -1054,6 +1119,237 @@ always @(posedge clk or posedge rst) begin
 	end
 	else if(DONE_wire) begin
 		valid <= 1;
+	end
+end
+
+
+// Input Q is an identity matrix
+integer i, j;
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		for (i=0; i<8; i=i+1) begin
+			for (j=0; j<8; j=j+1) begin
+				if(i == j) begin
+					rd_data_Q[i][j] <= 12'b0100_0000_0000;
+				end 
+				else begin
+					rd_data_Q[i][j] <= 12'd0;
+				end
+			end
+		end
+	end
+end
+
+
+
+/*****************************************************************/
+/**                           Control                           **/
+/*****************************************************************/
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		nop_q18_reg <= 0;
+		nop_q28_reg <= 0;
+		nop_q38_reg <= 0;
+	end
+	else begin
+		nop_q18_reg <= nop_q18;
+		nop_q28_reg <= nop_q28;
+		nop_q38_reg <= nop_q38;
+	end
+end
+
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		start_gr11_reg	<= 0;
+		start_gr12_reg	<= 0;
+		start_gr13_reg	<= 0;
+		start_q11_reg	<= 0;
+		start_q12_reg	<= 0;
+		start_q13_reg	<= 0;
+		start_q14_reg	<= 0;
+		start_q15_reg	<= 0;
+		start_q16_reg	<= 0;
+		start_q17_reg	<= 0;
+		start_q18_reg	<= 0;
+	end
+	else begin
+		start_gr11_reg	<= start_gg1;
+		start_gr12_reg	<= start_gr11_reg;
+		start_gr13_reg	<= start_gr12_reg;
+		start_q11_reg	<= start_gr13_reg;
+		start_q12_reg	<= start_q11_reg;
+		start_q13_reg	<= start_q12_reg;
+		start_q14_reg	<= start_q13_reg;
+		start_q15_reg	<= start_q14_reg;
+		start_q16_reg	<= start_q15_reg;
+		start_q17_reg	<= start_q16_reg;
+		start_q18_reg	<= start_q17_reg;
+	end
+end
+
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		start_gr21_reg	<= 0;
+		start_gr22_reg	<= 0;
+		start_q21_reg	<= 0;
+		start_q22_reg	<= 0;
+		start_q23_reg	<= 0;
+		start_q24_reg	<= 0;
+		start_q25_reg	<= 0;
+		start_q26_reg	<= 0;
+		start_q27_reg	<= 0;
+		start_q28_reg	<= 0;
+	end
+	else begin
+		start_gr21_reg 	<= start_gg2;
+		start_gr22_reg 	<= start_gr21_reg;
+		start_q21_reg	<= start_gr22_reg;
+		start_q22_reg	<= start_q21_reg;
+		start_q23_reg	<= start_q22_reg;
+		start_q24_reg	<= start_q23_reg;
+		start_q25_reg	<= start_q24_reg;
+		start_q26_reg	<= start_q25_reg;
+		start_q27_reg	<= start_q26_reg;
+		start_q28_reg	<= start_q27_reg;
+	end
+end
+
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		start_gr31_reg	<= 0;
+		start_q31_reg	<= 0;
+		start_q32_reg	<= 0;
+		start_q33_reg	<= 0;
+		start_q34_reg	<= 0;
+		start_q35_reg	<= 0;
+		start_q36_reg	<= 0;
+		start_q37_reg	<= 0;
+		start_q38_reg	<= 0;
+	end
+	else begin
+		start_gr31_reg 	<= start_gg3;
+		start_q31_reg	<= start_gr31_reg;
+		start_q32_reg	<= start_q31_reg;
+		start_q33_reg	<= start_q32_reg;
+		start_q34_reg	<= start_q33_reg;
+		start_q35_reg	<= start_q34_reg;
+		start_q36_reg	<= start_q35_reg;
+		start_q37_reg	<= start_q36_reg;
+		start_q38_reg	<= start_q37_reg;
+	end
+end
+
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		start_q31_reg	<= 0;
+		start_q32_reg	<= 0;
+		start_q33_reg	<= 0;
+		start_q34_reg	<= 0;
+		start_q35_reg	<= 0;
+		start_q36_reg	<= 0;
+		start_q37_reg	<= 0;
+		start_q38_reg	<= 0;
+	end
+	else begin
+		start_q41_reg	<= start_gg4;
+		start_q42_reg	<= start_q41_reg;
+		start_q43_reg	<= start_q42_reg;
+		start_q44_reg	<= start_q43_reg;
+		start_q45_reg	<= start_q44_reg;
+		start_q46_reg	<= start_q45_reg;
+		start_q47_reg	<= start_q46_reg;
+		start_q48_reg	<= start_q47_reg;
+	end
+end
+
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		last_multk_gg1_reg	<= 0;
+		last_multk_gr11_reg <= 0;
+		last_multk_gr12_reg <= 0;
+		last_multk_gr13_reg <= 0;
+		last_multk_gg2_reg  <= 0;
+		last_multk_gr21_reg <= 0;
+		last_multk_gr22_reg <= 0;
+		last_multk_gg3_reg  <= 0;
+		last_multk_gr31_reg <= 0;
+		last_multk_gg4_reg  <= 0;
+		last_multk_q11_reg	<= 0;
+		last_multk_q12_reg	<= 0;
+		last_multk_q13_reg	<= 0;
+		last_multk_q14_reg	<= 0;
+		last_multk_q15_reg	<= 0;
+		last_multk_q16_reg	<= 0;
+		last_multk_q17_reg	<= 0;
+		last_multk_q18_reg	<= 0;
+		last_multk_q21_reg	<= 0;
+		last_multk_q22_reg	<= 0;
+		last_multk_q23_reg	<= 0;
+		last_multk_q24_reg	<= 0;
+		last_multk_q25_reg	<= 0;
+		last_multk_q26_reg	<= 0;
+		last_multk_q27_reg	<= 0;
+		last_multk_q28_reg	<= 0;
+		last_multk_q31_reg	<= 0;
+		last_multk_q32_reg	<= 0;
+		last_multk_q33_reg	<= 0;
+		last_multk_q34_reg	<= 0;
+		last_multk_q35_reg	<= 0;
+		last_multk_q36_reg	<= 0;
+		last_multk_q37_reg	<= 0;
+		last_multk_q38_reg	<= 0;
+		last_multk_q41_reg	<= 0;
+		last_multk_q42_reg	<= 0;
+		last_multk_q43_reg	<= 0;
+		last_multk_q44_reg	<= 0;
+		last_multk_q45_reg	<= 0;
+		last_multk_q46_reg	<= 0;
+		last_multk_q47_reg	<= 0;
+		last_multk_q48_reg	<= 0;
+	end
+	else begin
+		last_multk_gg1_reg	<= finish_gg1;
+		last_multk_gr11_reg <= finish_gr11;
+		last_multk_gr12_reg <= finish_gr12;
+		last_multk_gr13_reg <= finish_gr13;
+		last_multk_gg2_reg  <= finish_gg2;
+		last_multk_gr21_reg <= finish_gr21;
+		last_multk_gr22_reg <= finish_gr22;
+		last_multk_gg3_reg  <= finish_gg3;
+		last_multk_gr31_reg <= finish_gr31;
+		last_multk_gg4_reg  <= finish_gg4;
+		last_multk_q11_reg	<= finish_q11;
+		last_multk_q12_reg	<= finish_q12;
+		last_multk_q13_reg	<= finish_q13;
+		last_multk_q14_reg	<= finish_q14;
+		last_multk_q15_reg	<= finish_q15;
+		last_multk_q16_reg	<= finish_q16;
+		last_multk_q17_reg	<= finish_q17;
+		last_multk_q18_reg	<= finish_q18;
+		last_multk_q21_reg	<= finish_q21;
+		last_multk_q22_reg	<= finish_q22;
+		last_multk_q23_reg	<= finish_q23;
+		last_multk_q24_reg	<= finish_q24;
+		last_multk_q25_reg	<= finish_q25;
+		last_multk_q26_reg	<= finish_q26;
+		last_multk_q27_reg	<= finish_q27;
+		last_multk_q28_reg	<= finish_q28;
+		last_multk_q31_reg	<= finish_q31;
+		last_multk_q32_reg	<= finish_q32;
+		last_multk_q33_reg	<= finish_q33;
+		last_multk_q34_reg	<= finish_q34;
+		last_multk_q35_reg	<= finish_q35;
+		last_multk_q36_reg	<= finish_q36;
+		last_multk_q37_reg	<= finish_q37;
+		last_multk_q38_reg	<= finish_q38;
+		last_multk_q41_reg	<= finish_q41;
+		last_multk_q42_reg	<= finish_q42;
+		last_multk_q43_reg	<= finish_q43;
+		last_multk_q44_reg	<= finish_q44;
+		last_multk_q45_reg	<= finish_q45;
+		last_multk_q46_reg	<= finish_q46;
+		last_multk_q47_reg	<= finish_q47;
+		last_multk_q48_reg	<= finish_q48;
 	end
 end
 
@@ -1132,7 +1428,7 @@ always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		mk_cnt_gg1 <= 0;
 	end
-	else if(MUL_K_wire) begin
+	else if(multk_gg1) begin
 		mk_cnt_gg1 <= mk_cnt_gg1 + 1;
 	end
 end
@@ -1174,7 +1470,7 @@ always @(posedge clk or posedge rst) begin
 	else if(OP_wire) begin
 		case(iter_gr11)
 			0: begin
-				if(start_gr11) begin
+				if(start_gr11_reg) begin
 					xi_gr11 <= 0;
 					yi_gr11 <= rd_A_data;
 				end
@@ -1245,7 +1541,7 @@ always @(posedge clk or posedge rst) begin
 	else if(OP_wire) begin
 		case(iter_gr12)
 			0: begin
-				if(start_gr12) begin
+				if(start_gr12_reg) begin
 					xi_gr12 <= 0;
 					yi_gr12 <= rd_A_data;
 				end
@@ -1316,7 +1612,7 @@ always @(posedge clk or posedge rst) begin
 	else if(OP_wire) begin
 		case(iter_gr13)
 			0: begin
-				if(start_gr13) begin
+				if(start_gr13_reg) begin
 					xi_gr13 <= 0;
 					yi_gr13 <= rd_A_data;
 				end
@@ -1467,7 +1763,7 @@ always @(posedge clk or posedge rst) begin
 	else if(OP_wire) begin
 		case(iter_gr21)
 			0: begin
-				if(start_gr21) begin
+				if(start_gr21_reg) begin
 					xi_gr21 <= 0;
 					yi_gr21 <= yo_mk1;
 				end
@@ -1540,7 +1836,7 @@ always @(posedge clk or posedge rst) begin
 	else if(OP_wire) begin
 		case(iter_gr22)
 			0: begin
-				if(start_gr22) begin
+				if(start_gr22_reg) begin
 					xi_gr22 <= 0;
 					yi_gr22 <= yo_mk1;
 				end
@@ -1692,7 +1988,7 @@ always @(posedge clk or posedge rst) begin
 	else if(OP_wire) begin
 		case(iter_gr31)
 			0: begin
-				if(start_gr31) begin
+				if(start_gr31_reg) begin
 					xi_gr31 <= 0;
 					yi_gr31 <= yo_mk2;
 				end
@@ -1951,6 +2247,2614 @@ always @(posedge clk or posedge rst) begin
 		yi_mk4 <= 0;
 	end
 end
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                 Q                                                                 //
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/*****************************************************************/
+/**                              Q11                            **/
+/*****************************************************************/
+// A11 current iteration number
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		iter_q11 	<= 0;	
+		nop_q11 	<= 0;
+		d1_q11 		<= 0;
+		d2_q11 		<= 0;
+		d3_q11 		<= 0;
+		d4_q11 		<= 0;
+		neg_q11 	<= 0;
+		mk_cnt_q11 	<= 0;
+	end
+	else begin
+		iter_q11 	<= iter_gr13;
+		nop_q11 	<= nop_gr13;
+		d1_q11 		<= d1_gr13;
+		d2_q11 		<= d2_gr13;
+		d3_q11 		<= d3_gr13;
+		d4_q11 		<= d4_gr13;
+		neg_q11 	<= neg_gr13;
+		mk_cnt_q11 	<= mk_cnt_gr13;
+	end
+end
+
+// Q11 input data xi, yi
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_q11 <= 0;
+		yi_q11 <= 0;
+		q_col_1 <= 0;
+	end
+	else if(OP_wire) begin
+		case(iter_q11)
+			0: begin
+				if(start_q11_reg) begin
+					xi_q11 <= 0;
+					yi_q11 <= rd_data_Q[q_col_1][0];
+				end
+				else if(nop_q11 && !finish_q11) begin
+					xi_q11 <= rd_data_Q[q_col_1+1][0];
+					yi_q11 <= yo_q11;
+				end
+				else begin
+					xi_q11 <= xo_q11;
+					yi_q11 <= yo_q11;
+				end
+			end
+			ITER_NUM: q_col_1 <= q_col_1 + 1;
+			ITER_K: begin
+				if(finish_q11) begin
+					xi_q11 <= xo_mk1_q;
+					yi_q11 <= yo_mk1_q;
+				end
+				else begin
+					xi_q11 <= rd_data_Q[q_col_1+1][0];
+					yi_q11 <= xo_mk1_q;
+				end
+			end
+			default: begin
+				xi_q11 <= xo_q11;
+				yi_q11 <= yo_q11;
+			end
+		endcase
+	end
+	else begin
+		xi_q11 <= 0;
+		yi_q11 <= 0;
+	end
+end
+
+
+/*****************************************************************/
+/**                              Q12                           **/
+/*****************************************************************/
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		iter_q12 	<= 0;	
+		nop_q12 	<= 0;
+		d1_q12 		<= 0;
+		d2_q12 		<= 0;
+		d3_q12 		<= 0;
+		d4_q12 		<= 0;
+		neg_q12 	<= 0;
+		mk_cnt_q12 	<= 0;
+	end
+	else begin
+		iter_q12 	<= iter_q11;
+		nop_q12 	<= nop_q11;
+		d1_q12 		<= d1_q11;
+		d2_q12 		<= d2_q11;
+		d3_q12 		<= d3_q11;
+		d4_q12 		<= d4_q11;
+		neg_q12 	<= neg_q11;
+		mk_cnt_q12 	<= mk_cnt_q11;
+	end
+end
+
+// Q11 input data xi, yi
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_q12 <= 0;
+		yi_q12 <= 0;
+		q_col_2<= 0;
+	end
+	else if(OP_wire) begin
+		case(iter_q12)
+			0: begin
+				if(start_q12_reg) begin
+					xi_q12 <= 0;
+					yi_q12 <= rd_data_Q[q_col_2][1];
+				end
+				else if(nop_q12 && !finish_q12) begin
+					xi_q12 <= rd_data_Q[q_col_2+1][1];
+					yi_q12 <= yo_q12;
+				end
+				else begin
+					xi_q12 <= xo_q12;
+					yi_q12 <= yo_q12;
+				end
+			end
+			ITER_NUM: q_col_2 <= q_col_2 + 1;
+			ITER_K: begin
+				if(finish_q12) begin
+					xi_q12 <= xo_mk1_q;
+					yi_q12 <= yo_mk1_q;
+				end
+				else begin
+					xi_q12 <= rd_data_Q[q_col_2+1][1];
+					yi_q12 <= xo_mk1_q;
+				end
+			end
+			default: begin
+				xi_q12 <= xo_q12;
+				yi_q12 <= yo_q12;
+			end
+		endcase
+	end
+	else begin
+		xi_q12 <= 0;
+		yi_q12 <= 0;
+	end
+end
+
+
+/*****************************************************************/
+/**                              Q13                           **/
+/*****************************************************************/
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		iter_q13 	<= 0;	
+		nop_q13 	<= 0;
+		d1_q13 		<= 0;
+		d2_q13 		<= 0;
+		d3_q13 		<= 0;
+		d4_q13 		<= 0;
+		neg_q13 	<= 0;
+		mk_cnt_q13 	<= 0;
+	end
+	else begin
+		iter_q13 	<= iter_q12;
+		nop_q13 	<= nop_q12;
+		d1_q13 		<= d1_q12;
+		d2_q13 		<= d2_q12;
+		d3_q13 		<= d3_q12;
+		d4_q13 		<= d4_q12;
+		neg_q13 	<= neg_q12;
+		mk_cnt_q13 	<= mk_cnt_q12;
+	end
+end
+
+// Q13 input data xi, yi
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_q13 <= 0;
+		yi_q13 <= 0;
+		q_col_3<= 0;
+	end
+	else if(OP_wire) begin
+		case(iter_q13)
+			0: begin
+				if(start_q13_reg) begin
+					xi_q13 <= 0;
+					yi_q13 <= rd_data_Q[q_col_3][2];
+				end
+				else if(nop_q13 && !finish_q13) begin
+					xi_q13 <= rd_data_Q[q_col_3+1][2];
+					yi_q13 <= yo_q13;
+				end
+				else begin
+					xi_q13 <= xo_q13;
+					yi_q13 <= yo_q13;
+				end
+			end
+			ITER_NUM: q_col_3 <= q_col_3 + 1;
+			ITER_K: begin
+				if(finish_q13) begin
+					xi_q13 <= xo_mk1_q;
+					yi_q13 <= yo_mk1_q;
+				end
+				else begin
+					xi_q13 <= rd_data_Q[q_col_3+1][2];
+					yi_q13 <= xo_mk1_q;
+				end
+			end
+			default: begin
+				xi_q13 <= xo_q13;
+				yi_q13 <= yo_q13;
+			end
+		endcase
+	end
+	else begin
+		xi_q13 <= 0;
+		yi_q13 <= 0;
+	end
+end
+
+
+
+
+/*****************************************************************/
+/**                              Q14                            **/
+/*****************************************************************/
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		iter_q14 	<= 0;	
+		nop_q14 	<= 0;
+		d1_q14 		<= 0;
+		d2_q14 		<= 0;
+		d3_q14 		<= 0;
+		d4_q14 		<= 0;
+		neg_q14 	<= 0;
+		mk_cnt_q14 	<= 0;
+	end
+	else begin
+		iter_q14 	<= iter_q13;
+		nop_q14 	<= nop_q13;
+		d1_q14 		<= d1_q13;
+		d2_q14 		<= d2_q13;
+		d3_q14 		<= d3_q13;
+		d4_q14 		<= d4_q13;
+		neg_q14 	<= neg_q13;
+		mk_cnt_q14 	<= mk_cnt_q13;
+	end
+end
+
+// Q14 input data xi, yi
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_q14 <= 0;
+		yi_q14 <= 0;
+		q_col_4<= 0;
+	end
+	else if(OP_wire) begin
+		case(iter_q14)
+			0: begin
+				if(start_q14_reg) begin
+					xi_q14 <= 0;
+					yi_q14 <= rd_data_Q[q_col_4][3];
+				end
+				else if(nop_q14 && !finish_q14) begin
+					xi_q14 <= rd_data_Q[q_col_4+1][3];
+					yi_q14 <= yo_q14;
+				end
+				else begin
+					xi_q14 <= xo_q14;
+					yi_q14 <= yo_q14;
+				end
+			end
+			ITER_NUM: q_col_4 <= q_col_4 + 1;
+			ITER_K: begin
+				if(finish_q14) begin
+					xi_q14 <= xo_mk1_q;
+					yi_q14 <= yo_mk1_q;
+				end
+				else begin
+					xi_q14 <= rd_data_Q[q_col_4+1][3];
+					yi_q14 <= xo_mk1_q;
+				end
+			end
+			default: begin
+				xi_q14 <= xo_q14;
+				yi_q14 <= yo_q14;
+			end
+		endcase
+	end
+	else begin
+		xi_q14 <= 0;
+		yi_q14 <= 0;
+	end
+end
+
+
+/*****************************************************************/
+/**                              Q15                           **/
+/*****************************************************************/
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		iter_q15 	<= 0;	
+		nop_q15 	<= 0;
+		d1_q15 		<= 0;
+		d2_q15 		<= 0;
+		d3_q15 		<= 0;
+		d4_q15 		<= 0;
+		neg_q15 	<= 0;
+		mk_cnt_q15 	<= 0;
+	end
+	else begin
+		iter_q15 	<= iter_q14;
+		nop_q15 	<= nop_q14;
+		d1_q15 		<= d1_q14;
+		d2_q15 		<= d2_q14;
+		d3_q15 		<= d3_q14;
+		d4_q15 		<= d4_q14;
+		neg_q15 	<= neg_q14;
+		mk_cnt_q15 	<= mk_cnt_q14;
+	end
+end
+
+// Q15 input data xi, yi
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_q15 <= 0;
+		yi_q15 <= 0;
+		q_col_5<= 0;
+	end
+	else if(OP_wire) begin
+		case(iter_q15)
+			0: begin
+				if(start_q15_reg) begin
+					xi_q15 <= 0;
+					yi_q15 <= rd_data_Q[q_col_5][4];
+				end
+				else if(nop_q15 && !finish_q15) begin
+					xi_q15 <= rd_data_Q[q_col_5+1][4];
+					yi_q15 <= yo_q15;
+				end
+				else begin
+					xi_q15 <= xo_q15;
+					yi_q15 <= yo_q15;
+				end
+			end
+			ITER_NUM: q_col_5 <= q_col_5 + 1;
+			ITER_K: begin
+				if(finish_q15) begin
+					xi_q15 <= xo_mk2_q;
+					yi_q15 <= yo_mk2_q;
+				end
+				else begin
+					xi_q15 <= rd_data_Q[q_col_5+1][4];
+					yi_q15 <= xo_mk2_q;
+				end
+			end
+			default: begin
+				xi_q15 <= xo_q15;
+				yi_q15 <= yo_q15;
+			end
+		endcase
+	end
+	else begin
+		xi_q15 <= 0;
+		yi_q15 <= 0;
+	end
+end
+
+
+/*****************************************************************/
+/**                              Q16                           **/
+/*****************************************************************/
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		iter_q16 	<= 0;	
+		nop_q16 	<= 0;
+		d1_q16 		<= 0;
+		d2_q16 		<= 0;
+		d3_q16 		<= 0;
+		d4_q16 		<= 0;
+		neg_q16 	<= 0;
+		mk_cnt_q16 	<= 0;
+	end
+	else begin
+		iter_q16 	<= iter_q15;
+		nop_q16 	<= nop_q15;
+		d1_q16 		<= d1_q15;
+		d2_q16 		<= d2_q15;
+		d3_q16 		<= d3_q15;
+		d4_q16 		<= d4_q15;
+		neg_q16 	<= neg_q15;
+		mk_cnt_q16 	<= mk_cnt_q15;
+	end
+end
+
+// Q16 input data xi, yi
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_q16 <= 0;
+		yi_q16 <= 0;
+		q_col_6<= 0;
+	end
+	else if(OP_wire) begin
+		case(iter_q16)
+			0: begin
+				if(start_q16_reg) begin
+					xi_q16 <= 0;
+					yi_q16 <= rd_data_Q[q_col_6][5];
+				end
+				else if(nop_q16 && !finish_q16) begin
+					xi_q16 <= rd_data_Q[q_col_6+1][5];
+					yi_q16 <= yo_q16;
+				end
+				else begin
+					xi_q16 <= xo_q16;
+					yi_q16 <= yo_q16;
+				end
+			end
+			ITER_NUM: q_col_6 <= q_col_6 + 1;
+			ITER_K: begin
+				if(finish_q16) begin
+					xi_q16 <= xo_mk2_q;
+					yi_q16 <= yo_mk2_q;
+				end
+				else begin
+					xi_q16 <= rd_data_Q[q_col_6+1][5];
+					yi_q16 <= xo_mk2_q;
+				end
+			end
+			default: begin
+				xi_q16 <= xo_q16;
+				yi_q16 <= yo_q16;
+			end
+		endcase
+	end
+	else begin
+		xi_q16 <= 0;
+		yi_q16 <= 0;
+	end
+end
+
+
+/*****************************************************************/
+/**                              Q17                           **/
+/*****************************************************************/
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		iter_q17 	<= 0;	
+		nop_q17 	<= 0;
+		d1_q17 		<= 0;
+		d2_q17 		<= 0;
+		d3_q17 		<= 0;
+		d4_q17 		<= 0;
+		neg_q17 	<= 0;
+		mk_cnt_q17 	<= 0;
+	end
+	else begin
+		iter_q17 	<= iter_q16;
+		nop_q17 	<= nop_q16;
+		d1_q17 		<= d1_q16;
+		d2_q17 		<= d2_q16;
+		d3_q17 		<= d3_q16;
+		d4_q17 		<= d4_q16;
+		neg_q17 	<= neg_q16;
+		mk_cnt_q17 	<= mk_cnt_q16;
+	end
+end
+
+// Q17 input data xi, yi
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_q17 <= 0;
+		yi_q17 <= 0;
+		q_col_7<= 0;
+	end
+	else if(OP_wire) begin
+		case(iter_q17)
+			0: begin
+				if(start_q17_reg) begin
+					xi_q17 <= 0;
+					yi_q17 <= rd_data_Q[q_col_7][6];
+				end
+				else if(nop_q17 && !finish_q17) begin
+					xi_q17 <= rd_data_Q[q_col_7+1][6];
+					yi_q17 <= yo_q17;
+				end
+				else begin
+					xi_q17 <= xo_q17;
+					yi_q17 <= yo_q17;
+				end
+			end
+			ITER_NUM: q_col_7 <= q_col_7 + 1;
+			ITER_K: begin
+				if(finish_q17) begin
+					xi_q17 <= xo_mk2_q;
+					yi_q17 <= yo_mk2_q;
+				end
+				else begin
+					xi_q17 <= rd_data_Q[q_col_7+1][6];
+					yi_q17 <= xo_mk2_q;
+				end
+			end
+			default: begin
+				xi_q17 <= xo_q17;
+				yi_q17 <= yo_q17;
+			end
+		endcase
+	end
+	else begin
+		xi_q17 <= 0;
+		yi_q17 <= 0;
+	end
+end
+
+
+/*****************************************************************/
+/**                              Q18                           **/
+/*****************************************************************/
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		iter_q18 	<= 0;	
+		nop_q18 	<= 0;
+		d1_q18 		<= 0;
+		d2_q18 		<= 0;
+		d3_q18 		<= 0;
+		d4_q18 		<= 0;
+		neg_q18 	<= 0;
+		mk_cnt_q18 	<= 0;
+	end
+	else begin
+		iter_q18 	<= iter_q17;
+		nop_q18 	<= nop_q17;
+		d1_q18 		<= d1_q17;
+		d2_q18 		<= d2_q17;
+		d3_q18 		<= d3_q17;
+		d4_q18 		<= d4_q17;
+		neg_q18 	<= neg_q17;
+		mk_cnt_q18 	<= mk_cnt_q17;
+	end
+end
+
+// Q18 input data xi, yi
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_q18 <= 0;
+		yi_q18 <= 0;
+		q_col_8<= 0;
+	end
+	else if(OP_wire) begin
+		case(iter_q18)
+			0: begin
+				if(start_q18_reg) begin
+					xi_q18 <= 0;
+					yi_q18 <= rd_data_Q[q_col_8][7];
+				end
+				else if(nop_q18 && !finish_q18) begin
+					xi_q18 <= rd_data_Q[q_col_8+1][7];
+					yi_q18 <= yo_q18;
+				end
+				else begin
+					xi_q18 <= xo_q18;
+					yi_q18 <= yo_q18;
+				end
+			end
+			ITER_NUM: q_col_8 <= q_col_8 + 1;
+			ITER_K: begin
+				if(finish_q18) begin
+					xi_q18 <= xo_mk2_q;
+					yi_q18 <= yo_mk2_q;
+				end
+				else begin
+					xi_q18 <= rd_data_Q[q_col_8+1][7];
+					yi_q18 <= xo_mk2_q;
+				end
+			end
+			default: begin
+				xi_q18 <= xo_q18;
+				yi_q18 <= yo_q18;
+			end
+		endcase
+	end
+	else begin
+		xi_q18 <= 0;
+		yi_q18 <= 0;
+	end
+end
+
+
+
+/*****************************************************************/
+/**                              Q21                           **/
+/*****************************************************************/
+// Q21 current iteration number
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		iter_q21 	<= 0;	
+		nop_q21 	<= 0;
+		d1_q21 		<= 0;
+		d2_q21 		<= 0;
+		d3_q21 		<= 0;
+		d4_q21 		<= 0;
+		neg_q21 	<= 0;
+		mk_cnt_q21 	<= 0;
+	end
+	else begin
+		iter_q21 	<= iter_gr22;
+		nop_q21 	<= nop_gr22;
+		d1_q21 		<= d1_gr22;
+		d2_q21 		<= d2_gr22;
+		d3_q21 		<= d3_gr22;
+		d4_q21 		<= d4_gr22;
+		neg_q21 	<= neg_gr22;
+		mk_cnt_q21 	<= mk_cnt_gr22;
+	end
+end
+
+// Q21 input data xi, yi
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_q21 <= 0;
+		yi_q21 <= 0;
+	end
+	else if(OP_wire) begin
+		case(iter_q21)
+			0: begin
+				if(start_q21_reg) begin
+					xi_q21 <= 0;
+					yi_q21 <= yo_mk1_q;
+				end
+				else if(nop_q21 && !finish_q21) begin
+					xi_q21 <= yo_mk1_q;
+					yi_q21 <= yo_q21;
+				end
+				else begin
+					xi_q21 <= xo_q21;
+					yi_q21 <= yo_q21;
+				end
+			end
+			ITER_K: begin
+				if(finish_q21) begin
+					xi_q21 <= 0;
+					yi_q21 <= 0;
+				end
+				else begin
+					xi_q21 <= yo_mk1_q;
+					yi_q21 <= xo_mk3_q;
+				end
+			end
+			default: begin
+				xi_q21 <= xo_q21;
+				yi_q21 <= yo_q21;
+			end
+		endcase
+	end
+	else begin
+		xi_q21 <= 0;
+		yi_q21 <= 0;
+	end
+end
+
+
+/*****************************************************************/
+/**                              Q22                           **/
+/*****************************************************************/
+//GR22 current iteration number
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		iter_q22 	<= 0;	
+		nop_q22 	<= 0;
+		d1_q22 		<= 0;
+		d2_q22 		<= 0;
+		d3_q22 		<= 0;
+		d4_q22 		<= 0;
+		neg_q22 	<= 0;
+		mk_cnt_q22 	<= 0;
+	end
+	else begin
+		iter_q22 	<= iter_q21;
+		nop_q22 	<= nop_q21;
+		d1_q22 		<= d1_q21;
+		d2_q22 		<= d2_q21;
+		d3_q22 		<= d3_q21;
+		d4_q22 		<= d4_q21;
+		neg_q22 	<= neg_q21;
+		mk_cnt_q22 	<= mk_cnt_q21;
+	end
+end
+
+//GR22 input data xi, yi
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_q22 <= 0;
+		yi_q22 <= 0;
+	end
+	else if(OP_wire) begin
+		case(iter_q22)
+			0: begin
+				if(start_q22_reg) begin
+					xi_q22 <= 0;
+					yi_q22 <= yo_mk1_q;
+				end
+				else if(nop_q22 && !finish_q22) begin
+					xi_q22 <= yo_mk1_q;
+					yi_q22 <= yo_q22;
+				end
+				else begin
+					xi_q22 <= xo_q22;
+					yi_q22 <= yo_q22;
+				end
+			end
+			ITER_K: begin
+				if(finish_q22) begin
+					xi_q22 <= 0;
+					yi_q22 <= 0;
+				end
+				else begin
+					xi_q22 <= yo_mk1_q;
+					yi_q22 <= xo_mk3_q;
+				end
+			end
+			default: begin
+				xi_q22 <= xo_q22;
+				yi_q22 <= yo_q22;
+			end
+		endcase
+	end
+	else begin
+		xi_q22 <= 0;
+		yi_q22 <= 0;
+	end
+end
+
+
+/*****************************************************************/
+/**                              Q23                           **/
+/*****************************************************************/
+//GR23 current iteration number
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		iter_q23 	<= 0;	
+		nop_q23 	<= 0;
+		d1_q23 		<= 0;
+		d2_q23 		<= 0;
+		d3_q23 		<= 0;
+		d4_q23 		<= 0;
+		neg_q23 	<= 0;
+		mk_cnt_q23 	<= 0;
+	end
+	else begin
+		iter_q23 	<= iter_q22;
+		nop_q23 	<= nop_q22;
+		d1_q23 		<= d1_q22;
+		d2_q23 		<= d2_q22;
+		d3_q23 		<= d3_q22;
+		d4_q23 		<= d4_q22;
+		neg_q23 	<= neg_q22;
+		mk_cnt_q23 	<= mk_cnt_q22;
+	end
+end
+
+//GR23 input data xi, yi
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_q23 <= 0;
+		yi_q23 <= 0;
+	end
+	else if(OP_wire) begin
+		case(iter_q23)
+			0: begin
+				if(start_q23_reg) begin
+					xi_q23 <= 0;
+					yi_q23 <= yo_mk1_q;
+				end
+				else if(nop_q23 && !finish_q23) begin
+					xi_q23 <= yo_mk1_q;
+					yi_q23 <= yo_q23;
+				end
+				else begin
+					xi_q23 <= xo_q23;
+					yi_q23 <= yo_q23;
+				end
+			end
+			ITER_K: begin
+				if(finish_q23) begin
+					xi_q23 <= 0;
+					yi_q23 <= 0;
+				end
+				else begin
+					xi_q23 <= yo_mk1_q;
+					yi_q23 <= xo_mk3_q;
+				end
+			end
+			default: begin
+				xi_q23 <= xo_q23;
+				yi_q23 <= yo_q23;
+			end
+		endcase
+	end
+	else begin
+		xi_q23 <= 0;
+		yi_q23 <= 0;
+	end
+end
+
+
+/*****************************************************************/
+/**                              Q24                           **/
+/*****************************************************************/
+//GR24 current iteration number
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		iter_q24 	<= 0;	
+		nop_q24 	<= 0;
+		d1_q24 		<= 0;
+		d2_q24 		<= 0;
+		d3_q24 		<= 0;
+		d4_q24 		<= 0;
+		neg_q24 	<= 0;
+		mk_cnt_q24 	<= 0;
+	end
+	else begin
+		iter_q24 	<= iter_q23;
+		nop_q24 	<= nop_q23;
+		d1_q24 		<= d1_q23;
+		d2_q24 		<= d2_q23;
+		d3_q24 		<= d3_q23;
+		d4_q24 		<= d4_q23;
+		neg_q24 	<= neg_q23;
+		mk_cnt_q24 	<= mk_cnt_q23;
+	end
+end
+
+//GR24 input data xi, yi
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_q24 <= 0;
+		yi_q24 <= 0;
+	end
+	else if(OP_wire) begin
+		case(iter_q24)
+			0: begin
+				if(start_q24_reg) begin
+					xi_q24 <= 0;
+					yi_q24 <= yo_mk1_q;
+				end
+				else if(nop_q24 && !finish_q24) begin
+					xi_q24 <= yo_mk1_q;
+					yi_q24 <= yo_q24;
+				end
+				else begin
+					xi_q24 <= xo_q24;
+					yi_q24 <= yo_q24;
+				end
+			end
+			ITER_K: begin
+				if(finish_q24) begin
+					xi_q24 <= 0;
+					yi_q24 <= 0;
+				end
+				else begin
+					xi_q24 <= yo_mk1_q;
+					yi_q24 <= xo_mk3_q;
+				end
+			end
+			default: begin
+				xi_q24 <= xo_q24;
+				yi_q24 <= yo_q24;
+			end
+		endcase
+	end
+	else begin
+		xi_q24 <= 0;
+		yi_q24 <= 0;
+	end
+end
+
+
+/*****************************************************************/
+/**                              Q25                           **/
+/*****************************************************************/
+//GR25 current iteration number
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		iter_q25 	<= 0;	
+		nop_q25 	<= 0;
+		d1_q25 		<= 0;
+		d2_q25 		<= 0;
+		d3_q25 		<= 0;
+		d4_q25 		<= 0;
+		neg_q25 	<= 0;
+		mk_cnt_q25 	<= 0;
+	end
+	else begin
+		iter_q25 	<= iter_q24;
+		nop_q25 	<= nop_q24;
+		d1_q25 		<= d1_q24;
+		d2_q25 		<= d2_q24;
+		d3_q25 		<= d3_q24;
+		d4_q25 		<= d4_q24;
+		neg_q25 	<= neg_q24;
+		mk_cnt_q25 	<= mk_cnt_q24;
+	end
+end
+
+//GR25 input data xi, yi
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_q25 <= 0;
+		yi_q25 <= 0;
+	end
+	else if(OP_wire) begin
+		case(iter_q25)
+			0: begin
+				if(start_q25_reg) begin
+					xi_q25 <= 0;
+					yi_q25 <= yo_mk2_q;
+				end
+				else if(nop_q25 && !finish_q25) begin
+					xi_q25 <= yo_mk2_q;
+					yi_q25 <= yo_q25;
+				end
+				else begin
+					xi_q25 <= xo_q25;
+					yi_q25 <= yo_q25;
+				end
+			end
+			ITER_K: begin
+				if(finish_q25) begin
+					xi_q25 <= 0;
+					yi_q25 <= 0;
+				end
+				else begin
+					xi_q25 <= yo_mk2_q;
+					yi_q25 <= xo_mk4_q;
+				end
+			end
+			default: begin
+				xi_q25 <= xo_q25;
+				yi_q25 <= yo_q25;
+			end
+		endcase
+	end
+	else begin
+		xi_q25 <= 0;
+		yi_q25 <= 0;
+	end
+end
+
+
+/*****************************************************************/
+/**                              Q26                           **/
+/*****************************************************************/
+//GR26 current iteration number
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		iter_q26 	<= 0;	
+		nop_q26 	<= 0;
+		d1_q26 		<= 0;
+		d2_q26 		<= 0;
+		d3_q26 		<= 0;
+		d4_q26 		<= 0;
+		neg_q26 	<= 0;
+		mk_cnt_q26 	<= 0;
+	end
+	else begin
+		iter_q26 	<= iter_q25;
+		nop_q26 	<= nop_q25;
+		d1_q26 		<= d1_q25;
+		d2_q26 		<= d2_q25;
+		d3_q26 		<= d3_q25;
+		d4_q26 		<= d4_q25;
+		neg_q26 	<= neg_q25;
+		mk_cnt_q26 	<= mk_cnt_q25;
+	end
+end
+
+//GR26 input data xi, yi
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_q26 <= 0;
+		yi_q26 <= 0;
+	end
+	else if(OP_wire) begin
+		case(iter_q26)
+			0: begin
+				if(start_q26_reg) begin
+					xi_q26 <= 0;
+					yi_q26 <= yo_mk2_q;
+				end
+				else if(nop_q26 && !finish_q26) begin
+					xi_q26 <= yo_mk2_q;
+					yi_q26 <= yo_q26;
+				end
+				else begin
+					xi_q26 <= xo_q26;
+					yi_q26 <= yo_q26;
+				end
+			end
+			ITER_K: begin
+				if(finish_q26) begin
+					xi_q26 <= 0;
+					yi_q26 <= 0;
+				end
+				else begin
+					xi_q26 <= yo_mk2_q;
+					yi_q26 <= xo_mk4_q;
+				end
+			end
+			default: begin
+				xi_q26 <= xo_q26;
+				yi_q26 <= yo_q26;
+			end
+		endcase
+	end
+	else begin
+		xi_q26 <= 0;
+		yi_q26 <= 0;
+	end
+end
+
+
+/*****************************************************************/
+/**                              Q27                           **/
+/*****************************************************************/
+//GR27 current iteration number
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		iter_q27 	<= 0;	
+		nop_q27 	<= 0;
+		d1_q27 		<= 0;
+		d2_q27 		<= 0;
+		d3_q27 		<= 0;
+		d4_q27 		<= 0;
+		neg_q27 	<= 0;
+		mk_cnt_q27 	<= 0;
+	end
+	else begin
+		iter_q27 	<= iter_q26;
+		nop_q27 	<= nop_q26;
+		d1_q27 		<= d1_q26;
+		d2_q27 		<= d2_q26;
+		d3_q27 		<= d3_q26;
+		d4_q27 		<= d4_q26;
+		neg_q27 	<= neg_q26;
+		mk_cnt_q27 	<= mk_cnt_q26;
+	end
+end
+
+//GR27 input data xi, yi
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_q27 <= 0;
+		yi_q27 <= 0;
+	end
+	else if(OP_wire) begin
+		case(iter_q27)
+			0: begin
+				if(start_q27_reg) begin
+					xi_q27 <= 0;
+					yi_q27 <= yo_mk2_q;
+				end
+				else if(nop_q27 && !finish_q27) begin
+					xi_q27 <= yo_mk2_q;
+					yi_q27 <= yo_q27;
+				end
+				else begin
+					xi_q27 <= xo_q27;
+					yi_q27 <= yo_q27;
+				end
+			end
+			ITER_K: begin
+				if(finish_q27) begin
+					xi_q27 <= 0;
+					yi_q27 <= 0;
+				end
+				else begin
+					xi_q27 <= yo_mk2_q;
+					yi_q27 <= xo_mk4_q;
+				end
+			end
+			default: begin
+				xi_q27 <= xo_q27;
+				yi_q27 <= yo_q27;
+			end
+		endcase
+	end
+	else begin
+		xi_q27 <= 0;
+		yi_q27 <= 0;
+	end
+end
+
+
+/*****************************************************************/
+/**                              Q28                           **/
+/*****************************************************************/
+//GR28 current iteration number
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		iter_q28 	<= 0;	
+		nop_q28 	<= 0;
+		d1_q28 		<= 0;
+		d2_q28 		<= 0;
+		d3_q28 		<= 0;
+		d4_q28 		<= 0;
+		neg_q28 	<= 0;
+		mk_cnt_q28 	<= 0;
+	end
+	else begin
+		iter_q28 	<= iter_q27;
+		nop_q28 	<= nop_q27;
+		d1_q28 		<= d1_q27;
+		d2_q28 		<= d2_q27;
+		d3_q28 		<= d3_q27;
+		d4_q28 		<= d4_q27;
+		neg_q28 	<= neg_q27;
+		mk_cnt_q28 	<= mk_cnt_q27;
+	end
+end
+
+//GR28 input data xi, yi
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_q28 <= 0;
+		yi_q28 <= 0;
+	end
+	else if(OP_wire) begin
+		case(iter_q28)
+			0: begin
+				if(start_q28_reg) begin
+					xi_q28 <= 0;
+					yi_q28 <= yo_mk2_q;
+				end
+				else if(nop_q28 && !finish_q28) begin
+					xi_q28 <= yo_mk2_q;
+					yi_q28 <= yo_q28;
+				end
+				else begin
+					xi_q28 <= xo_q28;
+					yi_q28 <= yo_q28;
+				end
+			end
+			ITER_K: begin
+				if(finish_q28) begin
+					xi_q28 <= 0;
+					yi_q28 <= 0;
+				end
+				else begin
+					xi_q28 <= yo_mk2_q;
+					yi_q28 <= xo_mk4_q;
+				end
+			end
+			default: begin
+				xi_q28 <= xo_q28;
+				yi_q28 <= yo_q28;
+			end
+		endcase
+	end
+	else begin
+		xi_q28 <= 0;
+		yi_q28 <= 0;
+	end
+end
+
+/*****************************************************************/
+/**                              Q31                           **/
+/*****************************************************************/
+//GR31 current iteration number
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		iter_q31 	<= 0;	
+		nop_q31 	<= 0;
+		d1_q31 		<= 0;
+		d2_q31 		<= 0;
+		d3_q31 		<= 0;
+		d4_q31 		<= 0;
+		neg_q31 	<= 0;
+		mk_cnt_q31 	<= 0;
+	end
+	else begin
+		iter_q31 	<= iter_gr31;
+		nop_q31 	<= nop_gr31;
+		d1_q31 		<= d1_gr31;
+		d2_q31 		<= d2_gr31;
+		d3_q31 		<= d3_gr31;
+		d4_q31 		<= d4_gr31;
+		neg_q31 	<= neg_gr31;
+		mk_cnt_q31 	<= mk_cnt_gr31;
+	end
+end
+
+// Q31 input data xi, yi
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_q31 <= 0;
+		yi_q31 <= 0;
+	end
+	else if(OP_wire) begin
+		case(iter_q31)
+			0: begin
+				if(start_q31_reg) begin
+					xi_q31 <= 0;
+					yi_q31 <= yo_mk3_q;
+				end
+				else if(nop_q31 && !finish_q31) begin
+					xi_q31 <= yo_mk3_q;
+					yi_q31 <= yo_q31;
+				end
+				else begin
+					xi_q31 <= xo_q31;
+					yi_q31 <= yo_q31;
+				end
+			end
+			ITER_K: begin
+				if(finish_q31) begin
+					xi_q31 <= 0;
+					yi_q31 <= 0;
+				end
+				else begin
+					xi_q31 <= yo_mk3_q;
+					yi_q31 <= xo_mk5_q;
+				end
+			end
+			default: begin
+				xi_q31 <= xo_q31;
+				yi_q31 <= yo_q31;
+			end
+		endcase
+	end
+	else begin
+		xi_q31 <= 0;
+		yi_q31 <= 0;
+	end
+end
+
+/*****************************************************************/
+/**                              Q32                           **/
+/*****************************************************************/
+//GR32 current iteration number
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		iter_q32 	<= 0;	
+		nop_q32 	<= 0;
+		d1_q32 		<= 0;
+		d2_q32 		<= 0;
+		d3_q32 		<= 0;
+		d4_q32 		<= 0;
+		neg_q32 	<= 0;
+		mk_cnt_q32 	<= 0;
+	end
+	else begin
+		iter_q32 	<= iter_q31; 	
+		nop_q32 	<= nop_q31; 	
+		d1_q32 		<= d1_q31;		
+		d2_q32 		<= d2_q31;		
+		d3_q32 		<= d3_q31;		
+		d4_q32 		<= d4_q31; 		
+		neg_q32 	<= neg_q31; 	
+		mk_cnt_q32 	<= mk_cnt_q31; 	
+	end
+end
+
+// Q32 input data xi, yi
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_q32 <= 0;
+		yi_q32 <= 0;
+	end
+	else if(OP_wire) begin
+		case(iter_q32)
+			0: begin
+				if(start_q32_reg) begin
+					xi_q32 <= 0;
+					yi_q32 <= yo_mk3_q;
+				end
+				else if(nop_q32 && !finish_q32) begin
+					xi_q32 <= yo_mk3_q;
+					yi_q32 <= yo_q32;
+				end
+				else begin
+					xi_q32 <= xo_q32;
+					yi_q32 <= yo_q32;
+				end
+			end
+			ITER_K: begin
+				if(finish_q32) begin
+					xi_q32 <= 0;
+					yi_q32 <= 0;
+				end
+				else begin
+					xi_q32 <= yo_mk3_q;
+					yi_q32 <= xo_mk5_q;
+				end
+			end
+			default: begin
+				xi_q32 <= xo_q32;
+				yi_q32 <= yo_q32;
+			end
+		endcase
+	end
+	else begin
+		xi_q32 <= 0;
+		yi_q32 <= 0;
+	end
+end
+
+/*****************************************************************/
+/**                              Q33                           **/
+/*****************************************************************/
+//GR33 current iteration number
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		iter_q33 	<= 0;	
+		nop_q33 	<= 0;
+		d1_q33 		<= 0;
+		d2_q33 		<= 0;
+		d3_q33 		<= 0;
+		d4_q33 		<= 0;
+		neg_q33 	<= 0;
+		mk_cnt_q33 	<= 0;
+	end
+	else begin
+		iter_q33 	<= iter_q32; 	
+		nop_q33 	<= nop_q32; 	
+		d1_q33 		<= d1_q32;		
+		d2_q33 		<= d2_q32;		
+		d3_q33 		<= d3_q32;		
+		d4_q33 		<= d4_q32; 		
+		neg_q33 	<= neg_q32; 	
+		mk_cnt_q33 	<= mk_cnt_q32; 	
+	end
+end
+
+// Q33 input data xi, yi
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_q33 <= 0;
+		yi_q33 <= 0;
+	end
+	else if(OP_wire) begin
+		case(iter_q33)
+			0: begin
+				if(start_q33_reg) begin
+					xi_q33 <= 0;
+					yi_q33 <= yo_mk3_q;
+				end
+				else if(nop_q33 && !finish_q33) begin
+					xi_q33 <= yo_mk3_q;
+					yi_q33 <= yo_q33;
+				end
+				else begin
+					xi_q33 <= xo_q33;
+					yi_q33 <= yo_q33;
+				end
+			end
+			ITER_K: begin
+				if(finish_q33) begin
+					xi_q33 <= 0;
+					yi_q33 <= 0;
+				end
+				else begin
+					xi_q33 <= yo_mk3_q;
+					yi_q33 <= xo_mk5_q;
+				end
+			end
+			default: begin
+				xi_q33 <= xo_q33;
+				yi_q33 <= yo_q33;
+			end
+		endcase
+	end
+	else begin
+		xi_q33 <= 0;
+		yi_q33 <= 0;
+	end
+end
+
+/*****************************************************************/
+/**                              Q34                           **/
+/*****************************************************************/
+//GR34 current iteration number
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		iter_q34 	<= 0;	
+		nop_q34 	<= 0;
+		d1_q34 		<= 0;
+		d2_q34 		<= 0;
+		d3_q34 		<= 0;
+		d4_q34 		<= 0;
+		neg_q34 	<= 0;
+		mk_cnt_q34 	<= 0;
+	end
+	else begin
+		iter_q34 	<= iter_q33; 	
+		nop_q34 	<= nop_q33; 	
+		d1_q34 		<= d1_q33;		
+		d2_q34 		<= d2_q33;		
+		d3_q34 		<= d3_q33;		
+		d4_q34 		<= d4_q33; 		
+		neg_q34 	<= neg_q33; 	
+		mk_cnt_q34 	<= mk_cnt_q33; 	
+	end
+end
+
+// Q34 input data xi, yi
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_q34 <= 0;
+		yi_q34 <= 0;
+	end
+	else if(OP_wire) begin
+		case(iter_q34)
+			0: begin
+				if(start_q34_reg) begin
+					xi_q34 <= 0;
+					yi_q34 <= yo_mk3_q;
+				end
+				else if(nop_q34 && !finish_q34) begin
+					xi_q34 <= yo_mk3_q;
+					yi_q34 <= yo_q34;
+				end
+				else begin
+					xi_q34 <= xo_q34;
+					yi_q34 <= yo_q34;
+				end
+			end
+			ITER_K: begin
+				if(finish_q34) begin
+					xi_q34 <= 0;
+					yi_q34 <= 0;
+				end
+				else begin
+					xi_q34 <= yo_mk3_q;
+					yi_q34 <= xo_mk5_q;
+				end
+			end
+			default: begin
+				xi_q34 <= xo_q34;
+				yi_q34 <= yo_q34;
+			end
+		endcase
+	end
+	else begin
+		xi_q34 <= 0;
+		yi_q34 <= 0;
+	end
+end
+
+/*****************************************************************/
+/**                              Q35                           **/
+/*****************************************************************/
+//GR35 current iteration number
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		iter_q35 	<= 0;	
+		nop_q35 	<= 0;
+		d1_q35 		<= 0;
+		d2_q35 		<= 0;
+		d3_q35 		<= 0;
+		d4_q35 		<= 0;
+		neg_q35 	<= 0;
+		mk_cnt_q35 	<= 0;
+	end
+	else begin
+		iter_q35 	<= iter_q34; 	
+		nop_q35 	<= nop_q34; 	
+		d1_q35 		<= d1_q34;		
+		d2_q35 		<= d2_q34;		
+		d3_q35 		<= d3_q34;		
+		d4_q35 		<= d4_q34; 		
+		neg_q35 	<= neg_q34; 	
+		mk_cnt_q35 	<= mk_cnt_q34; 	
+	end
+end
+
+// Q35 input data xi, yi
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_q35 <= 0;
+		yi_q35 <= 0;
+	end
+	else if(OP_wire) begin
+		case(iter_q35)
+			0: begin
+				if(start_q35_reg) begin
+					xi_q35 <= 0;
+					yi_q35 <= yo_mk4_q;
+				end
+				else if(nop_q35 && !finish_q35) begin
+					xi_q35 <= yo_mk4_q;
+					yi_q35 <= yo_q35;
+				end
+				else begin
+					xi_q35 <= xo_q35;
+					yi_q35 <= yo_q35;
+				end
+			end
+			ITER_K: begin
+				if(finish_q35) begin
+					xi_q35 <= 0;
+					yi_q35 <= 0;
+				end
+				else begin
+					xi_q35 <= yo_mk4_q;
+					yi_q35 <= xo_mk6_q;
+				end
+			end
+			default: begin
+				xi_q35 <= xo_q35;
+				yi_q35 <= yo_q35;
+			end
+		endcase
+	end
+	else begin
+		xi_q35 <= 0;
+		yi_q35 <= 0;
+	end
+end
+
+/*****************************************************************/
+/**                              Q36                           **/
+/*****************************************************************/
+//GR36 current iteration number
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		iter_q36 	<= 0;	
+		nop_q36 	<= 0;
+		d1_q36 		<= 0;
+		d2_q36 		<= 0;
+		d3_q36 		<= 0;
+		d4_q36 		<= 0;
+		neg_q36 	<= 0;
+		mk_cnt_q36 	<= 0;
+	end
+	else begin
+		iter_q36 	<= iter_q35; 	
+		nop_q36 	<= nop_q35; 	
+		d1_q36 		<= d1_q35;		
+		d2_q36 		<= d2_q35;		
+		d3_q36 		<= d3_q35;		
+		d4_q36 		<= d4_q35; 		
+		neg_q36 	<= neg_q35; 	
+		mk_cnt_q36 	<= mk_cnt_q35; 	
+	end
+end
+
+// Q36 input data xi, yi
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_q36 <= 0;
+		yi_q36 <= 0;
+	end
+	else if(OP_wire) begin
+		case(iter_q36)
+			0: begin
+				if(start_q36_reg) begin
+					xi_q36 <= 0;
+					yi_q36 <= yo_mk4_q;
+				end
+				else if(nop_q36 && !finish_q36) begin
+					xi_q36 <= yo_mk4_q;
+					yi_q36 <= yo_q36;
+				end
+				else begin
+					xi_q36 <= xo_q36;
+					yi_q36 <= yo_q36;
+				end
+			end
+			ITER_K: begin
+				if(finish_q36) begin
+					xi_q36 <= 0;
+					yi_q36 <= 0;
+				end
+				else begin
+					xi_q36 <= yo_mk4_q;
+					yi_q36 <= xo_mk6_q;
+				end
+			end
+			default: begin
+				xi_q36 <= xo_q36;
+				yi_q36 <= yo_q36;
+			end
+		endcase
+	end
+	else begin
+		xi_q36 <= 0;
+		yi_q36 <= 0;
+	end
+end
+
+/*****************************************************************/
+/**                              Q37                           **/
+/*****************************************************************/
+//GR37 current iteration number
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		iter_q37 	<= 0;	
+		nop_q37 	<= 0;
+		d1_q37 		<= 0;
+		d2_q37 		<= 0;
+		d3_q37 		<= 0;
+		d4_q37 		<= 0;
+		neg_q37 	<= 0;
+		mk_cnt_q37 	<= 0;
+	end
+	else begin
+		iter_q37 	<= iter_q36; 	
+		nop_q37 	<= nop_q36; 	
+		d1_q37 		<= d1_q36;		
+		d2_q37 		<= d2_q36;		
+		d3_q37 		<= d3_q36;		
+		d4_q37 		<= d4_q36; 		
+		neg_q37 	<= neg_q36; 	
+		mk_cnt_q37 	<= mk_cnt_q36; 	
+	end
+end
+
+// Q37 input data xi, yi
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_q37 <= 0;
+		yi_q37 <= 0;
+	end
+	else if(OP_wire) begin
+		case(iter_q37)
+			0: begin
+				if(start_q37_reg) begin
+					xi_q37 <= 0;
+					yi_q37 <= yo_mk4_q;
+				end
+				else if(nop_q37 && !finish_q37) begin
+					xi_q37 <= yo_mk4_q;
+					yi_q37 <= yo_q37;
+				end
+				else begin
+					xi_q37 <= xo_q37;
+					yi_q37 <= yo_q37;
+				end
+			end
+			ITER_K: begin
+				if(finish_q37) begin
+					xi_q37 <= 0;
+					yi_q37 <= 0;
+				end
+				else begin
+					xi_q37 <= yo_mk4_q;
+					yi_q37 <= xo_mk6_q;
+				end
+			end
+			default: begin
+				xi_q37 <= xo_q37;
+				yi_q37 <= yo_q37;
+			end
+		endcase
+	end
+	else begin
+		xi_q37 <= 0;
+		yi_q37 <= 0;
+	end
+end
+
+/*****************************************************************/
+/**                              Q38                           **/
+/*****************************************************************/
+//GR38 current iteration number
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		iter_q38 	<= 0;	
+		nop_q38 	<= 0;
+		d1_q38 		<= 0;
+		d2_q38 		<= 0;
+		d3_q38 		<= 0;
+		d4_q38 		<= 0;
+		neg_q38 	<= 0;
+		mk_cnt_q38 	<= 0;
+	end
+	else begin
+		iter_q38 	<= iter_q37; 	
+		nop_q38 	<= nop_q37; 	
+		d1_q38 		<= d1_q37;		
+		d2_q38 		<= d2_q37;		
+		d3_q38 		<= d3_q37;		
+		d4_q38 		<= d4_q37; 		
+		neg_q38 	<= neg_q37; 	
+		mk_cnt_q38 	<= mk_cnt_q37; 	
+	end
+end
+
+// Q38 input data xi, yi
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_q38 <= 0;
+		yi_q38 <= 0;
+	end
+	else if(OP_wire) begin
+		case(iter_q38)
+			0: begin
+				if(start_q38_reg) begin
+					xi_q38 <= 0;
+					yi_q38 <= yo_mk4_q;
+				end
+				else if(nop_q38 && !finish_q38) begin
+					xi_q38 <= yo_mk4_q;
+					yi_q38 <= yo_q38;
+				end
+				else begin
+					xi_q38 <= xo_q38;
+					yi_q38 <= yo_q38;
+				end
+			end
+			ITER_K: begin
+				if(finish_q38) begin
+					xi_q38 <= 0;
+					yi_q38 <= 0;
+				end
+				else begin
+					xi_q38 <= yo_mk4_q;
+					yi_q38 <= xo_mk6_q;
+				end
+			end
+			default: begin
+				xi_q38 <= xo_q38;
+				yi_q38 <= yo_q38;
+			end
+		endcase
+	end
+	else begin
+		xi_q38 <= 0;
+		yi_q38 <= 0;
+	end
+end
+
+
+
+/*****************************************************************/
+/**                              Q41                           **/
+/*****************************************************************/
+//GR41 current iteration number
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		iter_q41 	<= 0;	
+		nop_q41 	<= 0;
+		d1_q41 		<= 0;
+		d2_q41 		<= 0;
+		d3_q41 		<= 0;
+		d4_q41 		<= 0;
+		neg_q41 	<= 0;
+		mk_cnt_q41 	<= 0;
+	end
+	else begin
+		iter_q41 	<= iter_gg4;
+		nop_q41 	<= nop_gg4;
+		d1_q41 		<= d1_gg4;
+		d2_q41 		<= d2_gg4;
+		d3_q41 		<= d3_gg4;
+		d4_q41 		<= d4_gg4;
+		neg_q41 	<= neg_gg4;
+		mk_cnt_q41 	<= mk_cnt_gg4;
+	end
+end
+
+// Q41 input data xi, yi
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_q41 <= 0;
+		yi_q41 <= 0;
+	end
+	else if(OP_wire) begin
+		case(iter_q41)
+			0: begin
+				if(start_q41_reg) begin
+					xi_q41 <= 0;
+					yi_q41 <= yo_mk5_q;
+				end
+				else if(nop_q41 && !finish_q41) begin
+					xi_q41 <= yo_mk5_q;
+					yi_q41 <= yo_q41;
+				end
+				else begin
+					xi_q41 <= xo_q41;
+					yi_q41 <= yo_q41;
+				end
+			end
+			ITER_K: begin
+				if(finish_q41) begin
+					xi_q41 <= 0;
+					yi_q41 <= 0;
+				end
+				else begin
+					xi_q41 <= yo_mk5_q;
+					yi_q41 <= xo_mk7_q;
+				end
+			end
+			default: begin
+				xi_q41 <= xo_q41;
+				yi_q41 <= yo_q41;
+			end
+		endcase
+	end
+	else begin
+		xi_q41 <= 0;
+		xi_q41 <= 0;
+	end
+end
+
+
+/*****************************************************************/
+/**                              Q42                           **/
+/*****************************************************************/
+//GR42 current iteration number
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		iter_q42 	<= 0;	
+		nop_q42 	<= 0;
+		d1_q42 		<= 0;
+		d2_q42 		<= 0;
+		d3_q42 		<= 0;
+		d4_q42 		<= 0;
+		neg_q42 	<= 0;
+		mk_cnt_q42 	<= 0;
+	end
+	else begin
+		iter_q42 	<= iter_q41;
+		nop_q42 	<= nop_q41;
+		d1_q42 		<= d1_q41;
+		d2_q42 		<= d2_q41;
+		d3_q42 		<= d3_q41;
+		d4_q42 		<= d4_q41;
+		neg_q42 	<= neg_q41;
+		mk_cnt_q42 	<= mk_cnt_q41;
+	end
+end
+
+// Q42 input data xi, yi
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_q42 <= 0;
+		yi_q42 <= 0;
+	end
+	else if(OP_wire) begin
+		case(iter_q42)
+			0: begin
+				if(start_q42_reg) begin
+					xi_q42 <= 0;
+					yi_q42 <= yo_mk5_q;
+				end
+				else if(nop_q42 && !finish_q42) begin
+					xi_q42 <= yo_mk5_q;
+					yi_q42 <= yo_q42;
+				end
+				else begin
+					xi_q42 <= xo_q42;
+					yi_q42 <= yo_q42;
+				end
+			end
+			ITER_K: begin
+				if(finish_q42) begin
+					xi_q42 <= 0;
+					yi_q42 <= 0;
+				end
+				else begin
+					xi_q42 <= yo_mk5_q;
+					yi_q42 <= xo_mk7_q;
+				end
+			end
+			default: begin
+				xi_q42 <= xo_q42;
+				yi_q42 <= yo_q42;
+			end
+		endcase
+	end
+	else begin
+		xi_q42 <= 0;
+		xi_q42 <= 0;
+	end
+end
+
+
+/*****************************************************************/
+/**                              Q43                           **/
+/*****************************************************************/
+//GR43 current iteration number
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		iter_q43 	<= 0;	
+		nop_q43 	<= 0;
+		d1_q43 		<= 0;
+		d2_q43 		<= 0;
+		d3_q43 		<= 0;
+		d4_q43 		<= 0;
+		neg_q43 	<= 0;
+		mk_cnt_q43 	<= 0;
+	end
+	else begin
+		iter_q43 	<= iter_q42;
+		nop_q43 	<= nop_q42;
+		d1_q43 		<= d1_q42;
+		d2_q43 		<= d2_q42;
+		d3_q43 		<= d3_q42;
+		d4_q43 		<= d4_q42;
+		neg_q43 	<= neg_q42;
+		mk_cnt_q43 	<= mk_cnt_q42;
+	end
+end
+
+// Q43 input data xi, yi
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_q43 <= 0;
+		yi_q43 <= 0;
+	end
+	else if(OP_wire) begin
+		case(iter_q43)
+			0: begin
+				if(start_q43_reg) begin
+					xi_q43 <= 0;
+					yi_q43 <= yo_mk5_q;
+				end
+				else if(nop_q43 && !finish_q43) begin
+					xi_q43 <= yo_mk5_q;
+					yi_q43 <= yo_q43;
+				end
+				else begin
+					xi_q43 <= xo_q43;
+					yi_q43 <= yo_q43;
+				end
+			end
+			ITER_K: begin
+				if(finish_q43) begin
+					xi_q43 <= 0;
+					yi_q43 <= 0;
+				end
+				else begin
+					xi_q43 <= yo_mk5_q;
+					yi_q43 <= xo_mk7_q;
+				end
+			end
+			default: begin
+				xi_q43 <= xo_q43;
+				yi_q43 <= yo_q43;
+			end
+		endcase
+	end
+	else begin
+		xi_q43 <= 0;
+		xi_q43 <= 0;
+	end
+end
+
+
+/*****************************************************************/
+/**                              Q44                           **/
+/*****************************************************************/
+//GR44 current iteration number
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		iter_q44 	<= 0;	
+		nop_q44 	<= 0;
+		d1_q44 		<= 0;
+		d2_q44 		<= 0;
+		d3_q44 		<= 0;
+		d4_q44 		<= 0;
+		neg_q44 	<= 0;
+		mk_cnt_q44 	<= 0;
+	end
+	else begin
+		iter_q44 	<= iter_q43;
+		nop_q44 	<= nop_q43;
+		d1_q44 		<= d1_q43;
+		d2_q44 		<= d2_q43;
+		d3_q44 		<= d3_q43;
+		d4_q44 		<= d4_q43;
+		neg_q44 	<= neg_q43;
+		mk_cnt_q44 	<= mk_cnt_q43;
+	end
+end
+
+// Q44 input data xi, yi
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_q44 <= 0;
+		yi_q44 <= 0;
+	end
+	else if(OP_wire) begin
+		case(iter_q44)
+			0: begin
+				if(start_q44_reg) begin
+					xi_q44 <= 0;
+					yi_q44 <= yo_mk5_q;
+				end
+				else if(nop_q44 && !finish_q44) begin
+					xi_q44 <= yo_mk5_q;
+					yi_q44 <= yo_q44;
+				end
+				else begin
+					xi_q44 <= xo_q44;
+					yi_q44 <= yo_q44;
+				end
+			end
+			ITER_K: begin
+				if(finish_q44) begin
+					xi_q44 <= 0;
+					yi_q44 <= 0;
+				end
+				else begin
+					xi_q44 <= yo_mk5_q;
+					yi_q44 <= xo_mk7_q;
+				end
+			end
+			default: begin
+				xi_q44 <= xo_q44;
+				yi_q44 <= yo_q44;
+			end
+		endcase
+	end
+	else begin
+		xi_q44 <= 0;
+		xi_q44 <= 0;
+	end
+end
+
+
+/*****************************************************************/
+/**                              Q45                           **/
+/*****************************************************************/
+//GR45 current iteration number
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		iter_q45 	<= 0;	
+		nop_q45 	<= 0;
+		d1_q45 		<= 0;
+		d2_q45 		<= 0;
+		d3_q45 		<= 0;
+		d4_q45 		<= 0;
+		neg_q45 	<= 0;
+		mk_cnt_q45 	<= 0;
+	end
+	else begin
+		iter_q45 	<= iter_q44;
+		nop_q45 	<= nop_q44;
+		d1_q45 		<= d1_q44;
+		d2_q45 		<= d2_q44;
+		d3_q45 		<= d3_q44;
+		d4_q45 		<= d4_q44;
+		neg_q45 	<= neg_q44;
+		mk_cnt_q45 	<= mk_cnt_q44;
+	end
+end
+
+// Q45 input data xi, yi
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_q45 <= 0;
+		yi_q45 <= 0;
+	end
+	else if(OP_wire) begin
+		case(iter_q45)
+			0: begin
+				if(start_q45_reg) begin
+					xi_q45 <= 0;
+					yi_q45 <= yo_mk6_q;
+				end
+				else if(nop_q45 && !finish_q45) begin
+					xi_q45 <= yo_mk6_q;
+					yi_q45 <= yo_q45;
+				end
+				else begin
+					xi_q45 <= xo_q45;
+					yi_q45 <= yo_q45;
+				end
+			end
+			ITER_K: begin
+				if(finish_q45) begin
+					xi_q45 <= 0;
+					yi_q45 <= 0;
+				end
+				else begin
+					xi_q45 <= yo_mk6_q;
+					yi_q45 <= xo_mk8_q;
+				end
+			end
+			default: begin
+				xi_q45 <= xo_q45;
+				yi_q45 <= yo_q45;
+			end
+		endcase
+	end
+	else begin
+		xi_q45 <= 0;
+		xi_q45 <= 0;
+	end
+end
+
+
+/*****************************************************************/
+/**                              Q46                           **/
+/*****************************************************************/
+//GR46 current iteration number
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		iter_q46 	<= 0;	
+		nop_q46 	<= 0;
+		d1_q46 		<= 0;
+		d2_q46 		<= 0;
+		d3_q46 		<= 0;
+		d4_q46 		<= 0;
+		neg_q46 	<= 0;
+		mk_cnt_q46 	<= 0;
+	end
+	else begin
+		iter_q46 	<= iter_q45;
+		nop_q46 	<= nop_q45;
+		d1_q46 		<= d1_q45;
+		d2_q46 		<= d2_q45;
+		d3_q46 		<= d3_q45;
+		d4_q46 		<= d4_q45;
+		neg_q46 	<= neg_q45;
+		mk_cnt_q46 	<= mk_cnt_q45;
+	end
+end
+
+// Q46 input data xi, yi
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_q46 <= 0;
+		yi_q46 <= 0;
+	end
+	else if(OP_wire) begin
+		case(iter_q46)
+			0: begin
+				if(start_q46_reg) begin
+					xi_q46 <= 0;
+					yi_q46 <= yo_mk6_q;
+				end
+				else if(nop_q46 && !finish_q46) begin
+					xi_q46 <= yo_mk6_q;
+					yi_q46 <= yo_q46;
+				end
+				else begin
+					xi_q46 <= xo_q46;
+					yi_q46 <= yo_q46;
+				end
+			end
+			ITER_K: begin
+				if(finish_q46) begin
+					xi_q46 <= 0;
+					yi_q46 <= 0;
+				end
+				else begin
+					xi_q46 <= yo_mk6_q;
+					yi_q46 <= xo_mk8_q;
+				end
+			end
+			default: begin
+				xi_q46 <= xo_q46;
+				yi_q46 <= yo_q46;
+			end
+		endcase
+	end
+	else begin
+		xi_q46 <= 0;
+		xi_q46 <= 0;
+	end
+end
+
+
+/*****************************************************************/
+/**                              Q47                           **/
+/*****************************************************************/
+//GR47 current iteration number
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		iter_q47 	<= 0;	
+		nop_q47 	<= 0;
+		d1_q47 		<= 0;
+		d2_q47 		<= 0;
+		d3_q47 		<= 0;
+		d4_q47 		<= 0;
+		neg_q47 	<= 0;
+		mk_cnt_q47 	<= 0;
+	end
+	else begin
+		iter_q47 	<= iter_q46;
+		nop_q47 	<= nop_q46;
+		d1_q47 		<= d1_q46;
+		d2_q47 		<= d2_q46;
+		d3_q47 		<= d3_q46;
+		d4_q47 		<= d4_q46;
+		neg_q47 	<= neg_q46;
+		mk_cnt_q47 	<= mk_cnt_q46;
+	end
+end
+
+// Q47 input data xi, yi
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_q47 <= 0;
+		yi_q47 <= 0;
+	end
+	else if(OP_wire) begin
+		case(iter_q47)
+			0: begin
+				if(start_q47_reg) begin
+					xi_q47 <= 0;
+					yi_q47 <= yo_mk6_q;
+				end
+				else if(nop_q47 && !finish_q47) begin
+					xi_q47 <= yo_mk6_q;
+					yi_q47 <= yo_q47;
+				end
+				else begin
+					xi_q47 <= xo_q47;
+					yi_q47 <= yo_q47;
+				end
+			end
+			ITER_K: begin
+				if(finish_q47) begin
+					xi_q47 <= 0;
+					yi_q47 <= 0;
+				end
+				else begin
+					xi_q47 <= yo_mk6_q;
+					yi_q47 <= xo_mk8_q;
+				end
+			end
+			default: begin
+				xi_q47 <= xo_q47;
+				yi_q47 <= yo_q47;
+			end
+		endcase
+	end
+	else begin
+		xi_q47 <= 0;
+		xi_q47 <= 0;
+	end
+end
+
+
+/*****************************************************************/
+/**                              Q48                           **/
+/*****************************************************************/
+//GR48 current iteration number
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		iter_q48 	<= 0;	
+		nop_q48 	<= 0;
+		d1_q48 		<= 0;
+		d2_q48 		<= 0;
+		d3_q48 		<= 0;
+		d4_q48 		<= 0;
+		neg_q48 	<= 0;
+		mk_cnt_q48 	<= 0;
+	end
+	else begin
+		iter_q48 	<= iter_q47;
+		nop_q48 	<= nop_q47;
+		d1_q48 		<= d1_q47;
+		d2_q48 		<= d2_q47;
+		d3_q48 		<= d3_q47;
+		d4_q48 		<= d4_q47;
+		neg_q48 	<= neg_q47;
+		mk_cnt_q48 	<= mk_cnt_q47;
+	end
+end
+
+// Q48 input data xi, yi
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_q48 <= 0;
+		yi_q48 <= 0;
+	end
+	else if(OP_wire) begin
+		case(iter_q48)
+			0: begin
+				if(start_q48_reg) begin
+					xi_q48 <= 0;
+					yi_q48 <= yo_mk6_q;
+				end
+				else if(nop_q48 && !finish_q48) begin
+					xi_q48 <= yo_mk6_q;
+					yi_q48 <= yo_q48;
+				end
+				else begin
+					xi_q48 <= xo_q48;
+					yi_q48 <= yo_q48;
+				end
+			end
+			ITER_K: begin
+				if(finish_q48) begin
+					xi_q48 <= 0;
+					yi_q48 <= 0;
+				end
+				else begin
+					xi_q48 <= yo_mk6_q;
+					yi_q48 <= xo_mk8_q;
+				end
+			end
+			default: begin
+				xi_q48 <= xo_q48;
+				yi_q48 <= yo_q48;
+			end
+		endcase
+	end
+	else begin
+		xi_q48 <= 0;
+		xi_q48 <= 0;
+	end
+end
+
+
+
+/*****************************************************************/
+/**                           MK_Q row1                         **/
+/*****************************************************************/
+// former (1~4)
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_mk1_q <= 0;
+		yi_mk1_q <= 0;
+	end
+	else if(OP_wire) begin
+		case(1)
+			iter_last_q11: begin
+				xi_mk1_q <= xo_q11;
+				yi_mk1_q <= yo_q11;
+			end
+			iter_last_q12: begin
+				xi_mk1_q <= xo_q12;
+				yi_mk1_q <= yo_q12;
+			end
+			iter_last_q13: begin
+				xi_mk1_q <= xo_q13;
+				yi_mk1_q <= yo_q13;
+			end
+			iter_last_q14: begin
+				xi_mk1_q <= xo_q14;
+				yi_mk1_q <= yo_q14;
+			end
+			default: begin
+				xi_mk1_q <= 0;
+				yi_mk1_q <= 0;
+			end
+		endcase
+	end
+	else begin
+		xi_mk1_q <= 0;
+		yi_mk1_q <= 0;
+	end
+end
+
+// later (5~8)
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_mk2_q <= 0;
+		yi_mk2_q <= 0;
+	end
+	else if(OP_wire) begin
+		case(1)
+			iter_last_q15: begin
+				xi_mk2_q <= xo_q15;
+				yi_mk2_q <= yo_q15;
+			end
+			iter_last_q16: begin
+				xi_mk2_q <= xo_q16;
+				yi_mk2_q <= yo_q16;
+			end
+			iter_last_q17: begin
+				xi_mk2_q <= xo_q17;
+				yi_mk2_q <= yo_q17;
+			end
+			iter_last_q18: begin
+				xi_mk2_q <= xo_q18;
+				yi_mk2_q <= yo_q18;
+			end
+			default: begin
+				xi_mk2_q <= 0;
+				yi_mk2_q <= 0;
+			end
+		endcase
+	end
+	else begin
+		xi_mk2_q <= 0;
+		yi_mk2_q <= 0;
+	end
+end
+
+/*****************************************************************/
+/**                           MK_Q row2                         **/
+/*****************************************************************/
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_mk3_q <= 0;
+		yi_mk3_q <= 0;
+	end
+	else if(OP_wire) begin
+		case(1)
+			iter_last_q21: begin
+				xi_mk3_q <= xo_q21;
+				yi_mk3_q <= yo_q21;
+			end
+			iter_last_q22: begin
+				xi_mk3_q <= xo_q22;
+				yi_mk3_q <= yo_q22;
+			end
+			iter_last_q23: begin
+				xi_mk3_q <= xo_q23;
+				yi_mk3_q <= yo_q23;
+			end
+			iter_last_q24: begin
+				xi_mk3_q <= xo_q24;
+				yi_mk3_q <= yo_q24;
+			end
+			default: begin
+				xi_mk3_q <= 0;
+				yi_mk3_q <= 0;
+			end
+		endcase
+	end
+	else begin
+		xi_mk3_q <= 0;
+		yi_mk3_q <= 0;
+	end
+end
+
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_mk4_q <= 0;
+		yi_mk4_q <= 0;
+	end
+	else if(OP_wire) begin
+		case(1)
+			iter_last_q25: begin
+				xi_mk4_q <= xo_q25;
+				yi_mk4_q <= yo_q25;
+			end
+			iter_last_q26: begin
+				xi_mk4_q <= xo_q26;
+				yi_mk4_q <= yo_q26;
+			end
+			iter_last_q27: begin
+				xi_mk4_q <= xo_q27;
+				yi_mk4_q <= yo_q27;
+			end
+			iter_last_q28: begin
+				xi_mk4_q <= xo_q28;
+				yi_mk4_q <= yo_q28;
+			end
+			default: begin
+				xi_mk4_q <= 0;
+				yi_mk4_q <= 0;
+			end
+		endcase
+	end
+	else begin
+		xi_mk4_q <= 0;
+		yi_mk4_q <= 0;
+	end
+end
+
+/*****************************************************************/
+/**                           MK_Q row 3                        **/
+/*****************************************************************/
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_mk5_q <= 0;
+		yi_mk5_q <= 0;
+	end
+	else if(OP_wire) begin
+		case(1)
+			iter_last_q31: begin
+				xi_mk5_q <= xo_q31;
+				yi_mk5_q <= yo_q31;
+			end
+			iter_last_q32: begin
+				xi_mk5_q <= xo_q32;
+				yi_mk5_q <= yo_q32;
+			end
+			iter_last_q33: begin
+				xi_mk5_q <= xo_q33;
+				yi_mk5_q <= yo_q33;
+			end
+			iter_last_q34: begin
+				xi_mk5_q <= xo_q34;
+				yi_mk5_q <= yo_q34;
+			end
+			default: begin
+				xi_mk5_q <= 0;
+				yi_mk5_q <= 0;
+			end
+		endcase
+	end
+	else begin
+		xi_mk5_q <= 0;
+		yi_mk5_q <= 0;
+	end
+end
+
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_mk6_q <= 0;
+		yi_mk6_q <= 0;
+	end
+	else if(OP_wire) begin
+		case(1)
+			iter_last_q35: begin
+				xi_mk6_q <= xo_q35;
+				yi_mk6_q <= yo_q35;
+			end
+			iter_last_q36: begin
+				xi_mk6_q <= xo_q36;
+				yi_mk6_q <= yo_q36;
+			end
+			iter_last_q37: begin
+				xi_mk6_q <= xo_q37;
+				yi_mk6_q <= yo_q37;
+			end
+			iter_last_q38: begin
+				xi_mk6_q <= xo_q38;
+				yi_mk6_q <= yo_q38;
+			end
+			default: begin
+				xi_mk6_q <= 0;
+				yi_mk6_q <= 0;
+			end
+		endcase
+	end
+	else begin
+		xi_mk6_q <= 0;
+		yi_mk6_q <= 0;
+	end
+end
+
+/*****************************************************************/
+/**                           MK_Q row4                         **/
+/*****************************************************************/
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_mk7_q <= 0;
+		yi_mk7_q <= 0;
+	end
+	else if(OP_wire) begin
+		case(1)
+			iter_last_q41: begin
+				xi_mk7_q <= xo_q41;
+				yi_mk7_q <= yo_q41;
+			end
+			iter_last_q42: begin
+				xi_mk7_q <= xo_q42;
+				yi_mk7_q <= yo_q42;
+			end
+			iter_last_q43: begin
+				xi_mk7_q <= xo_q43;
+				yi_mk7_q <= yo_q43;
+			end
+			iter_last_q44: begin
+				xi_mk7_q <= xo_q44;
+				yi_mk7_q <= yo_q44;
+			end
+		endcase
+	end
+	else begin
+		xi_mk7_q <= 0;
+		yi_mk7_q <= 0;
+	end
+end
+
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		xi_mk8_q <= 0;
+		yi_mk8_q <= 0;
+	end
+	else if(OP_wire) begin
+		case(1)
+			iter_last_q45: begin
+				xi_mk8_q <= xo_q45;
+				yi_mk8_q <= yo_q45;
+			end
+			iter_last_q46: begin
+				xi_mk8_q <= xo_q46;
+				yi_mk8_q <= yo_q46;
+			end
+			iter_last_q47: begin
+				xi_mk8_q <= xo_q47;
+				yi_mk8_q <= yo_q47;
+			end
+			iter_last_q48: begin
+				xi_mk8_q <= xo_q48;
+				yi_mk8_q <= yo_q48;
+			end
+			default: begin
+				xi_mk8_q <= 0;
+				yi_mk8_q <= 0;
+			end
+		endcase
+	end
+	else begin
+		xi_mk8_q <= 0;
+		yi_mk8_q <= 0;
+	end
+end
+
+
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2598,10 +5502,38 @@ MK MK3_Q_inst (
 );
 
 MK MK4_Q_inst (
-	.xi (xi_mk4),
-	.yi (yi_mk4),
-	.xo (xo_mk4),
-	.yo (yo_mk4)
+	.xi (xi_mk4_q),
+	.yi (yi_mk4_q),
+	.xo (xo_mk4_q),
+	.yo (yo_mk4_q)
+);
+
+MK MK5_Q_inst (
+	.xi (xi_mk5_q),
+	.yi (yi_mk5_q),
+	.xo (xo_mk5_q),
+	.yo (yo_mk5_q)
+);
+
+MK MK6_Q_inst (
+	.xi (xi_mk6_q),
+	.yi (yi_mk6_q),
+	.xo (xo_mk6_q),
+	.yo (yo_mk6_q)
+);
+
+MK MK7_Q_inst (
+	.xi (xi_mk7_q),
+	.yi (yi_mk7_q),
+	.xo (xo_mk7_q),
+	.yo (yo_mk7_q)
+);
+
+MK MK8_Q_inst (
+	.xi (xi_mk8_q),
+	.yi (yi_mk8_q),
+	.xo (xo_mk8_q),
+	.yo (yo_mk8_q)
 );
 
 

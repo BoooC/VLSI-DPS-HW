@@ -83,7 +83,7 @@ A_fix = fi(A_cordic, A_sign, A_len, A_frac, F);
 
 
 %%% Display result matrix
-display_result(A, Q_float*2^(Q_frac), Q_fix, R_float*2^(R_frac), R_fix, A_float, A_fix);
+display_result(A, Q_float, Q_fix, R_float, R_fix, A_float, A_fix, Q_frac, R_frac);
 
 
 %%% Save data into .txt in binary
@@ -160,13 +160,15 @@ function [Q_cordic, R_cordic] = Cordic_QR(K_cordic, Q_scaled, R_scaled, row_R, c
     % Eliminate A(q+1,p) by A(q,p)
 	for p_fix = 1 : col_R
 		for q_fix = (row_R-1) : (-1) : p_fix
-			
-			if R_cordic(q_fix,p_fix) < 0 %Column q and column q+1 are rotated 180 degrees
-				for reverse = p_fix : col_R
-					R_cordic(q_fix  ,reverse) = -R_cordic(q_fix  ,reverse);
-					R_cordic(q_fix+1,reverse) = -R_cordic(q_fix+1,reverse);
-					Q_cordic(q_fix  ,reverse) = -Q_cordic(q_fix  ,reverse);
-					Q_cordic(q_fix+1,reverse) = -Q_cordic(q_fix+1,reverse);
+			% Column q and column q+1 are rotated 180 degrees
+			if R_cordic(q_fix,p_fix) < 0 
+				for reverse_R = p_fix : col_R
+					R_cordic(q_fix  ,reverse_R) = -R_cordic(q_fix  ,reverse_R);
+					R_cordic(q_fix+1,reverse_R) = -R_cordic(q_fix+1,reverse_R);
+				end
+				for reverse_Q = p_fix : col_Q
+					Q_cordic(q_fix  ,reverse_Q) = -Q_cordic(q_fix  ,reverse_Q);
+					Q_cordic(q_fix+1,reverse_Q) = -Q_cordic(q_fix+1,reverse_Q);
 				end
 			end
 			
@@ -185,8 +187,8 @@ function [Q_cordic, R_cordic] = Cordic_QR(K_cordic, Q_scaled, R_scaled, row_R, c
 					R_cordic(q_fix+1, p_fix) = Y_vect;
 				end
 				% print info
-				print_GG_info(p_fix, iter, X_vect, Y_vect)
-				print_GG_MK_info(p_fix, iter, R_cordic(q_fix, p_fix), R_cordic(q_fix+1, p_fix))
+				print_GG_info(p_fix, iter, X_vect, Y_vect, R_frac)
+				print_GG_MK_info(p_fix, iter, R_cordic(q_fix, p_fix), R_cordic(q_fix+1, p_fix), R_frac)
 
 				% rotation mode
 				for rot_R = 1 : (col_R-p_fix)
@@ -202,8 +204,8 @@ function [Q_cordic, R_cordic] = Cordic_QR(K_cordic, Q_scaled, R_scaled, row_R, c
 						R_cordic(q_fix+1, p_fix+rot_R) = Y_rot_R;
 					end
 					% print info
-					print_GR_info(p_fix, rot_R, iter, X_rot_R, Y_rot_R);
-					print_GR_MK_info(p_fix, rot_R, iter, R_cordic(p_fix, p_fix+rot_R), R_cordic(p_fix+1, p_fix+rot_R));
+					print_GR_info(p_fix, rot_R, iter, X_rot_R, Y_rot_R, R_frac);
+					print_GR_MK_info(p_fix, rot_R, iter, R_cordic(p_fix, p_fix+rot_R), R_cordic(p_fix+1, p_fix+rot_R), R_frac);
 				end
 				% compute Q (As the processing of R)
 				for rot_Q = 1 : col_Q
@@ -218,80 +220,114 @@ function [Q_cordic, R_cordic] = Cordic_QR(K_cordic, Q_scaled, R_scaled, row_R, c
 						Q_cordic(q_fix  , rot_Q) = X_rot_Q;
 						Q_cordic(q_fix+1, rot_Q) = Y_rot_Q;
 					end
+					
+					% print info
+					print_Q_info(p_fix, rot_Q, iter, X_rot_Q, Y_rot_Q, Q_frac);
 				end
 			end
 		end
 	end
 end
 
-function display_result(A, Q_float, Q_fix_12b, R_float, R_fix_12b, A_float, A_fix_12b)
+function display_result(A, Q_float, Q_fix, R_float, R_fix, A_float, A_fix, Q_frac, R_frac);
 	% display matrix results
     disp('Matrix A :');
     disp(A);
-
-    disp('Matrix Q_float :');
+	disp('----------------------------------------------------------------------');
+	disp('---------------------------- Original scale --------------------------');
+	disp('----------------------------------------------------------------------');
+	
+	disp('Matrix Q_float :');
     disp(Q_float);
     disp('Matrix Q_fix :');
-    disp(Q_fix_12b);
+    disp(Q_fix * 2^(-Q_frac));
 
     disp('Matrix R_float :');
     disp(R_float);
     disp('Matrix R_fix :');
-    disp(R_fix_12b);
+    disp(R_fix * 2^(-R_frac));
+	
+	disp('----------------------------------------------------------------------');
+	disp('------------------------------ INT scale -----------------------------');
+	disp('----------------------------------------------------------------------');
+    disp('Matrix Q_float :');
+    disp(Q_float * 2^(Q_frac));
+    disp('Matrix Q_fix :');
+    disp(Q_fix);
 
+    disp('Matrix R_float :');
+    disp(R_float * 2^(R_frac));
+    disp('Matrix R_fix :');
+    disp(R_fix);
+	
+	disp('----------------------------------------------------------------------');
+	disp('------------------------------- A = QR -------------------------------');
+	disp('----------------------------------------------------------------------');
     disp('Matrix A_float :');
     disp(A_float);
     disp('Matrix A_fix :');
-    disp(A_fix_12b);
+    disp(A_fix);
 	
 	Q_float 	= double(Q_float);
-	Q_fix_12b 	= double(Q_fix_12b);
+	Q_fix 		= double(Q_fix * 2^(-Q_frac));
 	R_float 	= double(R_float);
-	R_fix_12b 	= double(R_fix_12b);
+	R_fix 		= double(R_fix * 2^(-R_frac));
 	A_float 	= double(A_float);
-	A_fix_12b 	= double(A_fix_12b);
+	A_fix 		= double(A_fix);
 	
-    % Compute Frobenius Distance F(A,B) = sqrt(trace((A-B)(A-B)'))
-    Q_float_abs = abs(Q_float);
-    Q_fix_abs 	= abs(Q_fix_12b);
-
-    R_float_abs = abs(R_float);
-    R_fix_abs 	= abs(R_fix_12b);
-
+	disp('----------------------------------------------------------------------');
+	disp('-------------------- Hardware implementation loss --------------------');
+	disp('----------------------------------------------------------------------');
     % Determine the final quantization error value delta
-    delta_Q = sqrt(trace((Q_float_abs-Q_fix_abs)*(Q_float_abs-Q_fix_abs)'));
+    delta_Q = sqrt(trace((Q_float-Q_fix)*(Q_float-Q_fix)'));
     disp('Q Fix Point Loss :');
     disp(delta_Q);
 
-    delta_R = sqrt(trace((R_float_abs-R_fix_abs)*(R_float_abs-R_fix_abs)'));
+    delta_R = sqrt(trace((R_float-R_fix)*(R_float-R_fix)'));
     disp('R Fix Point Loss :');
     disp(delta_R);
 
-    delta_A = sqrt(trace((A_float-A_fix_12b)*(A_float-A_fix_12b)'));
+    delta_A = sqrt(trace((A_float-A_fix)*(A_float-A_fix)'));
     disp('A Fix Point Loss :');
     disp(delta_A);
 end
 
 % print info for hardware debugging
-function print_GG_info(k, iter, X, Y)
+function print_GG_info(k, iter, X, Y, R_frac)
+	X = X * 2^(R_frac);
+	Y = Y * 2^(R_frac);
 	if iter == 3 || iter == 7 || iter == 11
 		disp(['GG', num2str(k), '  Iteration ', num2str(iter+1),' times: ', 'X = ', num2str(X),'; Y = ', num2str(Y)])
 	end
 end
 
-function print_GR_info(k, r, iter, X, Y)
+function print_GR_info(k, r, iter, X, Y, R_frac)
+	X = X * 2^(R_frac);
+	Y = Y * 2^(R_frac);
     if iter == 3 || iter == 7 || iter == 11
         disp(['GR', num2str(k), num2str(r), ' Iteration ', num2str(iter+1),' times: ', 'X = ', num2str(X),'; Y = ', num2str(Y)])
     end
 end
 
-function print_GG_MK_info(k, iter, X, Y)
+function print_Q_info(k, r, iter, X, Y, R_frac)
+	X = X * 2^(R_frac);
+	Y = Y * 2^(R_frac);
+    if iter == 3 || iter == 7 || iter == 11
+        disp(['Q', num2str(k), num2str(r), '  Iteration ', num2str(iter+1),' times: ', 'X = ', num2str(X),'; Y = ', num2str(Y)])
+    end
+end
+
+function print_GG_MK_info(k, iter, X, Y, R_frac)
+	X = X * 2^(R_frac);
+	Y = Y * 2^(R_frac);
 	if iter == 11
 		disp(['GG', num2str(k), '  Multiplied by K:   ', 'X = ', num2str(X),'; Y = ', num2str(Y)])
     end
 end
 
-function print_GR_MK_info(k, r, iter, X, Y)
+function print_GR_MK_info(k, r, iter, X, Y, R_frac)
+	X = X * 2^(R_frac);
+	Y = Y * 2^(R_frac);
 	if iter == 11  
 		disp(['GR', num2str(k), num2str(r), ' Multiplied by K:   ', 'X = ', num2str(X),'; Y = ', num2str(Y)])
 	end
