@@ -364,7 +364,7 @@ end
 function Save_data(A_origin, Q, R)
 	F = fimath('RoundingMethod','Floor');
 	
-	A_origin = fi(A_origin, 1, 12, 2, F);
+	A_origin = fi(A_origin, 1, 8, 0, F);
 	Q_scaled = fi(Q, 1, 12, 0, F);
 	R_scaled = fi(R, 1, 12, 0, F);
 

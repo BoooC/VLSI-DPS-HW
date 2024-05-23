@@ -2,7 +2,7 @@
 `define CYCLE      50.0
 `define SDFFILE    "qr_cordic_syn.sdf"
 `define End_CYCLE  1000
-`define P1
+// `define P3
 
 `ifdef P1
 	`define A_MEM 	"C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/pattern1/input_A_matrix.txt"
@@ -12,10 +12,14 @@
 	`define A_MEM  	"C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/pattern2/input_A_matrix.txt"
 	`define R_GOLD 	"C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/pattern2/output_R_matrix_golden.txt"
 	`define Q_GOLD 	"C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/pattern2/output_Q_matrix_golden.txt"
-`else
+`elsif P3
 	`define A_MEM  	"C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/pattern3/input_A_matrix.txt"
 	`define R_GOLD 	"C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/pattern3/output_R_matrix_golden.txt"
 	`define Q_GOLD 	"C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/pattern3/output_Q_matrix_golden.txt"
+`else 
+	`define A_MEM  	"C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/input_A_matrix.txt"
+	`define R_GOLD 	"C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/output_R_matrix_golden.txt"
+	`define Q_GOLD 	"C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/output_Q_matrix_golden.txt"
 `endif
 
 
@@ -28,6 +32,7 @@ parameter R_col	= 4;
 
 parameter Q_len		= Q_row * Q_col;
 parameter R_len		= R_row * R_col;
+parameter IN_WIDTH 	= 8;
 parameter OUT_WIDTH = 12;
 
 parameter A_ROM_SIZE = R_len;
@@ -43,7 +48,7 @@ wire rd_A;
 wire wr_R;
 wire wr_Q_1, wr_Q_2, wr_Q_3, wr_Q_4, wr_Q_5, wr_Q_6, wr_Q_7, wr_Q_8;
 
-wire signed [OUT_WIDTH-1:0] rd_A_data;
+wire signed [IN_WIDTH-1:0]  rd_A_data;
 wire signed [OUT_WIDTH-1:0]	wr_R_data;
 wire signed [OUT_WIDTH-1:0]	wr_Q_data_1, wr_Q_data_2, wr_Q_data_3, wr_Q_data_4, wr_Q_data_5, wr_Q_data_6, wr_Q_data_7, wr_Q_data_8;
 
@@ -102,7 +107,7 @@ qr_cordic qr_cordic_inst(
 );
 
 ROM  #(
-	.OUT_WIDTH	(OUT_WIDTH), 
+	.IN_WIDTH	(IN_WIDTH), 
 	.ROM_SIZE	(A_ROM_SIZE)
 ) 
 ROM_A_inst(
@@ -177,14 +182,13 @@ initial begin
 	$readmemb(`Q_GOLD, Q_gold);	
 end
 
-// global control
+// control signals
 initial begin
 	@(negedge clk); #1; rst = 1'b1;
 	#(`CYCLE*2); 	#1; en 	= 1'b1;
    	#(`CYCLE);   	#1; rst = 1'b0;
    	wait(done); 	#1	en 	= 1'b0;
 end
-
 
 // print Info
 integer err_R, err_Q;
@@ -236,24 +240,28 @@ initial begin
 		$display("%8d %8d %8d %8d %8d %8d %8d %8d", RAM_Q_inst.RAM_Q[Q_col*l+0], RAM_Q_inst.RAM_Q[Q_col*l+1], RAM_Q_inst.RAM_Q[Q_col*l+2], RAM_Q_inst.RAM_Q[Q_col*l+3], RAM_Q_inst.RAM_Q[Q_col*l+4], RAM_Q_inst.RAM_Q[Q_col*l+5], RAM_Q_inst.RAM_Q[Q_col*l+6], RAM_Q_inst.RAM_Q[Q_col*l+7]);
 		l = l + 1;
 	end
-	
 	/***********************************************************************************/
 	/**                                  Check Matrix                                 **/
 	/***********************************************************************************/
 	// check R matrix
+	$display("");
 	err_R = 0;
 	for(u=0; u<R_len; u=u+1) begin
 		if (RAM_R_inst.RAM_R[u] != R_gold[u]) begin
 			err_R = err_R + 1;
+			if(err_R == 1) 
+			$display("------------------------------ R matrix errors ------------------------------------");
 			$display("Data R[%2d] is wrong! The output data is %5d, but the expected data is %5d.", u, RAM_R_inst.RAM_R[u], R_gold[u]);
 		end
 	end
-	$display("");
 	// check Q matrix
+	$display("");
 	err_Q = 0;
 	for(v=0; v<Q_len; v=v+1) begin
 		if (RAM_Q_inst.RAM_Q[v] != Q_gold[v] || ^RAM_Q_inst.RAM_Q[v] === 1'bz || ^RAM_Q_inst.RAM_Q[v] === 1'bx) begin
 			err_Q = err_Q + 1;
+			if(err_Q == 1) 
+			$display("------------------------------ Q matrix errors ------------------------------------");
 			$display("Data Q[%2d] is wrong! The output data is %5d, but the expected data is %5d.", v, RAM_Q_inst.RAM_Q[v], Q_gold[v]);
 		end
 	end
@@ -261,28 +269,28 @@ initial begin
 	/**                                     SUMMARY                                   **/
 	/***********************************************************************************/
 	$display(" ");
-	$display("-------------------------------------------------------\n");
-	$display("--------------------- S U M M A R Y -------------------\n");
+	$display("-----------------------------------------------------------------------------");
+	$display("----------------------------  S U M M A R Y  --------------------------------");
+	$display("-----------------------------------------------------------------------------");
+	if(err_R != 0) begin
+		$display("**              FAIL!!  There are %3d errors in R matrix!                  **", err_R);
+	end
+	else begin
+		$display("**    Congratulations!! R matrix data have been generated successfully!    **");
+	end
+	if(err_Q != 0) begin
+		$display("**              FAIL!!  There are %3d errors in Q matrix!                  **", err_Q);
+	end
+	else begin
+		$display("**    Congratulations!! Q matrix data have been generated successfully!    **");
+	end
 	if(err_R == 0 && err_Q == 0) begin
 		$display("*****************************************************************************");
-		$display("** Congratulations!!! R and Q data are all correct! The result is PASS!!!  **");
-		$display("** Get finish at cycle:%3d                                                 **", cycle);
+		$display("**    The simulation results are all Pass!!                                **");
+		$display("**    Get finish at cycle:%3d                                              **", cycle);
 		$display("*****************************************************************************");
 	end
 	else begin
-		$display("*****************************************************************************");
-		if(err_R != 0) begin
-			$display("** FAIL!!!  There are %5d error in R matrix!                             **", err_R);
-		end
-		else begin
-			$display("** PASS!!!  All data are correct in R matrix!                              **");
-		end
-		if(err_Q != 0) begin
-			$display("** FAIL!!!  There are %5d error in Q matrix!                             **", err_Q);
-		end
-		else begin
-			$display("** PASS!!!  All data are correct in Q matrix!                              **");
-		end
 		$display("*****************************************************************************");
 	end
 	#(`CYCLE); $finish;
@@ -316,16 +324,16 @@ endmodule
 
 
 module ROM #(
-	parameter OUT_WIDTH = 12,
-	parameter ROM_SIZE 	= 32
+	parameter IN_WIDTH = 8,
+	parameter ROM_SIZE = 32
 )
 (	input                    			clk,
 	input                    			rd_A,
 	input             [4:0] 			rd_A_addr,
-	output reg signed [OUT_WIDTH-1:0] 	rd_A_data
+	output reg signed [IN_WIDTH-1:0] 	rd_A_data
 );
 
-reg signed [OUT_WIDTH-1:0] ROM [0:ROM_SIZE-1];
+reg signed [IN_WIDTH-1:0] ROM [0:ROM_SIZE-1];
 
 initial begin
 	$readmemb(`A_MEM, ROM);
@@ -333,6 +341,7 @@ end
 
 always @(negedge clk) begin
 	if(rd_A) begin
+		#1
 		rd_A_data <= ROM[rd_A_addr];
 	end
 end

@@ -4,665 +4,661 @@
 `include "MK.v"
 
 module qr_cordic #(
-	parameter R_LEN     	= 12,
-	parameter R_FRAC    	= 2,
-	parameter Q_LEN     	= 12,
-	parameter Q_FRAC    	= 10,
-	parameter K_LEN     	= 10,
-	parameter K_FRAC    	= 9,
-	parameter ROW_WID_R		= 3, // bitwidth
-	parameter COL_WID_R		= 2, // bitwidth
-	parameter ROW_WID_Q		= 3, // bitwidth
-	parameter COL_WID_Q		= 3, // bitwidth
-	parameter ROW_NUM_R 	= 8,
-	parameter COL_NUM_R 	= 4,
-	parameter ROW_NUM_Q 	= 8,
-	parameter COL_NUM_Q 	= 8,
-	parameter ITER_NUM  	= 12,
-	parameter ITER_K		= 13,
-	parameter ITER_ONE_CYCLE= 4,
-	parameter ITER_LEN  	= 4
+	parameter A_WID 	= 8, 	parameter A_FRAC 	= 0,
+	parameter R_WID 	= 12, 	parameter R_FRAC 	= 2,
+	parameter Q_WID 	= 12,	parameter Q_FRAC 	= 10,
+	parameter K_WID 	= 10,	parameter K_FRAC 	= 9,
+	
+	parameter ROW_WID_R	= 3,	parameter COL_WID_R	= 2,
+	parameter ROW_WID_Q	= 3,	parameter COL_WID_Q	= 3,
+	parameter ROW_NUM_R = 8,	parameter COL_NUM_R = 4,
+	parameter ROW_NUM_Q = 8,	parameter COL_NUM_Q = 8,
+	
+	parameter ITER_NUM 	= 12,	parameter ITER_K 	= 13, 	parameter ITER_ONE_CYCLE= 4,
+	parameter ITER_WID 	= 4
 )
 (	input                                   clk,
 	input                                   rst,
 	input                                   en,
 	
 	output                                  rd_A,
-	input      signed	[R_LEN-1:0]        	rd_A_data,
+	input      signed	[A_WID-1:0]        	rd_A_data,
 	output reg       	[ROW_WID_R-1:0]    	rd_A_row_addr,
 	output reg       	[COL_WID_R-1:0]    	rd_A_col_addr,
 		
 	output reg       	                   	wr_R,
-	output reg signed	[R_LEN-1:0]        	wr_R_data,
+	output reg signed	[R_WID-1:0]        	wr_R_data,
 	output reg       	[ROW_WID_R-1:0]    	wr_R_row_addr,
 	output reg       	[COL_WID_R-1:0]    	wr_R_col_addr,
 	
 	// Store data separately for each row as multiple records may be output simultaneously
 	output           	                	wr_Q_1, wr_Q_2, wr_Q_3, wr_Q_4, wr_Q_5, wr_Q_6, wr_Q_7, wr_Q_8, 
-	output 	   signed	[Q_LEN-1:0]        	wr_Q_data_1, wr_Q_data_2, wr_Q_data_3, wr_Q_data_4, wr_Q_data_5, wr_Q_data_6, wr_Q_data_7, wr_Q_data_8, 
+	output 	   signed	[Q_WID-1:0]        	wr_Q_data_1, wr_Q_data_2, wr_Q_data_3, wr_Q_data_4, wr_Q_data_5, wr_Q_data_6, wr_Q_data_7, wr_Q_data_8, 
 	output reg	       	[COL_WID_Q-1:0]    	wr_Q_addr_1, wr_Q_addr_2, wr_Q_addr_3, wr_Q_addr_4, wr_Q_addr_5, wr_Q_addr_6, wr_Q_addr_7, wr_Q_addr_8, 
 	
 	output 	                              	done
 );
 
+// extend INT-8 input into 12b (signed: 1b, int: 9b, fraction: 2b)
+wire [R_WID-1:0] rd_A_data_ext = {rd_A_data[7], rd_A_data[7], rd_A_data, 2'b00};
 
 /***********************************************************************************/
 /**                           Signals of other module                             **/
 /***********************************************************************************/
 // GG1
-reg		signed 	[R_LEN-1:0]         xi_gg1;
-reg		signed 	[R_LEN-1:0]         yi_gg1;
-reg 	       	[ITER_LEN-1:0]      iter_gg1;
+reg		signed 	[R_WID-1:0]         xi_gg1;
+reg		signed 	[R_WID-1:0]         yi_gg1;
+reg 	       	[ITER_WID-1:0]      iter_gg1;
 wire	       	[1:0]               d1_gg1;
 wire	       	[1:0]				d2_gg1;
 wire	       	[1:0]				d3_gg1;
 wire	       	[1:0]				d4_gg1;
 wire	       	                    neg_gg1;
-wire	signed 	[R_LEN-1:0]         xo_gg1;
-wire	signed 	[R_LEN-1:0]         yo_gg1;
+wire	signed 	[R_WID-1:0]         xo_gg1;
+wire	signed 	[R_WID-1:0]         yo_gg1;
 
 // GR11
-reg 	                             nop_gr11;
-reg 	signed	[R_LEN-1:0]         xi_gr11;
-reg 	signed	[R_LEN-1:0]         yi_gr11;
-reg 	      	[ITER_LEN-1:0]      iter_gr11;
+reg 	                            nop_gr11;
+reg 	signed	[R_WID-1:0]         xi_gr11;
+reg 	signed	[R_WID-1:0]         yi_gr11;
+reg 	      	[ITER_WID-1:0]      iter_gr11;
 reg 	      	[1:0]               d1_gr11;
 reg 	      	[1:0]				d2_gr11;
 reg 	      	[1:0]				d3_gr11;
 reg 	      	[1:0]				d4_gr11;
-reg 	                             neg_gr11;
-wire	signed 	[R_LEN-1:0]         xo_gr11;
-wire	signed 	[R_LEN-1:0]         yo_gr11;
+reg 	                            neg_gr11;
+wire	signed 	[R_WID-1:0]         xo_gr11;
+wire	signed 	[R_WID-1:0]         yo_gr11;
 
 // GR12
 reg 	                            nop_gr12;
-reg 	signed	[R_LEN-1:0]         xi_gr12;
-reg 	signed	[R_LEN-1:0]         yi_gr12;
-reg 	      	[ITER_LEN-1:0]      iter_gr12;
+reg 	signed	[R_WID-1:0]         xi_gr12;
+reg 	signed	[R_WID-1:0]         yi_gr12;
+reg 	      	[ITER_WID-1:0]      iter_gr12;
 reg 	      	[1:0]               d1_gr12;
 reg 	      	[1:0]				d2_gr12;
 reg 	      	[1:0]				d3_gr12;
 reg 	      	[1:0]				d4_gr12;
 reg 	                           	neg_gr12;
-wire	signed 	[R_LEN-1:0]         xo_gr12;
-wire	signed 	[R_LEN-1:0]         yo_gr12;
+wire	signed 	[R_WID-1:0]         xo_gr12;
+wire	signed 	[R_WID-1:0]         yo_gr12;
 
 // GR13
 reg  	                          	nop_gr13;
-reg 	signed	[R_LEN-1:0]         xi_gr13;
-reg 	signed	[R_LEN-1:0]         yi_gr13;
-reg 	      	[ITER_LEN-1:0]      iter_gr13;
+reg 	signed	[R_WID-1:0]         xi_gr13;
+reg 	signed	[R_WID-1:0]         yi_gr13;
+reg 	      	[ITER_WID-1:0]      iter_gr13;
 reg 	      	[1:0]               d1_gr13;
 reg 	      	[1:0]				d2_gr13;
 reg 	      	[1:0]				d3_gr13;
 reg 	      	[1:0]				d4_gr13;
 reg 	                            neg_gr13;
-wire	signed 	[R_LEN-1:0]         xo_gr13;
-wire	signed 	[R_LEN-1:0]         yo_gr13;
+wire	signed 	[R_WID-1:0]         xo_gr13;
+wire	signed 	[R_WID-1:0]         yo_gr13;
 
 // GG2
-reg     signed 	[R_LEN-1:0]         xi_gg2;
-reg     signed 	[R_LEN-1:0]         yi_gg2;
-reg            	[ITER_LEN-1:0]      iter_gg2;
+reg     signed 	[R_WID-1:0]         xi_gg2;
+reg     signed 	[R_WID-1:0]         yi_gg2;
+reg            	[ITER_WID-1:0]      iter_gg2;
 wire           	[1:0]               d1_gg2;
 wire           	[1:0]				d2_gg2;
 wire           	[1:0]				d3_gg2;
 wire           	[1:0]				d4_gg2;
 wire           	                    neg_gg2;
-wire    signed 	[R_LEN-1:0]         xo_gg2;
-wire    signed 	[R_LEN-1:0]         yo_gg2;
+wire    signed 	[R_WID-1:0]         xo_gg2;
+wire    signed 	[R_WID-1:0]         yo_gg2;
 
 // GR21
 reg                                 nop_gr21;
-reg     signed	[R_LEN-1:0]         xi_gr21;
-reg     signed	[R_LEN-1:0]         yi_gr21;
-reg           	[ITER_LEN-1:0]      iter_gr21;
+reg     signed	[R_WID-1:0]         xi_gr21;
+reg     signed	[R_WID-1:0]         yi_gr21;
+reg           	[ITER_WID-1:0]      iter_gr21;
 reg           	[1:0]               d1_gr21;
 reg           	[1:0]				d2_gr21;
 reg           	[1:0]				d3_gr21;
 reg           	[1:0]				d4_gr21;
 reg                                 neg_gr21;
-wire    signed 	[R_LEN-1:0]         xo_gr21;
-wire    signed 	[R_LEN-1:0]         yo_gr21;
+wire    signed 	[R_WID-1:0]         xo_gr21;
+wire    signed 	[R_WID-1:0]         yo_gr21;
 
 // GR22
 reg                                 nop_gr22;
-reg     signed 	[R_LEN-1:0]         xi_gr22;
-reg     signed 	[R_LEN-1:0]         yi_gr22;
-reg            	[ITER_LEN-1:0]      iter_gr22;
+reg     signed 	[R_WID-1:0]         xi_gr22;
+reg     signed 	[R_WID-1:0]         yi_gr22;
+reg            	[ITER_WID-1:0]      iter_gr22;
 reg            	[1:0]               d1_gr22;
 reg            	[1:0]				d2_gr22;
 reg           	[1:0]				d3_gr22;
 reg           	[1:0]				d4_gr22;
 reg            	                    neg_gr22;
-wire    signed 	[R_LEN-1:0]         xo_gr22;
-wire    signed 	[R_LEN-1:0]         yo_gr22;
+wire    signed 	[R_WID-1:0]         xo_gr22;
+wire    signed 	[R_WID-1:0]         yo_gr22;
 
 // GG3
-reg     signed 	[R_LEN-1:0]         xi_gg3;
-reg     signed 	[R_LEN-1:0]         yi_gg3;
-reg            	[ITER_LEN-1:0]      iter_gg3;
+reg     signed 	[R_WID-1:0]         xi_gg3;
+reg     signed 	[R_WID-1:0]         yi_gg3;
+reg            	[ITER_WID-1:0]      iter_gg3;
 wire           	[1:0]               d1_gg3;
 wire           	[1:0]				d2_gg3;
 wire           	[1:0]				d3_gg3;
 wire           	[1:0]				d4_gg3;
 wire           	                    neg_gg3;
-wire    signed 	[R_LEN-1:0]         xo_gg3;
-wire    signed 	[R_LEN-1:0]         yo_gg3;
+wire    signed 	[R_WID-1:0]         xo_gg3;
+wire    signed 	[R_WID-1:0]         yo_gg3;
 
 // GR31
 reg                                 nop_gr31;
-reg     signed 	[R_LEN-1:0]         xi_gr31;
-reg     signed 	[R_LEN-1:0]         yi_gr31;
-reg            	[ITER_LEN-1:0]      iter_gr31;
+reg     signed 	[R_WID-1:0]         xi_gr31;
+reg     signed 	[R_WID-1:0]         yi_gr31;
+reg            	[ITER_WID-1:0]      iter_gr31;
 reg            	[1:0]               d1_gr31;
 reg            	[1:0]				d2_gr31;
 reg           	[1:0]				d3_gr31;
 reg           	[1:0]				d4_gr31;
 reg            	                    neg_gr31;
-wire    signed 	[R_LEN-1:0]         xo_gr31;
-wire    signed 	[R_LEN-1:0]         yo_gr31;
+wire    signed 	[R_WID-1:0]         xo_gr31;
+wire    signed 	[R_WID-1:0]         yo_gr31;
 
 // GG4
-reg     signed 	[R_LEN-1:0]         xi_gg4;
-reg     signed 	[R_LEN-1:0]         yi_gg4;
-reg            	[ITER_LEN-1:0]      iter_gg4;
+reg     signed 	[R_WID-1:0]         xi_gg4;
+reg     signed 	[R_WID-1:0]         yi_gg4;
+reg            	[ITER_WID-1:0]      iter_gg4;
 wire           	[1:0]               d1_gg4;
 wire           	[1:0]				d2_gg4;
 wire           	[1:0]				d3_gg4;
 wire           	[1:0]				d4_gg4;
 wire           	                    neg_gg4;
-wire    signed 	[R_LEN-1:0]         xo_gg4;
-wire    signed 	[R_LEN-1:0]         yo_gg4;
+wire    signed 	[R_WID-1:0]         xo_gg4;
+wire    signed 	[R_WID-1:0]         yo_gg4;
 
 // Q11
 reg                                 nop_q11;
-reg     signed 	[Q_LEN-1:0]         xi_q11;
-reg     signed 	[Q_LEN-1:0]         yi_q11;
-reg            	[ITER_LEN-1:0]      iter_q11;
+reg     signed 	[Q_WID-1:0]         xi_q11;
+reg     signed 	[Q_WID-1:0]         yi_q11;
+reg            	[ITER_WID-1:0]      iter_q11;
 reg            	[1:0]               d1_q11;
 reg            	[1:0]				d2_q11;
 reg           	[1:0]				d3_q11;
 reg           	[1:0]				d4_q11;
 reg            	                    neg_q11;
-wire    signed 	[Q_LEN-1:0]         xo_q11;
-wire    signed 	[Q_LEN-1:0]         yo_q11;
+wire    signed 	[Q_WID-1:0]         xo_q11;
+wire    signed 	[Q_WID-1:0]         yo_q11;
 
 // Q12
 reg                                 nop_q12;
-reg     signed 	[Q_LEN-1:0]         xi_q12;
-reg     signed 	[Q_LEN-1:0]         yi_q12;
-reg            	[ITER_LEN-1:0]      iter_q12;
+reg     signed 	[Q_WID-1:0]         xi_q12;
+reg     signed 	[Q_WID-1:0]         yi_q12;
+reg            	[ITER_WID-1:0]      iter_q12;
 reg            	[1:0]               d1_q12;
 reg            	[1:0]				d2_q12;
 reg           	[1:0]				d3_q12;
 reg           	[1:0]				d4_q12;
 reg            	                    neg_q12;
-wire    signed 	[Q_LEN-1:0]         xo_q12;
-wire    signed 	[Q_LEN-1:0]         yo_q12;
+wire    signed 	[Q_WID-1:0]         xo_q12;
+wire    signed 	[Q_WID-1:0]         yo_q12;
 
 // Q13
 reg                                 nop_q13;
-reg     signed 	[Q_LEN-1:0]         xi_q13;
-reg     signed 	[Q_LEN-1:0]         yi_q13;
-reg            	[ITER_LEN-1:0]      iter_q13;
+reg     signed 	[Q_WID-1:0]         xi_q13;
+reg     signed 	[Q_WID-1:0]         yi_q13;
+reg            	[ITER_WID-1:0]      iter_q13;
 reg            	[1:0]               d1_q13;
 reg            	[1:0]				d2_q13;
 reg           	[1:0]				d3_q13;
 reg           	[1:0]				d4_q13;
 reg            	                    neg_q13;
-wire    signed 	[Q_LEN-1:0]         xo_q13;
-wire    signed 	[Q_LEN-1:0]         yo_q13;
+wire    signed 	[Q_WID-1:0]         xo_q13;
+wire    signed 	[Q_WID-1:0]         yo_q13;
 
 // Q14
 reg                                 nop_q14;
-reg     signed 	[Q_LEN-1:0]         xi_q14;
-reg     signed 	[Q_LEN-1:0]         yi_q14;
-reg            	[ITER_LEN-1:0]      iter_q14;
+reg     signed 	[Q_WID-1:0]         xi_q14;
+reg     signed 	[Q_WID-1:0]         yi_q14;
+reg            	[ITER_WID-1:0]      iter_q14;
 reg            	[1:0]               d1_q14;
 reg            	[1:0]				d2_q14;
 reg           	[1:0]				d3_q14;
 reg           	[1:0]				d4_q14;
 reg            	                    neg_q14;
-wire    signed 	[Q_LEN-1:0]         xo_q14;
-wire    signed 	[Q_LEN-1:0]         yo_q14;
+wire    signed 	[Q_WID-1:0]         xo_q14;
+wire    signed 	[Q_WID-1:0]         yo_q14;
 
 // Q15
 reg                                 nop_q15;
-reg     signed 	[Q_LEN-1:0]         xi_q15;
-reg     signed 	[Q_LEN-1:0]         yi_q15;
-reg            	[ITER_LEN-1:0]      iter_q15;
+reg     signed 	[Q_WID-1:0]         xi_q15;
+reg     signed 	[Q_WID-1:0]         yi_q15;
+reg            	[ITER_WID-1:0]      iter_q15;
 reg            	[1:0]               d1_q15;
 reg            	[1:0]				d2_q15;
 reg           	[1:0]				d3_q15;
 reg           	[1:0]				d4_q15;
 reg            	                    neg_q15;
-wire    signed 	[Q_LEN-1:0]         xo_q15;
-wire    signed 	[Q_LEN-1:0]         yo_q15;
+wire    signed 	[Q_WID-1:0]         xo_q15;
+wire    signed 	[Q_WID-1:0]         yo_q15;
 
 // Q16
 reg                                 nop_q16;
-reg     signed 	[Q_LEN-1:0]         xi_q16;
-reg     signed 	[Q_LEN-1:0]         yi_q16;
-reg            	[ITER_LEN-1:0]      iter_q16;
+reg     signed 	[Q_WID-1:0]         xi_q16;
+reg     signed 	[Q_WID-1:0]         yi_q16;
+reg            	[ITER_WID-1:0]      iter_q16;
 reg            	[1:0]               d1_q16;
 reg            	[1:0]				d2_q16;
 reg           	[1:0]				d3_q16;
 reg           	[1:0]				d4_q16;
 reg            	                    neg_q16;
-wire    signed 	[Q_LEN-1:0]         xo_q16;
-wire    signed 	[Q_LEN-1:0]         yo_q16;
+wire    signed 	[Q_WID-1:0]         xo_q16;
+wire    signed 	[Q_WID-1:0]         yo_q16;
 
 // Q17
 reg                                 nop_q17;
-reg     signed 	[Q_LEN-1:0]         xi_q17;
-reg     signed 	[Q_LEN-1:0]         yi_q17;
-reg            	[ITER_LEN-1:0]      iter_q17;
+reg     signed 	[Q_WID-1:0]         xi_q17;
+reg     signed 	[Q_WID-1:0]         yi_q17;
+reg            	[ITER_WID-1:0]      iter_q17;
 reg            	[1:0]               d1_q17;
 reg            	[1:0]				d2_q17;
 reg           	[1:0]				d3_q17;
 reg           	[1:0]				d4_q17;
 reg            	                    neg_q17;
-wire    signed 	[Q_LEN-1:0]         xo_q17;
-wire    signed 	[Q_LEN-1:0]         yo_q17;
+wire    signed 	[Q_WID-1:0]         xo_q17;
+wire    signed 	[Q_WID-1:0]         yo_q17;
 
 // Q18
 reg                                 nop_q18;
-reg     signed 	[Q_LEN-1:0]         xi_q18;
-reg     signed 	[Q_LEN-1:0]         yi_q18;
-reg            	[ITER_LEN-1:0]      iter_q18;
+reg     signed 	[Q_WID-1:0]         xi_q18;
+reg     signed 	[Q_WID-1:0]         yi_q18;
+reg            	[ITER_WID-1:0]      iter_q18;
 reg            	[1:0]               d1_q18;
 reg            	[1:0]				d2_q18;
 reg           	[1:0]				d3_q18;
 reg           	[1:0]				d4_q18;
 reg            	                    neg_q18;
-wire    signed 	[Q_LEN-1:0]         xo_q18;
-wire    signed 	[Q_LEN-1:0]         yo_q18;
+wire    signed 	[Q_WID-1:0]         xo_q18;
+wire    signed 	[Q_WID-1:0]         yo_q18;
 
 // Q21
 reg                                 nop_q21;
-reg     signed 	[Q_LEN-1:0]         xi_q21;
-reg     signed 	[Q_LEN-1:0]         yi_q21;
-reg            	[ITER_LEN-1:0]      iter_q21;
+reg     signed 	[Q_WID-1:0]         xi_q21;
+reg     signed 	[Q_WID-1:0]         yi_q21;
+reg            	[ITER_WID-1:0]      iter_q21;
 reg            	[1:0]               d1_q21;
 reg           	[1:0]				d2_q21;
 reg           	[1:0]				d3_q21;
 reg           	[1:0]				d4_q21;
 reg            	                    neg_q21;
-wire    signed 	[Q_LEN-1:0]         xo_q21;
-wire    signed 	[Q_LEN-1:0]         yo_q21;
+wire    signed 	[Q_WID-1:0]         xo_q21;
+wire    signed 	[Q_WID-1:0]         yo_q21;
 
 // Q22
 reg                                 nop_q22;
-reg     signed 	[Q_LEN-1:0]         xi_q22;
-reg     signed 	[Q_LEN-1:0]         yi_q22;
-reg            	[ITER_LEN-1:0]      iter_q22;
+reg     signed 	[Q_WID-1:0]         xi_q22;
+reg     signed 	[Q_WID-1:0]         yi_q22;
+reg            	[ITER_WID-1:0]      iter_q22;
 reg            	[1:0]               d1_q22;
 reg            	[1:0]				d2_q22;
 reg           	[1:0]				d3_q22;
 reg           	[1:0]				d4_q22;
 reg            	                    neg_q22;
-wire    signed 	[Q_LEN-1:0]         xo_q22;
-wire    signed 	[Q_LEN-1:0]         yo_q22;
+wire    signed 	[Q_WID-1:0]         xo_q22;
+wire    signed 	[Q_WID-1:0]         yo_q22;
 
 // Q23
 reg                                 nop_q23;
-reg     signed 	[Q_LEN-1:0]         xi_q23;
-reg     signed 	[Q_LEN-1:0]         yi_q23;
-reg            	[ITER_LEN-1:0]      iter_q23;
+reg     signed 	[Q_WID-1:0]         xi_q23;
+reg     signed 	[Q_WID-1:0]         yi_q23;
+reg            	[ITER_WID-1:0]      iter_q23;
 reg            	[1:0]               d1_q23;
 reg            	[1:0]				d2_q23;
 reg           	[1:0]				d3_q23;
 reg           	[1:0]				d4_q23;
 reg            	                    neg_q23;
-wire    signed 	[Q_LEN-1:0]         xo_q23;
-wire    signed 	[Q_LEN-1:0]         yo_q23;
+wire    signed 	[Q_WID-1:0]         xo_q23;
+wire    signed 	[Q_WID-1:0]         yo_q23;
 
 // Q24
 reg                                 nop_q24;
-reg     signed 	[Q_LEN-1:0]         xi_q24;
-reg     signed 	[Q_LEN-1:0]         yi_q24;
-reg            	[ITER_LEN-1:0]      iter_q24;
+reg     signed 	[Q_WID-1:0]         xi_q24;
+reg     signed 	[Q_WID-1:0]         yi_q24;
+reg            	[ITER_WID-1:0]      iter_q24;
 reg            	[1:0]               d1_q24;
 reg            	[1:0]				d2_q24;
 reg           	[1:0]				d3_q24;
 reg           	[1:0]				d4_q24;
 reg            	                    neg_q24;
-wire    signed 	[Q_LEN-1:0]         xo_q24;
-wire    signed 	[Q_LEN-1:0]         yo_q24;
+wire    signed 	[Q_WID-1:0]         xo_q24;
+wire    signed 	[Q_WID-1:0]         yo_q24;
 
 // Q25
 reg                                 nop_q25;
-reg     signed 	[Q_LEN-1:0]         xi_q25;
-reg     signed 	[Q_LEN-1:0]         yi_q25;
-reg            	[ITER_LEN-1:0]      iter_q25;
+reg     signed 	[Q_WID-1:0]         xi_q25;
+reg     signed 	[Q_WID-1:0]         yi_q25;
+reg            	[ITER_WID-1:0]      iter_q25;
 reg            	[1:0]               d1_q25;
 reg            	[1:0]				d2_q25;
 reg           	[1:0]				d3_q25;
 reg           	[1:0]				d4_q25;
 reg            	                    neg_q25;
-wire    signed 	[Q_LEN-1:0]         xo_q25;
-wire    signed 	[Q_LEN-1:0]         yo_q25;
+wire    signed 	[Q_WID-1:0]         xo_q25;
+wire    signed 	[Q_WID-1:0]         yo_q25;
 
 // Q26
 reg                                 nop_q26;
-reg     signed 	[Q_LEN-1:0]         xi_q26;
-reg     signed 	[Q_LEN-1:0]         yi_q26;
-reg            	[ITER_LEN-1:0]      iter_q26;
+reg     signed 	[Q_WID-1:0]         xi_q26;
+reg     signed 	[Q_WID-1:0]         yi_q26;
+reg            	[ITER_WID-1:0]      iter_q26;
 reg            	[1:0]               d1_q26;
 reg            	[1:0]				d2_q26;
 reg           	[1:0]				d3_q26;
 reg           	[1:0]				d4_q26;
 reg            	                    neg_q26;
-wire    signed 	[Q_LEN-1:0]         xo_q26;
-wire    signed 	[Q_LEN-1:0]         yo_q26;
+wire    signed 	[Q_WID-1:0]         xo_q26;
+wire    signed 	[Q_WID-1:0]         yo_q26;
 
 // Q27
 reg                                 nop_q27;
-reg     signed 	[Q_LEN-1:0]         xi_q27;
-reg     signed 	[Q_LEN-1:0]         yi_q27;
-reg            	[ITER_LEN-1:0]      iter_q27;
+reg     signed 	[Q_WID-1:0]         xi_q27;
+reg     signed 	[Q_WID-1:0]         yi_q27;
+reg            	[ITER_WID-1:0]      iter_q27;
 reg            	[1:0]               d1_q27;
 reg            	[1:0]				d2_q27;
 reg           	[1:0]				d3_q27;
 reg           	[1:0]				d4_q27;
 reg            	                    neg_q27;
-wire    signed 	[Q_LEN-1:0]         xo_q27;
-wire    signed 	[Q_LEN-1:0]         yo_q27;
+wire    signed 	[Q_WID-1:0]         xo_q27;
+wire    signed 	[Q_WID-1:0]         yo_q27;
 
 // Q28
 reg                                 nop_q28;
-reg     signed 	[Q_LEN-1:0]         xi_q28;
-reg     signed 	[Q_LEN-1:0]         yi_q28;
-reg            	[ITER_LEN-1:0]      iter_q28;
+reg     signed 	[Q_WID-1:0]         xi_q28;
+reg     signed 	[Q_WID-1:0]         yi_q28;
+reg            	[ITER_WID-1:0]      iter_q28;
 reg            	[1:0]               d1_q28;
 reg            	[1:0]				d2_q28;
 reg           	[1:0]				d3_q28;
 reg           	[1:0]				d4_q28;
 reg            	                    neg_q28;
-wire    signed 	[Q_LEN-1:0]         xo_q28;
-wire    signed 	[Q_LEN-1:0]         yo_q28;
+wire    signed 	[Q_WID-1:0]         xo_q28;
+wire    signed 	[Q_WID-1:0]         yo_q28;
 
 // Q31
 reg                                 nop_q31;
-reg     signed 	[Q_LEN-1:0]         xi_q31;
-reg     signed 	[Q_LEN-1:0]         yi_q31;
-reg            	[ITER_LEN-1:0]      iter_q31;
+reg     signed 	[Q_WID-1:0]         xi_q31;
+reg     signed 	[Q_WID-1:0]         yi_q31;
+reg            	[ITER_WID-1:0]      iter_q31;
 reg            	[1:0]               d1_q31;
 reg            	[1:0]				d2_q31;
 reg           	[1:0]				d3_q31;
 reg           	[1:0]				d4_q31;
 reg            	                    neg_q31;
-wire    signed 	[Q_LEN-1:0]         xo_q31;
-wire    signed 	[Q_LEN-1:0]         yo_q31;
+wire    signed 	[Q_WID-1:0]         xo_q31;
+wire    signed 	[Q_WID-1:0]         yo_q31;
 
 // Q32
 reg                                 nop_q32;
-reg     signed 	[Q_LEN-1:0]         xi_q32;
-reg     signed 	[Q_LEN-1:0]         yi_q32;
-reg            	[ITER_LEN-1:0]      iter_q32;
+reg     signed 	[Q_WID-1:0]         xi_q32;
+reg     signed 	[Q_WID-1:0]         yi_q32;
+reg            	[ITER_WID-1:0]      iter_q32;
 reg            	[1:0]               d1_q32;
 reg            	[1:0]				d2_q32;
 reg           	[1:0]				d3_q32;
 reg           	[1:0]				d4_q32;
 reg            	                    neg_q32;
-wire    signed 	[Q_LEN-1:0]         xo_q32;
-wire    signed 	[Q_LEN-1:0]         yo_q32;
+wire    signed 	[Q_WID-1:0]         xo_q32;
+wire    signed 	[Q_WID-1:0]         yo_q32;
 
 // Q33
 reg                                 nop_q33;
-reg     signed 	[Q_LEN-1:0]         xi_q33;
-reg     signed 	[Q_LEN-1:0]         yi_q33;
-reg            	[ITER_LEN-1:0]      iter_q33;
+reg     signed 	[Q_WID-1:0]         xi_q33;
+reg     signed 	[Q_WID-1:0]         yi_q33;
+reg            	[ITER_WID-1:0]      iter_q33;
 reg            	[1:0]               d1_q33;
 reg            	[1:0]				d2_q33;
 reg           	[1:0]				d3_q33;
 reg           	[1:0]				d4_q33;
 reg            	                    neg_q33;
-wire    signed 	[Q_LEN-1:0]         xo_q33;
-wire    signed 	[Q_LEN-1:0]         yo_q33;
+wire    signed 	[Q_WID-1:0]         xo_q33;
+wire    signed 	[Q_WID-1:0]         yo_q33;
 
 // Q34
 reg                                 nop_q34;
-reg     signed 	[Q_LEN-1:0]         xi_q34;
-reg     signed 	[Q_LEN-1:0]         yi_q34;
-reg            	[ITER_LEN-1:0]      iter_q34;
+reg     signed 	[Q_WID-1:0]         xi_q34;
+reg     signed 	[Q_WID-1:0]         yi_q34;
+reg            	[ITER_WID-1:0]      iter_q34;
 reg            	[1:0]               d1_q34;
 reg            	[1:0]				d2_q34;
 reg           	[1:0]				d3_q34;
 reg           	[1:0]				d4_q34;
 reg            	                    neg_q34;
-wire    signed 	[Q_LEN-1:0]         xo_q34;
-wire    signed 	[Q_LEN-1:0]         yo_q34;
+wire    signed 	[Q_WID-1:0]         xo_q34;
+wire    signed 	[Q_WID-1:0]         yo_q34;
 
 // Q35
 reg                                 nop_q35;
-reg     signed 	[Q_LEN-1:0]         xi_q35;
-reg     signed 	[Q_LEN-1:0]         yi_q35;
-reg            	[ITER_LEN-1:0]      iter_q35;
+reg     signed 	[Q_WID-1:0]         xi_q35;
+reg     signed 	[Q_WID-1:0]         yi_q35;
+reg            	[ITER_WID-1:0]      iter_q35;
 reg            	[1:0]               d1_q35;
 reg            	[1:0]				d2_q35;
 reg           	[1:0]				d3_q35;
 reg           	[1:0]				d4_q35;
 reg            	                    neg_q35;
-wire    signed 	[Q_LEN-1:0]         xo_q35;
-wire    signed 	[Q_LEN-1:0]         yo_q35;
+wire    signed 	[Q_WID-1:0]         xo_q35;
+wire    signed 	[Q_WID-1:0]         yo_q35;
 
 // Q36
 reg                                 nop_q36;
-reg     signed 	[Q_LEN-1:0]         xi_q36;
-reg     signed 	[Q_LEN-1:0]         yi_q36;
-reg            	[ITER_LEN-1:0]      iter_q36;
+reg     signed 	[Q_WID-1:0]         xi_q36;
+reg     signed 	[Q_WID-1:0]         yi_q36;
+reg            	[ITER_WID-1:0]      iter_q36;
 reg            	[1:0]               d1_q36;
 reg            	[1:0]				d2_q36;
 reg           	[1:0]				d3_q36;
 reg           	[1:0]				d4_q36;
 reg            	                    neg_q36;
-wire    signed 	[Q_LEN-1:0]         xo_q36;
-wire    signed 	[Q_LEN-1:0]         yo_q36;
+wire    signed 	[Q_WID-1:0]         xo_q36;
+wire    signed 	[Q_WID-1:0]         yo_q36;
 
 // Q37
 reg                                 nop_q37;
-reg     signed 	[Q_LEN-1:0]         xi_q37;
-reg     signed 	[Q_LEN-1:0]         yi_q37;
-reg            	[ITER_LEN-1:0]      iter_q37;
+reg     signed 	[Q_WID-1:0]         xi_q37;
+reg     signed 	[Q_WID-1:0]         yi_q37;
+reg            	[ITER_WID-1:0]      iter_q37;
 reg            	[1:0]               d1_q37;
 reg            	[1:0]				d2_q37;
 reg           	[1:0]				d3_q37;
 reg           	[1:0]				d4_q37;
 reg            	                    neg_q37;
-wire    signed 	[Q_LEN-1:0]         xo_q37;
-wire    signed 	[Q_LEN-1:0]         yo_q37;
+wire    signed 	[Q_WID-1:0]         xo_q37;
+wire    signed 	[Q_WID-1:0]         yo_q37;
 
 // Q38
 reg                                 nop_q38;
-reg     signed 	[Q_LEN-1:0]         xi_q38;
-reg     signed 	[Q_LEN-1:0]         yi_q38;
-reg            	[ITER_LEN-1:0]      iter_q38;
+reg     signed 	[Q_WID-1:0]         xi_q38;
+reg     signed 	[Q_WID-1:0]         yi_q38;
+reg            	[ITER_WID-1:0]      iter_q38;
 reg            	[1:0]               d1_q38;
 reg            	[1:0]				d2_q38;
 reg           	[1:0]				d3_q38;
 reg           	[1:0]				d4_q38;
 reg            	                    neg_q38;
-wire    signed 	[Q_LEN-1:0]         xo_q38;
-wire    signed 	[Q_LEN-1:0]         yo_q38;
+wire    signed 	[Q_WID-1:0]         xo_q38;
+wire    signed 	[Q_WID-1:0]         yo_q38;
 
 // Q41
 reg                                 nop_q41;
-reg     signed 	[Q_LEN-1:0]         xi_q41;
-reg     signed 	[Q_LEN-1:0]         yi_q41;
-reg            	[ITER_LEN-1:0]      iter_q41;
+reg     signed 	[Q_WID-1:0]         xi_q41;
+reg     signed 	[Q_WID-1:0]         yi_q41;
+reg            	[ITER_WID-1:0]      iter_q41;
 reg            	[1:0]               d1_q41;
 reg            	[1:0]				d2_q41;
 reg           	[1:0]				d3_q41;
 reg           	[1:0]				d4_q41;
 reg            	                    neg_q41;
-wire    signed 	[Q_LEN-1:0]         xo_q41;
-wire    signed 	[Q_LEN-1:0]         yo_q41;
+wire    signed 	[Q_WID-1:0]         xo_q41;
+wire    signed 	[Q_WID-1:0]         yo_q41;
 
 // Q42
 reg                                 nop_q42;
-reg     signed 	[Q_LEN-1:0]         xi_q42;
-reg     signed 	[Q_LEN-1:0]         yi_q42;
-reg            	[ITER_LEN-1:0]      iter_q42;
+reg     signed 	[Q_WID-1:0]         xi_q42;
+reg     signed 	[Q_WID-1:0]         yi_q42;
+reg            	[ITER_WID-1:0]      iter_q42;
 reg            	[1:0]               d1_q42;
 reg            	[1:0]				d2_q42;
 reg           	[1:0]				d3_q42;
 reg           	[1:0]				d4_q42;
 reg            	                    neg_q42;
-wire    signed 	[Q_LEN-1:0]         xo_q42;
-wire    signed 	[Q_LEN-1:0]         yo_q42;
+wire    signed 	[Q_WID-1:0]         xo_q42;
+wire    signed 	[Q_WID-1:0]         yo_q42;
 
 // Q43
 reg                                 nop_q43;
-reg     signed 	[Q_LEN-1:0]         xi_q43;
-reg     signed 	[Q_LEN-1:0]         yi_q43;
-reg            	[ITER_LEN-1:0]      iter_q43;
+reg     signed 	[Q_WID-1:0]         xi_q43;
+reg     signed 	[Q_WID-1:0]         yi_q43;
+reg            	[ITER_WID-1:0]      iter_q43;
 reg            	[1:0]               d1_q43;
 reg            	[1:0]				d2_q43;
 reg           	[1:0]				d3_q43;
 reg           	[1:0]				d4_q43;
 reg            	                    neg_q43;
-wire    signed 	[Q_LEN-1:0]         xo_q43;
-wire    signed 	[Q_LEN-1:0]         yo_q43;
+wire    signed 	[Q_WID-1:0]         xo_q43;
+wire    signed 	[Q_WID-1:0]         yo_q43;
 
 // Q44
 reg                                 nop_q44;
-reg     signed 	[Q_LEN-1:0]         xi_q44;
-reg     signed 	[Q_LEN-1:0]         yi_q44;
-reg            	[ITER_LEN-1:0]      iter_q44;
+reg     signed 	[Q_WID-1:0]         xi_q44;
+reg     signed 	[Q_WID-1:0]         yi_q44;
+reg            	[ITER_WID-1:0]      iter_q44;
 reg            	[1:0]               d1_q44;
 reg            	[1:0]				d2_q44;
 reg           	[1:0]				d3_q44;
 reg           	[1:0]				d4_q44;
 reg            	                    neg_q44;
-wire    signed 	[Q_LEN-1:0]         xo_q44;
-wire    signed 	[Q_LEN-1:0]         yo_q44;
+wire    signed 	[Q_WID-1:0]         xo_q44;
+wire    signed 	[Q_WID-1:0]         yo_q44;
 
 // Q45
 reg                                 nop_q45;
-reg     signed 	[Q_LEN-1:0]         xi_q45;
-reg     signed 	[Q_LEN-1:0]         yi_q45;
-reg            	[ITER_LEN-1:0]      iter_q45;
+reg     signed 	[Q_WID-1:0]         xi_q45;
+reg     signed 	[Q_WID-1:0]         yi_q45;
+reg            	[ITER_WID-1:0]      iter_q45;
 reg            	[1:0]               d1_q45;
 reg            	[1:0]				d2_q45;
 reg           	[1:0]				d3_q45;
 reg           	[1:0]				d4_q45;
 reg            	                    neg_q45;
-wire    signed 	[Q_LEN-1:0]         xo_q45;
-wire    signed 	[Q_LEN-1:0]         yo_q45;
+wire    signed 	[Q_WID-1:0]         xo_q45;
+wire    signed 	[Q_WID-1:0]         yo_q45;
 
 // Q46
 reg                                 nop_q46;
-reg     signed 	[Q_LEN-1:0]         xi_q46;
-reg     signed 	[Q_LEN-1:0]         yi_q46;
-reg            	[ITER_LEN-1:0]      iter_q46;
+reg     signed 	[Q_WID-1:0]         xi_q46;
+reg     signed 	[Q_WID-1:0]         yi_q46;
+reg            	[ITER_WID-1:0]      iter_q46;
 reg            	[1:0]               d1_q46;
 reg            	[1:0]				d2_q46;
 reg           	[1:0]				d3_q46;
 reg           	[1:0]				d4_q46;
 reg            	                    neg_q46;
-wire    signed 	[Q_LEN-1:0]         xo_q46;
-wire    signed 	[Q_LEN-1:0]         yo_q46;
+wire    signed 	[Q_WID-1:0]         xo_q46;
+wire    signed 	[Q_WID-1:0]         yo_q46;
 
 // Q47
 reg                                 nop_q47;
-reg     signed 	[Q_LEN-1:0]         xi_q47;
-reg     signed 	[Q_LEN-1:0]         yi_q47;
-reg            	[ITER_LEN-1:0]      iter_q47;
+reg     signed 	[Q_WID-1:0]         xi_q47;
+reg     signed 	[Q_WID-1:0]         yi_q47;
+reg            	[ITER_WID-1:0]      iter_q47;
 reg            	[1:0]               d1_q47;
 reg            	[1:0]				d2_q47;
 reg           	[1:0]				d3_q47;
 reg           	[1:0]				d4_q47;
 reg            	                    neg_q47;
-wire    signed 	[Q_LEN-1:0]         xo_q47;
-wire    signed 	[Q_LEN-1:0]         yo_q47;
+wire    signed 	[Q_WID-1:0]         xo_q47;
+wire    signed 	[Q_WID-1:0]         yo_q47;
 
 // Q48
 reg                                 nop_q48;
-reg     signed 	[Q_LEN-1:0]         xi_q48;
-reg     signed 	[Q_LEN-1:0]         yi_q48;
-reg            	[ITER_LEN-1:0]      iter_q48;
+reg     signed 	[Q_WID-1:0]         xi_q48;
+reg     signed 	[Q_WID-1:0]         yi_q48;
+reg            	[ITER_WID-1:0]      iter_q48;
 reg            	[1:0]               d1_q48;
 reg            	[1:0]				d2_q48;
 reg           	[1:0]				d3_q48;
 reg           	[1:0]				d4_q48;
 reg            	                    neg_q48;
-wire    signed 	[Q_LEN-1:0]         xo_q48;
-wire    signed 	[Q_LEN-1:0]         yo_q48;
+wire    signed 	[Q_WID-1:0]         xo_q48;
+wire    signed 	[Q_WID-1:0]         yo_q48;
 
 // MK1_R
-reg     signed	[R_LEN-1:0]         xi_mk1;
-reg     signed	[R_LEN-1:0]         yi_mk1;
-wire    signed	[R_LEN-1:0]         xo_mk1;
-wire    signed	[R_LEN-1:0]         yo_mk1;
+reg     signed	[R_WID-1:0]         xi_mk1;
+reg     signed	[R_WID-1:0]         yi_mk1;
+wire    signed	[R_WID-1:0]         xo_mk1;
+wire    signed	[R_WID-1:0]         yo_mk1;
 	
 // MK2_R	
-reg     signed	[R_LEN-1:0]         xi_mk2;
-reg     signed	[R_LEN-1:0]         yi_mk2;
-wire    signed	[R_LEN-1:0]         xo_mk2;
-wire    signed	[R_LEN-1:0]         yo_mk2;
+reg     signed	[R_WID-1:0]         xi_mk2;
+reg     signed	[R_WID-1:0]         yi_mk2;
+wire    signed	[R_WID-1:0]         xo_mk2;
+wire    signed	[R_WID-1:0]         yo_mk2;
 	
 // MK3_R	
-reg     signed	[R_LEN-1:0]         xi_mk3;
-reg     signed	[R_LEN-1:0]         yi_mk3;
-wire    signed	[R_LEN-1:0]         xo_mk3;
-wire    signed	[R_LEN-1:0]         yo_mk3;
+reg     signed	[R_WID-1:0]         xi_mk3;
+reg     signed	[R_WID-1:0]         yi_mk3;
+wire    signed	[R_WID-1:0]         xo_mk3;
+wire    signed	[R_WID-1:0]         yo_mk3;
 	
 // MK4_R	
-reg     signed	[R_LEN-1:0]         xi_mk4;
-reg     signed	[R_LEN-1:0]         yi_mk4;
-wire    signed	[R_LEN-1:0]         xo_mk4;
-wire    signed	[R_LEN-1:0]         yo_mk4;
+reg     signed	[R_WID-1:0]         xi_mk4;
+reg     signed	[R_WID-1:0]         yi_mk4;
+wire    signed	[R_WID-1:0]         xo_mk4;
+wire    signed	[R_WID-1:0]         yo_mk4;
 
 // Since Q will output multiple data points
 // MK1_Q
-reg     signed	[Q_LEN-1:0]         xi_mk1_q;
-reg     signed	[Q_LEN-1:0]         yi_mk1_q;
-wire    signed	[Q_LEN-1:0]         xo_mk1_q;
-wire    signed	[Q_LEN-1:0]         yo_mk1_q;
+reg     signed	[Q_WID-1:0]         xi_mk1_q;
+reg     signed	[Q_WID-1:0]         yi_mk1_q;
+wire    signed	[Q_WID-1:0]         xo_mk1_q;
+wire    signed	[Q_WID-1:0]         yo_mk1_q;
 
 // MK2_Q
-reg     signed	[Q_LEN-1:0]         xi_mk2_q;
-reg      signed	[Q_LEN-1:0]         yi_mk2_q;
-wire     signed	[Q_LEN-1:0]         xo_mk2_q;
-wire     signed	[Q_LEN-1:0]         yo_mk2_q;
+reg     signed	[Q_WID-1:0]         xi_mk2_q;
+reg      signed	[Q_WID-1:0]         yi_mk2_q;
+wire     signed	[Q_WID-1:0]         xo_mk2_q;
+wire     signed	[Q_WID-1:0]         yo_mk2_q;
 
 // MK3_Q
-reg      signed	[Q_LEN-1:0]         xi_mk3_q;
-reg      signed	[Q_LEN-1:0]         yi_mk3_q;
-wire     signed	[Q_LEN-1:0]         xo_mk3_q;
-wire     signed	[Q_LEN-1:0]         yo_mk3_q;
+reg      signed	[Q_WID-1:0]         xi_mk3_q;
+reg      signed	[Q_WID-1:0]         yi_mk3_q;
+wire     signed	[Q_WID-1:0]         xo_mk3_q;
+wire     signed	[Q_WID-1:0]         yo_mk3_q;
 
 // MK4_Q
-reg      signed	[Q_LEN-1:0]         xi_mk4_q;
-reg      signed	[Q_LEN-1:0]         yi_mk4_q;
-wire     signed	[Q_LEN-1:0]         xo_mk4_q;
-wire     signed	[Q_LEN-1:0]         yo_mk4_q;
+reg      signed	[Q_WID-1:0]         xi_mk4_q;
+reg      signed	[Q_WID-1:0]         yi_mk4_q;
+wire     signed	[Q_WID-1:0]         xo_mk4_q;
+wire     signed	[Q_WID-1:0]         yo_mk4_q;
 
 // MK5_Q
-reg      signed	[Q_LEN-1:0]         xi_mk5_q;
-reg      signed	[Q_LEN-1:0]         yi_mk5_q;
-wire     signed	[Q_LEN-1:0]         xo_mk5_q;
-wire     signed	[Q_LEN-1:0]         yo_mk5_q;
+reg      signed	[Q_WID-1:0]         xi_mk5_q;
+reg      signed	[Q_WID-1:0]         yi_mk5_q;
+wire     signed	[Q_WID-1:0]         xo_mk5_q;
+wire     signed	[Q_WID-1:0]         yo_mk5_q;
 
 // MK6_Q
-reg      signed	[Q_LEN-1:0]         xi_mk6_q;
-reg      signed	[Q_LEN-1:0]         yi_mk6_q;
-wire     signed	[Q_LEN-1:0]         xo_mk6_q;
-wire     signed	[Q_LEN-1:0]         yo_mk6_q;
+reg      signed	[Q_WID-1:0]         xi_mk6_q;
+reg      signed	[Q_WID-1:0]         yi_mk6_q;
+wire     signed	[Q_WID-1:0]         xo_mk6_q;
+wire     signed	[Q_WID-1:0]         yo_mk6_q;
 
 // MK7_Q
-reg      signed	[Q_LEN-1:0]         xi_mk7_q;
-reg      signed	[Q_LEN-1:0]         yi_mk7_q;
-wire     signed	[Q_LEN-1:0]         xo_mk7_q;
-wire     signed	[Q_LEN-1:0]         yo_mk7_q;
+reg      signed	[Q_WID-1:0]         xi_mk7_q;
+reg      signed	[Q_WID-1:0]         yi_mk7_q;
+wire     signed	[Q_WID-1:0]         xo_mk7_q;
+wire     signed	[Q_WID-1:0]         yo_mk7_q;
 
 // MK8_Q
-reg      signed	[Q_LEN-1:0]         xi_mk8_q;
-reg      signed	[Q_LEN-1:0]         yi_mk8_q;
-wire     signed	[Q_LEN-1:0]         xo_mk8_q;
-wire     signed	[Q_LEN-1:0]         yo_mk8_q;
+reg      signed	[Q_WID-1:0]         xi_mk8_q;
+reg      signed	[Q_WID-1:0]         yi_mk8_q;
+wire     signed	[Q_WID-1:0]         xo_mk8_q;
+wire     signed	[Q_WID-1:0]         yo_mk8_q;
 
 /***********************************************************************************/
 /**                                state parameters                               **/
@@ -807,7 +803,7 @@ reg last_multk_q47_reg;
 reg last_multk_q48_reg;
 
 // Q is a ROM stored 8x8 identity matrix
-reg signed [Q_LEN-1:0] Q_ROM [0:ROW_NUM_Q-1][0:COL_NUM_Q-1];
+reg signed [Q_WID-1:0] Q_ROM [0:ROW_NUM_Q-1][0:COL_NUM_Q-1];
 
 // numbers stand for row, e.g.: q_col_1 for row1. Use counters to input Q into GG or GR
 reg [2:0] q_col_1, q_col_2, q_col_3, q_col_4, q_col_5, q_col_6, q_col_7, q_col_8;
@@ -1185,14 +1181,14 @@ always @(posedge clk or posedge rst) begin
 		wr_Q_8_end <= 'd0;
 	end
 	else begin
-		wr_Q_1_end <= (wr_Q_addr_1 == 0) ? 1 : wr_Q_1_end;
-		wr_Q_2_end <= (wr_Q_addr_2 == 0) ? 1 : wr_Q_2_end;
-		wr_Q_3_end <= (wr_Q_addr_3 == 0) ? 1 : wr_Q_3_end;
-		wr_Q_4_end <= (wr_Q_addr_4 == 0) ? 1 : wr_Q_4_end;
-		wr_Q_5_end <= (wr_Q_addr_5 == 0) ? 1 : wr_Q_5_end;
-		wr_Q_6_end <= (wr_Q_addr_6 == 0) ? 1 : wr_Q_6_end;
-		wr_Q_7_end <= (wr_Q_addr_7 == 0) ? 1 : wr_Q_7_end;
-		wr_Q_8_end <= (wr_Q_addr_8 == 0) ? 1 : wr_Q_8_end;
+		wr_Q_1_end <= (wr_Q_addr_1 == 'd0) ? 'd1 : wr_Q_1_end;
+		wr_Q_2_end <= (wr_Q_addr_2 == 'd0) ? 'd1 : wr_Q_2_end;
+		wr_Q_3_end <= (wr_Q_addr_3 == 'd0) ? 'd1 : wr_Q_3_end;
+		wr_Q_4_end <= (wr_Q_addr_4 == 'd0) ? 'd1 : wr_Q_4_end;
+		wr_Q_5_end <= (wr_Q_addr_5 == 'd0) ? 'd1 : wr_Q_5_end;
+		wr_Q_6_end <= (wr_Q_addr_6 == 'd0) ? 'd1 : wr_Q_6_end;
+		wr_Q_7_end <= (wr_Q_addr_7 == 'd0) ? 'd1 : wr_Q_7_end;
+		wr_Q_8_end <= (wr_Q_addr_8 == 'd0) ? 'd1 : wr_Q_8_end;
 	end
 end
 
@@ -1225,17 +1221,17 @@ end
 // Signals propagation (form left to right)
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
-		start_gr11_reg	<= 'd0;
-		start_gr12_reg	<= 'd0;
-		start_gr13_reg	<= 'd0;
-		start_q11_reg	<= 'd0;
-		start_q12_reg	<= 'd0;
-		start_q13_reg	<= 'd0;
-		start_q14_reg	<= 'd0;
-		start_q15_reg	<= 'd0;
-		start_q16_reg	<= 'd0;
-		start_q17_reg	<= 'd0;
-		start_q18_reg	<= 'd0;
+		start_gr11_reg	<= 1'b0;
+		start_gr12_reg	<= 1'b0;
+		start_gr13_reg	<= 1'b0;
+		start_q11_reg	<= 1'b0;
+		start_q12_reg	<= 1'b0;
+		start_q13_reg	<= 1'b0;
+		start_q14_reg	<= 1'b0;
+		start_q15_reg	<= 1'b0;
+		start_q16_reg	<= 1'b0;
+		start_q17_reg	<= 1'b0;
+		start_q18_reg	<= 1'b0;
 	end
 	else begin
 		start_gr11_reg	<= start_gg1;
@@ -1254,16 +1250,16 @@ end
 
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
-		start_gr21_reg	<= 'd0;
-		start_gr22_reg	<= 'd0;
-		start_q21_reg	<= 'd0;
-		start_q22_reg	<= 'd0;
-		start_q23_reg	<= 'd0;
-		start_q24_reg	<= 'd0;
-		start_q25_reg	<= 'd0;
-		start_q26_reg	<= 'd0;
-		start_q27_reg	<= 'd0;
-		start_q28_reg	<= 'd0;
+		start_gr21_reg	<= 1'b0;
+		start_gr22_reg	<= 1'b0;
+		start_q21_reg	<= 1'b0;
+		start_q22_reg	<= 1'b0;
+		start_q23_reg	<= 1'b0;
+		start_q24_reg	<= 1'b0;
+		start_q25_reg	<= 1'b0;
+		start_q26_reg	<= 1'b0;
+		start_q27_reg	<= 1'b0;
+		start_q28_reg	<= 1'b0;
 	end
 	else begin
 		start_gr21_reg 	<= start_gg2;
@@ -1281,16 +1277,16 @@ end
 
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
-		start_gr31_reg	<= 'd0;
-		start_q31_reg	<= 'd0;
-		start_q32_reg	<= 'd0;
-		start_q33_reg	<= 'd0;
-		start_q34_reg	<= 'd0;
-		start_q35_reg	<= 'd0;
-		start_q36_reg	<= 'd0;
-		start_q37_reg	<= 'd0;
-		start_q38_reg	<= 'd0;
-	end
+		start_gr31_reg	<= 1'b0;
+		start_q31_reg	<= 1'b0;
+		start_q32_reg	<= 1'b0;
+		start_q33_reg	<= 1'b0;
+		start_q34_reg	<= 1'b0;
+		start_q35_reg	<= 1'b0;
+		start_q36_reg	<= 1'b0;
+		start_q37_reg	<= 1'b0;
+		start_q38_reg	<= 1'b0;
+	end 
 	else begin
 		start_gr31_reg 	<= start_gg3;
 		start_q31_reg	<= start_gr31_reg;
@@ -1306,14 +1302,14 @@ end
 
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
-		start_q41_reg	<= 'd0;
-		start_q42_reg	<= 'd0;
-		start_q43_reg	<= 'd0;
-		start_q44_reg	<= 'd0;
-		start_q45_reg	<= 'd0;
-		start_q46_reg	<= 'd0;
-		start_q47_reg	<= 'd0;
-		start_q48_reg	<= 'd0;
+		start_q41_reg	<= 1'b0;
+		start_q42_reg	<= 1'b0;
+		start_q43_reg	<= 1'b0;
+		start_q44_reg	<= 1'b0;
+		start_q45_reg	<= 1'b0;
+		start_q46_reg	<= 1'b0;
+		start_q47_reg	<= 1'b0;
+		start_q48_reg	<= 1'b0;
 	end
 	else begin
 		start_q41_reg	<= start_gg4;
@@ -1329,48 +1325,48 @@ end
 
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
-		last_multk_gg1_reg	<= 'd0;
-		last_multk_gr11_reg <= 'd0;
-		last_multk_gr12_reg <= 'd0;
-		last_multk_gr13_reg <= 'd0;
-		last_multk_gg2_reg  <= 'd0;
-		last_multk_gr21_reg <= 'd0;
-		last_multk_gr22_reg <= 'd0;
-		last_multk_gg3_reg  <= 'd0;
-		last_multk_gr31_reg <= 'd0;
-		last_multk_gg4_reg  <= 'd0;
-		last_multk_q11_reg	<= 'd0;
-		last_multk_q12_reg	<= 'd0;
-		last_multk_q13_reg	<= 'd0;
-		last_multk_q14_reg	<= 'd0;
-		last_multk_q15_reg	<= 'd0;
-		last_multk_q16_reg	<= 'd0;
-		last_multk_q17_reg	<= 'd0;
-		last_multk_q18_reg	<= 'd0;
-		last_multk_q21_reg	<= 'd0;
-		last_multk_q22_reg	<= 'd0;
-		last_multk_q23_reg	<= 'd0;
-		last_multk_q24_reg	<= 'd0;
-		last_multk_q25_reg	<= 'd0;
-		last_multk_q26_reg	<= 'd0;
-		last_multk_q27_reg	<= 'd0;
-		last_multk_q28_reg	<= 'd0;
-		last_multk_q31_reg	<= 'd0;
-		last_multk_q32_reg	<= 'd0;
-		last_multk_q33_reg	<= 'd0;
-		last_multk_q34_reg	<= 'd0;
-		last_multk_q35_reg	<= 'd0;
-		last_multk_q36_reg	<= 'd0;
-		last_multk_q37_reg	<= 'd0;
-		last_multk_q38_reg	<= 'd0;
-		last_multk_q41_reg	<= 'd0;
-		last_multk_q42_reg	<= 'd0;
-		last_multk_q43_reg	<= 'd0;
-		last_multk_q44_reg	<= 'd0;
-		last_multk_q45_reg	<= 'd0;
-		last_multk_q46_reg	<= 'd0;
-		last_multk_q47_reg	<= 'd0;
-		last_multk_q48_reg	<= 'd0;
+		last_multk_gg1_reg	<= 1'b0;
+		last_multk_gr11_reg <= 1'b0;
+		last_multk_gr12_reg <= 1'b0;
+		last_multk_gr13_reg <= 1'b0;
+		last_multk_gg2_reg  <= 1'b0;
+		last_multk_gr21_reg <= 1'b0;
+		last_multk_gr22_reg <= 1'b0;
+		last_multk_gg3_reg  <= 1'b0;
+		last_multk_gr31_reg <= 1'b0;
+		last_multk_gg4_reg  <= 1'b0;
+		last_multk_q11_reg	<= 1'b0;
+		last_multk_q12_reg	<= 1'b0;
+		last_multk_q13_reg	<= 1'b0;
+		last_multk_q14_reg	<= 1'b0;
+		last_multk_q15_reg	<= 1'b0;
+		last_multk_q16_reg	<= 1'b0;
+		last_multk_q17_reg	<= 1'b0;
+		last_multk_q18_reg	<= 1'b0;
+		last_multk_q21_reg	<= 1'b0;
+		last_multk_q22_reg	<= 1'b0;
+		last_multk_q23_reg	<= 1'b0;
+		last_multk_q24_reg	<= 1'b0;
+		last_multk_q25_reg	<= 1'b0;
+		last_multk_q26_reg	<= 1'b0;
+		last_multk_q27_reg	<= 1'b0;
+		last_multk_q28_reg	<= 1'b0;
+		last_multk_q31_reg	<= 1'b0;
+		last_multk_q32_reg	<= 1'b0;
+		last_multk_q33_reg	<= 1'b0;
+		last_multk_q34_reg	<= 1'b0;
+		last_multk_q35_reg	<= 1'b0;
+		last_multk_q36_reg	<= 1'b0;
+		last_multk_q37_reg	<= 1'b0;
+		last_multk_q38_reg	<= 1'b0;
+		last_multk_q41_reg	<= 1'b0;
+		last_multk_q42_reg	<= 1'b0;
+		last_multk_q43_reg	<= 1'b0;
+		last_multk_q44_reg	<= 1'b0;
+		last_multk_q45_reg	<= 1'b0;
+		last_multk_q46_reg	<= 1'b0;
+		last_multk_q47_reg	<= 1'b0;
+		last_multk_q48_reg	<= 1'b0;
 	end
 	else begin
 		last_multk_gg1_reg	<= finish_gg1;
@@ -1443,6 +1439,7 @@ always @(posedge clk or posedge rst) begin
 	end
 end
 
+
 // GG1 input data xi, yi
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
@@ -1454,10 +1451,10 @@ always @(posedge clk or posedge rst) begin
 			0: begin
 				if(start_gg1) begin
 					xi_gg1 <= 'd0;
-					yi_gg1 <= rd_A_data;
+					yi_gg1 <= rd_A_data_ext;
 				end
 				else if(nop_gg1 && !finish_gg1) begin
-					xi_gg1 <= rd_A_data;
+					xi_gg1 <= rd_A_data_ext;
 					yi_gg1 <= yo_gg1;
 				end
 				else begin
@@ -1471,7 +1468,7 @@ always @(posedge clk or posedge rst) begin
 					yi_gg1 <= yo_gg1;
 				end
 				else begin
-					xi_gg1 <= rd_A_data;
+					xi_gg1 <= rd_A_data_ext;
 					yi_gg1 <= xo_mk1;
 				end
 			end
@@ -1536,10 +1533,10 @@ always @(posedge clk or posedge rst) begin
 			0: begin
 				if(start_gr11_reg) begin
 					xi_gr11 <= 'd0;
-					yi_gr11 <= rd_A_data;
+					yi_gr11 <= rd_A_data_ext;
 				end
 				else if(nop_gr11 && !finish_gr11) begin
-					xi_gr11 <= rd_A_data;
+					xi_gr11 <= rd_A_data_ext;
 					yi_gr11 <= yo_gr11;
 				end
 				else begin
@@ -1553,7 +1550,7 @@ always @(posedge clk or posedge rst) begin
 					yi_gr11 <= yo_mk1;
 				end
 				else begin
-					xi_gr11 <= rd_A_data;
+					xi_gr11 <= rd_A_data_ext;
 					yi_gr11 <= xo_mk1;
 				end
 			end
@@ -1607,10 +1604,10 @@ always @(posedge clk or posedge rst) begin
 			0: begin
 				if(start_gr12_reg) begin
 					xi_gr12 <= 'd0;
-					yi_gr12 <= rd_A_data;
+					yi_gr12 <= rd_A_data_ext;
 				end
 				else if(nop_gr12 && !finish_gr12) begin
-					xi_gr12 <= rd_A_data;
+					xi_gr12 <= rd_A_data_ext;
 					yi_gr12 <= yo_gr12;
 				end
 				else begin
@@ -1624,7 +1621,7 @@ always @(posedge clk or posedge rst) begin
 					yi_gr12 <= yo_mk1;
 				end
 				else begin
-					xi_gr12 <= rd_A_data;
+					xi_gr12 <= rd_A_data_ext;
 					yi_gr12 <= xo_mk1;
 				end
 			end
@@ -1678,10 +1675,10 @@ always @(posedge clk or posedge rst) begin
 			0: begin
 				if(start_gr13_reg) begin
 					xi_gr13 <= 'd0;
-					yi_gr13 <= rd_A_data;
+					yi_gr13 <= rd_A_data_ext;
 				end
 				else if(nop_gr13 && !finish_gr13) begin
-					xi_gr13 <= rd_A_data;
+					xi_gr13 <= rd_A_data_ext;
 					yi_gr13 <= yo_gr13;
 				end
 				else begin
@@ -1695,7 +1692,7 @@ always @(posedge clk or posedge rst) begin
 					yi_gr13 <= yo_mk1;
 				end
 				else begin
-					xi_gr13 <= rd_A_data;
+					xi_gr13 <= rd_A_data_ext;
 					yi_gr13 <= xo_mk1;
 				end
 			end
