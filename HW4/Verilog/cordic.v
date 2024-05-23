@@ -1,3 +1,8 @@
+`include "GG.v"
+`include "GR.v"
+`include "Q.v"
+`include "MK.v"
+
 module qr_cordic #(
 	parameter R_LEN     	= 12,
 	parameter R_FRAC    	= 2,
@@ -21,18 +26,18 @@ module qr_cordic #(
 	input                                   en,
 	
 	output                                  rd_A,
-	input      signed    [R_LEN-1:0]        rd_A_data,
-	output reg           [ROW_LEN_R-1:0]    rd_A_row_addr,
-	output reg           [COL_LEN_R-1:0]    rd_A_col_addr,
-	
-	output reg                              wr_R,
-	output reg signed    [R_LEN-1:0]        wr_R_data,
-	output reg           [ROW_LEN_R-1:0]    wr_R_row_addr,
-	output reg           [COL_LEN_R-1:0]    wr_R_col_addr,
-	
-	output                               	wr_Q_1, wr_Q_2, wr_Q_3, wr_Q_4, wr_Q_5, wr_Q_6, wr_Q_7, wr_Q_8, 
-	output reg signed    [Q_LEN-1:0]        wr_Q_data_1, wr_Q_data_2, wr_Q_data_3, wr_Q_data_4, wr_Q_data_5, wr_Q_data_6, wr_Q_data_7, wr_Q_data_8, 
-	output reg           [2:0]    			wr_Q_addr_1, wr_Q_addr_2, wr_Q_addr_3, wr_Q_addr_4, wr_Q_addr_5, wr_Q_addr_6, wr_Q_addr_7, wr_Q_addr_8, 
+	input      signed	[R_LEN-1:0]        	rd_A_data,
+	output reg       	[ROW_LEN_R-1:0]    	rd_A_row_addr,
+	output reg       	[COL_LEN_R-1:0]    	rd_A_col_addr,
+		
+	output reg       	                   	wr_R,
+	output reg signed	[R_LEN-1:0]        	wr_R_data,
+	output reg       	[ROW_LEN_R-1:0]    	wr_R_row_addr,
+	output reg       	[COL_LEN_R-1:0]    	wr_R_col_addr,
+		
+	output           	                	wr_Q_1, wr_Q_2, wr_Q_3, wr_Q_4, wr_Q_5, wr_Q_6, wr_Q_7, wr_Q_8, 
+	output 	   signed	[Q_LEN-1:0]        	wr_Q_data_1, wr_Q_data_2, wr_Q_data_3, wr_Q_data_4, wr_Q_data_5, wr_Q_data_6, wr_Q_data_7, wr_Q_data_8, 
+	output reg	       	[2:0]    			wr_Q_addr_1, wr_Q_addr_2, wr_Q_addr_3, wr_Q_addr_4, wr_Q_addr_5, wr_Q_addr_6, wr_Q_addr_7, wr_Q_addr_8, 
 	
 	output reg                              valid
 );
@@ -789,7 +794,7 @@ reg last_multk_q46_reg;
 reg last_multk_q47_reg;
 reg last_multk_q48_reg;
 
-reg [Q_LEN-1:0] rd_data_Q [0:7][0:7];
+reg signed [Q_LEN-1:0] rd_data_Q [0:7][0:7];
 reg [2:0] q_col_1, q_col_2, q_col_3, q_col_4, q_col_5, q_col_6, q_col_7, q_col_8;
 
 reg wr_Q_1_end, wr_Q_2_end, wr_Q_3_end, wr_Q_4_end, wr_Q_5_end, wr_Q_6_end, wr_Q_7_end, wr_Q_8_end;
@@ -1073,12 +1078,12 @@ always @(posedge clk or posedge rst) begin
 	end
 	else if(ROT_wire) begin
 		if(last_multk_gg2 || last_multk_gg3 || last_multk_gg4) begin
-			wr_R_row_addr = wr_R_col_addr + 1;
-			wr_R_col_addr = wr_R_col_addr + 1;
+			wr_R_row_addr <= wr_R_col_addr + 1;
+			wr_R_col_addr <= wr_R_col_addr + 1;
 		end
 		else if(wr_R_row_addr != 0) begin
-			wr_R_row_addr = wr_R_row_addr - 1;
-			wr_R_col_addr = wr_R_col_addr;
+			wr_R_row_addr <= wr_R_row_addr - 1;
+			wr_R_col_addr <= wr_R_col_addr;
 		end
 	end
 	else begin
@@ -1184,18 +1189,16 @@ always @(posedge clk or posedge rst) begin
 end
 
 
-// Input Q is an identity matrix
+// ROM Q is an identity matrix
 integer i, j;
-always @(posedge clk or posedge rst) begin
-	if (rst) begin
-		for (i=0; i<8; i=i+1) begin
-			for (j=0; j<8; j=j+1) begin
-				if(i == j) begin
-					rd_data_Q[i][j] <= 12'b0100_0000_0000;
-				end 
-				else begin
-					rd_data_Q[i][j] <= 12'd0;
-				end
+initial begin
+	for (i=0; i<8; i=i+1) begin
+		for (j=0; j<8; j=j+1) begin
+			if(i == j) begin
+				rd_data_Q[i][j] <= 12'b0100_0000_0000;
+			end 
+			else begin
+				rd_data_Q[i][j] <= 12'd0;
 			end
 		end
 	end
@@ -1289,14 +1292,14 @@ end
 
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
-		start_q31_reg	<= 0;
-		start_q32_reg	<= 0;
-		start_q33_reg	<= 0;
-		start_q34_reg	<= 0;
-		start_q35_reg	<= 0;
-		start_q36_reg	<= 0;
-		start_q37_reg	<= 0;
-		start_q38_reg	<= 0;
+		start_q41_reg	<= 0;
+		start_q42_reg	<= 0;
+		start_q43_reg	<= 0;
+		start_q44_reg	<= 0;
+		start_q45_reg	<= 0;
+		start_q46_reg	<= 0;
+		start_q47_reg	<= 0;
+		start_q48_reg	<= 0;
 	end
 	else begin
 		start_q41_reg	<= start_gg4;
@@ -1857,8 +1860,8 @@ always @(posedge clk or posedge rst) begin
         nop_gr22 	<= 0;
         d1_gr22 	<= 0;
         d2_gr22 	<= 0;
-		d3_gr21 	<= 0;
-		d4_gr21 	<= 0;
+		d3_gr22 	<= 0;
+		d4_gr22 	<= 0;
         neg_gr22 	<= 0;
         mk_cnt_gr22 <= 0;
     end

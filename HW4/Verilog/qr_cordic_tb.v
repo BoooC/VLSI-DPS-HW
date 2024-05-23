@@ -1,13 +1,12 @@
 `timescale 1ns/10ps
-`define CYCLE      50.0
+`define CYCLE      30.0
 `define SDFFILE    "qr_cordic_syn.sdf"
 `define End_CYCLE  1000
     
 
-`define A_MEM      "C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/input_A_matrix.txt"
-`define R_GOLD     "C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/output_R_matrix_golden.txt"
-`define Q_GOLD     "C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/output_Q_matrix_golden.txt"
-
+`define A_MEM      "C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/input_A_matrix.txt"
+`define R_GOLD     "C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/output_R_matrix_golden.txt"
+`define Q_GOLD     "C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/output_Q_matrix_golden.txt"
 
 module qr_cordic_tb;
 
@@ -151,19 +150,13 @@ RAM_Q_inst(
 
 
 `ifdef SDF
-	initial $sdf_annotate(`SDFFILE, qr_cord_Aic_inst);
+	initial $sdf_annotate(`SDFFILE, qr_cordic_inst);
 `endif
 
 
 always #(`CYCLE/2) clk = ~clk;
 
-// initial begin
-// 	$fsdbDumpfile("qr_cord_Aic.fsdb");
-// 	$fsdbDumpvars;
-// 	$fsdbDumpMDA;
-// end
 
-//-------------------------------------------------------------------------------------------------------------------
 //expected result
 reg signed [OUT_WIDTH-1:0] R_gold [0:R_RAM_SIZE-1];
 reg signed [OUT_WIDTH-1:0] Q_gold [0:Q_RAM_SIZE-1];
@@ -182,7 +175,6 @@ initial begin
 end
 
 
-//-------------------------------------------------------------------------------------------------------------------
 integer err_R, err_Q;
 integer i = 0;
 integer j = 0;
@@ -201,10 +193,7 @@ initial begin
 		$display("%8d %8d %8d %8d", ROM_A_inst.ROM[4*i], ROM_A_inst.ROM[4*i+1], ROM_A_inst.ROM[4*i+2], ROM_A_inst.ROM[4*i+3]);
 		i = i + 1;
 	end
-	
 	wait (valid);
-	
-	
 	/***********************************************************************************/
 	/**                                 Display matrix                                **/
 	/***********************************************************************************/
@@ -222,7 +211,6 @@ initial begin
 		$display("%8d %8d %8d %8d", RAM_R_inst.RAM_R[R_col*j], RAM_R_inst.RAM_R[R_col*j+1], RAM_R_inst.RAM_R[R_col*j+2], RAM_R_inst.RAM_R[R_col*j+3]);
 		j = j + 1;
 	end
-	
 	// display matrix Q
 	$display("");
 	$display("Output Q matrix golden pattern: ");
@@ -249,7 +237,6 @@ initial begin
 		end
 	end
 	$display("");
-	
 	// check Q matrix
 	err_Q = 0;
 	for(v=0; v<Q_len; v=v+1) begin
@@ -290,8 +277,7 @@ initial begin
 end
 
 
-//-------------------------------------------------------------------------------------------------------------------
-// Calculate number of cycles needed
+// Calculate the numbers of cycle
 reg [9:0] cycle;
 always@(posedge clk) begin
 	if(rst) begin
@@ -313,6 +299,7 @@ always@(posedge clk) begin
 	end
 end
 
+
 endmodule
 
 
@@ -320,13 +307,11 @@ module ROM #(
 	parameter OUT_WIDTH = 12,
 	parameter ROM_SIZE 	= 32
 )
-(
-	input                    			clk,
+(	input                    			clk,
 	input                    			rd_A,
 	input             [4:0] 			rd_A_addr,
 	output reg signed [OUT_WIDTH-1:0] 	rd_A_data
 );
-
 
 reg signed [OUT_WIDTH-1:0] ROM [0:ROM_SIZE-1];
 
@@ -370,6 +355,7 @@ always @(posedge clk) begin
 end
 
 endmodule
+
 
 module RAM_Q #(
 	parameter OUT_WIDTH = 12,
