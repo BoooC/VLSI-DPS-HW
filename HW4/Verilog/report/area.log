@@ -3,28 +3,28 @@
 Report : area
 Design : qr_cordic
 Version: U-2022.12
-Date   : Thu May 23 18:44:36 2024
+Date   : Fri May 24 00:41:30 2024
 ****************************************
 
 Library(s) Used:
 
     slow (File: /home/cell_library/CBDK_IC_Contest_v2.5/SynopsysDC/db/slow.db)
 
-Number of ports:                          168
-Number of nets:                         49652
-Number of cells:                        44100
-Number of combinational cells:          42020
+Number of ports:                          164
+Number of nets:                         49694
+Number of cells:                        44155
+Number of combinational cells:          42075
 Number of sequential cells:              2080
 Number of macros/black boxes:               0
-Number of buf/inv:                       6244
-Number of references:                     120
+Number of buf/inv:                       6200
+Number of references:                     124
 
-Combinational area:             443810.696735
-Buf/Inv area:                    28088.574750
-Noncombinational area:           67424.120625
+Combinational area:             444070.399000
+Buf/Inv area:                    27816.990759
+Noncombinational area:           67480.134827
 Macro/Black Box area:                0.000000
-Net Interconnect area:         5434453.868134
+Net Interconnect area:         5437673.880432
 
-Total cell area:                511234.817359
-Total area:                    5945688.685493
+Total cell area:                511550.533827
+Total area:                    5949224.414259
 1
