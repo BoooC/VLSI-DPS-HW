@@ -375,7 +375,7 @@ function Save_data(A_origin, Q, R)
 	format short g;
 	
 	% Write original A matrix to a .txt file
-	fid_a_ori = fopen('C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/input_A_matrix.txt', 'w');
+	fid_a_ori = fopen('data/input_A_matrix.txt', 'w');
 	for i = 1 : A_row
 		for j = 1 : A_col
 			a_o_data = A_origin(i,j);
@@ -385,7 +385,7 @@ function Save_data(A_origin, Q, R)
 	fclose(fid_a_ori);
 	
 	% Write R matrix to a .txt file
-	fid_r = fopen('C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/output_R_matrix_golden.txt', 'w');
+	fid_r = fopen('data/output_R_matrix_golden.txt', 'w');
 	for i = 1 : R_row
 		for j = 1 : R_col
 			r_data = R_scaled(i,j);
@@ -395,7 +395,7 @@ function Save_data(A_origin, Q, R)
 	fclose(fid_r);
 
 	% Write Q matrix to a .txt file
-	fid_q = fopen('C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/output_Q_matrix_golden.txt', 'w');
+	fid_q = fopen('data/output_Q_matrix_golden.txt', 'w');
 	for i = 1 : Q_row
 		for j = 1 : Q_col
 			q_data = Q_scaled(i,j);
