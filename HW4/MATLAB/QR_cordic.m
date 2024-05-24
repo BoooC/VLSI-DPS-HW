@@ -6,7 +6,7 @@ format;
 %	where Q is unitary matrix, R is upper triangular matrix
 
 %%% parameters setting
-iter_num = 16;
+iter_num = 12;
 
 row_R 	= 8;
 col_R 	= 4;

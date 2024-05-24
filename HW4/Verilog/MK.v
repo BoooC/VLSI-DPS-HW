@@ -10,17 +10,14 @@ module MK #(
 	output       signed [R_LEN-1:0]        yo
 );
 
-localparam       signed                    K = 10'b0_100110111; // K = 0.607421875
+// K : 1 signed bit, 0 integal bit, 9 fraction bits
+localparam signed K = 10'b0_100110111; // K = 0.607421875
 
-wire             signed [R_LEN+K_LEN-1:0]  xo_0;
-wire             signed [R_LEN+K_LEN-1:0]  yo_0;
+wire signed [R_LEN+K_LEN-1:0] xo_0 = xi * K;
+wire signed [R_LEN+K_LEN-1:0] yo_0 = yi * K;
 
-
-assign xo_0 = xi * K;
-assign yo_0 = yi * K;
-
-//truncate to R_LEN bits
-assign xo = {xo_0[R_LEN+K_LEN-1], xo_0[R_LEN+K_FRAC-2:K_FRAC]};
-assign yo = {yo_0[R_LEN+K_LEN-1], yo_0[R_LEN+K_FRAC-2:K_FRAC]};
+// truncate to R_LEN bits
+assign xo = xo_0[R_LEN+K_FRAC-1:K_FRAC];
+assign yo = yo_0[R_LEN+K_FRAC-1:K_FRAC];
 
 endmodule

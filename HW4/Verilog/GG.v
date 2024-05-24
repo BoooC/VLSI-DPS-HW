@@ -34,9 +34,9 @@ wire signed [R_LEN-1:0]	xo_4;
 wire signed [R_LEN-1:0]	yo_4;
 
 wire [3:0] iter_1 = iter;
-wire [3:0] iter_2 = iter + 1;
-wire [3:0] iter_3 = iter + 2;
-wire [3:0] iter_4 = iter + 3;
+wire [3:0] iter_2 = iter + 4'd1;
+wire [3:0] iter_3 = iter + 4'd2;
+wire [3:0] iter_4 = iter + 4'd3;
 
 // check whether xi is positive or negative
 assign neg = xi[R_LEN-1];
@@ -95,14 +95,14 @@ module GG_one_iter #(
 	output  reg  signed [R_LEN-1:0]     yo
 );
 
-assign d = (yi == 0) ? 2 : xi[R_LEN-1] ^ yi[R_LEN-1];
+assign d = (yi == 'd0) ? 2'd2 : xi[R_LEN-1] ^ yi[R_LEN-1];
 
 always @(*) begin
-	if(d == 2) begin
+	if(d == 2'd2) begin
         xo = xi;
 		yo = yi;
     end
-	else if(d == 1) begin
+	else if(d == 2'd1) begin
 		xo = xi - (yi >>> iter);
 		yo = yi + (xi >>> iter);
 	end

@@ -10,219 +10,219 @@ z2
 cModel Technology
 dC:/Users/p8101/Desktop/ic_design/ICDC/2024/sim
 vGG
-Z0 !s110 1716481967
+Z0 !s110 1716572824
 !i10b 1
-!s100 gXh2LXzAbkL:kMNJBCM2K1
+!s100 SLM12X;[:h77L4W36fh113
 Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
-Iz]EC:FOX0IfUR:kBL@aJU0
+IV0ZhPQI76ERS>eChI:[0W0
 Z2 VDg1SIo80bB@j0V0VzS_@n1
 Z3 dC:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/sim
-Z4 w1716309994
-Z5 8C:\Users\p8101\Desktop\school\Univ\senior(II)\VLSIDSP\2024\HW\HW4\Verilog\GG.v
-Z6 FC:\Users\p8101\Desktop\school\Univ\senior(II)\VLSIDSP\2024\HW\HW4\Verilog\GG.v
-!i122 704
+Z4 w1716572822
+Z5 8C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GG.v
+Z6 FC:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GG.v
+!i122 778
 L0 1 83
 Z7 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z8 !s108 1716481967.000000
-Z9 !s107 C:\Users\p8101\Desktop\school\Univ\senior(II)\VLSIDSP\2024\HW\HW4\Verilog\MK.v|C:\Users\p8101\Desktop\school\Univ\senior(II)\VLSIDSP\2024\HW\HW4\Verilog\Q.v|C:\Users\p8101\Desktop\school\Univ\senior(II)\VLSIDSP\2024\HW\HW4\Verilog\GR.v|C:\Users\p8101\Desktop\school\Univ\senior(II)\VLSIDSP\2024\HW\HW4\Verilog\GG.v|C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic.v|
-Z10 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic.v|
+Z8 !s108 1716572824.000000
+!s107 C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GG.v|
+Z9 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GG.v|
 !i113 1
-Z11 o-work work
-Z12 tCvgOpt 0
+Z10 o-work work
+Z11 tCvgOpt 0
 n@g@g
 vGG_one_iter
 R0
 !i10b 1
-!s100 dZTUNGz42BCeVizIGidAD1
+!s100 `X5ODm^`I__cI4`7^7zLB1
 R1
-I09LJ8kH@ToEfl6YXRJA;>2
+IOGFM_@?cR4NDO7jZK^8i^2
 R2
 R3
 R4
 R5
 R6
-!i122 704
+!i122 778
 L0 86 30
 R7
 r1
 !s85 0
 31
 R8
+Z12 !s107 C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GG.v|
 R9
-R10
 !i113 1
+R10
 R11
-R12
 n@g@g_one_iter
 vGR
-R0
+Z13 !s110 1716572800
 !i10b 1
-!s100 Qd=5C^_aD?lIl3B:WJeZY2
+!s100 2_;G[RFh3zFB2Pj[58Q4g3
 R1
-IAl_;k547^RUR8_`Ih[ocO1
+I9Wli4E;CL_jZ9j?>Ez_kQ1
 R2
 R3
-Z13 w1716434828
-Z14 8C:\Users\p8101\Desktop\school\Univ\senior(II)\VLSIDSP\2024\HW\HW4\Verilog\GR.v
-Z15 FC:\Users\p8101\Desktop\school\Univ\senior(II)\VLSIDSP\2024\HW\HW4\Verilog\GR.v
-!i122 704
-Z16 L0 1 79
+Z14 w1716572797
+Z15 8C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GR.v
+Z16 FC:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GR.v
+!i122 775
+L0 1 79
 R7
 r1
 !s85 0
 31
-R8
-R9
-R10
+Z17 !s108 1716572799.000000
+Z18 !s107 C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GR.v|
+Z19 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/GR.v|
 !i113 1
+R10
 R11
-R12
 n@g@r
 vGR_one_iter
-R0
+R13
 !i10b 1
-!s100 eC7dHl6TFUfAP[h;S:;Fz0
+!s100 KhZS_ii4e85L1j2c6;JOD0
 R1
-I`3Ao]7FF?UL[ceB;bnK?@1
+IM>Qa<3U21CjDQgIUjRZmY2
 R2
 R3
-R13
 R14
 R15
-!i122 704
-Z17 L0 82 28
-R7
-r1
-!s85 0
-31
-R8
-R9
-R10
-!i113 1
-R11
-R12
-n@g@r_one_iter
-vMK
-R0
-!i10b 1
-!s100 T9;KJ0Ph=YO1YPASjF?fB3
-R1
-IB2<fF=@C4zia0Yg9TeL5l0
-R2
-R3
-w1716282837
-8C:\Users\p8101\Desktop\school\Univ\senior(II)\VLSIDSP\2024\HW\HW4\Verilog\MK.v
-FC:\Users\p8101\Desktop\school\Univ\senior(II)\VLSIDSP\2024\HW\HW4\Verilog\MK.v
-!i122 704
-L0 1 26
-R7
-r1
-!s85 0
-31
-R8
-R9
-R10
-!i113 1
-R11
-R12
-n@m@k
-vQ
-R0
-!i10b 1
-!s100 QTR^GOH?6gN<z<TZz7nTg2
-R1
-I9gDemD>cNeoU0bbLmeInE3
-R2
-R3
-Z18 w1716310078
-Z19 8C:\Users\p8101\Desktop\school\Univ\senior(II)\VLSIDSP\2024\HW\HW4\Verilog\Q.v
-Z20 FC:\Users\p8101\Desktop\school\Univ\senior(II)\VLSIDSP\2024\HW\HW4\Verilog\Q.v
-!i122 704
 R16
+!i122 775
+L0 82 28
 R7
 r1
 !s85 0
 31
-R8
-R9
-R10
-!i113 1
-R11
-R12
-n@q
-vQ_one_iter
-R0
-!i10b 1
-!s100 GMId@kD;?H>Tc15[;=eZG0
-R1
-IM6XHhMN7YhjgMHoCf3ZBJ0
-R2
-R3
+R17
 R18
 R19
-R20
-!i122 704
-R17
+!i113 1
+R10
+R11
+n@g@r_one_iter
+vMK
+Z20 !s110 1716572784
+!i10b 1
+!s100 GaJ^E@Yl22fF=RBQLZj0o0
+R1
+IkW:jUlTQmD<L:d6`B8NK^3
+R2
+R3
+w1716565748
+8C:\Users\p8101\Desktop\school\Univ\senior(II)\VLSIDSP\2024\HW\HW4\Verilog\MK.v
+FC:\Users\p8101\Desktop\school\Univ\senior(II)\VLSIDSP\2024\HW\HW4\Verilog\MK.v
+!i122 773
+L0 1 23
 R7
 r1
 !s85 0
 31
-R8
-R9
-R10
+Z21 !s108 1716572784.000000
+Z22 !s107 C:\Users\p8101\Desktop\school\Univ\senior(II)\VLSIDSP\2024\HW\HW4\Verilog\MK.v|C:\Users\p8101\Desktop\school\Univ\senior(II)\VLSIDSP\2024\HW\HW4\Verilog\Q.v|C:\Users\p8101\Desktop\school\Univ\senior(II)\VLSIDSP\2024\HW\HW4\Verilog\GR.v|C:\Users\p8101\Desktop\school\Univ\senior(II)\VLSIDSP\2024\HW\HW4\Verilog\GG.v|C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic.v|
+Z23 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic.v|
 !i113 1
+R10
 R11
-R12
+n@m@k
+vQ
+R13
+!i10b 1
+!s100 =SF2B53KH?dSk;]WnQ5Rh3
+R1
+IJo57_5^0P=IX^A]QPU2F93
+R2
+R3
+Z24 w1716572798
+Z25 8C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/Q.v
+Z26 FC:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/Q.v
+!i122 776
+L0 1 78
+R7
+r1
+!s85 0
+31
+Z27 !s108 1716572800.000000
+Z28 !s107 C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/Q.v|
+Z29 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/Q.v|
+!i113 1
+R10
+R11
+n@q
+vQ_one_iter
+R13
+!i10b 1
+!s100 Ei?CA_Th]:Z0:za`@Vdn>2
+R1
+IX50<NkTZaGmE]W4<k6c7j0
+R2
+R3
+R24
+R25
+R26
+!i122 776
+L0 81 28
+R7
+r1
+!s85 0
+31
+R27
+R28
+R29
+!i113 1
+R10
+R11
 n@q_one_iter
 vqr_cordic
-R0
+R20
 !i10b 1
-!s100 180?fOk6<;=AXoPi;9T<B3
+!s100 OCfzfPc]HT[9<UM:7BiHI1
 R1
-Im:;QgC8fMJiCPYjIeMj>T3
+Ica`Om;E=KWZLm>YaZg:O;3
 R2
 R3
-w1716481965
+w1716568808
 8C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic.v
 FC:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic.v
-!i122 704
-L0 6 5590
+!i122 773
+L0 6 5346
 R7
 r1
 !s85 0
 31
-R8
-R9
-R10
+R21
+R22
+R23
 !i113 1
+R10
 R11
-R12
 vqr_cordic_tb
-Z21 !s110 1716482910
+Z30 !s110 1716563711
 !i10b 1
-!s100 Qd@UU_8Fk_^?P3L7f0?O]3
+!s100 eQoSWP]ngCI90:1aE41e;3
 R1
-I=A5gQ;XY]N[`<f01i>>2z0
+IlEIE?zUcHBMhLYoM46XN;3
 R2
 R3
-Z22 w1716482850
-Z23 8C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v
-Z24 FC:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v
-!i122 715
-L0 26 370
+Z31 w1716562739
+Z32 8C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v
+Z33 FC:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v
+!i122 767
+L0 26 374
 R7
 r1
 !s85 0
 31
-Z25 !s108 1716482910.000000
-Z26 !s107 C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v|
-Z27 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v|
+Z34 !s108 1716563711.000000
+Z35 !s107 C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v|
+Z36 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/qr_cordic_tb.v|
 !i113 1
+R10
 R11
-R12
 vRAM
 !s110 1716444173
 !i10b 1
@@ -232,8 +232,8 @@ Ij9e5NP]685WOGFXHg44gg3
 R2
 R3
 w1716444171
-R23
-R24
+R32
+R33
 !i122 575
 L0 324 30
 R7
@@ -241,81 +241,81 @@ r1
 !s85 0
 31
 !s108 1716444173.000000
-R26
-R27
+R35
+R36
 !i113 1
+R10
 R11
-R12
 n@r@a@m
 vRAM_Q
-R21
+R30
 !i10b 1
-!s100 nZz`[WHCjHKPa?^1GCCFh0
+!s100 kSaEm5m>4S:1=`gjViiaR3
 R1
-IT[OTAFaP::SPZ2`O2cM4T2
+IVhGz33NdOV_LDz_gl?fo92
 R2
 R3
-R22
-R23
-R24
-!i122 715
-L0 453 34
+R31
+R32
+R33
+!i122 767
+L0 457 34
 R7
 r1
 !s85 0
 31
-R25
-R26
-R27
+R34
+R35
+R36
 !i113 1
+R10
 R11
-R12
 n@r@a@m_@q
 vRAM_R
-R21
+R30
 !i10b 1
-!s100 Xb85<lhM5nJBFWJjzoa2f0
+!s100 PfL]?H27L=X;ZR3c_`7oA2
 R1
-I:CAm9zSMfNN0im`Y<:@HV1
+ISTAGf[YVQoIA=BoYQ6@>E1
 R2
 R3
-R22
-R23
-R24
-!i122 715
-L0 424 27
+R31
+R32
+R33
+!i122 767
+L0 428 27
 R7
 r1
 !s85 0
 31
-R25
-R26
-R27
+R34
+R35
+R36
 !i113 1
+R10
 R11
-R12
 n@r@a@m_@r
 vROM
-R21
+R30
 !i10b 1
-!s100 ^@>?nInVbzTCb?f=dHCk_1
+!s100 HK`6eDMUheSC4gh;j6b@[1
 R1
-IbGlIGf[zNP3FF;k4U;]PG1
+I<IBcYS_KNaJ9mLKPYB98X0
 R2
 R3
-R22
-R23
-R24
-!i122 715
-L0 398 24
+R31
+R32
+R33
+!i122 767
+L0 402 24
 R7
 r1
 !s85 0
 31
-R25
-R26
-R27
+R34
+R35
+R36
 !i113 1
+R10
 R11
-R12
 n@r@o@m

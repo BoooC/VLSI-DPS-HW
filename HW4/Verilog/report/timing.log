@@ -6,15 +6,15 @@ Report : timing
         -max_paths 1
 Design : qr_cordic
 Version: U-2022.12
-Date   : Fri May 24 00:41:30 2024
+Date   : Fri May 24 23:07:08 2024
 ****************************************
 
 Operating Conditions: slow   Library: slow
 Wire Load Model Mode: top
 
-  Startpoint: yi_gg3_reg[0]
+  Startpoint: xi_q18_reg[0]
               (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: wr_R_data_reg[10]
+  Endpoint: xi_q18_reg[5]
             (rising edge-triggered flip-flop clocked by clk)
   Path Group: clk
   Path Type: max
@@ -27,116 +27,116 @@ Wire Load Model Mode: top
   --------------------------------------------------------------------------
   clock clk (rise edge)                                   0.00       0.00
   clock network delay (ideal)                             0.50       0.50
-  yi_gg3_reg[0]/CK (DFFRX1)                               0.00       0.50 r
-  yi_gg3_reg[0]/Q (DFFRX1)                                0.77       1.27 f
-  U29041/Y (NOR2XL)                                       0.72       2.00 r
-  U35219/Y (NAND2X1)                                      0.36       2.36 f
-  U35220/Y (NOR2X1)                                       0.42       2.78 r
-  U35221/Y (NAND2X1)                                      0.28       3.05 f
-  U29153/Y (NOR2XL)                                       0.69       3.75 r
-  U35222/Y (NAND2X1)                                      0.35       4.10 f
-  U29247/Y (NOR2XL)                                       0.72       4.82 r
-  U35223/Y (NAND2X1)                                      0.35       5.17 f
-  U29472/Y (NOR2XL)                                       0.70       5.87 r
-  U29532/Y (NAND2XL)                                      0.61       6.48 f
-  U35224/Y (NAND2X1)                                      0.33       6.82 r
-  U35225/Y (XNOR2X1)                                      0.47       7.29 r
-  U30918/Y (INVX1)                                        0.38       7.66 f
-  U33352/Y (OAI21XL)                                      0.49       8.16 r
-  U28878/Y (CLKBUFX3)                                     0.63       8.79 r
-  U35236/Y (NOR2X1)                                       0.21       9.00 f
-  U33324/Y (CLKBUFX3)                                     0.66       9.66 f
-  U60554/Y (XOR2X1)                                       0.40      10.05 f
-  DP_OP_3168J1_173_5314/U13/CO (ADDFXL)                   0.54      10.59 f
-  DP_OP_3168J1_173_5314/U12/CO (ADDFXL)                   0.53      11.12 f
-  DP_OP_3168J1_173_5314/U11/CO (ADDFXL)                   0.53      11.65 f
-  DP_OP_3168J1_173_5314/U10/CO (ADDFXL)                   0.53      12.18 f
-  DP_OP_3168J1_173_5314/U9/CO (ADDFXL)                    0.53      12.70 f
-  DP_OP_3168J1_173_5314/U8/CO (ADDFXL)                    0.53      13.23 f
-  DP_OP_3168J1_173_5314/U7/CO (ADDFXL)                    0.53      13.76 f
-  DP_OP_3168J1_173_5314/U6/CO (ADDFXL)                    0.53      14.29 f
-  DP_OP_3168J1_173_5314/U5/CO (ADDFXL)                    0.53      14.81 f
-  DP_OP_3168J1_173_5314/U4/CO (ADDFXL)                    0.53      15.34 f
-  DP_OP_3168J1_173_5314/U3/CO (ADDFXL)                    0.53      15.87 f
-  U30837/Y (XOR2X1)                                       0.35      16.21 f
-  U35246/Y (NAND4BBXL)                                    0.46      16.67 f
-  U35249/Y (NAND2X1)                                      0.53      17.20 r
-  U29607/Y (CLKINVX2)                                     0.82      18.02 f
-  U30822/Y (NAND3XL)                                      0.52      18.54 r
-  U30819/Y (OAI21XL)                                      0.26      18.80 f
-  U33356/Y (CLKBUFX3)                                     0.71      19.51 f
-  U29246/Y (NOR2XL)                                       0.56      20.07 r
-  U33317/Y (CLKBUFX3)                                     0.57      20.64 r
-  U60513/Y (XOR2X1)                                       0.36      21.00 f
-  DP_OP_3162J1_167_3035/U13/CO (ADDFXL)                   0.54      21.54 f
-  DP_OP_3162J1_167_3035/U12/CO (ADDFXL)                   0.53      22.07 f
-  DP_OP_3162J1_167_3035/U11/CO (ADDFXL)                   0.53      22.59 f
-  DP_OP_3162J1_167_3035/U10/CO (ADDFXL)                   0.53      23.12 f
-  DP_OP_3162J1_167_3035/U9/CO (ADDFXL)                    0.53      23.65 f
-  DP_OP_3162J1_167_3035/U8/CO (ADDFXL)                    0.53      24.17 f
-  DP_OP_3162J1_167_3035/U7/CO (ADDFXL)                    0.53      24.70 f
-  DP_OP_3162J1_167_3035/U6/CO (ADDFXL)                    0.53      25.23 f
-  DP_OP_3162J1_167_3035/U5/CO (ADDFXL)                    0.53      25.76 f
-  DP_OP_3162J1_167_3035/U4/CO (ADDFXL)                    0.53      26.28 f
-  DP_OP_3162J1_167_3035/U3/CO (ADDFXL)                    0.72      27.00 f
-  U35250/Y (INVXL)                                        0.35      27.35 r
-  U28740/Y (NAND4BBXL)                                    0.34      27.69 r
-  U35258/Y (AND2X2)                                       0.67      28.36 r
-  U30658/Y (NAND3XL)                                      0.34      28.70 f
-  U30633/Y (OAI21XL)                                      0.35      29.05 r
-  U29727/Y (CLKBUFX3)                                     0.60      29.65 r
-  U39608/Y (NOR2X1)                                       0.20      29.85 f
-  U28508/Y (CLKBUFX3)                                     0.59      30.44 f
-  U60424/Y (XOR2X1)                                       0.37      30.81 f
-  DP_OP_3156J1_161_6641/U13/CO (ADDFXL)                   0.53      31.34 f
-  DP_OP_3156J1_161_6641/U12/CO (ADDFXL)                   0.53      31.87 f
-  DP_OP_3156J1_161_6641/U11/CO (ADDFXL)                   0.53      32.39 f
-  DP_OP_3156J1_161_6641/U10/CO (ADDFXL)                   0.53      32.92 f
-  DP_OP_3156J1_161_6641/U9/CO (ADDFXL)                    0.53      33.45 f
-  DP_OP_3156J1_161_6641/U8/CO (ADDFXL)                    0.53      33.98 f
-  DP_OP_3156J1_161_6641/U7/CO (ADDFXL)                    0.53      34.50 f
-  DP_OP_3156J1_161_6641/U6/CO (ADDFXL)                    0.53      35.03 f
-  DP_OP_3156J1_161_6641/U5/CO (ADDFXL)                    0.53      35.56 f
-  DP_OP_3156J1_161_6641/U4/CO (ADDFXL)                    0.53      36.09 f
-  DP_OP_3156J1_161_6641/U3/CO (ADDFXL)                    0.52      36.60 f
-  U30349/Y (INVX1)                                        0.37      36.98 r
-  U30300/Y (NAND4BBXL)                                    0.36      37.33 r
-  U30280/Y (NAND2X1)                                      0.51      37.85 f
-  U35289/Y (NOR2BX1)                                      0.32      38.17 r
-  U35290/Y (CLKBUFX3)                                     0.54      38.71 r
-  U60343/Y (XOR2X1)                                       0.36      39.07 f
-  DP_OP_3879J1_884_4055/U13/CO (ADDFXL)                   0.54      39.61 f
-  DP_OP_3879J1_884_4055/U12/CO (ADDFXL)                   0.53      40.13 f
-  DP_OP_3879J1_884_4055/U11/CO (ADDFXL)                   0.53      40.66 f
-  DP_OP_3879J1_884_4055/U10/CO (ADDFXL)                   0.53      41.19 f
-  DP_OP_3879J1_884_4055/U9/CO (ADDFXL)                    0.53      41.72 f
-  DP_OP_3879J1_884_4055/U8/CO (ADDFXL)                    0.53      42.24 f
-  DP_OP_3879J1_884_4055/U7/CO (ADDFXL)                    0.53      42.77 f
-  DP_OP_3879J1_884_4055/U6/CO (ADDFXL)                    0.53      43.30 f
-  DP_OP_3879J1_884_4055/U5/CO (ADDFXL)                    0.53      43.83 f
-  DP_OP_3879J1_884_4055/U4/CO (ADDFXL)                    0.53      44.35 f
-  DP_OP_3879J1_884_4055/U3/S (ADDFXL)                     0.58      44.93 r
-  U36349/Y (AOI22X1)                                      0.33      45.26 f
-  U36350/Y (OAI22XL)                                      0.60      45.86 r
-  U36351/Y (AOI211X1)                                     0.24      46.10 f
-  U36352/Y (OAI21XL)                                      0.31      46.41 r
-  U36363/Y (NAND3BX1)                                     0.28      46.70 r
-  U29777/Y (INVX1)                                        0.14      46.84 f
-  U36364/Y (AOI2BB2X1)                                    0.28      47.12 r
-  wr_R_data_reg[10]/D (DFFRX1)                            0.00      47.12 r
-  data arrival time                                                 47.12
+  xi_q18_reg[0]/CK (DFFRX4)                               0.00       0.50 r
+  xi_q18_reg[0]/Q (DFFRX4)                                0.52       1.02 f
+  Q18_inst/xi[0] (Q_24)                                   0.00       1.02 f
+  Q18_inst/U124/Y (NAND2BX4)                              0.18       1.20 f
+  Q18_inst/U85/Y (NAND2BX4)                               0.16       1.36 f
+  Q18_inst/U69/Y (NAND2BX4)                               0.16       1.53 f
+  Q18_inst/U55/Y (NAND2BX4)                               0.17       1.70 f
+  Q18_inst/U54/Y (NAND2BX4)                               0.17       1.87 f
+  Q18_inst/U66/Y (NAND2X1)                                0.20       2.07 r
+  Q18_inst/U38/Y (CLKXOR2X4)                              0.47       2.54 r
+  Q18_inst/Q_one_iter_inst_1/xi[6] (Q_one_iter_99)        0.00       2.54 r
+  Q18_inst/Q_one_iter_inst_1/U110/Y (INVX6)               0.12       2.66 f
+  Q18_inst/Q_one_iter_inst_1/U119/Y (OA22XL)              0.47       3.13 f
+  Q18_inst/Q_one_iter_inst_1/U74/Y (OAI221X1)             0.22       3.35 r
+  Q18_inst/Q_one_iter_inst_1/U30/Y (CLKINVX1)             0.24       3.59 f
+  Q18_inst/Q_one_iter_inst_1/U162/Y (OAI221X4)            0.56       4.15 r
+  Q18_inst/Q_one_iter_inst_1/sub_105/B[6] (Q_one_iter_99_DW01_sub_3)
+                                                          0.00       4.15 r
+  Q18_inst/Q_one_iter_inst_1/sub_105/U150/Y (INVX3)       0.12       4.27 f
+  Q18_inst/Q_one_iter_inst_1/sub_105/U220/Y (NAND2X1)     0.31       4.58 r
+  Q18_inst/Q_one_iter_inst_1/sub_105/U179/Y (OAI21X4)     0.21       4.79 f
+  Q18_inst/Q_one_iter_inst_1/sub_105/U158/Y (CLKINVX1)
+                                                          0.21       5.01 r
+  Q18_inst/Q_one_iter_inst_1/sub_105/U186/Y (OAI21X1)     0.20       5.21 f
+  Q18_inst/Q_one_iter_inst_1/sub_105/U194/Y (AOI21X4)     0.16       5.37 r
+  Q18_inst/Q_one_iter_inst_1/sub_105/U208/Y (XOR2X2)      0.17       5.54 r
+  Q18_inst/Q_one_iter_inst_1/sub_105/DIFF[8] (Q_one_iter_99_DW01_sub_3)
+                                                          0.00       5.54 r
+  Q18_inst/Q_one_iter_inst_1/U75/Y (AO22X4)               0.21       5.75 r
+  Q18_inst/Q_one_iter_inst_1/U174/Y (AO21X4)              0.28       6.03 r
+  Q18_inst/Q_one_iter_inst_1/yo[8] (Q_one_iter_99)        0.00       6.03 r
+  Q18_inst/Q_one_iter_inst_2/yi[8] (Q_one_iter_98)        0.00       6.03 r
+  Q18_inst/Q_one_iter_inst_2/U41/Y (INVX3)                0.20       6.24 f
+  Q18_inst/Q_one_iter_inst_2/U96/Y (OA22X4)               0.23       6.47 f
+  Q18_inst/Q_one_iter_inst_2/U97/Y (OAI221X4)             0.31       6.78 r
+  Q18_inst/Q_one_iter_inst_2/U121/Y (AO21X4)              0.24       7.02 r
+  Q18_inst/Q_one_iter_inst_2/sub_100/B[7] (Q_one_iter_98_DW01_sub_3)
+                                                          0.00       7.02 r
+  Q18_inst/Q_one_iter_inst_2/sub_100/U130/Y (INVX8)       0.07       7.09 f
+  Q18_inst/Q_one_iter_inst_2/sub_100/U184/Y (NAND2XL)     0.47       7.56 r
+  Q18_inst/Q_one_iter_inst_2/sub_100/U121/Y (OAI21X2)     0.20       7.76 f
+  Q18_inst/Q_one_iter_inst_2/sub_100/U159/Y (AOI21X2)     0.23       7.99 r
+  Q18_inst/Q_one_iter_inst_2/sub_100/U179/Y (OAI21X4)     0.20       8.18 f
+  Q18_inst/Q_one_iter_inst_2/sub_100/U140/Y (AOI21X2)     0.22       8.40 r
+  Q18_inst/Q_one_iter_inst_2/sub_100/U173/Y (XOR2X4)      0.17       8.57 f
+  Q18_inst/Q_one_iter_inst_2/sub_100/DIFF[11] (Q_one_iter_98_DW01_sub_3)
+                                                          0.00       8.57 f
+  Q18_inst/Q_one_iter_inst_2/U204/Y (AO22X4)              0.24       8.81 f
+  Q18_inst/Q_one_iter_inst_2/U109/Y (AO21X4)              0.24       9.05 f
+  Q18_inst/Q_one_iter_inst_2/xo[11] (Q_one_iter_98)       0.00       9.05 f
+  Q18_inst/Q_one_iter_inst_3/xi[11] (Q_one_iter_97)       0.00       9.05 f
+  Q18_inst/Q_one_iter_inst_3/U24/Y (CLKINVX12)            0.08       9.12 r
+  Q18_inst/Q_one_iter_inst_3/U26/Y (INVX12)               0.06       9.18 f
+  Q18_inst/Q_one_iter_inst_3/U66/Y (NAND2X4)              0.16       9.34 r
+  Q18_inst/Q_one_iter_inst_3/U65/Y (INVX3)                0.10       9.44 f
+  Q18_inst/Q_one_iter_inst_3/U136/Y (CLKAND2X8)           0.17       9.62 f
+  Q18_inst/Q_one_iter_inst_3/U42/Y (AOI2BB1X2)            0.14       9.76 r
+  Q18_inst/Q_one_iter_inst_3/U31/Y (OAI221X4)             0.35      10.11 f
+  Q18_inst/Q_one_iter_inst_3/sub_105/B[1] (Q_one_iter_97_DW01_sub_3)
+                                                          0.00      10.11 f
+  Q18_inst/Q_one_iter_inst_3/sub_105/U130/Y (INVX2)       0.17      10.28 r
+  Q18_inst/Q_one_iter_inst_3/sub_105/U141/Y (NOR2X4)      0.10      10.38 f
+  Q18_inst/Q_one_iter_inst_3/sub_105/U145/Y (OA21X4)      0.27      10.65 f
+  Q18_inst/Q_one_iter_inst_3/sub_105/U176/Y (OA21X4)      0.27      10.92 f
+  Q18_inst/Q_one_iter_inst_3/sub_105/U166/Y (OAI21X4)     0.27      11.18 r
+  Q18_inst/Q_one_iter_inst_3/sub_105/U143/Y (AOI21X1)     0.21      11.39 f
+  Q18_inst/Q_one_iter_inst_3/sub_105/U185/Y (XOR2X2)      0.18      11.58 r
+  Q18_inst/Q_one_iter_inst_3/sub_105/DIFF[9] (Q_one_iter_97_DW01_sub_3)
+                                                          0.00      11.58 r
+  Q18_inst/Q_one_iter_inst_3/U119/Y (AO22X4)              0.20      11.78 r
+  Q18_inst/Q_one_iter_inst_3/U182/Y (AO21X4)              0.15      11.93 r
+  Q18_inst/Q_one_iter_inst_3/yo[9] (Q_one_iter_97)        0.00      11.93 r
+  Q18_inst/U10/Y (BUFX20)                                 0.13      12.06 r
+  Q18_inst/Q_one_iter_inst_4/yi[9] (Q_one_iter_96)        0.00      12.06 r
+  Q18_inst/Q_one_iter_inst_4/U97/Y (INVX12)               0.06      12.12 f
+  Q18_inst/Q_one_iter_inst_4/U103/Y (OAI222X2)            0.35      12.48 r
+  Q18_inst/Q_one_iter_inst_4/U48/Y (INVX6)                0.13      12.61 f
+  Q18_inst/Q_one_iter_inst_4/U132/Y (AOI2BB1X4)           0.21      12.82 f
+  Q18_inst/Q_one_iter_inst_4/U125/Y (OAI221X4)            0.33      13.15 r
+  Q18_inst/Q_one_iter_inst_4/sub_100/B[1] (Q_one_iter_96_DW01_sub_3)
+                                                          0.00      13.15 r
+  Q18_inst/Q_one_iter_inst_4/sub_100/U149/Y (INVX3)       0.11      13.27 f
+  Q18_inst/Q_one_iter_inst_4/sub_100/U152/Y (NAND2X2)     0.17      13.44 r
+  Q18_inst/Q_one_iter_inst_4/sub_100/U180/Y (OAI21X4)     0.15      13.59 f
+  Q18_inst/Q_one_iter_inst_4/sub_100/U186/Y (AOI21X4)     0.20      13.79 r
+  Q18_inst/Q_one_iter_inst_4/sub_100/U122/Y (INVX4)       0.14      13.93 f
+  Q18_inst/Q_one_iter_inst_4/sub_100/U121/Y (AO21X2)      0.31      14.24 f
+  Q18_inst/Q_one_iter_inst_4/sub_100/U120/Y (XNOR2X4)     0.13      14.37 f
+  Q18_inst/Q_one_iter_inst_4/sub_100/DIFF[5] (Q_one_iter_96_DW01_sub_3)
+                                                          0.00      14.37 f
+  Q18_inst/Q_one_iter_inst_4/U162/Y (AO22X4)              0.25      14.62 f
+  Q18_inst/Q_one_iter_inst_4/U127/Y (AO21X4)              0.18      14.80 f
+  Q18_inst/Q_one_iter_inst_4/xo[5] (Q_one_iter_96)        0.00      14.80 f
+  Q18_inst/U9/Y (MX2X4)                                   0.19      15.00 f
+  Q18_inst/xo[5] (Q_24)                                   0.00      15.00 f
+  U6901/Y (AO22X4)                                        0.19      15.19 f
+  xi_q18_reg[5]/D (DFFRX1)                                0.00      15.19 f
+  data arrival time                                                 15.19
 
-  clock clk (rise edge)                                  50.00      50.00
-  clock network delay (ideal)                             0.50      50.50
-  clock uncertainty                                      -0.10      50.40
-  wr_R_data_reg[10]/CK (DFFRX1)                           0.00      50.40 r
-  library setup time                                     -0.27      50.13
-  data required time                                                50.13
+  clock clk (rise edge)                                  15.00      15.00
+  clock network delay (ideal)                             0.50      15.50
+  clock uncertainty                                      -0.10      15.40
+  xi_q18_reg[5]/CK (DFFRX1)                               0.00      15.40 r
+  library setup time                                     -0.21      15.19
+  data required time                                                15.19
   --------------------------------------------------------------------------
-  data required time                                                50.13
-  data arrival time                                                -47.12
+  data required time                                                15.19
+  data arrival time                                                -15.19
   --------------------------------------------------------------------------
-  slack (MET)                                                        3.01
+  slack (MET)                                                        0.00
 
 
 1

@@ -1,30 +1,31 @@
 `timescale 1ns/10ps
-`define CYCLE      50.0
+`define CYCLE      15.0
 `define SDFFILE    "qr_cordic_syn.sdf"
 `define End_CYCLE  1000
-`define P1
+// `define P1
 
 `ifdef P1
-	`define A_MEM 	"C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/pattern1/input_A_matrix.txt"
-	`define R_GOLD 	"C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/pattern1/output_R_matrix_golden.txt"
-	`define Q_GOLD 	"C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/pattern1/output_Q_matrix_golden.txt"
+	`define A_MEM 	"data/pattern1/input_A_matrix.txt"
+	`define R_GOLD 	"data/pattern1/output_R_matrix_golden.txt"
+	`define Q_GOLD 	"data/pattern1/output_Q_matrix_golden.txt"
 `elsif P2
-	`define A_MEM  	"C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/pattern2/input_A_matrix.txt"
-	`define R_GOLD 	"C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/pattern2/output_R_matrix_golden.txt"
-	`define Q_GOLD 	"C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/pattern2/output_Q_matrix_golden.txt"
+	`define A_MEM  	"data/pattern2/input_A_matrix.txt"
+	`define R_GOLD 	"data/pattern2/output_R_matrix_golden.txt"
+	`define Q_GOLD 	"data/pattern2/output_Q_matrix_golden.txt"
 `elsif P3
-	`define A_MEM  	"C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/pattern3/input_A_matrix.txt"
-	`define R_GOLD 	"C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/pattern3/output_R_matrix_golden.txt"
-	`define Q_GOLD 	"C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/pattern3/output_Q_matrix_golden.txt"
+	`define A_MEM  	"data/pattern3/input_A_matrix.txt"
+	`define R_GOLD 	"data/pattern3/output_R_matrix_golden.txt"
+	`define Q_GOLD 	"data/pattern3/output_Q_matrix_golden.txt"
 `else 
-	`define A_MEM  	"C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/input_A_matrix.txt"
-	`define R_GOLD 	"C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/output_R_matrix_golden.txt"
-	`define Q_GOLD 	"C:/Users/p8101/Desktop/school/Univ/senior(II)/VLSIDSP/2024/HW/HW4/Verilog/data/output_Q_matrix_golden.txt"
+	`define A_MEM  	"data/input_A_matrix.txt"
+	`define R_GOLD 	"data/output_R_matrix_golden.txt"
+	`define Q_GOLD 	"data/output_Q_matrix_golden.txt"
 `endif
 
 
 module qr_cordic_tb;
 
+// parameters setting
 parameter Q_row	= 8;
 parameter Q_col	= 8;
 parameter R_row	= 8;
@@ -39,34 +40,35 @@ parameter A_ROM_SIZE = R_len;
 parameter Q_RAM_SIZE = Q_len;
 parameter R_RAM_SIZE = R_len;
 
-
+// QR cordic module signals
 reg	rst = 0;
 reg	clk = 0;
 reg	en 	= 0;
 
+// enable signals
 wire rd_A;
 wire wr_R;
 wire wr_Q_1, wr_Q_2, wr_Q_3, wr_Q_4, wr_Q_5, wr_Q_6, wr_Q_7, wr_Q_8;
 
+// data
 wire signed [IN_WIDTH-1:0]  rd_A_data;
 wire signed [OUT_WIDTH-1:0]	wr_R_data;
 wire signed [OUT_WIDTH-1:0]	wr_Q_data_1, wr_Q_data_2, wr_Q_data_3, wr_Q_data_4, wr_Q_data_5, wr_Q_data_6, wr_Q_data_7, wr_Q_data_8;
 
+// addrress
 wire [2:0]	rd_A_row_addr;
 wire [1:0]	rd_A_col_addr;
 wire [2:0]	wr_R_row_addr;
 wire [1:0]	wr_R_col_addr;
-wire [2:0]	wr_Q_1_row_addr;
-wire [2:0]	wr_Q_1_col_addr_1;
-
-wire [4:0] rd_A_addr = R_col*rd_A_row_addr + rd_A_col_addr;
-wire [4:0] wr_R_addr = R_col*wr_R_row_addr + wr_R_col_addr;
-
-wire [2:0]  wr_Q_addr_1, wr_Q_addr_2, wr_Q_addr_3, wr_Q_addr_4, wr_Q_addr_5, wr_Q_addr_6, wr_Q_addr_7, wr_Q_addr_8;
+wire [2:0]	wr_Q_addr_1, wr_Q_addr_2, wr_Q_addr_3, wr_Q_addr_4, 
+			wr_Q_addr_5, wr_Q_addr_6, wr_Q_addr_7, wr_Q_addr_8;
+			
+wire [4:0] 	rd_A_addr = R_col*rd_A_row_addr + rd_A_col_addr;
+wire [4:0] 	wr_R_addr = R_col*wr_R_row_addr + wr_R_col_addr;
 
 wire done;
 
-
+// instantiation
 qr_cordic qr_cordic_inst(
 	.clk			(clk			),
 	.rst			(rst			),
@@ -106,6 +108,7 @@ qr_cordic qr_cordic_inst(
 	.done			(done			)
 );
 
+// ROM for input matrix A
 ROM  #(
 	.IN_WIDTH	(IN_WIDTH), 
 	.ROM_SIZE	(A_ROM_SIZE)
@@ -117,6 +120,7 @@ ROM_A_inst(
 	.rd_A_data	(rd_A_data	)
 );
 
+// RAM_R for output matrix R
 RAM_R  #(
 	.OUT_WIDTH	(OUT_WIDTH), 
 	.RAM_SIZE	(R_RAM_SIZE),
@@ -130,6 +134,7 @@ RAM_R_inst(
 	.wr_R_data	(wr_R_data	)
 );
 
+// RAM_R for output matrix Q
 RAM_Q #(
 	.OUT_WIDTH	(OUT_WIDTH), 
 	.RAM_SIZE	(Q_RAM_SIZE),
@@ -185,8 +190,8 @@ end
 // control signals
 initial begin
 	@(negedge clk); #1; rst = 1'b1;
-	#(`CYCLE*2); 	#1; en 	= 1'b1;
    	#(`CYCLE);   	#1; rst = 1'b0;
+	#(`CYCLE*2); 	#1; en 	= 1'b1;
    	wait(done); 	#1	en 	= 1'b0;
 end
 
@@ -207,29 +212,30 @@ initial begin
 	/***********************************************************************************/
 	/**                                 Display matrix                                **/
 	/***********************************************************************************/
-	display_A_input;
+	display_A_input;	$display("\n");
 	
 	wait (done);
 	// display matrix R
 	display_R_golden;
-	display_R_result;
-	$display("\n");
+	display_R_result;	$display("\n");
 
 	// display matrix Q
 	display_Q_golden;
-	display_Q_result;
-	$display("\n");
+	display_Q_result;	$display("\n");
 	
 	/***********************************************************************************/
 	/**                                  Check Matrix                                 **/
 	/***********************************************************************************/
-	Check_R_result;	// check R matrix
-	$display("\n");
-	Check_Q_result;	// check Q matrix
+	// check R matrix
+	Check_R_result;		$display("\n");
+	
+	// check Q matrix
+	Check_Q_result;		$display("\n");
+	
 	/***********************************************************************************/
 	/**                                     SUMMARY                                   **/
 	/***********************************************************************************/
-	display_Summary;
+	display_Summary;	$display("\n");
 	#(2*`CYCLE); $finish;
 end
 
@@ -240,7 +246,7 @@ always@(posedge clk) begin
 	if(rst) begin
 		cycle <= 0;
 	end
-	else if(~done) begin
+	else if(en) begin
 		cycle = cycle + 1;
 	end
 end
@@ -375,7 +381,6 @@ task display_fail_task; begin
 	$display("        --  \033[0;31mSimulation Failed!!\033[m   --   /^ ^ ^ \\  |");
 	$display("        --                        --  |^ ^ ^ ^ |w| ");
 	$display("        ----------------------------   \\m___m__|_|");
-	$display("\n");
 end 
 endtask
 
@@ -388,7 +393,6 @@ task display_pass_task; begin
 	$display("        --  \033[0;32mSimulation PASS!!\033[m     --   /^ ^ ^ \\  |");
 	$display("        --                        --  |^ ^ ^ ^ |w| ");
 	$display("        ----------------------------   \\m___m__|_|");
-	$display("\n");
 end 
 endtask
 

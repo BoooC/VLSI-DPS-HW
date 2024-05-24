@@ -1,1378 +1,1039 @@
 k = 1 row78: 
 
-d = 1 -1 1 1 
-GG1  Iteration 4 times: X = 820; Y = -22820
-GR11 Iteration 4 times: X = -76; Y = -1104
-GR12 Iteration 4 times: X = -1078; Y = 46
-GR13 Iteration 4 times: X = 669; Y = -97
+d = -1 1 -1 1 
+GG1  Iteration 4 times: X = 731; Y = 39731
+GR11 Iteration 4 times: X = 412; Y = -988
+GR12 Iteration 4 times: X = -79; Y = 1
+GR13 Iteration 4 times: X = -402; Y = 1055
 Q11  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q12  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q13  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q14  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q15  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q16  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q17  Iteration 4 times: input: X = -1024; Y =     0 output: X = -1296; Y = -1072
-Q18  Iteration 4 times: input: X =     0; Y = -1024 output: X =  1072; Y = -1296
+Q17  Iteration 4 times: input: X = -1024; Y =     0 output: X = -1520; Y =   720
+Q18  Iteration 4 times: input: X =     0; Y = -1024 output: X =  -720; Y = -1520
 
-d = 1 -1 -1 1 
-GG1  Iteration 8 times: X = 823; Y = -2823
-GR11 Iteration 8 times: X = -51; Y = -1108
-GR12 Iteration 8 times: X = -1081; Y = 20
-GR13 Iteration 8 times: X = 673; Y = -82
+d = -1 1 -1 -1 
+GG1  Iteration 8 times: X = 734; Y = 0734
+GR11 Iteration 8 times: X = 358; Y = -1010
+GR12 Iteration 8 times: X = -79; Y = 6
+GR13 Iteration 8 times: X = -346; Y = 1079
 Q11  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q12  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q13  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q14  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q15  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q16  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q17  Iteration 8 times: input: X = -1296; Y = -1072 output: X = -1275; Y = -1105
-Q18  Iteration 8 times: input: X =  1072; Y = -1296 output: X =  1105; Y = -1274
+Q17  Iteration 8 times: input: X = -1520; Y =   720 output: X = -1482; Y =   804
+Q18  Iteration 8 times: input: X =  -720; Y = -1520 output: X =  -804; Y = -1482
 
-d = 1 -1 0 0 
-GG1  Iteration 12 times: X = 824; Y = 0824
-GR11 Iteration 12 times: X = -49; Y = -1108
-GR12 Iteration 12 times: X = -1081; Y = 18
-GR13 Iteration 12 times: X = 673; Y = -81
+d = 0 0 0 0 
+GG1  Iteration 12 times: X = 734; Y = 0734
+GR11 Iteration 12 times: X = 358; Y = -1010
+GR12 Iteration 12 times: X = -79; Y = 6
+GR13 Iteration 12 times: X = -346; Y = 1079
 Q11  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q12  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q13  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q14  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q15  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q16  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q17  Iteration 12 times: input: X = -1275; Y = -1105 output: X = -1273; Y = -1107
-Q18  Iteration 12 times: input: X =  1105; Y = -1274 output: X =  1107; Y = -1272
-
-d = 0 0 0 GG1  Iteration 15 times: X = 824; Y = 0824
-GR11 Iteration 15 times: X = -49; Y = -1108
-GR12 Iteration 15 times: X = -1081; Y = 18
-GR13 Iteration 15 times: X = 673; Y = -81
-Q11  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q12  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q13  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q14  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q15  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q16  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q17  Iteration 15 times: input: X = -1273; Y = -1107 output: X = -1273; Y = -1107
-Q18  Iteration 15 times: input: X =  1107; Y = -1272 output: X =  1107; Y = -1272
-0 
-GG1  Multiplied by K:   X = 500; Y = 0
-GR11 Multiplied by K:   X = -272; Y = -488
-GR12 Multiplied by K:   X = -384; Y = -208
-GR13 Multiplied by K:   X = -316; Y = 420
-Q11 Multiplied by K:   X = 0; Y = 0
-Q12 Multiplied by K:   X = 0; Y = 0
-Q13 Multiplied by K:   X = 0; Y = 0
-Q14 Multiplied by K:   X = 0; Y = 0
-Q15 Multiplied by K:   X = 0; Y = 0
-Q16 Multiplied by K:   X = 0; Y = 0
-Q17 Multiplied by K:   X = -774; Y = -673
-Q18 Multiplied by K:   X = 672; Y = -773
+Q17  Iteration 12 times: input: X = -1482; Y =   804 output: X = -1482; Y =   804
+Q18  Iteration 12 times: input: X =  -804; Y = -1482 output: X =  -804; Y = -1482
 k = 1 row67: 
 
-d = -1 -1 1 -1 
-GG1  Iteration 4 times: X = 953; Y = -93953
-GR11 Iteration 4 times: X = -295; Y = 507
-GR12 Iteration 4 times: X = -706; Y = -1032
-GR13 Iteration 4 times: X = 282; Y = 970
+d = 1 1 -1 -1 
+GG1  Iteration 4 times: X = 864; Y = -102864
+GR11 Iteration 4 times: X = -48; Y = -617
+GR12 Iteration 4 times: X = -555; Y = -547
+GR13 Iteration 4 times: X = -125; Y = 393
 Q11  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q12  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q13  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q14  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q15  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q16  Iteration 4 times: input: X =  1024; Y =     0 output: X =   720; Y = -1520
-Q17  Iteration 4 times: input: X =     0; Y =  -774 output: X = -1149; Y =  -545
-Q18  Iteration 4 times: input: X =     0; Y =   672 output: X =   997; Y =   473
+Q16  Iteration 4 times: input: X = -1024; Y =     0 output: X = -1072; Y = -1296
+Q17  Iteration 4 times: input: X =     0; Y =   901 output: X = -1141; Y =   943
+Q18  Iteration 4 times: input: X =     0; Y =   489 output: X =  -619; Y =   512
 
-d = 1 1 1 -1 
-GG1  Iteration 8 times: X = 962; Y = 3962
-GR11 Iteration 8 times: X = -345; Y = 474
-GR12 Iteration 8 times: X = -598; Y = -1103
-GR13 Iteration 8 times: X = 184; Y = 995
+d = 1 1 1 1 
+GG1  Iteration 8 times: X = 875; Y = -2875
+GR11 Iteration 8 times: X = 26; Y = -621
+GR12 Iteration 8 times: X = -486; Y = -611
+GR13 Iteration 8 times: X = -168; Y = 375
 Q11  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q12  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q13  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q14  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q15  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q16  Iteration 8 times: input: X =   720; Y = -1520 output: X =   873; Y = -1443
-Q17  Iteration 8 times: input: X = -1149; Y =  -545 output: X = -1089; Y =  -661
-Q18  Iteration 8 times: input: X =   997; Y =   473 output: X =   948; Y =   572
+Q16  Iteration 8 times: input: X = -1072; Y = -1296 output: X =  -914; Y = -1417
+Q17  Iteration 8 times: input: X = -1141; Y =   943 output: X = -1245; Y =   803
+Q18  Iteration 8 times: input: X =  -619; Y =   512 output: X =  -675; Y =   435
 
-d = -1 0 0 0 
-GG1  Iteration 12 times: X = 962; Y = 0962
-GR11 Iteration 12 times: X = -344; Y = 476
-GR12 Iteration 12 times: X = -603; Y = -1100
-GR13 Iteration 12 times: X = 187; Y = 995
+d = 1 -1 0 0 
+GG1  Iteration 12 times: X = 876; Y = 0876
+GR11 Iteration 12 times: X = 27; Y = -621
+GR12 Iteration 12 times: X = -485; Y = -612
+GR13 Iteration 12 times: X = -169; Y = 375
 Q11  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q12  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q13  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q14  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q15  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q16  Iteration 12 times: input: X =   873; Y = -1443 output: X =   867; Y = -1446
-Q17  Iteration 12 times: input: X = -1089; Y =  -661 output: X = -1092; Y =  -656
-Q18  Iteration 12 times: input: X =   948; Y =   572 output: X =   950; Y =   569
-
-d = 0 0 0 GG1  Iteration 15 times: X = 962; Y = 0962
-GR11 Iteration 15 times: X = -344; Y = 476
-GR12 Iteration 15 times: X = -603; Y = -1100
-GR13 Iteration 15 times: X = 187; Y = 995
-Q11  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q12  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q13  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q14  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q15  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q16  Iteration 15 times: input: X =   867; Y = -1446 output: X =   867; Y = -1446
-Q17  Iteration 15 times: input: X = -1092; Y =  -656 output: X = -1092; Y =  -656
-Q18  Iteration 15 times: input: X =   950; Y =   569 output: X =   950; Y =   569
-0 
-GG1  Multiplied by K:   X = 584; Y = 0
-GR11 Multiplied by K:   X = -272; Y = -488
-GR12 Multiplied by K:   X = -384; Y = -208
-GR13 Multiplied by K:   X = -316; Y = 420
-Q11 Multiplied by K:   X = 0; Y = 0
-Q12 Multiplied by K:   X = 0; Y = 0
-Q13 Multiplied by K:   X = 0; Y = 0
-Q14 Multiplied by K:   X = 0; Y = 0
-Q15 Multiplied by K:   X = 0; Y = 0
-Q16 Multiplied by K:   X = 526; Y = -879
-Q17 Multiplied by K:   X = -664; Y = -399
-Q18 Multiplied by K:   X = 577; Y = 345
+Q16  Iteration 12 times: input: X =  -914; Y = -1417 output: X =  -911; Y = -1419
+Q17  Iteration 12 times: input: X = -1245; Y =   803 output: X = -1247; Y =   801
+Q18  Iteration 12 times: input: X =  -675; Y =   435 output: X =  -676; Y =   434
 k = 1 row56: 
 
-d = -1 -1 -1 1 
-GG1  Iteration 4 times: X = 985; Y = -28985
-GR11 Iteration 4 times: X = -247; Y = -506
-GR12 Iteration 4 times: X = -685; Y = 337
-GR13 Iteration 4 times: X = 348; Y = -780
+d = -1 -1 1 -1 
+GG1  Iteration 4 times: X = 942; Y = 53942
+GR11 Iteration 4 times: X = -148; Y = 373
+GR12 Iteration 4 times: X = -469; Y = -142
+GR13 Iteration 4 times: X = -229; Y = 88
 Q11  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q12  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q13  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q14  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q15  Iteration 4 times: input: X =  1024; Y =     0 output: X =   336; Y = -1648
-Q16  Iteration 4 times: input: X =     0; Y =   526 output: X =   846; Y =   172
-Q17  Iteration 4 times: input: X =     0; Y =  -664 output: X = -1068; Y =  -218
-Q18  Iteration 4 times: input: X =     0; Y =   577 output: X =   928; Y =   190
+Q15  Iteration 4 times: input: X =  1024; Y =     0 output: X =   720; Y = -1520
+Q16  Iteration 4 times: input: X =     0; Y =  -554 output: X =  -822; Y =  -389
+Q17  Iteration 4 times: input: X =     0; Y =  -758 output: X = -1125; Y =  -533
+Q18  Iteration 4 times: input: X =     0; Y =  -411 output: X =  -610; Y =  -289
 
-d = 1 -1 -1 1 
-GG1  Iteration 8 times: X = 989; Y = -5989
-GR11 Iteration 8 times: X = -237; Y = -513
-GR12 Iteration 8 times: X = -695; Y = 322
-GR13 Iteration 8 times: X = 367; Y = -774
+d = -1 1 -1 -1 
+GG1  Iteration 8 times: X = 946; Y = 3946
+GR11 Iteration 8 times: X = -129; Y = 384
+GR12 Iteration 8 times: X = -477; Y = -115
+GR13 Iteration 8 times: X = -226; Y = 102
 Q11  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q12  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q13  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q14  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q15  Iteration 8 times: input: X =   336; Y = -1648 output: X =   375; Y = -1644
-Q16  Iteration 8 times: input: X =   846; Y =   172 output: X =   845; Y =   191
-Q17  Iteration 8 times: input: X = -1068; Y =  -218 output: X = -1065; Y =  -244
-Q18  Iteration 8 times: input: X =   928; Y =   190 output: X =   926; Y =   213
+Q15  Iteration 8 times: input: X =   720; Y = -1520 output: X =   636; Y = -1561
+Q16  Iteration 8 times: input: X =  -822; Y =  -389 output: X =  -845; Y =  -343
+Q17  Iteration 8 times: input: X = -1125; Y =  -533 output: X = -1156; Y =  -472
+Q18  Iteration 8 times: input: X =  -610; Y =  -289 output: X =  -629; Y =  -255
 
-d = 1 1 1 1 
-GG1  Iteration 12 times: X = 993; Y = -1993
-GR11 Iteration 12 times: X = -230; Y = -517
-GR12 Iteration 12 times: X = -696; Y = 315
-GR13 Iteration 12 times: X = 375; Y = -773
+d = -1 0 0 0 
+GG1  Iteration 12 times: X = 946; Y = 0946
+GR11 Iteration 12 times: X = -128; Y = 385
+GR12 Iteration 12 times: X = -478; Y = -113
+GR13 Iteration 12 times: X = -226; Y = 103
 Q11  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q12  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q13  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q14  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q15  Iteration 12 times: input: X =   375; Y = -1644 output: X =   389; Y = -1643
-Q16  Iteration 12 times: input: X =   845; Y =   191 output: X =   845; Y =   195
-Q17  Iteration 12 times: input: X = -1065; Y =  -244 output: X = -1061; Y =  -255
-Q18  Iteration 12 times: input: X =   926; Y =   213 output: X =   926; Y =   217
-
-d = 1 1 1 GG1  Iteration 15 times: X = 996; Y = -1996
-GR11 Iteration 15 times: X = -227; Y = -520
-GR12 Iteration 15 times: X = -696; Y = 312
-GR13 Iteration 15 times: X = 378; Y = -773
-Q11  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q12  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q13  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q14  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q15  Iteration 15 times: input: X =   389; Y = -1643 output: X =   392; Y = -1643
-Q16  Iteration 15 times: input: X =   845; Y =   195 output: X =   845; Y =   195
-Q17  Iteration 15 times: input: X = -1061; Y =  -255 output: X = -1058; Y =  -258
-Q18  Iteration 15 times: input: X =   926; Y =   217 output: X =   926; Y =   217
-1 
-GG1  Multiplied by K:   X = 605; Y = -1
-GR11 Multiplied by K:   X = -272; Y = -488
-GR12 Multiplied by K:   X = -384; Y = -208
-GR13 Multiplied by K:   X = -316; Y = 420
-Q11 Multiplied by K:   X = 0; Y = 0
-Q12 Multiplied by K:   X = 0; Y = 0
-Q13 Multiplied by K:   X = 0; Y = 0
-Q14 Multiplied by K:   X = 0; Y = 0
-Q15 Multiplied by K:   X = 238; Y = -998
-Q16 Multiplied by K:   X = 513; Y = 118
-Q17 Multiplied by K:   X = -643; Y = -158
-Q18 Multiplied by K:   X = 562; Y = 131
+Q15  Iteration 12 times: input: X =   636; Y = -1561 output: X =   629; Y = -1563
+Q16  Iteration 12 times: input: X =  -845; Y =  -343 output: X =  -847; Y =  -339
+Q17  Iteration 12 times: input: X = -1156; Y =  -472 output: X = -1158; Y =  -467
+Q18  Iteration 12 times: input: X =  -629; Y =  -255 output: X =  -630; Y =  -252
 k = 1 row45: 
 
-d = -1 -1 1 -1 
-GG1  Iteration 4 times: X = 1142; Y = -911142
-GR11 Iteration 4 times: X = 116; Y = -774
-GR12 Iteration 4 times: X = -522; Y = -522
-GR13 Iteration 4 times: X = 696; Y = -586
+d = -1 -1 -1 1 
+GG1  Iteration 4 times: X = 958; Y = 21958
+GR11 Iteration 4 times: X = -266; Y = 663
+GR12 Iteration 4 times: X = -558; Y = 343
+GR13 Iteration 4 times: X = -163; Y = -335
 Q11  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q12  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q13  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q14  Iteration 4 times: input: X =  1024; Y =     0 output: X =   720; Y = -1520
-Q15  Iteration 4 times: input: X =     0; Y =   238 output: X =   354; Y =   167
-Q16  Iteration 4 times: input: X =     0; Y =   513 output: X =   761; Y =   361
-Q17  Iteration 4 times: input: X =     0; Y =  -643 output: X =  -955; Y =  -452
-Q18  Iteration 4 times: input: X =     0; Y =   562 output: X =   834; Y =   395
+Q14  Iteration 4 times: input: X =  1024; Y =     0 output: X =   336; Y = -1648
+Q15  Iteration 4 times: input: X =     0; Y =   382 output: X =   614; Y =   125
+Q16  Iteration 4 times: input: X =     0; Y =  -515 output: X =  -830; Y =  -168
+Q17  Iteration 4 times: input: X =     0; Y =  -704 output: X = -1133; Y =  -231
+Q18  Iteration 4 times: input: X =     0; Y =  -383 output: X =  -617; Y =  -125
 
-d = 1 1 -1 1 
-GG1  Iteration 8 times: X = 1150; Y = 61150
-GR11 Iteration 8 times: X = 183; Y = -763
-GR12 Iteration 8 times: X = -475; Y = -567
-GR13 Iteration 8 times: X = 746; Y = -527
+d = -1 1 1 -1 
+GG1  Iteration 8 times: X = 962; Y = -1962
+GR11 Iteration 8 times: X = -251; Y = 670
+GR12 Iteration 8 times: X = -551; Y = 357
+GR13 Iteration 8 times: X = -170; Y = -331
 Q11  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q12  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q13  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q14  Iteration 8 times: input: X =   720; Y = -1520 output: X =   851; Y = -1457
-Q15  Iteration 8 times: input: X =   354; Y =   167 output: X =   341; Y =   196
-Q16  Iteration 8 times: input: X =   761; Y =   361 output: X =   730; Y =   425
-Q17  Iteration 8 times: input: X =  -955; Y =  -452 output: X =  -914; Y =  -534
-Q18  Iteration 8 times: input: X =   834; Y =   395 output: X =   801; Y =   466
+Q14  Iteration 8 times: input: X =   336; Y = -1648 output: X =   299; Y = -1660
+Q15  Iteration 8 times: input: X =   614; Y =   125 output: X =   618; Y =   111
+Q16  Iteration 8 times: input: X =  -830; Y =  -168 output: X =  -836; Y =  -150
+Q17  Iteration 8 times: input: X = -1133; Y =  -231 output: X = -1141; Y =  -205
+Q18  Iteration 8 times: input: X =  -617; Y =  -125 output: X =  -621; Y =  -111
 
-d = -1 -1 0 0 
-GG1  Iteration 12 times: X = 1150; Y = 01150
-GR11 Iteration 12 times: X = 178; Y = -763
-GR12 Iteration 12 times: X = -480; Y = -564
-GR13 Iteration 12 times: X = 741; Y = -530
+d = 1 -1 -1 -1 
+GG1  Iteration 12 times: X = 963; Y = 1963
+GR11 Iteration 12 times: X = -252; Y = 672
+GR12 Iteration 12 times: X = -552; Y = 358
+GR13 Iteration 12 times: X = -171; Y = -329
 Q11  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q12  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q13  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q14  Iteration 12 times: input: X =   851; Y = -1457 output: X =   842; Y = -1461
-Q15  Iteration 12 times: input: X =   341; Y =   196 output: X =   341; Y =   195
-Q16  Iteration 12 times: input: X =   730; Y =   425 output: X =   731; Y =   422
-Q17  Iteration 12 times: input: X =  -914; Y =  -534 output: X =  -919; Y =  -528
-Q18  Iteration 12 times: input: X =   801; Y =   466 output: X =   802; Y =   462
-
-d = 0 0 0 GG1  Iteration 15 times: X = 1150; Y = 01150
-GR11 Iteration 15 times: X = 178; Y = -763
-GR12 Iteration 15 times: X = -480; Y = -564
-GR13 Iteration 15 times: X = 741; Y = -530
-Q11  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q12  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q13  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q14  Iteration 15 times: input: X =   842; Y = -1461 output: X =   842; Y = -1461
-Q15  Iteration 15 times: input: X =   341; Y =   195 output: X =   341; Y =   195
-Q16  Iteration 15 times: input: X =   731; Y =   422 output: X =   731; Y =   422
-Q17  Iteration 15 times: input: X =  -919; Y =  -528 output: X =  -919; Y =  -528
-Q18  Iteration 15 times: input: X =   802; Y =   462 output: X =   802; Y =   462
-0 
-GG1  Multiplied by K:   X = 698; Y = 0
-GR11 Multiplied by K:   X = -272; Y = -488
-GR12 Multiplied by K:   X = -384; Y = -208
-GR13 Multiplied by K:   X = -316; Y = 420
-Q11 Multiplied by K:   X = 0; Y = 0
-Q12 Multiplied by K:   X = 0; Y = 0
-Q13 Multiplied by K:   X = 0; Y = 0
-Q14 Multiplied by K:   X = 511; Y = -888
-Q15 Multiplied by K:   X = 207; Y = 118
-Q16 Multiplied by K:   X = 444; Y = 256
-Q17 Multiplied by K:   X = -559; Y = -321
-Q18 Multiplied by K:   X = 487; Y = 280
+Q14  Iteration 12 times: input: X =   299; Y = -1660 output: X =   299; Y = -1659
+Q15  Iteration 12 times: input: X =   618; Y =   111 output: X =   618; Y =   112
+Q16  Iteration 12 times: input: X =  -836; Y =  -150 output: X =  -838; Y =  -150
+Q17  Iteration 12 times: input: X = -1141; Y =  -205 output: X = -1143; Y =  -204
+Q18  Iteration 12 times: input: X =  -621; Y =  -111 output: X =  -623; Y =  -110
 k = 1 row34: 
 
-d = -1 -1 1 -1 
-GG1  Iteration 4 times: X = 1323; Y = -1151323
-GR11 Iteration 4 times: X = 475; Y = -589
-GR12 Iteration 4 times: X = -701; Y = 359
-GR13 Iteration 4 times: X = 870; Y = -111
+d = 1 1 -1 1 
+GG1  Iteration 4 times: X = 1038; Y = -481038
+GR11 Iteration 4 times: X = -234; Y = 96
+GR12 Iteration 4 times: X = -555; Y = 117
+GR13 Iteration 4 times: X = -242; Y = -111
 Q11  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q12  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q13  Iteration 4 times: input: X =  1024; Y =     0 output: X =   720; Y = -1520
-Q14  Iteration 4 times: input: X =     0; Y =   511 output: X =   757; Y =   360
-Q15  Iteration 4 times: input: X =     0; Y =   207 output: X =   306; Y =   146
-Q16  Iteration 4 times: input: X =     0; Y =   444 output: X =   659; Y =   312
-Q17  Iteration 4 times: input: X =     0; Y =  -559 output: X =  -831; Y =  -392
-Q18  Iteration 4 times: input: X =     0; Y =   487 output: X =   722; Y =   343
+Q13  Iteration 4 times: input: X = -1024; Y =     0 output: X =  -720; Y = -1520
+Q14  Iteration 4 times: input: X =     0; Y =  -181 output: X =   269; Y =  -128
+Q15  Iteration 4 times: input: X =     0; Y =  -375 output: X =   557; Y =  -264
+Q16  Iteration 4 times: input: X =     0; Y =   510 output: X =  -757; Y =   359
+Q17  Iteration 4 times: input: X =     0; Y =   695 output: X = -1032; Y =   488
+Q18  Iteration 4 times: input: X =     0; Y =   379 output: X =  -562; Y =   265
 
-d = 1 1 -1 1 
-GG1  Iteration 8 times: X = 1334; Y = -21334
-GR11 Iteration 8 times: X = 526; Y = -548
-GR12 Iteration 8 times: X = -730; Y = 298
-GR13 Iteration 8 times: X = 879; Y = -37
+d = 1 -1 1 0 
+GG1  Iteration 8 times: X = 1042; Y = 01042
+GR11 Iteration 8 times: X = -239; Y = 85
+GR12 Iteration 8 times: X = -561; Y = 91
+GR13 Iteration 8 times: X = -237; Y = -123
 Q11  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q12  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q13  Iteration 8 times: input: X =   720; Y = -1520 output: X =   851; Y = -1457
-Q14  Iteration 8 times: input: X =   757; Y =   360 output: X =   726; Y =   423
-Q15  Iteration 8 times: input: X =   306; Y =   146 output: X =   293; Y =   172
-Q16  Iteration 8 times: input: X =   659; Y =   312 output: X =   632; Y =   368
-Q17  Iteration 8 times: input: X =  -831; Y =  -392 output: X =  -796; Y =  -464
-Q18  Iteration 8 times: input: X =   722; Y =   343 output: X =   692; Y =   404
+Q13  Iteration 8 times: input: X =  -720; Y = -1520 output: X =  -649; Y = -1556
+Q14  Iteration 8 times: input: X =   269; Y =  -128 output: X =   275; Y =  -116
+Q15  Iteration 8 times: input: X =   557; Y =  -264 output: X =   570; Y =  -239
+Q16  Iteration 8 times: input: X =  -757; Y =   359 output: X =  -775; Y =   323
+Q17  Iteration 8 times: input: X = -1032; Y =   488 output: X = -1056; Y =   440
+Q18  Iteration 8 times: input: X =  -562; Y =   265 output: X =  -574; Y =   239
 
-d = 1 -1 -1 0 
-GG1  Iteration 12 times: X = 1335; Y = 01335
-GR11 Iteration 12 times: X = 526; Y = -547
-GR12 Iteration 12 times: X = -731; Y = 298
-GR13 Iteration 12 times: X = 878; Y = -35
+d = 0 0 0 0 
+GG1  Iteration 12 times: X = 1042; Y = 01042
+GR11 Iteration 12 times: X = -239; Y = 85
+GR12 Iteration 12 times: X = -561; Y = 91
+GR13 Iteration 12 times: X = -237; Y = -123
 Q11  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q12  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q13  Iteration 12 times: input: X =   851; Y = -1457 output: X =   852; Y = -1455
-Q14  Iteration 12 times: input: X =   726; Y =   423 output: X =   725; Y =   424
-Q15  Iteration 12 times: input: X =   293; Y =   172 output: X =   293; Y =   173
-Q16  Iteration 12 times: input: X =   632; Y =   368 output: X =   631; Y =   369
-Q17  Iteration 12 times: input: X =  -796; Y =  -464 output: X =  -796; Y =  -465
-Q18  Iteration 12 times: input: X =   692; Y =   404 output: X =   691; Y =   405
-
-d = 0 0 0 GG1  Iteration 15 times: X = 1335; Y = 01335
-GR11 Iteration 15 times: X = 526; Y = -547
-GR12 Iteration 15 times: X = -731; Y = 298
-GR13 Iteration 15 times: X = 878; Y = -35
-Q11  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q12  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q13  Iteration 15 times: input: X =   852; Y = -1455 output: X =   852; Y = -1455
-Q14  Iteration 15 times: input: X =   725; Y =   424 output: X =   725; Y =   424
-Q15  Iteration 15 times: input: X =   293; Y =   173 output: X =   293; Y =   173
-Q16  Iteration 15 times: input: X =   631; Y =   369 output: X =   631; Y =   369
-Q17  Iteration 15 times: input: X =  -796; Y =  -465 output: X =  -796; Y =  -465
-Q18  Iteration 15 times: input: X =   691; Y =   405 output: X =   691; Y =   405
-0 
-GG1  Multiplied by K:   X = 810; Y = 0
-GR11 Multiplied by K:   X = -272; Y = -488
-GR12 Multiplied by K:   X = -384; Y = -208
-GR13 Multiplied by K:   X = -316; Y = 420
-Q11 Multiplied by K:   X = 0; Y = 0
-Q12 Multiplied by K:   X = 0; Y = 0
-Q13 Multiplied by K:   X = 517; Y = -884
-Q14 Multiplied by K:   X = 440; Y = 257
-Q15 Multiplied by K:   X = 177; Y = 105
-Q16 Multiplied by K:   X = 383; Y = 224
-Q17 Multiplied by K:   X = -484; Y = -283
-Q18 Multiplied by K:   X = 419; Y = 246
+Q13  Iteration 12 times: input: X =  -649; Y = -1556 output: X =  -649; Y = -1556
+Q14  Iteration 12 times: input: X =   275; Y =  -116 output: X =   275; Y =  -116
+Q15  Iteration 12 times: input: X =   570; Y =  -239 output: X =   570; Y =  -239
+Q16  Iteration 12 times: input: X =  -775; Y =   323 output: X =  -775; Y =   323
+Q17  Iteration 12 times: input: X = -1056; Y =   440 output: X = -1056; Y =   440
+Q18  Iteration 12 times: input: X =  -574; Y =   239 output: X =  -574; Y =   239
 k = 1 row23: 
 
-d = -1 -1 1 -1 
-GG1  Iteration 4 times: X = 1442; Y = 651442
-GR11 Iteration 4 times: X = 129; Y = 949
-GR12 Iteration 4 times: X = -807; Y = -3
-GR13 Iteration 4 times: X = 1086; Y = -248
+d = -1 -1 -1 1 
+GG1  Iteration 4 times: X = 1049; Y = 521049
+GR11 Iteration 4 times: X = -262; Y = 81
+GR12 Iteration 4 times: X = -553; Y = -92
+GR13 Iteration 4 times: X = -236; Y = -28
 Q11  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q12  Iteration 4 times: input: X =  1024; Y =     0 output: X =   720; Y = -1520
-Q13  Iteration 4 times: input: X =     0; Y =   517 output: X =   767; Y =   364
-Q14  Iteration 4 times: input: X =     0; Y =   440 output: X =   653; Y =   310
-Q15  Iteration 4 times: input: X =     0; Y =   177 output: X =   262; Y =   125
-Q16  Iteration 4 times: input: X =     0; Y =   383 output: X =   567; Y =   270
-Q17  Iteration 4 times: input: X =     0; Y =  -484 output: X =  -718; Y =  -340
-Q18  Iteration 4 times: input: X =     0; Y =   419 output: X =   621; Y =   295
+Q12  Iteration 4 times: input: X =  1024; Y =     0 output: X =   336; Y = -1648
+Q13  Iteration 4 times: input: X =     0; Y =  -395 output: X =  -637; Y =  -129
+Q14  Iteration 4 times: input: X =     0; Y =   167 output: X =   269; Y =    55
+Q15  Iteration 4 times: input: X =     0; Y =   346 output: X =   557; Y =   114
+Q16  Iteration 4 times: input: X =     0; Y =  -471 output: X =  -758; Y =  -154
+Q17  Iteration 4 times: input: X =     0; Y =  -642 output: X = -1034; Y =  -211
+Q18  Iteration 4 times: input: X =     0; Y =  -349 output: X =  -562; Y =  -114
 
-d = -1 1 -1 1 
-GG1  Iteration 8 times: X = 1448; Y = 91448
-GR11 Iteration 8 times: X = 166; Y = 945
-GR12 Iteration 8 times: X = -809; Y = 28
-GR13 Iteration 8 times: X = 1078; Y = -290
+d = -1 1 -1 -1 
+GG1  Iteration 8 times: X = 1053; Y = -51053
+GR11 Iteration 8 times: X = -259; Y = 97
+GR12 Iteration 8 times: X = -560; Y = -61
+GR13 Iteration 8 times: X = -239; Y = -15
 Q11  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q12  Iteration 8 times: input: X =   720; Y = -1520 output: X =   662; Y = -1551
-Q13  Iteration 8 times: input: X =   767; Y =   364 output: X =   783; Y =   335
-Q14  Iteration 8 times: input: X =   653; Y =   310 output: X =   666; Y =   286
-Q15  Iteration 8 times: input: X =   262; Y =   125 output: X =   267; Y =   115
-Q16  Iteration 8 times: input: X =   567; Y =   270 output: X =   578; Y =   248
-Q17  Iteration 8 times: input: X =  -718; Y =  -340 output: X =  -732; Y =  -313
-Q18  Iteration 8 times: input: X =   621; Y =   295 output: X =   633; Y =   271
+Q12  Iteration 8 times: input: X =   336; Y = -1648 output: X =   246; Y = -1668
+Q13  Iteration 8 times: input: X =  -637; Y =  -129 output: X =  -646; Y =   -93
+Q14  Iteration 8 times: input: X =   269; Y =    55 output: X =   271; Y =    41
+Q15  Iteration 8 times: input: X =   557; Y =   114 output: X =   563; Y =    85
+Q16  Iteration 8 times: input: X =  -758; Y =  -154 output: X =  -768; Y =  -112
+Q17  Iteration 8 times: input: X = -1034; Y =  -211 output: X = -1048; Y =  -153
+Q18  Iteration 8 times: input: X =  -562; Y =  -114 output: X =  -570; Y =   -82
 
-d = -1 -1 -1 -1 
-GG1  Iteration 12 times: X = 1448; Y = 11448
-GR11 Iteration 12 times: X = 170; Y = 945
-GR12 Iteration 12 times: X = -809; Y = 36
-GR13 Iteration 12 times: X = 1073; Y = -297
+d = 1 1 -1 0 
+GG1  Iteration 12 times: X = 1055; Y = 01055
+GR11 Iteration 12 times: X = -259; Y = 95
+GR12 Iteration 12 times: X = -559; Y = -65
+GR13 Iteration 12 times: X = -238; Y = -16
 Q11  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q12  Iteration 12 times: input: X =   662; Y = -1551 output: X =   648; Y = -1554
-Q13  Iteration 12 times: input: X =   783; Y =   335 output: X =   784; Y =   331
-Q14  Iteration 12 times: input: X =   666; Y =   286 output: X =   667; Y =   283
-Q15  Iteration 12 times: input: X =   267; Y =   115 output: X =   267; Y =   114
-Q16  Iteration 12 times: input: X =   578; Y =   248 output: X =   578; Y =   245
-Q17  Iteration 12 times: input: X =  -732; Y =  -313 output: X =  -737; Y =  -306
-Q18  Iteration 12 times: input: X =   633; Y =   271 output: X =   634; Y =   268
-
-d = -1 -1 -1 GG1  Iteration 15 times: X = 1448; Y = 11448
-GR11 Iteration 15 times: X = 170; Y = 945
-GR12 Iteration 15 times: X = -809; Y = 39
-GR13 Iteration 15 times: X = 1070; Y = -297
-Q11  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q12  Iteration 15 times: input: X =   648; Y = -1554 output: X =   645; Y = -1554
-Q13  Iteration 15 times: input: X =   784; Y =   331 output: X =   784; Y =   331
-Q14  Iteration 15 times: input: X =   667; Y =   283 output: X =   667; Y =   283
-Q15  Iteration 15 times: input: X =   267; Y =   114 output: X =   267; Y =   114
-Q16  Iteration 15 times: input: X =   578; Y =   245 output: X =   578; Y =   245
-Q17  Iteration 15 times: input: X =  -737; Y =  -306 output: X =  -740; Y =  -303
-Q18  Iteration 15 times: input: X =   634; Y =   268 output: X =   634; Y =   268
--1 
-GG1  Multiplied by K:   X = 879; Y = 0
-GR11 Multiplied by K:   X = -272; Y = 103
-GR12 Multiplied by K:   X = -384; Y = -492
-GR13 Multiplied by K:   X = -316; Y = 649
-Q11 Multiplied by K:   X = 0; Y = 0
-Q12 Multiplied by K:   X = 391; Y = -944
-Q13 Multiplied by K:   X = 476; Y = 201
-Q14 Multiplied by K:   X = 405; Y = 171
-Q15 Multiplied by K:   X = 162; Y = 69
-Q16 Multiplied by K:   X = 351; Y = 148
-Q17 Multiplied by K:   X = -451; Y = -184
-Q18 Multiplied by K:   X = 385; Y = 162
+Q12  Iteration 12 times: input: X =   246; Y = -1668 output: X =   255; Y = -1668
+Q13  Iteration 12 times: input: X =  -646; Y =   -93 output: X =  -645; Y =   -97
+Q14  Iteration 12 times: input: X =   271; Y =    41 output: X =   271; Y =    42
+Q15  Iteration 12 times: input: X =   563; Y =    85 output: X =   563; Y =    88
+Q16  Iteration 12 times: input: X =  -768; Y =  -112 output: X =  -767; Y =  -116
+Q17  Iteration 12 times: input: X = -1048; Y =  -153 output: X = -1047; Y =  -159
+Q18  Iteration 12 times: input: X =  -570; Y =   -82 output: X =  -569; Y =   -86
 k = 1 row12: 
 
-d = 1 1 -1 1 
-GG1  Iteration 4 times: X = 1651; Y = 1111651
-GR11 Iteration 4 times: X = 345; Y = 331
-GR12 Iteration 4 times: X = -460; Y = 916
-GR13 Iteration 4 times: X = 1186; Y = 12
-Q11  Iteration 4 times: input: X = -1024; Y =     0 output: X =  -720; Y = -1520
-Q12  Iteration 4 times: input: X =     0; Y =  -391 output: X =   581; Y =  -275
-Q13  Iteration 4 times: input: X =     0; Y =  -476 output: X =   706; Y =  -335
-Q14  Iteration 4 times: input: X =     0; Y =  -405 output: X =   602; Y =  -286
-Q15  Iteration 4 times: input: X =     0; Y =  -162 output: X =   240; Y =  -114
-Q16  Iteration 4 times: input: X =     0; Y =  -351 output: X =   522; Y =  -247
-Q17  Iteration 4 times: input: X =     0; Y =   451 output: X =  -669; Y =   316
-Q18  Iteration 4 times: input: X =     0; Y =  -385 output: X =   572; Y =  -271
+d = 1 1 1 -1 
+GG1  Iteration 4 times: X = 1061; Y = -551061
+GR11 Iteration 4 times: X = -193; Y = 355
+GR12 Iteration 4 times: X = -623; Y = -262
+GR13 Iteration 4 times: X = -142; Y = 491
+Q11  Iteration 4 times: input: X = -1024; Y =     0 output: X =  -336; Y = -1648
+Q12  Iteration 4 times: input: X =     0; Y =  -154 output: X =   248; Y =   -51
+Q13  Iteration 4 times: input: X =     0; Y =   392 output: X =  -631; Y =   129
+Q14  Iteration 4 times: input: X =     0; Y =  -164 output: X =   264; Y =   -54
+Q15  Iteration 4 times: input: X =     0; Y =  -341 output: X =   549; Y =  -112
+Q16  Iteration 4 times: input: X =     0; Y =   466 output: X =  -750; Y =   153
+Q17  Iteration 4 times: input: X =     0; Y =   636 output: X = -1024; Y =   209
+Q18  Iteration 4 times: input: X =     0; Y =   346 output: X =  -557; Y =   114
 
-d = -1 -1 1 1 
-GG1  Iteration 8 times: X = 1659; Y = -61659
-GR11 Iteration 8 times: X = 368; Y = 306
-GR12 Iteration 8 times: X = -395; Y = 948
-GR13 Iteration 8 times: X = 1187; Y = -72
-Q11  Iteration 8 times: input: X =  -720; Y = -1520 output: X =  -827; Y = -1470
-Q12  Iteration 8 times: input: X =   581; Y =  -275 output: X =   562; Y =  -316
-Q13  Iteration 8 times: input: X =   706; Y =  -335 output: X =   684; Y =  -385
-Q14  Iteration 8 times: input: X =   602; Y =  -286 output: X =   582; Y =  -329
-Q15  Iteration 8 times: input: X =   240; Y =  -114 output: X =   232; Y =  -132
-Q16  Iteration 8 times: input: X =   522; Y =  -247 output: X =   505; Y =  -284
-Q17  Iteration 8 times: input: X =  -669; Y =   316 output: X =  -646; Y =   363
-Q18  Iteration 8 times: input: X =   572; Y =  -271 output: X =   554; Y =  -311
+d = 1 -1 1 1 
+GG1  Iteration 8 times: X = 1067; Y = 21067
+GR11 Iteration 8 times: X = -212; Y = 343
+GR12 Iteration 8 times: X = -608; Y = -297
+GR13 Iteration 8 times: X = -167; Y = 483
+Q11  Iteration 8 times: input: X =  -336; Y = -1648 output: X =  -246; Y = -1669
+Q12  Iteration 8 times: input: X =   248; Y =   -51 output: X =   252; Y =   -39
+Q13  Iteration 8 times: input: X =  -631; Y =   129 output: X =  -638; Y =    94
+Q14  Iteration 8 times: input: X =   264; Y =   -54 output: X =   268; Y =   -40
+Q15  Iteration 8 times: input: X =   549; Y =  -112 output: X =   556; Y =   -83
+Q16  Iteration 8 times: input: X =  -750; Y =   153 output: X =  -758; Y =   112
+Q17  Iteration 8 times: input: X = -1024; Y =   209 output: X = -1036; Y =   152
+Q18  Iteration 8 times: input: X =  -557; Y =   114 output: X =  -563; Y =    83
 
-d = 1 0 0 0 
-GG1  Iteration 12 times: X = 1660; Y = 01660
-GR11 Iteration 12 times: X = 367; Y = 307
-GR12 Iteration 12 times: X = -398; Y = 946
-GR13 Iteration 12 times: X = 1188; Y = -68
-Q11  Iteration 12 times: input: X =  -827; Y = -1470 output: X =  -821; Y = -1474
-Q12  Iteration 12 times: input: X =   562; Y =  -316 output: X =   564; Y =  -314
-Q13  Iteration 12 times: input: X =   684; Y =  -385 output: X =   686; Y =  -383
-Q14  Iteration 12 times: input: X =   582; Y =  -329 output: X =   584; Y =  -327
-Q15  Iteration 12 times: input: X =   232; Y =  -132 output: X =   233; Y =  -132
-Q16  Iteration 12 times: input: X =   505; Y =  -284 output: X =   507; Y =  -283
-Q17  Iteration 12 times: input: X =  -646; Y =   363 output: X =  -647; Y =   360
-Q18  Iteration 12 times: input: X =   554; Y =  -311 output: X =   556; Y =  -309
-
-d = 0 0 0 GG1  Iteration 15 times: X = 1660; Y = 01660
-GR11 Iteration 15 times: X = 367; Y = 307
-GR12 Iteration 15 times: X = -398; Y = 946
-GR13 Iteration 15 times: X = 1188; Y = -68
-Q11  Iteration 15 times: input: X =  -821; Y = -1474 output: X =  -821; Y = -1474
-Q12  Iteration 15 times: input: X =   564; Y =  -314 output: X =   564; Y =  -314
-Q13  Iteration 15 times: input: X =   686; Y =  -383 output: X =   686; Y =  -383
-Q14  Iteration 15 times: input: X =   584; Y =  -327 output: X =   584; Y =  -327
-Q15  Iteration 15 times: input: X =   233; Y =  -132 output: X =   233; Y =  -132
-Q16  Iteration 15 times: input: X =   507; Y =  -283 output: X =   507; Y =  -283
-Q17  Iteration 15 times: input: X =  -647; Y =   360 output: X =  -647; Y =   360
-Q18  Iteration 15 times: input: X =   556; Y =  -309 output: X =   556; Y =  -309
-0 
-GG1  Multiplied by K:   X = 1008; Y = 0
-GR11 Multiplied by K:   X = 222; Y = 186
-GR12 Multiplied by K:   X = -242; Y = 574
-GR13 Multiplied by K:   X = 721; Y = -42
-Q11 Multiplied by K:   X = -499; Y = -896
-Q12 Multiplied by K:   X = 342; Y = -191
-Q13 Multiplied by K:   X = 416; Y = -233
-Q14 Multiplied by K:   X = 354; Y = -199
-Q15 Multiplied by K:   X = 141; Y = -81
-Q16 Multiplied by K:   X = 307; Y = -172
-Q17 Multiplied by K:   X = -394; Y = 218
-Q18 Multiplied by K:   X = 337; Y = -188
+d = -1 1 0 0 
+GG1  Iteration 12 times: X = 1068; Y = 01068
+GR11 Iteration 12 times: X = -211; Y = 343
+GR12 Iteration 12 times: X = -609; Y = -296
+GR13 Iteration 12 times: X = -166; Y = 483
+Q11  Iteration 12 times: input: X =  -246; Y = -1669 output: X =  -249; Y = -1669
+Q12  Iteration 12 times: input: X =   252; Y =   -39 output: X =   252; Y =   -39
+Q13  Iteration 12 times: input: X =  -638; Y =    94 output: X =  -638; Y =    95
+Q14  Iteration 12 times: input: X =   268; Y =   -40 output: X =   268; Y =   -41
+Q15  Iteration 12 times: input: X =   556; Y =   -83 output: X =   556; Y =   -84
+Q16  Iteration 12 times: input: X =  -758; Y =   112 output: X =  -758; Y =   113
+Q17  Iteration 12 times: input: X = -1036; Y =   152 output: X = -1036; Y =   154
+Q18  Iteration 12 times: input: X =  -563; Y =    83 output: X =  -563; Y =    84
 k = 2 row78: 
 
-d = 1 1 -1 1 
-GG2  Iteration 4 times: X = 1205; Y = -461205
-GR21 Iteration 4 times: X = -485; Y = -986
-GR22 Iteration 4 times: X = 499; Y = 861
+d = -1 -1 1 -1 
+GG2  Iteration 4 times: X = 1177; Y = -1291177
+GR21 Iteration 4 times: X = 256; Y = -554
+GR22 Iteration 4 times: X = -1132; Y = -123
 Q21  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q22  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q23  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q24  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q25  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q26  Iteration 4 times: input: X =  -879; Y =     0 output: X =  -617; Y = -1306
-Q27  Iteration 4 times: input: X =  -399; Y =  -673 output: X =   719; Y = -1065
-Q28  Iteration 4 times: input: X =   345; Y =  -773 output: X =  1390; Y =   -32
+Q26  Iteration 4 times: input: X =   862; Y =     0 output: X =   606; Y = -1280
+Q27  Iteration 4 times: input: X =  -486; Y =  -488 output: X = -1066; Y =   378
+Q28  Iteration 4 times: input: X =  -263; Y =   901 output: X =  1152; Y =  1024
 
-d = 1 -1 1 -1 
-GG2  Iteration 8 times: X = 1209; Y = 11209
-GR21 Iteration 8 times: X = -447; Y = -1007
-GR22 Iteration 8 times: X = 466; Y = 883
+d = 1 1 1 1 
+GG2  Iteration 8 times: X = 1190; Y = 81190
+GR21 Iteration 8 times: X = 322; Y = -523
+GR22 Iteration 8 times: X = -1111; Y = -257
 Q21  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q22  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q23  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q24  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q25  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q26  Iteration 8 times: input: X =  -617; Y = -1306 output: X =  -568; Y = -1333
-Q27  Iteration 8 times: input: X =   719; Y = -1065 output: X =   762; Y = -1040
-Q28  Iteration 8 times: input: X =  1390; Y =   -32 output: X =  1393; Y =    22
+Q26  Iteration 8 times: input: X =   606; Y = -1280 output: X =   755; Y = -1206
+Q27  Iteration 8 times: input: X = -1066; Y =   378 output: X = -1104; Y =   249
+Q28  Iteration 8 times: input: X =  1152; Y =  1024 output: X =  1029; Y =  1154
 
-d = -1 1 1 0 
-GG2  Iteration 12 times: X = 1211; Y = 01211
-GR21 Iteration 12 times: X = -448; Y = -1007
-GR22 Iteration 12 times: X = 468; Y = 882
+d = -1 -1 -1 -1 
+GG2  Iteration 12 times: X = 1190; Y = 11190
+GR21 Iteration 12 times: X = 315; Y = -524
+GR22 Iteration 12 times: X = -1116; Y = -246
 Q21  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q22  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q23  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q24  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q25  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q26  Iteration 12 times: input: X =  -568; Y = -1333 output: X =  -569; Y = -1333
-Q27  Iteration 12 times: input: X =   762; Y = -1040 output: X =   762; Y = -1041
-Q28  Iteration 12 times: input: X =  1393; Y =    22 output: X =  1393; Y =    20
-
-d = 0 0 0 GG2  Iteration 15 times: X = 1211; Y = 01211
-GR21 Iteration 15 times: X = -448; Y = -1007
-GR22 Iteration 15 times: X = 468; Y = 882
-Q21  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q22  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q23  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q24  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q25  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q26  Iteration 15 times: input: X =  -569; Y = -1333 output: X =  -569; Y = -1333
-Q27  Iteration 15 times: input: X =   762; Y = -1041 output: X =   762; Y = -1041
-Q28  Iteration 15 times: input: X =  1393; Y =    20 output: X =  1393; Y =    20
-0 
-GG2  Multiplied by K:   X = 735; Y = 0
-GR21 Multiplied by K:   X = 574; Y = 24
-GR22 Multiplied by K:   X = -42; Y = -181
-Q21 Multiplied by K:   X = 0; Y = 0
-Q22 Multiplied by K:   X = 0; Y = 0
-Q23 Multiplied by K:   X = 0; Y = 0
-Q24 Multiplied by K:   X = 0; Y = 0
-Q25 Multiplied by K:   X = 0; Y = 0
-Q26 Multiplied by K:   X = -346; Y = -810
-Q27 Multiplied by K:   X = 462; Y = -633
-Q28 Multiplied by K:   X = 846; Y = 12
+Q26  Iteration 12 times: input: X =   755; Y = -1206 output: X =   744; Y = -1209
+Q27  Iteration 12 times: input: X = -1104; Y =   249 output: X = -1104; Y =   260
+Q28  Iteration 12 times: input: X =  1029; Y =  1154 output: X =  1036; Y =  1147
 k = 2 row67: 
 
-d = 1 1 -1 1 
-GG2  Iteration 4 times: X = 1314; Y = -461314
-GR21 Iteration 4 times: X = -537; Y = -88
-GR22 Iteration 4 times: X = 752; Y = 498
+d = -1 -1 -1 1 
+GG2  Iteration 4 times: X = 1238; Y = -1371238
+GR21 Iteration 4 times: X = 284; Y = 173
+GR22 Iteration 4 times: X = -1070; Y = -322
 Q21  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q22  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q23  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q24  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q25  Iteration 4 times: input: X =   998; Y =     0 output: X =   702; Y =  1482
-Q26  Iteration 4 times: input: X =  -118; Y =   346 output: X =  -596; Y =    68
-Q27  Iteration 4 times: input: X =   158; Y =  -462 output: X =   797; Y =   -91
-Q28  Iteration 4 times: input: X =  -131; Y =  -846 output: X =  1165; Y =  -790
+Q25  Iteration 4 times: input: X =  -950; Y =     0 output: X =  -312; Y =  1529
+Q26  Iteration 4 times: input: X =  -206; Y =   451 output: X =   657; Y =   480
+Q27  Iteration 4 times: input: X =  -284; Y =  -671 output: X = -1174; Y =   238
+Q28  Iteration 4 times: input: X =  -154; Y =   629 output: X =   961; Y =   455
 
-d = 1 -1 1 -1 
-GG2  Iteration 8 times: X = 1319; Y = 51319
-GR21 Iteration 8 times: X = -534; Y = -109
-GR22 Iteration 8 times: X = 734; Y = 529
+d = 1 1 1 1 
+GG2  Iteration 8 times: X = 1251; Y = 61251
+GR21 Iteration 8 times: X = 265; Y = 204
+GR22 Iteration 8 times: X = -1025; Y = -448
 Q21  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q22  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q23  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q24  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q25  Iteration 8 times: input: X =   702; Y =  1482 output: X =   645; Y =  1512
-Q26  Iteration 8 times: input: X =  -596; Y =    68 output: X =  -600; Y =    44
-Q27  Iteration 8 times: input: X =   797; Y =   -91 output: X =   802; Y =   -61
-Q28  Iteration 8 times: input: X =  1165; Y =  -790 output: X =  1198; Y =  -746
+Q25  Iteration 8 times: input: X =  -312; Y =  1529 output: X =  -488; Y =  1484
+Q26  Iteration 8 times: input: X =   657; Y =   480 output: X =   599; Y =   553
+Q27  Iteration 8 times: input: X = -1174; Y =   238 output: X = -1194; Y =    97
+Q28  Iteration 8 times: input: X =   961; Y =   455 output: X =   905; Y =   565
 
-d = -1 0 0 0 
-GG2  Iteration 12 times: X = 1319; Y = 01319
-GR21 Iteration 12 times: X = -535; Y = -106
-GR22 Iteration 12 times: X = 736; Y = 527
+d = -1 -1 0 0 
+GG2  Iteration 12 times: X = 1251; Y = 01251
+GR21 Iteration 12 times: X = 265; Y = 203
+GR22 Iteration 12 times: X = -1028; Y = -440
 Q21  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q22  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q23  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q24  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q25  Iteration 12 times: input: X =   645; Y =  1512 output: X =   650; Y =  1510
-Q26  Iteration 12 times: input: X =  -600; Y =    44 output: X =  -600; Y =    47
-Q27  Iteration 12 times: input: X =   802; Y =   -61 output: X =   801; Y =   -64
-Q28  Iteration 12 times: input: X =  1198; Y =  -746 output: X =  1195; Y =  -750
-
-d = 0 0 0 GG2  Iteration 15 times: X = 1319; Y = 01319
-GR21 Iteration 15 times: X = -535; Y = -106
-GR22 Iteration 15 times: X = 736; Y = 527
-Q21  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q22  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q23  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q24  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q25  Iteration 15 times: input: X =   650; Y =  1510 output: X =   650; Y =  1510
-Q26  Iteration 15 times: input: X =  -600; Y =    47 output: X =  -600; Y =    47
-Q27  Iteration 15 times: input: X =   801; Y =   -64 output: X =   801; Y =   -64
-Q28  Iteration 15 times: input: X =  1195; Y =  -750 output: X =  1195; Y =  -750
-0 
-GG2  Multiplied by K:   X = 801; Y = 0
-GR21 Multiplied by K:   X = 574; Y = 24
-GR22 Multiplied by K:   X = -42; Y = -181
-Q21 Multiplied by K:   X = 0; Y = 0
-Q22 Multiplied by K:   X = 0; Y = 0
-Q23 Multiplied by K:   X = 0; Y = 0
-Q24 Multiplied by K:   X = 0; Y = 0
-Q25 Multiplied by K:   X = 394; Y = 917
-Q26 Multiplied by K:   X = -365; Y = 28
-Q27 Multiplied by K:   X = 486; Y = -39
-Q28 Multiplied by K:   X = 725; Y = -456
+Q25  Iteration 12 times: input: X =  -488; Y =  1484 output: X =  -481; Y =  1487
+Q26  Iteration 12 times: input: X =   599; Y =   553 output: X =   602; Y =   550
+Q27  Iteration 12 times: input: X = -1194; Y =    97 output: X = -1194; Y =   105
+Q28  Iteration 12 times: input: X =   905; Y =   565 output: X =   908; Y =   561
 k = 2 row56: 
 
-d = 1 1 -1 1 
-GG2  Iteration 4 times: X = 1515; Y = 1251515
-GR21 Iteration 4 times: X = -241; Y = 737
-GR22 Iteration 4 times: X = 890; Y = 163
+d = -1 -1 1 -1 
+GG2  Iteration 4 times: X = 1412; Y = -721412
+GR21 Iteration 4 times: X = 390; Y = -209
+GR22 Iteration 4 times: X = -1069; Y = -142
 Q21  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q22  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q23  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q24  Iteration 4 times: input: X =   888; Y =     0 output: X =   625; Y =  1318
-Q25  Iteration 4 times: input: X =  -118; Y =  -394 output: X =   502; Y =  -453
-Q26  Iteration 4 times: input: X =  -256; Y =   365 output: X =  -721; Y =  -124
-Q27  Iteration 4 times: input: X =   321; Y =  -486 output: X =   947; Y =   134
-Q28  Iteration 4 times: input: X =  -280; Y =  -725 output: X =   880; Y =  -926
+Q24  Iteration 4 times: input: X = -1008; Y =     0 output: X =  -709; Y =  1497
+Q25  Iteration 4 times: input: X =    68; Y =  -293 output: X =  -388; Y =  -307
+Q26  Iteration 4 times: input: X =   -92; Y =   365 output: X =   476; Y =   394
+Q27  Iteration 4 times: input: X =  -124; Y =  -726 output: X = -1165; Y =  -326
+Q28  Iteration 4 times: input: X =   -67; Y =   551 output: X =   770; Y =   487
 
-d = -1 -1 1 -1 
-GG2  Iteration 8 times: X = 1523; Y = -41523
-GR21 Iteration 8 times: X = -178; Y = 759
-GR22 Iteration 8 times: X = 902; Y = 87
+d = 1 -1 1 1 
+GG2  Iteration 8 times: X = 1419; Y = 51419
+GR21 Iteration 8 times: X = 404; Y = -188
+GR22 Iteration 8 times: X = -1062; Y = -201
 Q21  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q22  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q23  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q24  Iteration 8 times: input: X =   625; Y =  1318 output: X =   736; Y =  1263
-Q25  Iteration 8 times: input: X =   502; Y =  -453 output: X =   461; Y =  -494
-Q26  Iteration 8 times: input: X =  -721; Y =  -124 output: X =  -732; Y =   -61
-Q27  Iteration 8 times: input: X =   947; Y =   134 output: X =   957; Y =    53
-Q28  Iteration 8 times: input: X =   880; Y =  -926 output: X =   799; Y = -1000
+Q24  Iteration 8 times: input: X =  -709; Y =  1497 output: X =  -791; Y =  1459
+Q25  Iteration 8 times: input: X =  -388; Y =  -307 output: X =  -371; Y =  -329
+Q26  Iteration 8 times: input: X =   476; Y =   394 output: X =   456; Y =   419
+Q27  Iteration 8 times: input: X = -1165; Y =  -326 output: X = -1148; Y =  -391
+Q28  Iteration 8 times: input: X =   770; Y =   487 output: X =   744; Y =   528
 
-d = 1 -1 1 0 
-GG2  Iteration 12 times: X = 1525; Y = 01525
-GR21 Iteration 12 times: X = -179; Y = 758
-GR22 Iteration 12 times: X = 902; Y = 89
+d = -1 0 0 0 
+GG2  Iteration 12 times: X = 1419; Y = 01419
+GR21 Iteration 12 times: X = 403; Y = -189
+GR22 Iteration 12 times: X = -1063; Y = -196
 Q21  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q22  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q23  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q24  Iteration 12 times: input: X =   736; Y =  1263 output: X =   733; Y =  1264
-Q25  Iteration 12 times: input: X =   461; Y =  -494 output: X =   463; Y =  -493
-Q26  Iteration 12 times: input: X =  -732; Y =   -61 output: X =  -731; Y =   -63
-Q27  Iteration 12 times: input: X =   957; Y =    53 output: X =   957; Y =    55
-Q28  Iteration 12 times: input: X =   799; Y = -1000 output: X =   802; Y =  -998
-
-d = 0 0 0 GG2  Iteration 15 times: X = 1525; Y = 01525
-GR21 Iteration 15 times: X = -179; Y = 758
-GR22 Iteration 15 times: X = 902; Y = 89
-Q21  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q22  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q23  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q24  Iteration 15 times: input: X =   733; Y =  1264 output: X =   733; Y =  1264
-Q25  Iteration 15 times: input: X =   463; Y =  -493 output: X =   463; Y =  -493
-Q26  Iteration 15 times: input: X =  -731; Y =   -63 output: X =  -731; Y =   -63
-Q27  Iteration 15 times: input: X =   957; Y =    55 output: X =   957; Y =    55
-Q28  Iteration 15 times: input: X =   802; Y =  -998 output: X =   802; Y =  -998
-0 
-GG2  Multiplied by K:   X = 926; Y = 0
-GR21 Multiplied by K:   X = 574; Y = 24
-GR22 Multiplied by K:   X = -42; Y = -181
-Q21 Multiplied by K:   X = 0; Y = 0
-Q22 Multiplied by K:   X = 0; Y = 0
-Q23 Multiplied by K:   X = 0; Y = 0
-Q24 Multiplied by K:   X = 445; Y = 767
-Q25 Multiplied by K:   X = 281; Y = -300
-Q26 Multiplied by K:   X = -445; Y = -39
-Q27 Multiplied by K:   X = 581; Y = 33
-Q28 Multiplied by K:   X = 487; Y = -607
+Q24  Iteration 12 times: input: X =  -791; Y =  1459 output: X =  -786; Y =  1463
+Q25  Iteration 12 times: input: X =  -371; Y =  -329 output: X =  -373; Y =  -327
+Q26  Iteration 12 times: input: X =   456; Y =   419 output: X =   457; Y =   418
+Q27  Iteration 12 times: input: X = -1148; Y =  -391 output: X = -1150; Y =  -386
+Q28  Iteration 12 times: input: X =   744; Y =   528 output: X =   746; Y =   526
 k = 2 row45: 
 
-d = 1 1 -1 1 
-GG2  Iteration 4 times: X = 1610; Y = -1581610
-GR21 Iteration 4 times: X = -289; Y = -192
-GR22 Iteration 4 times: X = 828; Y = -353
+d = -1 -1 -1 -1 
+GG2  Iteration 4 times: X = 1408; Y = -1501408
+GR21 Iteration 4 times: X = 395; Y = -108
+GR22 Iteration 4 times: X = -1055; Y = 175
 Q21  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q22  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q23  Iteration 4 times: input: X =   884; Y =     0 output: X =   621; Y =  1312
-Q24  Iteration 4 times: input: X =  -257; Y =  -445 output: X =   480; Y =  -694
-Q25  Iteration 4 times: input: X =  -105; Y =  -281 output: X =   343; Y =  -354
-Q26  Iteration 4 times: input: X =  -224; Y =   445 output: X =  -818; Y =   -20
-Q27  Iteration 4 times: input: X =   283; Y =  -581 output: X =  1061; Y =    11
-Q28  Iteration 4 times: input: X =  -246; Y =  -487 output: X =   550; Y =  -709
+Q23  Iteration 4 times: input: X =  -946; Y =     0 output: X =    73; Y =  1553
+Q24  Iteration 4 times: input: X =   -71; Y =  -478 output: X =  -779; Y =   156
+Q25  Iteration 4 times: input: X =  -146; Y =  -227 output: X =  -362; Y =   259
+Q26  Iteration 4 times: input: X =   196; Y =   277 output: X =   438; Y =  -342
+Q27  Iteration 4 times: input: X =   267; Y =  -699 output: X = -1169; Y =  -383
+Q28  Iteration 4 times: input: X =   145; Y =   453 output: X =   731; Y =  -273
 
 d = 1 1 1 -1 
-GG2  Iteration 8 times: X = 1623; Y = 51623
-GR21 Iteration 8 times: X = -268; Y = -222
-GR22 Iteration 8 times: X = 863; Y = -269
+GG2  Iteration 8 times: X = 1421; Y = -71421
+GR21 Iteration 8 times: X = 406; Y = -69
+GR22 Iteration 8 times: X = -1069; Y = 67
 Q21  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q22  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q23  Iteration 8 times: input: X =   621; Y =  1312 output: X =   486; Y =  1370
-Q24  Iteration 8 times: input: X =   480; Y =  -694 output: X =   551; Y =  -644
-Q25  Iteration 8 times: input: X =   343; Y =  -354 output: X =   380; Y =  -319
-Q26  Iteration 8 times: input: X =  -818; Y =   -20 output: X =  -812; Y =  -104
-Q27  Iteration 8 times: input: X =  1061; Y =    11 output: X =  1058; Y =   118
-Q28  Iteration 8 times: input: X =   550; Y =  -709 output: X =   622; Y =  -652
+Q23  Iteration 8 times: input: X =    73; Y =  1553 output: X =   -84; Y =  1555
+Q24  Iteration 8 times: input: X =  -779; Y =   156 output: X =  -792; Y =    76
+Q25  Iteration 8 times: input: X =  -362; Y =   259 output: X =  -387; Y =   221
+Q26  Iteration 8 times: input: X =   438; Y =  -342 output: X =   472; Y =  -297
+Q27  Iteration 8 times: input: X = -1169; Y =  -383 output: X = -1126; Y =  -502
+Q28  Iteration 8 times: input: X =   731; Y =  -273 output: X =   759; Y =  -199
 
-d = -1 1 -1 -1 
-GG2  Iteration 12 times: X = 1624; Y = 11624
-GR21 Iteration 12 times: X = -270; Y = -219
-GR22 Iteration 12 times: X = 860; Y = -271
+d = 1 1 0 0 
+GG2  Iteration 12 times: X = 1423; Y = 01423
+GR21 Iteration 12 times: X = 408; Y = -68
+GR22 Iteration 12 times: X = -1069; Y = 59
 Q21  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q22  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q23  Iteration 12 times: input: X =   486; Y =  1370 output: X =   490; Y =  1369
-Q24  Iteration 12 times: input: X =   551; Y =  -644 output: X =   548; Y =  -645
-Q25  Iteration 12 times: input: X =   380; Y =  -319 output: X =   377; Y =  -320
-Q26  Iteration 12 times: input: X =  -812; Y =  -104 output: X =  -814; Y =  -100
-Q27  Iteration 12 times: input: X =  1058; Y =   118 output: X =  1058; Y =   115
-Q28  Iteration 12 times: input: X =   622; Y =  -652 output: X =   619; Y =  -653
-
-d = -1 -1 -1 GG2  Iteration 15 times: X = 1624; Y = 11624
-GR21 Iteration 15 times: X = -273; Y = -216
-GR22 Iteration 15 times: X = 857; Y = -271
-Q21  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q22  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q23  Iteration 15 times: input: X =   490; Y =  1369 output: X =   490; Y =  1369
-Q24  Iteration 15 times: input: X =   548; Y =  -645 output: X =   545; Y =  -645
-Q25  Iteration 15 times: input: X =   377; Y =  -320 output: X =   374; Y =  -320
-Q26  Iteration 15 times: input: X =  -814; Y =  -100 output: X =  -817; Y =   -97
-Q27  Iteration 15 times: input: X =  1058; Y =   115 output: X =  1058; Y =   115
-Q28  Iteration 15 times: input: X =   619; Y =  -653 output: X =   616; Y =  -653
--1 
-GG2  Multiplied by K:   X = 986; Y = 0
-GR21 Multiplied by K:   X = 574; Y = 24
-GR22 Multiplied by K:   X = -42; Y = -181
-Q21 Multiplied by K:   X = 0; Y = 0
-Q22 Multiplied by K:   X = 0; Y = 0
-Q23 Multiplied by K:   X = 297; Y = 831
-Q24 Multiplied by K:   X = 330; Y = -392
-Q25 Multiplied by K:   X = 226; Y = -195
-Q26 Multiplied by K:   X = -497; Y = -59
-Q27 Multiplied by K:   X = 642; Y = 69
-Q28 Multiplied by K:   X = 373; Y = -397
+Q23  Iteration 12 times: input: X =   -84; Y =  1555 output: X =   -93; Y =  1553
+Q24  Iteration 12 times: input: X =  -792; Y =    76 output: X =  -792; Y =    70
+Q25  Iteration 12 times: input: X =  -387; Y =   221 output: X =  -387; Y =   218
+Q26  Iteration 12 times: input: X =   472; Y =  -297 output: X =   475; Y =  -296
+Q27  Iteration 12 times: input: X = -1126; Y =  -502 output: X = -1123; Y =  -510
+Q28  Iteration 12 times: input: X =   759; Y =  -199 output: X =   761; Y =  -196
 k = 2 row34: 
 
-d = -1 -1 1 -1 
-GG2  Iteration 4 times: X = 1867; Y = -1591867
-GR21 Iteration 4 times: X = -232; Y = -152
-GR22 Iteration 4 times: X = 643; Y = 634
+d = -1 -1 -1 -1 
+GG2  Iteration 4 times: X = 1412; Y = -1601412
+GR21 Iteration 4 times: X = 408; Y = 48
+GR22 Iteration 4 times: X = -1067; Y = 68
 Q21  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q22  Iteration 4 times: input: X =  -944; Y =     0 output: X =  -664; Y =  1402
-Q23  Iteration 4 times: input: X =   201; Y =   297 output: X =   582; Y =   -90
-Q24  Iteration 4 times: input: X =   171; Y =   330 output: X =   609; Y =   -21
-Q25  Iteration 4 times: input: X =    69; Y =   226 output: X =   383; Y =    57
-Q26  Iteration 4 times: input: X =   148; Y =  -497 output: X =  -634; Y =  -568
-Q27  Iteration 4 times: input: X =  -184; Y =   642 output: X =   823; Y =   724
-Q28  Iteration 4 times: input: X =   162; Y =   373 output: X =   667; Y =    23
+Q22  Iteration 4 times: input: X = -1014; Y =     0 output: X =    79; Y =  1664
+Q23  Iteration 4 times: input: X =   -59; Y =   -57 output: X =   -89; Y =   102
+Q24  Iteration 4 times: input: X =    25; Y =  -482 output: X =  -794; Y =    -2
+Q25  Iteration 4 times: input: X =    53; Y =  -236 output: X =  -393; Y =   -67
+Q26  Iteration 4 times: input: X =   -71; Y =   288 output: X =   477; Y =    95
+Q27  Iteration 4 times: input: X =   -97; Y =  -683 output: X = -1113; Y =   214
+Q28  Iteration 4 times: input: X =   -53; Y =   462 output: X =   761; Y =    53
 
-d = 1 1 -1 1 
-GG2  Iteration 8 times: X = 1880; Y = 01880
-GR21 Iteration 8 times: X = -217; Y = -172
-GR22 Iteration 8 times: X = 588; Y = 687
+d = 1 1 1 1 
+GG2  Iteration 8 times: X = 1427; Y = 51427
+GR21 Iteration 8 times: X = 402; Y = 94
+GR22 Iteration 8 times: X = -1069; Y = -59
 Q21  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q22  Iteration 8 times: input: X =  -664; Y =  1402 output: X =  -783; Y =  1342
-Q23  Iteration 8 times: input: X =   582; Y =   -90 output: X =   590; Y =   -41
-Q24  Iteration 8 times: input: X =   609; Y =   -21 output: X =   611; Y =    31
-Q25  Iteration 8 times: input: X =   383; Y =    57 output: X =   379; Y =    88
-Q26  Iteration 8 times: input: X =  -634; Y =  -568 output: X =  -584; Y =  -622
-Q27  Iteration 8 times: input: X =   823; Y =   724 output: X =   760; Y =   793
-Q28  Iteration 8 times: input: X =   667; Y =    23 output: X =   665; Y =    79
+Q22  Iteration 8 times: input: X =    79; Y =  1664 output: X =  -116; Y =  1664
+Q23  Iteration 8 times: input: X =   -89; Y =   102 output: X =   -99; Y =    90
+Q24  Iteration 8 times: input: X =  -794; Y =    -2 output: X =  -788; Y =   -97
+Q25  Iteration 8 times: input: X =  -393; Y =   -67 output: X =  -382; Y =  -115
+Q26  Iteration 8 times: input: X =   477; Y =    95 output: X =   466; Y =   148
+Q27  Iteration 8 times: input: X = -1113; Y =   214 output: X = -1131; Y =    81
+Q28  Iteration 8 times: input: X =   761; Y =    53 output: X =   753; Y =   139
 
-d = 0 0 0 0 
-GG2  Iteration 12 times: X = 1880; Y = 01880
-GR21 Iteration 12 times: X = -217; Y = -172
-GR22 Iteration 12 times: X = 588; Y = 687
+d = -1 0 0 0 
+GG2  Iteration 12 times: X = 1427; Y = 01427
+GR21 Iteration 12 times: X = 402; Y = 93
+GR22 Iteration 12 times: X = -1070; Y = -54
 Q21  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q22  Iteration 12 times: input: X =  -783; Y =  1342 output: X =  -783; Y =  1342
-Q23  Iteration 12 times: input: X =   590; Y =   -41 output: X =   590; Y =   -41
-Q24  Iteration 12 times: input: X =   611; Y =    31 output: X =   611; Y =    31
-Q25  Iteration 12 times: input: X =   379; Y =    88 output: X =   379; Y =    88
-Q26  Iteration 12 times: input: X =  -584; Y =  -622 output: X =  -584; Y =  -622
-Q27  Iteration 12 times: input: X =   760; Y =   793 output: X =   760; Y =   793
-Q28  Iteration 12 times: input: X =   665; Y =    79 output: X =   665; Y =    79
-
-d = 0 0 0 GG2  Iteration 15 times: X = 1880; Y = 01880
-GR21 Iteration 15 times: X = -217; Y = -172
-GR22 Iteration 15 times: X = 588; Y = 687
-Q21  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q22  Iteration 15 times: input: X =  -783; Y =  1342 output: X =  -783; Y =  1342
-Q23  Iteration 15 times: input: X =   590; Y =   -41 output: X =   590; Y =   -41
-Q24  Iteration 15 times: input: X =   611; Y =    31 output: X =   611; Y =    31
-Q25  Iteration 15 times: input: X =   379; Y =    88 output: X =   379; Y =    88
-Q26  Iteration 15 times: input: X =  -584; Y =  -622 output: X =  -584; Y =  -622
-Q27  Iteration 15 times: input: X =   760; Y =   793 output: X =   760; Y =   793
-Q28  Iteration 15 times: input: X =   665; Y =    79 output: X =   665; Y =    79
-0 
-GG2  Multiplied by K:   X = 1141; Y = 0
-GR21 Multiplied by K:   X = 574; Y = -132
-GR22 Multiplied by K:   X = -42; Y = 357
-Q21 Multiplied by K:   X = 0; Y = 0
-Q22 Multiplied by K:   X = -476; Y = 815
-Q23 Multiplied by K:   X = 358; Y = -25
-Q24 Multiplied by K:   X = 371; Y = 18
-Q25 Multiplied by K:   X = 230; Y = 53
-Q26 Multiplied by K:   X = -355; Y = -378
-Q27 Multiplied by K:   X = 461; Y = 481
-Q28 Multiplied by K:   X = 403; Y = 47
+Q22  Iteration 12 times: input: X =  -116; Y =  1664 output: X =  -110; Y =  1665
+Q23  Iteration 12 times: input: X =   -99; Y =    90 output: X =   -99; Y =    91
+Q24  Iteration 12 times: input: X =  -788; Y =   -97 output: X =  -789; Y =   -93
+Q25  Iteration 12 times: input: X =  -382; Y =  -115 output: X =  -383; Y =  -113
+Q26  Iteration 12 times: input: X =   466; Y =   148 output: X =   466; Y =   147
+Q27  Iteration 12 times: input: X = -1131; Y =    81 output: X = -1131; Y =    86
+Q28  Iteration 12 times: input: X =   753; Y =   139 output: X =   753; Y =   137
 k = 2 row23: 
 
 d = -1 -1 -1 1 
-GG2  Iteration 4 times: X = 1897; Y = 751897
-GR21 Iteration 4 times: X = -24; Y = -967
-GR22 Iteration 4 times: X = 560; Y = 185
-Q21  Iteration 4 times: input: X =  -896; Y =     0 output: X =  -294; Y =  1442
-Q22  Iteration 4 times: input: X =  -191; Y =  -476 output: X =  -829; Y =   152
-Q23  Iteration 4 times: input: X =  -233; Y =   358 output: X =   499; Y =   493
-Q24  Iteration 4 times: input: X =  -199; Y =   371 output: X =   532; Y =   442
-Q25  Iteration 4 times: input: X =   -81; Y =   230 output: X =   343; Y =   206
-Q26  Iteration 4 times: input: X =  -172; Y =  -355 output: X =  -628; Y =   161
-Q27  Iteration 4 times: input: X =   218; Y =   461 output: X =   813; Y =  -199
-Q28  Iteration 4 times: input: X =  -188; Y =   403 output: X =   587; Y =   435
+GG2  Iteration 4 times: X = 1462; Y = -501462
+GR21 Iteration 4 times: X = 334; Y = 369
+GR22 Iteration 4 times: X = -950; Y = -684
+Q21  Iteration 4 times: input: X = -1014; Y =     0 output: X =  -333; Y =  1632
+Q22  Iteration 4 times: input: X =   -24; Y =   -67 output: X =  -117; Y =    17
+Q23  Iteration 4 times: input: X =    57; Y =   -61 output: X =   -79; Y =  -112
+Q24  Iteration 4 times: input: X =   -25; Y =  -480 output: X =  -781; Y =  -116
+Q25  Iteration 4 times: input: X =   -52; Y =  -233 output: X =  -393; Y =     7
+Q26  Iteration 4 times: input: X =    68; Y =   283 output: X =   478; Y =   -16
+Q27  Iteration 4 times: input: X =    93; Y =  -687 output: X = -1075; Y =  -376
+Q28  Iteration 4 times: input: X =    51; Y =   457 output: X =   753; Y =    68
 
-d = -1 1 -1 1 
-GG2  Iteration 8 times: X = 1904; Y = 11904
-GR21 Iteration 8 times: X = -62; Y = -968
-GR22 Iteration 8 times: X = 568; Y = 163
-Q21  Iteration 8 times: input: X =  -294; Y =  1442 output: X =  -238; Y =  1456
-Q22  Iteration 8 times: input: X =  -829; Y =   152 output: X =  -825; Y =   184
-Q23  Iteration 8 times: input: X =   499; Y =   493 output: X =   519; Y =   474
-Q24  Iteration 8 times: input: X =   532; Y =   442 output: X =   550; Y =   422
-Q25  Iteration 8 times: input: X =   343; Y =   206 output: X =   352; Y =   193
-Q26  Iteration 8 times: input: X =  -628; Y =   161 output: X =  -623; Y =   186
-Q27  Iteration 8 times: input: X =   813; Y =  -199 output: X =   806; Y =  -230
-Q28  Iteration 8 times: input: X =   587; Y =   435 output: X =   605; Y =   413
+d = 1 -1 1 -1 
+GG2  Iteration 8 times: X = 1468; Y = 71468
+GR21 Iteration 8 times: X = 321; Y = 383
+GR22 Iteration 8 times: X = -925; Y = -722
+Q21  Iteration 8 times: input: X =  -333; Y =  1632 output: X =  -398; Y =  1622
+Q22  Iteration 8 times: input: X =  -117; Y =    17 output: X =  -118; Y =    12
+Q23  Iteration 8 times: input: X =   -79; Y =  -112 output: X =   -75; Y =  -115
+Q24  Iteration 8 times: input: X =  -781; Y =  -116 output: X =  -778; Y =  -146
+Q25  Iteration 8 times: input: X =  -393; Y =     7 output: X =  -394; Y =    -8
+Q26  Iteration 8 times: input: X =   478; Y =   -16 output: X =   480; Y =     3
+Q27  Iteration 8 times: input: X = -1075; Y =  -376 output: X = -1062; Y =  -419
+Q28  Iteration 8 times: input: X =   753; Y =    68 output: X =   751; Y =    98
 
-d = -1 1 1 1 
-GG2  Iteration 12 times: X = 1907; Y = -21907
-GR21 Iteration 12 times: X = -62; Y = -970
-GR22 Iteration 12 times: X = 568; Y = 162
-Q21  Iteration 12 times: input: X =  -238; Y =  1456 output: X =  -236; Y =  1454
-Q22  Iteration 12 times: input: X =  -825; Y =   184 output: X =  -825; Y =   184
-Q23  Iteration 12 times: input: X =   519; Y =   474 output: X =   520; Y =   473
-Q24  Iteration 12 times: input: X =   550; Y =   422 output: X =   551; Y =   421
-Q25  Iteration 12 times: input: X =   352; Y =   193 output: X =   352; Y =   192
-Q26  Iteration 12 times: input: X =  -623; Y =   186 output: X =  -623; Y =   185
-Q27  Iteration 12 times: input: X =   806; Y =  -230 output: X =   808; Y =  -232
-Q28  Iteration 12 times: input: X =   605; Y =   413 output: X =   606; Y =   412
-
-d = 1 1 1 GG2  Iteration 15 times: X = 1910; Y = -21910
-GR21 Iteration 15 times: X = -59; Y = -973
-GR22 Iteration 15 times: X = 568; Y = 162
-Q21  Iteration 15 times: input: X =  -236; Y =  1454 output: X =  -236; Y =  1451
-Q22  Iteration 15 times: input: X =  -825; Y =   184 output: X =  -825; Y =   181
-Q23  Iteration 15 times: input: X =   520; Y =   473 output: X =   520; Y =   473
-Q24  Iteration 15 times: input: X =   551; Y =   421 output: X =   551; Y =   421
-Q25  Iteration 15 times: input: X =   352; Y =   192 output: X =   352; Y =   192
-Q26  Iteration 15 times: input: X =  -623; Y =   185 output: X =  -623; Y =   182
-Q27  Iteration 15 times: input: X =   808; Y =  -232 output: X =   811; Y =  -232
-Q28  Iteration 15 times: input: X =   606; Y =   412 output: X =   606; Y =   412
-1 
-GG2  Multiplied by K:   X = 1160; Y = -2
-GR21 Multiplied by K:   X = -36; Y = -592
-GR22 Multiplied by K:   X = 345; Y = 98
-Q21 Multiplied by K:   X = -144; Y = 880
-Q22 Multiplied by K:   X = -502; Y = 109
-Q23 Multiplied by K:   X = 315; Y = 287
-Q24 Multiplied by K:   X = 334; Y = 255
-Q25 Multiplied by K:   X = 213; Y = 116
-Q26 Multiplied by K:   X = -379; Y = 109
-Q27 Multiplied by K:   X = 493; Y = -141
-Q28 Multiplied by K:   X = 368; Y = 250
+d = -1 -1 0 0 
+GG2  Iteration 12 times: X = 1468; Y = 01468
+GR21 Iteration 12 times: X = 322; Y = 382
+GR22 Iteration 12 times: X = -930; Y = -716
+Q21  Iteration 12 times: input: X =  -398; Y =  1622 output: X =  -389; Y =  1625
+Q22  Iteration 12 times: input: X =  -118; Y =    12 output: X =  -118; Y =    14
+Q23  Iteration 12 times: input: X =   -75; Y =  -115 output: X =   -77; Y =  -113
+Q24  Iteration 12 times: input: X =  -778; Y =  -146 output: X =  -780; Y =  -140
+Q25  Iteration 12 times: input: X =  -394; Y =    -8 output: X =  -396; Y =    -5
+Q26  Iteration 12 times: input: X =   480; Y =     3 output: X =   480; Y =     2
+Q27  Iteration 12 times: input: X = -1062; Y =  -419 output: X = -1065; Y =  -411
+Q28  Iteration 12 times: input: X =   751; Y =    98 output: X =   751; Y =    95
 k = 3 row78: 
 
-d = -1 -1 -1 1 
-GG3  Iteration 4 times: X = 1006; Y = 971006
-GR31 Iteration 4 times: X = -966; Y = 340
+d = 1 1 -1 1 
+GG3  Iteration 4 times: X = 560; Y = -42560
+GR31 Iteration 4 times: X = 34; Y = -503
 Q31  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q32  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q33  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q34  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q35  Iteration 4 times: input: X =  -917; Y =     0 output: X =  -301; Y =  1476
-Q36  Iteration 4 times: input: X =   -28; Y =   810 output: X =  1294; Y =   311
-Q37  Iteration 4 times: input: X =    39; Y =   633 output: X =  1031; Y =   145
-Q38  Iteration 4 times: input: X =   456; Y =   -12 output: X =   130; Y =  -738
+Q35  Iteration 4 times: input: X =   903; Y =     0 output: X =   635; Y =  1339
+Q36  Iteration 4 times: input: X =   334; Y =  -735 output: X =  1326; Y =   -22
+Q37  Iteration 4 times: input: X =    63; Y =   157 output: X =  -189; Y =   203
+Q38  Iteration 4 times: input: X =   340; Y =   696 output: X =  -794; Y =   994
 
-d = -1 -1 -1 1 
-GG3  Iteration 8 times: X = 1014; Y = -41014
-GR31 Iteration 8 times: X = -930; Y = 438
+d = 1 1 -1 -1 
+GG3  Iteration 8 times: X = 564; Y = -2564
+GR31 Iteration 8 times: X = 70; Y = -500
 Q31  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q32  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q33  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q34  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q35  Iteration 8 times: input: X =  -301; Y =  1476 output: X =  -151; Y =  1503
-Q36  Iteration 8 times: input: X =  1294; Y =   311 output: X =  1321; Y =   180
-Q37  Iteration 8 times: input: X =  1031; Y =   145 output: X =  1042; Y =    41
-Q38  Iteration 8 times: input: X =   130; Y =  -738 output: X =    53; Y =  -748
+Q35  Iteration 8 times: input: X =   635; Y =  1339 output: X =   540; Y =  1384
+Q36  Iteration 8 times: input: X =  1326; Y =   -22 output: X =  1328; Y =    71
+Q37  Iteration 8 times: input: X =  -189; Y =   203 output: X =  -203; Y =   190
+Q38  Iteration 8 times: input: X =  -794; Y =   994 output: X =  -864; Y =   938
 
-d = 1 1 0 0 
-GG3  Iteration 12 times: X = 1016; Y = 01016
-GR31 Iteration 12 times: X = -931; Y = 432
+d = 1 0 0 0 
+GG3  Iteration 12 times: X = 565; Y = 0565
+GR31 Iteration 12 times: X = 72; Y = -500
 Q31  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q32  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q33  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q34  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q35  Iteration 12 times: input: X =  -151; Y =  1503 output: X =  -158; Y =  1501
-Q36  Iteration 12 times: input: X =  1321; Y =   180 output: X =  1321; Y =   187
-Q37  Iteration 12 times: input: X =  1042; Y =    41 output: X =  1042; Y =    47
-Q38  Iteration 12 times: input: X =    53; Y =  -748 output: X =    58; Y =  -748
-
-d = 0 0 0 GG3  Iteration 15 times: X = 1016; Y = 01016
-GR31 Iteration 15 times: X = -931; Y = 432
-Q31  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q32  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q33  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q34  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q35  Iteration 15 times: input: X =  -158; Y =  1501 output: X =  -158; Y =  1501
-Q36  Iteration 15 times: input: X =  1321; Y =   187 output: X =  1321; Y =   187
-Q37  Iteration 15 times: input: X =  1042; Y =    47 output: X =  1042; Y =    47
-Q38  Iteration 15 times: input: X =    58; Y =  -748 output: X =    58; Y =  -748
-0 
-GG3  Multiplied by K:   X = 617; Y = 0
-GR31 Multiplied by K:   X = 98; Y = 417
-Q31 Multiplied by K:   X = 0; Y = 0
-Q32 Multiplied by K:   X = 0; Y = 0
-Q33 Multiplied by K:   X = 0; Y = 0
-Q34 Multiplied by K:   X = 0; Y = 0
-Q35 Multiplied by K:   X = -96; Y = 911
-Q36 Multiplied by K:   X = 802; Y = 113
-Q37 Multiplied by K:   X = 632; Y = 28
-Q38 Multiplied by K:   X = 35; Y = -455
+Q35  Iteration 12 times: input: X =   540; Y =  1384 output: X =   535; Y =  1386
+Q36  Iteration 12 times: input: X =  1328; Y =    71 output: X =  1328; Y =    76
+Q37  Iteration 12 times: input: X =  -203; Y =   190 output: X =  -203; Y =   189
+Q38  Iteration 12 times: input: X =  -864; Y =   938 output: X =  -867; Y =   934
 k = 3 row67: 
 
-d = -1 -1 1 1 
-GG3  Iteration 4 times: X = 1263; Y = 631263
-GR31 Iteration 4 times: X = -659; Y = -662
+d = 1 1 -1 1 
+GG3  Iteration 4 times: X = 590; Y = -71590
+GR31 Iteration 4 times: X = 149; Y = 147
 Q31  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q32  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q33  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q34  Iteration 4 times: input: X =   767; Y =     0 output: X =   803; Y =  -972
-Q35  Iteration 4 times: input: X =  -300; Y =   -96 output: X =  -435; Y =   278
-Q36  Iteration 4 times: input: X =   -39; Y =   802 output: X =   974; Y =   888
-Q37  Iteration 4 times: input: X =    33; Y =   632 output: X =   835; Y =   620
-Q38  Iteration 4 times: input: X =  -607; Y =    35 output: X =  -591; Y =   804
+Q34  Iteration 4 times: input: X =  -888; Y =     0 output: X =  -624; Y = -1319
+Q35  Iteration 4 times: input: X =   199; Y =  -324 output: X =   622; Y =    67
+Q36  Iteration 4 times: input: X =  -253; Y =  -806 output: X =  1019; Y =  -943
+Q37  Iteration 4 times: input: X =   235; Y =   124 output: X =   -18; Y =   435
+Q38  Iteration 4 times: input: X =  -319; Y =   527 output: X = -1006; Y =  -103
 
-d = -1 1 -1 -1 
-GG3  Iteration 8 times: X = 1267; Y = -41267
-GR31 Iteration 8 times: X = -697; Y = -625
+d = 1 1 1 1 
+GG3  Iteration 8 times: X = 599; Y = -4599
+GR31 Iteration 8 times: X = 133; Y = 163
 Q31  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q32  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q33  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q34  Iteration 8 times: input: X =   803; Y =  -972 output: X =   750; Y = -1016
-Q35  Iteration 8 times: input: X =  -435; Y =   278 output: X =  -421; Y =   303
-Q36  Iteration 8 times: input: X =   974; Y =   888 output: X =  1023; Y =   838
-Q37  Iteration 8 times: input: X =   835; Y =   620 output: X =   869; Y =   576
-Q38  Iteration 8 times: input: X =  -591; Y =   804 output: X =  -549; Y =   838
+Q34  Iteration 8 times: input: X =  -624; Y = -1319 output: X =  -465; Y = -1387
+Q35  Iteration 8 times: input: X =   622; Y =    67 output: X =   613; Y =   137
+Q36  Iteration 8 times: input: X =  1019; Y =  -943 output: X =  1127; Y =  -822
+Q37  Iteration 8 times: input: X =   -18; Y =   435 output: X =   -67; Y =   429
+Q38  Iteration 8 times: input: X = -1006; Y =  -103 output: X =  -987; Y =  -222
 
-d = 1 0 0 0 
-GG3  Iteration 12 times: X = 1268; Y = 01268
-GR31 Iteration 12 times: X = -694; Y = -628
+d = 1 1 1 1 
+GG3  Iteration 12 times: X = 603; Y = -1603
+GR31 Iteration 12 times: X = 133; Y = 163
 Q31  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q32  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q33  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q34  Iteration 12 times: input: X =   750; Y = -1016 output: X =   754; Y = -1014
-Q35  Iteration 12 times: input: X =  -421; Y =   303 output: X =  -422; Y =   301
-Q36  Iteration 12 times: input: X =  1023; Y =   838 output: X =  1020; Y =   841
-Q37  Iteration 12 times: input: X =   869; Y =   576 output: X =   867; Y =   579
-Q38  Iteration 12 times: input: X =  -549; Y =   838 output: X =  -552; Y =   835
-
-d = 0 0 0 GG3  Iteration 15 times: X = 1268; Y = 01268
-GR31 Iteration 15 times: X = -694; Y = -628
-Q31  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q32  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q33  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q34  Iteration 15 times: input: X =   754; Y = -1014 output: X =   754; Y = -1014
-Q35  Iteration 15 times: input: X =  -422; Y =   301 output: X =  -422; Y =   301
-Q36  Iteration 15 times: input: X =  1020; Y =   841 output: X =  1020; Y =   841
-Q37  Iteration 15 times: input: X =   867; Y =   579 output: X =   867; Y =   579
-Q38  Iteration 15 times: input: X =  -552; Y =   835 output: X =  -552; Y =   835
-0 
-GG3  Multiplied by K:   X = 770; Y = 0
-GR31 Multiplied by K:   X = 98; Y = 417
-Q31 Multiplied by K:   X = 0; Y = 0
-Q32 Multiplied by K:   X = 0; Y = 0
-Q33 Multiplied by K:   X = 0; Y = 0
-Q34 Multiplied by K:   X = 457; Y = -616
-Q35 Multiplied by K:   X = -257; Y = 182
-Q36 Multiplied by K:   X = 619; Y = 510
-Q37 Multiplied by K:   X = 526; Y = 351
-Q38 Multiplied by K:   X = -336; Y = 507
+Q34  Iteration 12 times: input: X =  -465; Y = -1387 output: X =  -453; Y = -1392
+Q35  Iteration 12 times: input: X =   613; Y =   137 output: X =   613; Y =   140
+Q36  Iteration 12 times: input: X =  1127; Y =  -822 output: X =  1135; Y =  -815
+Q37  Iteration 12 times: input: X =   -67; Y =   429 output: X =   -68; Y =   425
+Q38  Iteration 12 times: input: X =  -987; Y =  -222 output: X =  -983; Y =  -230
 k = 3 row56: 
 
 d = 1 1 1 -1 
-GG3  Iteration 4 times: X = 1283; Y = -421283
-GR31 Iteration 4 times: X = -624; Y = 403
+GG3  Iteration 4 times: X = 602; Y = -53602
+GR31 Iteration 4 times: X = 118; Y = -83
 Q31  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q32  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q33  Iteration 4 times: input: X =  -831; Y =     0 output: X =  -272; Y = -1338
-Q34  Iteration 4 times: input: X =   392; Y =  -457 output: X =   865; Y =   480
-Q35  Iteration 4 times: input: X =   195; Y =   257 output: X =  -350; Y =   399
-Q36  Iteration 4 times: input: X =    59; Y =  -619 output: X =  1016; Y =  -108
-Q37  Iteration 4 times: input: X =   -69; Y =  -526 output: X =   824; Y =  -284
-Q38  Iteration 4 times: input: X =   397; Y =   336 output: X =  -410; Y =   748
+Q33  Iteration 4 times: input: X =  -943; Y =     0 output: X =  -309; Y = -1518
+Q34  Iteration 4 times: input: X =   -42; Y =   276 output: X =  -458; Y =    23
+Q35  Iteration 4 times: input: X =  -132; Y =  -372 output: X =   555; Y =  -334
+Q36  Iteration 4 times: input: X =   180; Y =  -689 output: X =  1168; Y =    64
+Q37  Iteration 4 times: input: X =   310; Y =    42 output: X =    34; Y =   513
+Q38  Iteration 4 times: input: X =   120; Y =   598 output: X =  -923; Y =   389
 
-d = 1 -1 1 -1 
-GG3  Iteration 8 times: X = 1288; Y = 81288
-GR31 Iteration 8 times: X = -642; Y = 381
+d = 1 1 -1 1 
+GG3  Iteration 8 times: X = 608; Y = -3608
+GR31 Iteration 8 times: X = 126; Y = -74
 Q31  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q32  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q33  Iteration 8 times: input: X =  -272; Y = -1338 output: X =  -220; Y = -1351
-Q34  Iteration 8 times: input: X =   865; Y =   480 output: X =   848; Y =   515
-Q35  Iteration 8 times: input: X =  -350; Y =   399 output: X =  -367; Y =   386
-Q36  Iteration 8 times: input: X =  1016; Y =  -108 output: X =  1022; Y =   -68
-Q37  Iteration 8 times: input: X =   824; Y =  -284 output: X =   837; Y =  -252
-Q38  Iteration 8 times: input: X =  -410; Y =   748 output: X =  -440; Y =   734
+Q33  Iteration 8 times: input: X =  -309; Y = -1518 output: X =  -177; Y = -1544
+Q34  Iteration 8 times: input: X =  -458; Y =    23 output: X =  -458; Y =   -17
+Q35  Iteration 8 times: input: X =   555; Y =  -334 output: X =   584; Y =  -287
+Q36  Iteration 8 times: input: X =  1168; Y =    64 output: X =  1161; Y =   164
+Q37  Iteration 8 times: input: X =    34; Y =   513 output: X =   -10; Y =   515
+Q38  Iteration 8 times: input: X =  -923; Y =   389 output: X =  -955; Y =   308
 
-d = -1 -1 -1 0 
-GG3  Iteration 12 times: X = 1288; Y = 01288
-GR31 Iteration 12 times: X = -641; Y = 387
+d = 1 1 0 0 
+GG3  Iteration 12 times: X = 610; Y = 0610
+GR31 Iteration 12 times: X = 128; Y = -74
 Q31  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q32  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q33  Iteration 12 times: input: X =  -220; Y = -1351 output: X =  -231; Y = -1348
-Q34  Iteration 12 times: input: X =   848; Y =   515 output: X =   851; Y =   511
-Q35  Iteration 12 times: input: X =  -367; Y =   386 output: X =  -366; Y =   390
-Q36  Iteration 12 times: input: X =  1022; Y =   -68 output: X =  1019; Y =   -72
-Q37  Iteration 12 times: input: X =   837; Y =  -252 output: X =   834; Y =  -256
-Q38  Iteration 12 times: input: X =  -440; Y =   734 output: X =  -437; Y =   738
-
-d = 0 0 0 GG3  Iteration 15 times: X = 1288; Y = 01288
-GR31 Iteration 15 times: X = -641; Y = 387
-Q31  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q32  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q33  Iteration 15 times: input: X =  -231; Y = -1348 output: X =  -231; Y = -1348
-Q34  Iteration 15 times: input: X =   851; Y =   511 output: X =   851; Y =   511
-Q35  Iteration 15 times: input: X =  -366; Y =   390 output: X =  -366; Y =   390
-Q36  Iteration 15 times: input: X =  1019; Y =   -72 output: X =  1019; Y =   -72
-Q37  Iteration 15 times: input: X =   834; Y =  -256 output: X =   834; Y =  -256
-Q38  Iteration 15 times: input: X =  -437; Y =   738 output: X =  -437; Y =   738
-0 
-GG3  Multiplied by K:   X = 782; Y = 0
-GR31 Multiplied by K:   X = 98; Y = 417
-Q31 Multiplied by K:   X = 0; Y = 0
-Q32 Multiplied by K:   X = 0; Y = 0
-Q33 Multiplied by K:   X = -141; Y = -819
-Q34 Multiplied by K:   X = 516; Y = 310
-Q35 Multiplied by K:   X = -223; Y = 236
-Q36 Multiplied by K:   X = 618; Y = -44
-Q37 Multiplied by K:   X = 506; Y = -156
-Q38 Multiplied by K:   X = -266; Y = 448
+Q33  Iteration 12 times: input: X =  -177; Y = -1544 output: X =  -166; Y = -1546
+Q34  Iteration 12 times: input: X =  -458; Y =   -17 output: X =  -456; Y =   -20
+Q35  Iteration 12 times: input: X =   584; Y =  -287 output: X =   587; Y =  -284
+Q36  Iteration 12 times: input: X =  1161; Y =   164 output: X =  1161; Y =   170
+Q37  Iteration 12 times: input: X =   -10; Y =   515 output: X =   -13; Y =   513
+Q38  Iteration 12 times: input: X =  -955; Y =   308 output: X =  -956; Y =   302
 k = 3 row45: 
 
-d = 1 1 1 -1 
-GG3  Iteration 4 times: X = 1294; Y = -881294
-GR31 Iteration 4 times: X = -764; Y = -544
+d = -1 -1 -1 1 
+GG3  Iteration 4 times: X = 614; Y = 32614
+GR31 Iteration 4 times: X = 113; Y = 79
 Q31  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q32  Iteration 4 times: input: X =   815; Y =     0 output: X =   268; Y =  1312
-Q33  Iteration 4 times: input: X =    25; Y =   141 output: X =  -219; Y =    87
-Q34  Iteration 4 times: input: X =   -18; Y =  -516 output: X =   825; Y =  -198
-Q35  Iteration 4 times: input: X =   -53; Y =   223 output: X =  -377; Y =   -12
-Q36  Iteration 4 times: input: X =   378; Y =  -618 output: X =  1119; Y =   406
-Q37  Iteration 4 times: input: X =  -481; Y =  -506 output: X =   657; Y =  -941
-Q38  Iteration 4 times: input: X =   -47; Y =   266 output: X =  -443; Y =    11
+Q32  Iteration 4 times: input: X =  1011; Y =     0 output: X =   332; Y = -1627
+Q33  Iteration 4 times: input: X =    55; Y =  -101 output: X =  -145; Y =  -122
+Q34  Iteration 4 times: input: X =   -57; Y =  -277 output: X =  -465; Y =     0
+Q35  Iteration 4 times: input: X =   -69; Y =   356 output: X =   550; Y =   229
+Q36  Iteration 4 times: input: X =    89; Y =   705 output: X =  1163; Y =    88
+Q37  Iteration 4 times: input: X =    52; Y =    -8 output: X =     4; Y =   -86
+Q38  Iteration 4 times: input: X =    83; Y =  -581 output: X =  -908; Y =  -324
 
-d = 1 1 -1 -1 
-GG3  Iteration 8 times: X = 1301; Y = 21301
-GR31 Iteration 8 times: X = -726; Y = -597
+d = -1 1 -1 -1 
+GG3  Iteration 8 times: X = 617; Y = 0617
+GR31 Iteration 8 times: X = 116; Y = 74
 Q31  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q32  Iteration 8 times: input: X =   268; Y =  1312 output: X =   175; Y =  1330
-Q33  Iteration 8 times: input: X =  -219; Y =    87 output: X =  -225; Y =    72
-Q34  Iteration 8 times: input: X =   825; Y =  -198 output: X =   839; Y =  -140
-Q35  Iteration 8 times: input: X =  -377; Y =   -12 output: X =  -376; Y =   -39
-Q36  Iteration 8 times: input: X =  1119; Y =   406 output: X =  1090; Y =   485
-Q37  Iteration 8 times: input: X =   657; Y =  -941 output: X =   724; Y =  -894
-Q38  Iteration 8 times: input: X =  -443; Y =    11 output: X =  -444; Y =   -20
+Q32  Iteration 8 times: input: X =   332; Y = -1627 output: X =   243; Y = -1646
+Q33  Iteration 8 times: input: X =  -145; Y =  -122 output: X =  -152; Y =  -112
+Q34  Iteration 8 times: input: X =  -465; Y =     0 output: X =  -465; Y =    27
+Q35  Iteration 8 times: input: X =   550; Y =   229 output: X =   562; Y =   200
+Q36  Iteration 8 times: input: X =  1163; Y =    88 output: X =  1168; Y =    25
+Q37  Iteration 8 times: input: X =     4; Y =   -86 output: X =    -2; Y =   -86
+Q38  Iteration 8 times: input: X =  -908; Y =  -324 output: X =  -928; Y =  -274
 
-d = -1 1 1 0 
-GG3  Iteration 12 times: X = 1303; Y = 01303
-GR31 Iteration 12 times: X = -726; Y = -597
+d = 0 0 0 0 
+GG3  Iteration 12 times: X = 617; Y = 0617
+GR31 Iteration 12 times: X = 116; Y = 74
 Q31  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q32  Iteration 12 times: input: X =   175; Y =  1330 output: X =   177; Y =  1330
-Q33  Iteration 12 times: input: X =  -225; Y =    72 output: X =  -225; Y =    71
-Q34  Iteration 12 times: input: X =   839; Y =  -140 output: X =   840; Y =  -142
-Q35  Iteration 12 times: input: X =  -376; Y =   -39 output: X =  -375; Y =   -39
-Q36  Iteration 12 times: input: X =  1090; Y =   485 output: X =  1091; Y =   484
-Q37  Iteration 12 times: input: X =   724; Y =  -894 output: X =   723; Y =  -895
-Q38  Iteration 12 times: input: X =  -444; Y =   -20 output: X =  -443; Y =   -20
-
-d = 0 0 0 GG3  Iteration 15 times: X = 1303; Y = 01303
-GR31 Iteration 15 times: X = -726; Y = -597
-Q31  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q32  Iteration 15 times: input: X =   177; Y =  1330 output: X =   177; Y =  1330
-Q33  Iteration 15 times: input: X =  -225; Y =    71 output: X =  -225; Y =    71
-Q34  Iteration 15 times: input: X =   840; Y =  -142 output: X =   840; Y =  -142
-Q35  Iteration 15 times: input: X =  -375; Y =   -39 output: X =  -375; Y =   -39
-Q36  Iteration 15 times: input: X =  1091; Y =   484 output: X =  1091; Y =   484
-Q37  Iteration 15 times: input: X =   723; Y =  -895 output: X =   723; Y =  -895
-Q38  Iteration 15 times: input: X =  -443; Y =   -20 output: X =  -443; Y =   -20
-0 
-GG3  Multiplied by K:   X = 791; Y = 0
-GR31 Multiplied by K:   X = 98; Y = -441
-Q31 Multiplied by K:   X = 0; Y = 0
-Q32 Multiplied by K:   X = 107; Y = 807
-Q33 Multiplied by K:   X = -137; Y = 43
-Q34 Multiplied by K:   X = 510; Y = -87
-Q35 Multiplied by K:   X = -228; Y = -24
-Q36 Multiplied by K:   X = 662; Y = 293
-Q37 Multiplied by K:   X = 439; Y = -544
-Q38 Multiplied by K:   X = -270; Y = -13
+Q32  Iteration 12 times: input: X =   243; Y = -1646 output: X =   243; Y = -1646
+Q33  Iteration 12 times: input: X =  -152; Y =  -112 output: X =  -152; Y =  -112
+Q34  Iteration 12 times: input: X =  -465; Y =    27 output: X =  -465; Y =    27
+Q35  Iteration 12 times: input: X =   562; Y =   200 output: X =   562; Y =   200
+Q36  Iteration 12 times: input: X =  1168; Y =    25 output: X =  1168; Y =    25
+Q37  Iteration 12 times: input: X =    -2; Y =   -86 output: X =    -2; Y =   -86
+Q38  Iteration 12 times: input: X =  -928; Y =  -274 output: X =  -928; Y =  -274
 k = 3 row34: 
 
-d = 1 1 -1 -1 
-GG3  Iteration 4 times: X = 1621; Y = -781621
-GR31 Iteration 4 times: X = -661; Y = 338
-Q31  Iteration 4 times: input: X =   880; Y =     0 output: X =   921; Y =  1114
-Q32  Iteration 4 times: input: X =   109; Y =   107 output: X =   -22; Y =   251
-Q33  Iteration 4 times: input: X =  -287; Y =   137 output: X =  -475; Y =  -219
-Q34  Iteration 4 times: input: X =  -255; Y =  -510 output: X =   378; Y =  -856
-Q35  Iteration 4 times: input: X =  -116; Y =   228 output: X =  -410; Y =    92
-Q36  Iteration 4 times: input: X =  -109; Y =  -662 output: X =   723; Y =  -830
-Q37  Iteration 4 times: input: X =   141; Y =  -439 output: X =   703; Y =  -280
-Q38  Iteration 4 times: input: X =  -250; Y =   270 output: X =  -604; Y =   -33
+d = -1 -1 1 -1 
+GG3  Iteration 4 times: X = 719; Y = -81719
+GR31 Iteration 4 times: X = -203; Y = 695
+Q31  Iteration 4 times: input: X =   987; Y =     0 output: X =   693; Y = -1464
+Q32  Iteration 4 times: input: X =     8; Y =   147 output: X =   223; Y =    92
+Q33  Iteration 4 times: input: X =   -69; Y =   -93 output: X =  -187; Y =    37
+Q34  Iteration 4 times: input: X =   -86; Y =  -283 output: X =  -482; Y =   -70
+Q35  Iteration 4 times: input: X =    -4; Y =   341 output: X =   503; Y =   246
+Q36  Iteration 4 times: input: X =     1; Y =   709 output: X =  1053; Y =   497
+Q37  Iteration 4 times: input: X =  -250; Y =    -2 output: X =  -179; Y =   370
+Q38  Iteration 4 times: input: X =    57; Y =  -564 output: X =  -798; Y =  -481
 
-d = 1 -1 1 1 
-GG3  Iteration 8 times: X = 1628; Y = 101628
-GR31 Iteration 8 times: X = -679; Y = 301
-Q31  Iteration 8 times: input: X =   921; Y =  1114 output: X =   862; Y =  1164
-Q32  Iteration 8 times: input: X =   -22; Y =   251 output: X =   -34; Y =   249
-Q33  Iteration 8 times: input: X =  -475; Y =  -219 output: X =  -463; Y =  -246
-Q34  Iteration 8 times: input: X =   378; Y =  -856 output: X =   426; Y =  -837
-Q35  Iteration 8 times: input: X =  -410; Y =    92 output: X =  -414; Y =    68
-Q36  Iteration 8 times: input: X =   723; Y =  -830 output: X =   770; Y =  -793
-Q37  Iteration 8 times: input: X =   703; Y =  -280 output: X =   720; Y =  -243
-Q38  Iteration 8 times: input: X =  -604; Y =   -33 output: X =  -602; Y =   -67
+d = 1 1 1 1 
+GG3  Iteration 8 times: X = 729; Y = 1729
+GR31 Iteration 8 times: X = -282; Y = 666
+Q31  Iteration 8 times: input: X =   693; Y = -1464 output: X =   863; Y = -1379
+Q32  Iteration 8 times: input: X =   223; Y =    92 output: X =   214; Y =   115
+Q33  Iteration 8 times: input: X =  -187; Y =    37 output: X =  -189; Y =    14
+Q34  Iteration 8 times: input: X =  -482; Y =   -70 output: X =  -470; Y =  -128
+Q35  Iteration 8 times: input: X =   503; Y =   246 output: X =   474; Y =   302
+Q36  Iteration 8 times: input: X =  1053; Y =   497 output: X =   992; Y =   615
+Q37  Iteration 8 times: input: X =  -179; Y =   370 output: X =  -220; Y =   345
+Q38  Iteration 8 times: input: X =  -798; Y =  -481 output: X =  -736; Y =  -573
 
-d = -1 -1 -1 0 
-GG3  Iteration 12 times: X = 1628; Y = 01628
-GR31 Iteration 12 times: X = -678; Y = 307
-Q31  Iteration 12 times: input: X =   862; Y =  1164 output: X =   869; Y =  1160
-Q32  Iteration 12 times: input: X =   -34; Y =   249 output: X =   -34; Y =   252
-Q33  Iteration 12 times: input: X =  -463; Y =  -246 output: X =  -466; Y =  -242
-Q34  Iteration 12 times: input: X =   426; Y =  -837 output: X =   419; Y =  -838
-Q35  Iteration 12 times: input: X =  -414; Y =    68 output: X =  -414; Y =    72
-Q36  Iteration 12 times: input: X =   770; Y =  -793 output: X =   763; Y =  -797
-Q37  Iteration 12 times: input: X =   720; Y =  -243 output: X =   717; Y =  -246
-Q38  Iteration 12 times: input: X =  -602; Y =   -67 output: X =  -605; Y =   -61
-
-d = 0 0 0 GG3  Iteration 15 times: X = 1628; Y = 01628
-GR31 Iteration 15 times: X = -678; Y = 307
-Q31  Iteration 15 times: input: X =   869; Y =  1160 output: X =   869; Y =  1160
-Q32  Iteration 15 times: input: X =   -34; Y =   252 output: X =   -34; Y =   252
-Q33  Iteration 15 times: input: X =  -466; Y =  -242 output: X =  -466; Y =  -242
-Q34  Iteration 15 times: input: X =   419; Y =  -838 output: X =   419; Y =  -838
-Q35  Iteration 15 times: input: X =  -414; Y =    72 output: X =  -414; Y =    72
-Q36  Iteration 15 times: input: X =   763; Y =  -797 output: X =   763; Y =  -797
-Q37  Iteration 15 times: input: X =   717; Y =  -246 output: X =   717; Y =  -246
-Q38  Iteration 15 times: input: X =  -605; Y =   -61 output: X =  -605; Y =   -61
-0 
-GG3  Multiplied by K:   X = 988; Y = 0
-GR31 Multiplied by K:   X = -412; Y = 186
-Q31 Multiplied by K:   X = 527; Y = 704
-Q32 Multiplied by K:   X = -21; Y = 153
-Q33 Multiplied by K:   X = -284; Y = -147
-Q34 Multiplied by K:   X = 254; Y = -510
-Q35 Multiplied by K:   X = -252; Y = 43
-Q36 Multiplied by K:   X = 463; Y = -485
-Q37 Multiplied by K:   X = 435; Y = -150
-Q38 Multiplied by K:   X = -368; Y = -38
+d = -1 1 0 0 
+GG3  Iteration 12 times: X = 730; Y = 0730
+GR31 Iteration 12 times: X = -281; Y = 667
+Q31  Iteration 12 times: input: X =   863; Y = -1379 output: X =   860; Y = -1381
+Q32  Iteration 12 times: input: X =   214; Y =   115 output: X =   214; Y =   115
+Q33  Iteration 12 times: input: X =  -189; Y =    14 output: X =  -189; Y =    14
+Q34  Iteration 12 times: input: X =  -470; Y =  -128 output: X =  -470; Y =  -127
+Q35  Iteration 12 times: input: X =   474; Y =   302 output: X =   475; Y =   301
+Q36  Iteration 12 times: input: X =   992; Y =   615 output: X =   993; Y =   613
+Q37  Iteration 12 times: input: X =  -220; Y =   345 output: X =  -219; Y =   345
+Q38  Iteration 12 times: input: X =  -736; Y =  -573 output: X =  -737; Y =  -572
 k = 4 row78: 
 
-d = 1 -1 1 1 
-GG4  Iteration 4 times: X = 759; Y = 68759
+d = 1 1 1 -1 
+GG4  Iteration 4 times: X = 522; Y = 59522
 Q41  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q42  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q43  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q44  Iteration 4 times: input: X =   616; Y =     0 output: X =   780; Y =   644
-Q45  Iteration 4 times: input: X =  -182; Y =  -911 output: X =   724; Y = -1344
-Q46  Iteration 4 times: input: X =  -510; Y =  -113 output: X =  -527; Y =  -678
-Q47  Iteration 4 times: input: X =  -351; Y =   -28 output: X =  -414; Y =  -404
-Q48  Iteration 4 times: input: X =  -507; Y =   455 output: X = -1117; Y =    45
+Q44  Iteration 4 times: input: X =  -846; Y =     0 output: X =  -277; Y = -1361
+Q45  Iteration 4 times: input: X =    85; Y =   841 output: X = -1326; Y =   413
+Q46  Iteration 4 times: input: X =  -496; Y =    46 output: X =  -237; Y =  -784
+Q47  Iteration 4 times: input: X =   258; Y =   114 output: X =   -99; Y =   453
+Q48  Iteration 4 times: input: X =  -140; Y =   567 output: X =  -958; Y =   -39
 
-d = -1 -1 1 -1 
-GG4  Iteration 8 times: X = 764; Y = 4764
+d = -1 -1 -1 -1 
+GG4  Iteration 8 times: X = 525; Y = -1525
 Q41  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q42  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q43  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q44  Iteration 8 times: input: X =   780; Y =   644 output: X =   834; Y =   578
-Q45  Iteration 8 times: input: X =   724; Y = -1344 output: X =   608; Y = -1404
-Q46  Iteration 8 times: input: X =  -527; Y =  -678 output: X =  -586; Y =  -632
-Q47  Iteration 8 times: input: X =  -414; Y =  -404 output: X =  -449; Y =  -368
-Q48  Iteration 8 times: input: X = -1117; Y =    45 output: X = -1113; Y =   141
+Q44  Iteration 8 times: input: X =  -277; Y = -1361 output: X =  -437; Y = -1320
+Q45  Iteration 8 times: input: X = -1326; Y =   413 output: X = -1274; Y =   568
+Q46  Iteration 8 times: input: X =  -237; Y =  -784 output: X =  -329; Y =  -752
+Q47  Iteration 8 times: input: X =   -99; Y =   453 output: X =   -47; Y =   465
+Q48  Iteration 8 times: input: X =  -958; Y =   -39 output: X =  -961; Y =    76
 
-d = -1 -1 -1 -1 
-GG4  Iteration 12 times: X = 764; Y = 1764
+d = 1 -1 0 0 
+GG4  Iteration 12 times: X = 526; Y = 0526
 Q41  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q42  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q43  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q44  Iteration 12 times: input: X =   834; Y =   578 output: X =   837; Y =   574
-Q45  Iteration 12 times: input: X =   608; Y = -1404 output: X =   596; Y = -1407
-Q46  Iteration 12 times: input: X =  -586; Y =  -632 output: X =  -593; Y =  -625
-Q47  Iteration 12 times: input: X =  -449; Y =  -368 output: X =  -454; Y =  -363
-Q48  Iteration 12 times: input: X = -1113; Y =   141 output: X = -1113; Y =   152
-
-d = -1 -1 -1 GG4  Iteration 15 times: X = 764; Y = 1764
-Q41  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q42  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q43  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q44  Iteration 15 times: input: X =   837; Y =   574 output: X =   837; Y =   574
-Q45  Iteration 15 times: input: X =   596; Y = -1407 output: X =   593; Y = -1407
-Q46  Iteration 15 times: input: X =  -593; Y =  -625 output: X =  -596; Y =  -622
-Q47  Iteration 15 times: input: X =  -454; Y =  -363 output: X =  -457; Y =  -360
-Q48  Iteration 15 times: input: X = -1113; Y =   152 output: X = -1113; Y =   155
--1 
-GG4  Multiplied by K:   X = 464; Y = 0
-Q41 Multiplied by K:   X = 0; Y = 0
-Q42 Multiplied by K:   X = 0; Y = 0
-Q43 Multiplied by K:   X = 0; Y = 0
-Q44 Multiplied by K:   X = 508; Y = 348
-Q45 Multiplied by K:   X = 359; Y = -855
-Q46 Multiplied by K:   X = -363; Y = -378
-Q47 Multiplied by K:   X = -279; Y = -219
-Q48 Multiplied by K:   X = -677; Y = 94
+Q44  Iteration 12 times: input: X =  -437; Y = -1320 output: X =  -434; Y = -1321
+Q45  Iteration 12 times: input: X = -1274; Y =   568 output: X = -1275; Y =   566
+Q46  Iteration 12 times: input: X =  -329; Y =  -752 output: X =  -328; Y =  -753
+Q47  Iteration 12 times: input: X =   -47; Y =   465 output: X =   -48; Y =   465
+Q48  Iteration 12 times: input: X =  -961; Y =    76 output: X =  -961; Y =    74
 k = 4 row67: 
 
-d = -1 -1 1 -1 
-GG4  Iteration 4 times: X = 853; Y = -22853
+d = 1 1 1 -1 
+GG4  Iteration 4 times: X = 528; Y = -32528
 Q41  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q42  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q43  Iteration 4 times: input: X =  -819; Y =     0 output: X =  -577; Y =  1216
-Q44  Iteration 4 times: input: X =   310; Y =   508 output: X =   972; Y =  -103
-Q45  Iteration 4 times: input: X =   236; Y =   359 output: X =   698; Y =   -97
-Q46  Iteration 4 times: input: X =   -44; Y =  -363 output: X =  -571; Y =  -189
-Q47  Iteration 4 times: input: X =  -156; Y =  -279 output: X =  -524; Y =    35
-Q48  Iteration 4 times: input: X =   448; Y =  -677 output: X =  -690; Y = -1140
+Q43  Iteration 4 times: input: X =  -940; Y =     0 output: X =  -308; Y = -1513
+Q44  Iteration 4 times: input: X =    13; Y =   264 output: X =  -420; Y =   107
+Q45  Iteration 4 times: input: X =   173; Y =   775 output: X = -1190; Y =   533
+Q46  Iteration 4 times: input: X =  -103; Y =   200 output: X =  -355; Y =  -100
+Q47  Iteration 4 times: input: X =  -311; Y =    30 output: X =  -150; Y =  -491
+Q48  Iteration 4 times: input: X =  -183; Y =   584 output: X = -1000; Y =  -103
 
-d = 1 -1 -1 1 
-GG4  Iteration 8 times: X = 856; Y = -2856
+d = 1 -1 1 1 
+GG4  Iteration 8 times: X = 532; Y = -3532
 Q41  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q42  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q43  Iteration 8 times: input: X =  -577; Y =  1216 output: X =  -608; Y =  1205
-Q44  Iteration 8 times: input: X =   972; Y =  -103 output: X =   976; Y =   -81
-Q45  Iteration 8 times: input: X =   698; Y =   -97 output: X =   702; Y =   -81
-Q46  Iteration 8 times: input: X =  -571; Y =  -189 output: X =  -569; Y =  -203
-Q47  Iteration 8 times: input: X =  -524; Y =    35 output: X =  -526; Y =    23
-Q48  Iteration 8 times: input: X =  -690; Y = -1140 output: X =  -664; Y = -1159
+Q43  Iteration 8 times: input: X =  -308; Y = -1513 output: X =  -225; Y = -1533
+Q44  Iteration 8 times: input: X =  -420; Y =   107 output: X =  -425; Y =    83
+Q45  Iteration 8 times: input: X = -1190; Y =   533 output: X = -1219; Y =   468
+Q46  Iteration 8 times: input: X =  -355; Y =  -100 output: X =  -349; Y =  -121
+Q47  Iteration 8 times: input: X =  -150; Y =  -491 output: X =  -123; Y =  -501
+Q48  Iteration 8 times: input: X = -1000; Y =  -103 output: X =  -994; Y =  -158
 
-d = 1 -1 0 0 
-GG4  Iteration 12 times: X = 857; Y = 0857
+d = 1 1 0 0 
+GG4  Iteration 12 times: X = 534; Y = 0534
 Q41  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
 Q42  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q43  Iteration 12 times: input: X =  -608; Y =  1205 output: X =  -610; Y =  1204
-Q44  Iteration 12 times: input: X =   976; Y =   -81 output: X =   976; Y =   -79
-Q45  Iteration 12 times: input: X =   702; Y =   -81 output: X =   702; Y =   -80
-Q46  Iteration 12 times: input: X =  -569; Y =  -203 output: X =  -569; Y =  -204
-Q47  Iteration 12 times: input: X =  -526; Y =    23 output: X =  -526; Y =    22
-Q48  Iteration 12 times: input: X =  -664; Y = -1159 output: X =  -662; Y = -1160
-
-d = 0 0 0 GG4  Iteration 15 times: X = 857; Y = 0857
-Q41  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q42  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q43  Iteration 15 times: input: X =  -610; Y =  1204 output: X =  -610; Y =  1204
-Q44  Iteration 15 times: input: X =   976; Y =   -79 output: X =   976; Y =   -79
-Q45  Iteration 15 times: input: X =   702; Y =   -80 output: X =   702; Y =   -80
-Q46  Iteration 15 times: input: X =  -569; Y =  -204 output: X =  -569; Y =  -204
-Q47  Iteration 15 times: input: X =  -526; Y =    22 output: X =  -526; Y =    22
-Q48  Iteration 15 times: input: X =  -662; Y = -1160 output: X =  -662; Y = -1160
-0 
-GG4  Multiplied by K:   X = 520; Y = 0
-Q41 Multiplied by K:   X = 0; Y = 0
-Q42 Multiplied by K:   X = 0; Y = 0
-Q43 Multiplied by K:   X = -371; Y = 731
-Q44 Multiplied by K:   X = 592; Y = -48
-Q45 Multiplied by K:   X = 426; Y = -49
-Q46 Multiplied by K:   X = -346; Y = -124
-Q47 Multiplied by K:   X = -320; Y = 13
-Q48 Multiplied by K:   X = -403; Y = -705
+Q43  Iteration 12 times: input: X =  -225; Y = -1533 output: X =  -216; Y = -1535
+Q44  Iteration 12 times: input: X =  -425; Y =    83 output: X =  -425; Y =    80
+Q45  Iteration 12 times: input: X = -1219; Y =   468 output: X = -1220; Y =   460
+Q46  Iteration 12 times: input: X =  -349; Y =  -121 output: X =  -347; Y =  -124
+Q47  Iteration 12 times: input: X =  -123; Y =  -501 output: X =  -120; Y =  -503
+Q48  Iteration 12 times: input: X =  -994; Y =  -158 output: X =  -992; Y =  -164
 k = 4 row56: 
 
-d = 1 1 -1 -1 
-GG4  Iteration 4 times: X = 1038; Y = -851038
+d = -1 -1 -1 1 
+GG4  Iteration 4 times: X = 536; Y = 35536
 Q41  Iteration 4 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q42  Iteration 4 times: input: X =   807; Y =     0 output: X =   844; Y =  1021
-Q43  Iteration 4 times: input: X =    43; Y =  -371 output: X =   513; Y =  -333
-Q44  Iteration 4 times: input: X =    87; Y =  -592 output: X =   840; Y =  -510
-Q45  Iteration 4 times: input: X =    24; Y =  -426 output: X =   563; Y =  -414
-Q46  Iteration 4 times: input: X =  -293; Y =   346 output: X =  -745; Y =    -8
-Q47  Iteration 4 times: input: X =   544; Y =   320 output: X =   164; Y =  1024
-Q48  Iteration 4 times: input: X =    13; Y =   403 output: X =  -497; Y =   439
+Q42  Iteration 4 times: input: X = -1000; Y =     0 output: X =  -328; Y =  1609
+Q43  Iteration 4 times: input: X =   -69; Y =  -132 output: X =  -236; Y =    69
+Q44  Iteration 4 times: input: X =    16; Y =  -259 output: X =  -412; Y =  -110
+Q45  Iteration 4 times: input: X =   121; Y =  -742 output: X = -1155; Y =  -437
+Q46  Iteration 4 times: input: X =    15; Y =  -211 output: X =  -334; Y =   -93
+Q47  Iteration 4 times: input: X =   -53; Y =   -73 output: X =  -135; Y =    61
+Q48  Iteration 4 times: input: X =  -167; Y =  -603 output: X = -1025; Y =    70
 
-d = 1 1 -1 1 
-GG4  Iteration 8 times: X = 1046; Y = 31046
+d = -1 -1 1 1 
+GG4  Iteration 8 times: X = 540; Y = -2540
 Q41  Iteration 8 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q42  Iteration 8 times: input: X =   844; Y =  1021 output: X =   757; Y =  1091
-Q43  Iteration 8 times: input: X =   513; Y =  -333 output: X =   542; Y =  -289
-Q44  Iteration 8 times: input: X =   840; Y =  -510 output: X =   884; Y =  -438
-Q45  Iteration 8 times: input: X =   563; Y =  -414 output: X =   598; Y =  -366
-Q46  Iteration 8 times: input: X =  -745; Y =    -8 output: X =  -743; Y =   -73
-Q47  Iteration 8 times: input: X =   164; Y =  1024 output: X =    76; Y =  1036
-Q48  Iteration 8 times: input: X =  -497; Y =   439 output: X =  -533; Y =   394
+Q42  Iteration 8 times: input: X =  -328; Y =  1609 output: X =  -215; Y =  1633
+Q43  Iteration 8 times: input: X =  -236; Y =    69 output: X =  -231; Y =    86
+Q44  Iteration 8 times: input: X =  -412; Y =  -110 output: X =  -419; Y =   -81
+Q45  Iteration 8 times: input: X = -1155; Y =  -437 output: X = -1186; Y =  -356
+Q46  Iteration 8 times: input: X =  -334; Y =   -93 output: X =  -341; Y =   -70
+Q47  Iteration 8 times: input: X =  -135; Y =    61 output: X =  -131; Y =    70
+Q48  Iteration 8 times: input: X = -1025; Y =    70 output: X = -1020; Y =   143
 
-d = -1 1 -1 0 
-GG4  Iteration 12 times: X = 1047; Y = 01047
+d = 1 0 0 0 
+GG4  Iteration 12 times: X = 541; Y = 0541
 Q41  Iteration 12 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q42  Iteration 12 times: input: X =   757; Y =  1091 output: X =   760; Y =  1090
-Q43  Iteration 12 times: input: X =   542; Y =  -289 output: X =   540; Y =  -290
-Q44  Iteration 12 times: input: X =   884; Y =  -438 output: X =   882; Y =  -440
-Q45  Iteration 12 times: input: X =   598; Y =  -366 output: X =   596; Y =  -367
-Q46  Iteration 12 times: input: X =  -743; Y =   -73 output: X =  -744; Y =   -71
-Q47  Iteration 12 times: input: X =    76; Y =  1036 output: X =    79; Y =  1036
-Q48  Iteration 12 times: input: X =  -533; Y =   394 output: X =  -532; Y =   396
-
-d = 0 0 0 GG4  Iteration 15 times: X = 1047; Y = 01047
-Q41  Iteration 15 times: input: X =     0; Y =     0 output: X =     0; Y =     0
-Q42  Iteration 15 times: input: X =   760; Y =  1090 output: X =   760; Y =  1090
-Q43  Iteration 15 times: input: X =   540; Y =  -290 output: X =   540; Y =  -290
-Q44  Iteration 15 times: input: X =   882; Y =  -440 output: X =   882; Y =  -440
-Q45  Iteration 15 times: input: X =   596; Y =  -367 output: X =   596; Y =  -367
-Q46  Iteration 15 times: input: X =  -744; Y =   -71 output: X =  -744; Y =   -71
-Q47  Iteration 15 times: input: X =    79; Y =  1036 output: X =    79; Y =  1036
-Q48  Iteration 15 times: input: X =  -532; Y =   396 output: X =  -532; Y =   396
-0 
-GG4  Multiplied by K:   X = 635; Y = 0
-Q41 Multiplied by K:   X = 0; Y = 0
-Q42 Multiplied by K:   X = 461; Y = 662
-Q43 Multiplied by K:   X = 328; Y = -177
-Q44 Multiplied by K:   X = 535; Y = -268
-Q45 Multiplied by K:   X = 362; Y = -223
-Q46 Multiplied by K:   X = -452; Y = -44
-Q47 Multiplied by K:   X = 47; Y = 629
-Q48 Multiplied by K:   X = -324; Y = 240
+Q42  Iteration 12 times: input: X =  -215; Y =  1633 output: X =  -221; Y =  1632
+Q43  Iteration 12 times: input: X =  -231; Y =    86 output: X =  -231; Y =    85
+Q44  Iteration 12 times: input: X =  -419; Y =   -81 output: X =  -418; Y =   -83
+Q45  Iteration 12 times: input: X = -1186; Y =  -356 output: X = -1184; Y =  -361
+Q46  Iteration 12 times: input: X =  -341; Y =   -70 output: X =  -340; Y =   -72
+Q47  Iteration 12 times: input: X =  -131; Y =    70 output: X =  -131; Y =    69
+Q48  Iteration 12 times: input: X = -1020; Y =   143 output: X = -1020; Y =   139
 k = 4 row45: 
 
-d = -1 -1 -1 1 
-GG4  Iteration 4 times: X = 1082; Y = -911082
-Q41  Iteration 4 times: input: X =   704; Y =     0 output: X =   231; Y = -1133
-Q42  Iteration 4 times: input: X =   153; Y =   461 output: X =   792; Y =   -95
-Q43  Iteration 4 times: input: X =  -147; Y =   328 output: X =   479; Y =   345
-Q44  Iteration 4 times: input: X =  -510; Y =   535 output: X =   693; Y =   997
-Q45  Iteration 4 times: input: X =    43; Y =   362 output: X =   596; Y =    50
-Q46  Iteration 4 times: input: X =  -485; Y =  -452 output: X =  -887; Y =   633
-Q47  Iteration 4 times: input: X =  -150; Y =    47 output: X =    26; Y =   258
-Q48  Iteration 4 times: input: X =   -38; Y =  -324 output: X =  -534; Y =   -45
+d = -1 1 -1 -1 
+GG4  Iteration 4 times: X = 856; Y = -9856
+Q41  Iteration 4 times: input: X =  -839; Y =     0 output: X = -1063; Y =   879
+Q42  Iteration 4 times: input: X =    69; Y =  -135 output: X =   -55; Y =  -243
+Q43  Iteration 4 times: input: X =     8; Y =  -141 output: X =  -138; Y =  -187
+Q44  Iteration 4 times: input: X =   -78; Y =  -254 output: X =  -366; Y =  -239
+Q45  Iteration 4 times: input: X =   182; Y =  -720 output: X =  -524; Y = -1101
+Q46  Iteration 4 times: input: X =   372; Y =  -207 output: X =   253; Y =  -651
+Q47  Iteration 4 times: input: X =   209; Y =   -80 output: X =   180; Y =  -320
+Q48  Iteration 4 times: input: X =  -348; Y =  -620 output: X = -1090; Y =  -420
 
-d = 1 1 -1 1 
-GG4  Iteration 8 times: X = 1090; Y = 11090
-Q41  Iteration 8 times: input: X =   231; Y = -1133 output: X =   328; Y = -1113
-Q42  Iteration 8 times: input: X =   792; Y =   -95 output: X =   800; Y =   -28
-Q43  Iteration 8 times: input: X =   479; Y =   345 output: X =   451; Y =   385
-Q44  Iteration 8 times: input: X =   693; Y =   997 output: X =   607; Y =  1054
-Q45  Iteration 8 times: input: X =   596; Y =    50 output: X =   592; Y =   100
-Q46  Iteration 8 times: input: X =  -887; Y =   633 output: X =  -940; Y =   555
-Q47  Iteration 8 times: input: X =    26; Y =   258 output: X =     4; Y =   259
-Q48  Iteration 8 times: input: X =  -534; Y =   -45 output: X =  -529; Y =   -92
+d = 1 -1 -1 -1 
+GG4  Iteration 8 times: X = 858; Y = -1858
+Q41  Iteration 8 times: input: X = -1063; Y =   879 output: X = -1073; Y =   874
+Q42  Iteration 8 times: input: X =   -55; Y =  -243 output: X =   -53; Y =  -243
+Q43  Iteration 8 times: input: X =  -138; Y =  -187 output: X =  -138; Y =  -187
+Q44  Iteration 8 times: input: X =  -366; Y =  -239 output: X =  -366; Y =  -242
+Q45  Iteration 8 times: input: X =  -524; Y = -1101 output: X =  -518; Y = -1107
+Q46  Iteration 8 times: input: X =   253; Y =  -651 output: X =   257; Y =  -651
+Q47  Iteration 8 times: input: X =   180; Y =  -320 output: X =   182; Y =  -318
+Q48  Iteration 8 times: input: X = -1090; Y =  -420 output: X = -1091; Y =  -429
 
-d = -1 1 1 0 
-GG4  Iteration 12 times: X = 1092; Y = 01092
-Q41  Iteration 12 times: input: X =   328; Y = -1113 output: X =   328; Y = -1114
-Q42  Iteration 12 times: input: X =   800; Y =   -28 output: X =   801; Y =   -30
-Q43  Iteration 12 times: input: X =   451; Y =   385 output: X =   452; Y =   384
-Q44  Iteration 12 times: input: X =   607; Y =  1054 output: X =   608; Y =  1053
-Q45  Iteration 12 times: input: X =   592; Y =   100 output: X =   592; Y =    99
-Q46  Iteration 12 times: input: X =  -940; Y =   555 output: X =  -939; Y =   556
-Q47  Iteration 12 times: input: X =     4; Y =   259 output: X =     5; Y =   259
-Q48  Iteration 12 times: input: X =  -529; Y =   -92 output: X =  -528; Y =   -92
+d = 1 -1 -1 -1 
+GG4  Iteration 12 times: X = 859; Y = 1859
+Q41  Iteration 12 times: input: X = -1073; Y =   874 output: X = -1075; Y =   875
+Q42  Iteration 12 times: input: X =   -53; Y =  -243 output: X =   -55; Y =  -241
+Q43  Iteration 12 times: input: X =  -138; Y =  -187 output: X =  -140; Y =  -185
+Q44  Iteration 12 times: input: X =  -366; Y =  -242 output: X =  -368; Y =  -241
+Q45  Iteration 12 times: input: X =  -518; Y = -1107 output: X =  -519; Y = -1106
+Q46  Iteration 12 times: input: X =   257; Y =  -651 output: X =   256; Y =  -650
+Q47  Iteration 12 times: input: X =   182; Y =  -318 output: X =   181; Y =  -318
+Q48  Iteration 12 times: input: X = -1091; Y =  -429 output: X = -1092; Y =  -428
+Matrix A :
+   -24   -47    58   -69
+    24   -20    -3    -3
+   -61     2    20    31
+    26  -107   -68    45
+    54   -61   -11   -27
+   -72    77   118   -34
+   -98  -121    11   124
+   -53   109     5  -119
 
-d = 0 0 0 GG4  Iteration 15 times: X = 1092; Y = 01092
-Q41  Iteration 15 times: input: X =   328; Y = -1114 output: X =   328; Y = -1114
-Q42  Iteration 15 times: input: X =   801; Y =   -30 output: X =   801; Y =   -30
-Q43  Iteration 15 times: input: X =   452; Y =   384 output: X =   452; Y =   384
-Q44  Iteration 15 times: input: X =   608; Y =  1053 output: X =   608; Y =  1053
-Q45  Iteration 15 times: input: X =   592; Y =    99 output: X =   592; Y =    99
-Q46  Iteration 15 times: input: X =  -939; Y =   556 output: X =  -939; Y =   556
-Q47  Iteration 15 times: input: X =     5; Y =   259 output: X =     5; Y =   259
-Q48  Iteration 15 times: input: X =  -528; Y =   -92 output: X =  -528; Y =   -92
-0 
-GG4  Multiplied by K:   X = 663; Y = 0
-Q41 Multiplied by K:   X = 199; Y = -677
-Q42 Multiplied by K:   X = 486; Y = -19
-Q43 Multiplied by K:   X = 274; Y = 233
-Q44 Multiplied by K:   X = 369; Y = 639
-Q45 Multiplied by K:   X = 359; Y = 60
-Q46 Multiplied by K:   X = -571; Y = 337
-Q47 Multiplied by K:   X = 3; Y = 157
-Q48 Multiplied by K:   X = -321; Y = -56
+----------------------------------------------------------------------
+---------------------------- Original scale --------------------------
+----------------------------------------------------------------------
+Matrix Q_float :
+   -0.1487    0.1487   -0.3779    0.1611    0.3345   -0.4460   -0.6070   -0.3283
+   -0.2325   -0.0693   -0.0438   -0.4595   -0.2280    0.2845   -0.6300    0.4451
+    0.5129    0.1298   -0.1174   -0.2850    0.2851    0.5823   -0.1332   -0.4324
+   -0.6344   -0.0249    0.0789   -0.2181   -0.2925    0.1619    0.1122   -0.6471
+    0.5083   -0.1504    0.0863   -0.1477   -0.6593   -0.3859   -0.1913   -0.2638
+         0    0.9659    0.0863   -0.0481   -0.2164   -0.0451    0.0392    0.0828
+         0         0    0.9058    0.0457    0.2744   -0.0699   -0.2963   -0.0978
+         0         0         0   -0.7797    0.3354   -0.4462    0.2798    0.0480
+
+Matrix Q_fix :
+   -0.1484    0.1494   -0.3789    0.1582    0.3291   -0.4502   -0.6152   -0.3340
+   -0.2314   -0.0703   -0.0459   -0.4629   -0.2354    0.2842   -0.6318    0.4453
+    0.5098    0.1260   -0.1123   -0.2793    0.2813    0.5889   -0.1309   -0.4375
+   -0.6377   -0.0332   -0.0840   -0.2188   -0.3086    0.1514    0.1064   -0.6484
+    0.5186   -0.1436   -0.1104   -0.1436   -0.6563   -0.3857   -0.1895   -0.2539
+         0    0.9678    0.0498   -0.0498   -0.2148   -0.0430    0.0400    0.0820
+         0         0   -0.9111    0.0469    0.2725   -0.0742   -0.2988   -0.0977
+         0         0         0   -0.7842    0.3350   -0.4473    0.2754    0.0430
+
+          DataTypeMode: Fixed-point: binary point scaling
+            Signedness: Signed
+            WordLength: 24
+        FractionLength: 20
+
+        RoundingMethod: Floor
+        OverflowAction: Saturate
+           ProductMode: FullPrecision
+               SumMode: FullPrecision
+Matrix R_float :
+  161.4373  -31.0523  -92.2030  -24.7279
+   -0.0000  221.9679   48.4659 -140.3980
+    0.0000    0.0000  108.3405  -44.8074
+   -0.0000   -0.0000    0.0000  129.7968
+    0.0000   -0.0000   -0.0000   -0.0000
+    0.0000   -0.0000   -0.0000    0.0000
+   -0.0000   -0.0000    0.0000   -0.0000
+    0.0000    0.0000   -0.0000   -0.0000
+
+Matrix R_fix :
+  162.0000  -32.2500  -92.5000  -25.2500
+         0  222.7500   48.7500 -141.2500
+         0         0  110.7500  -42.7500
+         0         0         0  130.2500
+         0         0         0         0
+         0         0         0         0
+         0         0         0         0
+         0         0         0         0
+
+          DataTypeMode: Fixed-point: binary point scaling
+            Signedness: Signed
+            WordLength: 24
+        FractionLength: 12
+
+        RoundingMethod: Floor
+        OverflowAction: Saturate
+           ProductMode: FullPrecision
+               SumMode: FullPrecision
+----------------------------------------------------------------------
+------------------------------ INT scale -----------------------------
+----------------------------------------------------------------------
+Matrix Q_float :
+ -152.2325  152.2325 -386.9242  164.9185  342.5231 -456.6974 -621.6160 -336.1801
+ -238.1208  -70.9690  -44.9024 -470.5495 -233.4926  291.3326 -645.1681  455.8174
+  525.1634  132.9500 -120.1705 -291.8613  291.9877  596.2999 -136.4417 -442.7562
+ -649.6371  -25.5350   80.7990 -223.3005 -299.5205  165.7362  114.8783 -662.6658
+  520.4564 -153.9676   88.3927 -151.2732 -675.1329 -395.1115 -195.9332 -270.1684
+         0  989.1061   88.3275  -49.2269 -221.5440  -46.1837   40.1870   84.7962
+         0         0  927.5047   46.7610  280.9480  -71.5416 -303.3912 -100.1411
+         0         0         0 -798.3868  343.4354 -456.8615  286.4671   49.2021
+
+Matrix Q_fix :
+  -152   153  -388   162   337  -461  -630  -342
+  -237   -72   -47  -474  -241   291  -647   456
+   522   129  -115  -286   288   603  -134  -448
+  -653   -34   -86  -224  -316   155   109  -664
+   531  -147  -113  -147  -672  -395  -194  -260
+     0   991    51   -51  -220   -44    41    84
+     0     0  -933    48   279   -76  -306  -100
+     0     0     0  -803   343  -458   282    44
+
+          DataTypeMode: Fixed-point: binary point scaling
+            Signedness: Signed
+            WordLength: 12
+        FractionLength: 0
+
+        RoundingMethod: Floor
+        OverflowAction: Saturate
+           ProductMode: FullPrecision
+               SumMode: FullPrecision
+Matrix R_float :
+  645.7492 -124.2092 -368.8119  -98.9115
+   -0.0000  887.8717  193.8638 -561.5921
+    0.0000    0.0000  433.3620 -179.2298
+   -0.0000   -0.0000    0.0000  519.1874
+    0.0000   -0.0000   -0.0000   -0.0000
+    0.0000   -0.0000   -0.0000    0.0000
+   -0.0000   -0.0000    0.0000   -0.0000
+    0.0000    0.0000   -0.0000   -0.0000
+
+Matrix R_fix :
+   648  -129  -370  -101
+     0   891   195  -565
+     0     0   443  -171
+     0     0     0   521
+     0     0     0     0
+     0     0     0     0
+     0     0     0     0
+     0     0     0     0
+
+          DataTypeMode: Fixed-point: binary point scaling
+            Signedness: Signed
+            WordLength: 12
+        FractionLength: 0
+
+        RoundingMethod: Floor
+        OverflowAction: Saturate
+           ProductMode: FullPrecision
+               SumMode: FullPrecision
+----------------------------------------------------------------------
+------------------------------- A = QR -------------------------------
+----------------------------------------------------------------------
+Matrix A_float :
+  -24.0000  -47.0000   58.0000  -69.0000
+   24.0000  -20.0000   -3.0000   -3.0000
+  -61.0000    2.0000   20.0000   31.0000
+   26.0000 -107.0000  -68.0000   45.0000
+   54.0000  -61.0000  -11.0000  -27.0000
+  -72.0000   77.0000  118.0000  -34.0000
+  -98.0000 -121.0000   11.0000  124.0000
+  -53.0000  109.0000    5.0000 -119.0000
+
+Matrix A_fix :
+  -24.1250  -46.8750   58.8750  -68.5000
+   24.1250  -20.5000   -3.3750   -3.6250
+  -61.5000    1.8750   20.5000    9.8750
+   25.6250 -108.2500  -68.2500   44.7500
+   53.2500  -63.1250  -10.8750  -27.3750
+  -73.0000   77.7500  120.6250  -34.2500
+  -99.7500 -121.0000   11.6250  124.1250
+  -54.1250  109.8750    4.1250 -120.2500
+
+          DataTypeMode: Fixed-point: binary point scaling
+            Signedness: Signed
+            WordLength: 14
+        FractionLength: 3
+
+        RoundingMethod: Floor
+        OverflowAction: Saturate
+           ProductMode: FullPrecision
+               SumMode: FullPrecision
+----------------------------------------------------------------------
+-------------------- Hardware implementation loss --------------------
+----------------------------------------------------------------------
+Q Fix Point Loss :
+    1.8355
+
+R Fix Point Loss :
+    3.7114
+
+A Fix Point Loss :
+   21.7263
+
+>> 

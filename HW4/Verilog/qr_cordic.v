@@ -14,14 +14,14 @@ module qr_cordic #(
 	parameter ROW_NUM_R = 8,	parameter COL_NUM_R = 4,
 	parameter ROW_NUM_Q = 8,	parameter COL_NUM_Q = 8,
 	
-	parameter ITER_NUM 	= 12,	parameter ITER_K 	= 13, 	parameter ITER_ONE_CYCLE= 4,
+	parameter ITER_NUM 	= 12,	parameter ITER_K 	= 13, 	parameter ITER_ONE_CYCLE = 4,
 	parameter ITER_WID 	= 4
 )
 (	input 	   	      	                     clk,
 	input 	   	      	                     rst,
 	input 	   	      	                     en,
 				
-	output	   	      	                     rd_A,
+	output	   	      	                    rd_A,
 	input 	   	signed	[A_WID-1:0]        	rd_A_data,
 	output	reg	      	[ROW_WID_R-1:0]    	rd_A_row_addr,
 	output	reg	      	[COL_WID_R-1:0]    	rd_A_col_addr,
@@ -661,19 +661,19 @@ wire     signed	[Q_WID-1:0]         xo_mk8_q;
 wire     signed	[Q_WID-1:0]         yo_mk8_q;
 
 /***********************************************************************************/
-/**                                state parameters                               **/
+/**                     state parameters (Only control GG1)                       **/
 /***********************************************************************************/
-localparam IDLE		= 'd0;
-localparam ROT		= 'd1;
-localparam MUL_K	= 'd2;
-localparam DONE		= 'd3;
+localparam IDLE		= 2'd0;
+localparam ROT		= 2'd1;
+localparam MUL_K	= 2'd2;
+localparam DONE		= 2'd3;
 
 
 /***********************************************************************************/
 /**                                   Registers                                   **/
 /***********************************************************************************/
 // FSM state signals
-reg	[3:0]	state, next_state;
+reg	[1:0]	state, next_state;
 
 // multiply k counter (rotation times)
 reg	[2:0]	mk_count_gg1;
@@ -815,12 +815,11 @@ reg wr_Q_1_end, wr_Q_2_end, wr_Q_3_end, wr_Q_4_end, wr_Q_5_end, wr_Q_6_end, wr_Q
 /***********************************************************************************/
 /**                                 Combination                                   **/
 /***********************************************************************************/
-// state wire
+// state wire for GG1
 wire IDLE_wire 	= state == IDLE;      
 wire ROT_wire 	= state == ROT;
 wire MUL_K_wire = state == MUL_K;  
 wire DONE_wire 	= state == DONE;
-wire OP_wire 	= ROT_wire | MUL_K_wire;
 
 // control signals
 wire initial_read 	= rd_A_row_addr == 'd7 || (rd_A_row_addr == 'd6 && rd_A_col_addr == 'd0);	// at least read 1 row at first
@@ -1009,10 +1008,10 @@ wire wr_R_r34 		= mk_count_gg4 == 'd4 && iter_gg4 == 'd0;
 wire wr_R_r24 		= mk_count_gg4 == 'd4 && iter_gg4 == 'd1;
 wire wr_R_r14 		= mk_count_gg4 == 'd4 && iter_gg4 == 'd2;
 
-wire nop_gg1 		= (~OP_wire) | initial_read 		| finish_gg1;
-wire nop_gg2 		= (~OP_wire) | mk_count_gr11 <= 'd1 | finish_gg2 | multk_gg2;
-wire nop_gg3 		= (~OP_wire) | mk_count_gr21 <= 'd1 | finish_gg3 | multk_gg3;
-wire nop_gg4 		= (~OP_wire) | mk_count_gr31 <= 'd1 | finish_gg4 | multk_gg4;
+wire nop_gg1 		= initial_read 		| finish_gg1;
+wire nop_gg2 		= mk_count_gr11 <= 'd1 | finish_gg2 | multk_gg2;
+wire nop_gg3 		= mk_count_gr21 <= 'd1 | finish_gg3 | multk_gg3;
+wire nop_gg4 		= mk_count_gr31 <= 'd1 | finish_gg4 | multk_gg4;
 
 wire qr_finish		= last_multk_q48;
 
@@ -1115,7 +1114,7 @@ always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		wr_R_data <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(1)
 			last_multk_gg1 	: wr_R_data <= xo_mk1;
 			last_multk_gg2 	: wr_R_data <= xo_mk2;
@@ -1136,11 +1135,8 @@ always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		wr_R <= 'd0;
 	end
-	else if(OP_wire) begin
-		wr_R <= last_multk_gg1 | last_multk_gg2 | last_multk_gg3 | last_multk_gg4 | last_multk_gr21 | last_multk_gr31 | wr_R_r13 | wr_R_r34 | wr_R_r24 | wr_R_r14;
-	end
 	else begin
-		wr_R <= 'd0;
+		wr_R <= last_multk_gg1 | last_multk_gg2 | last_multk_gg3 | last_multk_gg4 | last_multk_gr21 | last_multk_gr31 | wr_R_r13 | wr_R_r34 | wr_R_r24 | wr_R_r14;
 	end
 end
 
@@ -1418,7 +1414,7 @@ end
 /*****************************************************************/
 /**                              GG1                            **/
 /*****************************************************************/
-// GG1 current iteration number
+// iteration times
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_gg1 <= 'd0;
@@ -1439,14 +1435,13 @@ always @(posedge clk or posedge rst) begin
 	end
 end
 
-
 // GG1 input data xi, yi
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		xi_gg1 <= 'd0;
 		yi_gg1 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_gg1)
 			0: begin
 				if(start_gg1) begin
@@ -1478,10 +1473,6 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_gg1 <= 'd0;
-		yi_gg1 <= 'd0;
-	end
 end
 
 // GG1 mk_count
@@ -1498,7 +1489,7 @@ end
 /*****************************************************************/
 /**                              GR11                           **/
 /*****************************************************************/
-// GR11 current iteration number
+// data propagated from left to right
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_gr11 	<= 'd0;	
@@ -1528,7 +1519,7 @@ always @(posedge clk or posedge rst) begin
 		xi_gr11 <= 'd0;
 		yi_gr11 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_gr11)
 			0: begin
 				if(start_gr11_reg) begin
@@ -1560,16 +1551,13 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_gr11 <= 'd0;
-		xi_gr11 <= 'd0;
-	end
 end
 
 
 /*****************************************************************/
 /**                              GR12                           **/
 /*****************************************************************/
+// data propagated from left to right
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_gr12 	<= 'd0;	
@@ -1593,13 +1581,13 @@ always @(posedge clk or posedge rst) begin
 	end
 end
 
-// GR11 input data xi, yi
+// GR12 input data xi, yi
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		xi_gr12 <= 'd0;
 		yi_gr12 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_gr12)
 			0: begin
 				if(start_gr12_reg) begin
@@ -1631,16 +1619,13 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_gr12 <= 'd0;
-		xi_gr12 <= 'd0;
-	end
 end
 
 
 /*****************************************************************/
 /**                              GR13                           **/
 /*****************************************************************/
+// data propagated from left to right
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_gr13 	<= 'd0;	
@@ -1664,13 +1649,13 @@ always @(posedge clk or posedge rst) begin
 	end
 end
 
-// GR12 input data xi, yi
+// GR13 input data xi, yi
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		xi_gr13 <= 'd0;
 		yi_gr13 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_gr13)
 			0: begin
 				if(start_gr13_reg) begin
@@ -1702,22 +1687,18 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_gr13 <= 'd0;
-		xi_gr13 <= 'd0;
-	end
 end
 
 
 /*****************************************************************/
 /**                              GG2                            **/
 /*****************************************************************/
-// GG2 current iteration number
+// iteration times
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_gg2 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		if(nop_gg2) begin
 			iter_gg2 <= 'd0;
 		end
@@ -1728,9 +1709,6 @@ always @(posedge clk or posedge rst) begin
 			iter_gg2 <= iter_gg2 + ITER_ONE_CYCLE;
 		end
 	end
-	else begin
-		iter_gg2 <= 'd0;
-	end
 end
 
 // GG2 input data xi, yi
@@ -1739,7 +1717,7 @@ always @(posedge clk or posedge rst) begin
 		xi_gg2 <= 'd0;
 		yi_gg2 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_gg2)
 			0: begin
 				if(start_gg2) begin
@@ -1771,10 +1749,6 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_gg2 <= 'd0;
-		yi_gg2 <= 'd0;
-	end
 end
 
 // GG2 mk_count
@@ -1791,7 +1765,7 @@ end
 /*****************************************************************/
 /**                              GR21                           **/
 /*****************************************************************/
-// GR21 current iteration number
+// data propagated from left to right
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_gr21 	<= 'd0;	
@@ -1821,7 +1795,7 @@ always @(posedge clk or posedge rst) begin
 		xi_gr21 <= 'd0;
 		yi_gr21 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_gr21)
 			0: begin
 				if(start_gr21_reg) begin
@@ -1853,17 +1827,13 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_gr21 <= 'd0;
-		xi_gr21 <= 'd0;
-	end
 end
-
 
 
 /*****************************************************************/
 /**                              GR22                           **/
 /*****************************************************************/
+// data propagated from left to right
 always @(posedge clk or posedge rst) begin
     if (rst) begin
         iter_gr22 	<= 'd0;
@@ -1894,7 +1864,7 @@ always @(posedge clk or posedge rst) begin
 		xi_gr22 <= 'd0;
 		yi_gr22 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_gr22)
 			0: begin
 				if(start_gr22_reg) begin
@@ -1926,22 +1896,18 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_gr22 <= 'd0;
-		xi_gr22 <= 'd0;
-	end
 end
 
 
 /*****************************************************************/
 /**                              GG3                            **/
 /*****************************************************************/
-// GG3 current iteration number
+// GG3 iteration times
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_gg3 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		if(nop_gg3) begin
 			iter_gg3 <= 'd0;
 		end
@@ -1952,9 +1918,6 @@ always @(posedge clk or posedge rst) begin
 			iter_gg3 <= iter_gg3 + ITER_ONE_CYCLE;
 		end
 	end
-	else begin
-		iter_gg3 <= 'd0;
-	end
 end
 
 // GG3 input data xi, yi
@@ -1963,7 +1926,7 @@ always @(posedge clk or posedge rst) begin
 		xi_gg3 <= 'd0;
 		yi_gg3 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_gg3)
 			0: begin
 				if(start_gg3) begin
@@ -1995,10 +1958,6 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_gg3 <= 'd0;
-		yi_gg3 <= 'd0;
-	end
 end
 
 // GG3 mk_count
@@ -2016,7 +1975,7 @@ end
 /*****************************************************************/
 /**                              GR31                           **/
 /*****************************************************************/
-// GR31 current iteration number
+// data propagated from left to right
 always @(posedge clk or posedge rst) begin
     if (rst) begin
         iter_gr31 	<= 'd0;
@@ -2046,7 +2005,7 @@ always @(posedge clk or posedge rst) begin
 		xi_gr31 <= 'd0;
 		yi_gr31 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_gr31)
 			0: begin
 				if(start_gr31_reg) begin
@@ -2082,37 +2041,29 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_gr31 <= 'd0;
-		xi_gr31 <= 'd0;
-	end
 end
 
 
 /*****************************************************************/
 /**                              GG4                            **/
 /*****************************************************************/
-// GG4 current iteration number
+// GG4 iteration times
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_gg4 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		if(nop_gg4 && !finish_gg4) begin
 			iter_gg4 <= 'd0;
 		end
 		else if(nop_gg4 || iter_last_gg4) begin
-			iter_gg4 <= (iter_gg4 == 13) ? 0 :iter_gg4 + 'd1;
+			iter_gg4 <= (iter_gg4 == ITER_K) ? 0 :iter_gg4 + 'd1;
 		end
 		else begin
 			iter_gg4 <= iter_gg4 + ITER_ONE_CYCLE;
 		end
 	end
-	else begin
-		iter_gg4 <= 'd0;
-	end
 end
-
 
 // GG4 input data xi, yi
 always @(posedge clk or posedge rst) begin
@@ -2120,7 +2071,7 @@ always @(posedge clk or posedge rst) begin
 		xi_gg4 <= 'd0;
 		yi_gg4 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_gg4)
 			0: begin
 				if(start_gg4) begin
@@ -2156,10 +2107,6 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_gg4 <= 'd0;
-		yi_gg4 <= 'd0;
-	end
 end
 
 // GG4 mk_count
@@ -2173,7 +2120,6 @@ always @(posedge clk or posedge rst) begin
 end
 
 
-
 /*****************************************************************/
 /**                              MK1                            **/
 /*****************************************************************/
@@ -2183,23 +2129,23 @@ always @(posedge clk or posedge rst) begin
 		xi_mk1 <= 'd0;
 		yi_mk1 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(1)
 			iter_last_gg1: begin
-				xi_mk1 <= xo_gg1;
-				yi_mk1 <= yo_gg1;
+				xi_mk1 <= xi_gg1;
+				yi_mk1 <= yi_gg1;
 			end
 			iter_last_gr11: begin
-				xi_mk1 <= xo_gr11;
-				yi_mk1 <= yo_gr11;
+				xi_mk1 <= xi_gr11;
+				yi_mk1 <= yi_gr11;
 			end
 			iter_last_gr12: begin
-				xi_mk1 <= xo_gr12;
-				yi_mk1 <= yo_gr12;
+				xi_mk1 <= xi_gr12;
+				yi_mk1 <= yi_gr12;
 			end
 			iter_last_gr13: begin
-				xi_mk1 <= xo_gr13;
-				yi_mk1 <= yo_gr13;
+				xi_mk1 <= xi_gr13;
+				yi_mk1 <= yi_gr13;
 			end
 			default: begin
 				xi_mk1 <= 'd0;
@@ -2207,13 +2153,7 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_mk1 <= 'd0;
-		yi_mk1 <= 'd0;
-	end
 end
-
-
 
 /*****************************************************************/
 /**                              MK2                            **/
@@ -2224,19 +2164,19 @@ always @(posedge clk or posedge rst) begin
 		xi_mk2 <= 'd0;
 		yi_mk2 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(1)
 			iter_last_gg2: begin
-				xi_mk2 <= xo_gg2;
-				yi_mk2 <= yo_gg2;
+				xi_mk2 <= xi_gg2;
+				yi_mk2 <= yi_gg2;
 			end
 			iter_last_gr21: begin
-				xi_mk2 <= xo_gr21;
-				yi_mk2 <= yo_gr21;
+				xi_mk2 <= xi_gr21;
+				yi_mk2 <= yi_gr21;
 			end
 			iter_last_gr22: begin
-				xi_mk2 <= xo_gr22;
-				yi_mk2 <= yo_gr22;
+				xi_mk2 <= xi_gr22;
+				yi_mk2 <= yi_gr22;
 			end
 			default: begin
 				xi_mk2 <= 'd0;
@@ -2244,12 +2184,7 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_mk2 <= 'd0;
-		yi_mk2 <= 'd0;
-	end
 end
-
 
 /*****************************************************************/
 /**                              MK3                            **/
@@ -2260,25 +2195,21 @@ always @(posedge clk or posedge rst) begin
 		xi_mk3 <= 'd0;
 		yi_mk3 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(1)
 			iter_last_gg3: begin
-				xi_mk3 <= xo_gg3;
-				yi_mk3 <= yo_gg3;
+				xi_mk3 <= xi_gg3;
+				yi_mk3 <= yi_gg3;
 			end
 			iter_last_gr31: begin
-				xi_mk3 <= xo_gr31;
-				yi_mk3 <= yo_gr31;
+				xi_mk3 <= xi_gr31;
+				yi_mk3 <= yi_gr31;
 			end
 			default: begin
 				xi_mk3 <= 'd0;
 				yi_mk3 <= 'd0;
 			end
 		endcase
-	end
-	else begin
-		xi_mk3 <= 'd0;
-		yi_mk3 <= 'd0;
 	end
 end
 
@@ -2291,11 +2222,11 @@ always @(posedge clk or posedge rst) begin
 		xi_mk4 <= 'd0;
 		yi_mk4 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(1)
 			iter_last_gg4: begin
-				xi_mk4 <= xo_gg4;
-				yi_mk4 <= yo_gg4;
+				xi_mk4 <= xi_gg4;
+				yi_mk4 <= yi_gg4;
 			end
 			default: begin
 				xi_mk4 <= 'd0;
@@ -2303,17 +2234,12 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_mk4 <= 'd0;
-		yi_mk4 <= 'd0;
-	end
 end
-
 
 /*****************************************************************/
 /**                              Q11                            **/
 /*****************************************************************/
-// A11 current iteration number
+// Data propagated from left to right
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_q11 	<= 'd0;	
@@ -2340,11 +2266,11 @@ end
 // Q11 input data xi, yi
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
-		xi_q11 <= 'd0;
-		yi_q11 <= 'd0;
+		xi_q11	<= 'd0;
+		yi_q11	<= 'd0;
 		q_col_1 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_q11)
 			0: begin
 				if(start_q11_reg) begin
@@ -2377,16 +2303,12 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_q11 <= 'd0;
-		yi_q11 <= 'd0;
-	end
 end
-
 
 /*****************************************************************/
 /**                              Q12                            **/
 /*****************************************************************/
+// Data propagated from left to right
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_q12 	<= 'd0;	
@@ -2413,11 +2335,11 @@ end
 // Q11 input data xi, yi
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
-		xi_q12 <= 'd0;
-		yi_q12 <= 'd0;
-		q_col_2<= 'd0;
+		xi_q12 	<= 'd0;
+		yi_q12 	<= 'd0;
+		q_col_2	<= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_q12)
 			0: begin
 				if(start_q12_reg) begin
@@ -2450,16 +2372,12 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_q12 <= 'd0;
-		yi_q12 <= 'd0;
-	end
 end
 
-
 /*****************************************************************/
-/**                              Q13                           **/
+/**                              Q13                            **/
 /*****************************************************************/
+// Data propagated from left to right
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_q13 	<= 'd0;	
@@ -2486,11 +2404,11 @@ end
 // Q13 input data xi, yi
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
-		xi_q13 <= 'd0;
-		yi_q13 <= 'd0;
-		q_col_3<= 'd0;
+		xi_q13 	<= 'd0;
+		yi_q13 	<= 'd0;
+		q_col_3	<= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_q13)
 			0: begin
 				if(start_q13_reg) begin
@@ -2523,18 +2441,12 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_q13 <= 'd0;
-		yi_q13 <= 'd0;
-	end
 end
-
-
-
 
 /*****************************************************************/
 /**                              Q14                            **/
 /*****************************************************************/
+// Data propagated from left to right
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_q14 	<= 'd0;	
@@ -2561,11 +2473,11 @@ end
 // Q14 input data xi, yi
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
-		xi_q14 <= 'd0;
-		yi_q14 <= 'd0;
-		q_col_4<= 'd0;
+		xi_q14 	<= 'd0;
+		yi_q14 	<= 'd0;
+		q_col_4	<= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_q14)
 			0: begin
 				if(start_q14_reg) begin
@@ -2598,16 +2510,12 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_q14 <= 'd0;
-		yi_q14 <= 'd0;
-	end
 end
 
-
 /*****************************************************************/
-/**                              Q15                           **/
+/**                              Q15                            **/
 /*****************************************************************/
+// Data propagated from left to right
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_q15 	<= 'd0;	
@@ -2634,11 +2542,11 @@ end
 // Q15 input data xi, yi
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
-		xi_q15 <= 'd0;
-		yi_q15 <= 'd0;
-		q_col_5<= 'd0;
+		xi_q15 	<= 'd0;
+		yi_q15 	<= 'd0;
+		q_col_5	<= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_q15)
 			0: begin
 				if(start_q15_reg) begin
@@ -2671,16 +2579,12 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_q15 <= 'd0;
-		yi_q15 <= 'd0;
-	end
 end
 
-
 /*****************************************************************/
-/**                              Q16                           **/
+/**                              Q16                            **/
 /*****************************************************************/
+// Data propagated from left to right
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_q16 	<= 'd0;	
@@ -2707,11 +2611,11 @@ end
 // Q16 input data xi, yi
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
-		xi_q16 <= 'd0;
-		yi_q16 <= 'd0;
-		q_col_6<= 'd0;
+		xi_q16 	<= 'd0;
+		yi_q16 	<= 'd0;
+		q_col_6	<= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_q16)
 			0: begin
 				if(start_q16_reg) begin
@@ -2744,16 +2648,12 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_q16 <= 'd0;
-		yi_q16 <= 'd0;
-	end
 end
 
-
 /*****************************************************************/
-/**                              Q17                           **/
+/**                              Q17                            **/
 /*****************************************************************/
+// Data propagated from left to right
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_q17 	<= 'd0;	
@@ -2780,11 +2680,11 @@ end
 // Q17 input data xi, yi
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
-		xi_q17 <= 'd0;
-		yi_q17 <= 'd0;
-		q_col_7<= 'd0;
+		xi_q17 	<= 'd0;
+		yi_q17 	<= 'd0;
+		q_col_7	<= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_q17)
 			0: begin
 				if(start_q17_reg) begin
@@ -2817,16 +2717,12 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_q17 <= 'd0;
-		yi_q17 <= 'd0;
-	end
 end
 
-
 /*****************************************************************/
-/**                              Q18                           **/
+/**                              Q18                            **/
 /*****************************************************************/
+// Data propagated from left to right
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_q18 	<= 'd0;	
@@ -2853,11 +2749,11 @@ end
 // Q18 input data xi, yi
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
-		xi_q18 <= 'd0;
-		yi_q18 <= 'd0;
-		q_col_8<= 'd0;
+		xi_q18 	<= 'd0;
+		yi_q18 	<= 'd0;
+		q_col_8	<= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_q18)
 			0: begin
 				if(start_q18_reg) begin
@@ -2890,17 +2786,12 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_q18 <= 'd0;
-		yi_q18 <= 'd0;
-	end
 end
 
-
 /*****************************************************************/
-/**                              Q21                           **/
+/**                              Q21                            **/
 /*****************************************************************/
-// Q21 current iteration number
+// Data propagated from left to right
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_q21 	<= 'd0;	
@@ -2930,7 +2821,7 @@ always @(posedge clk or posedge rst) begin
 		xi_q21 <= 'd0;
 		yi_q21 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_q21)
 			0: begin
 				if(start_q21_reg) begin
@@ -2962,17 +2853,12 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_q21 <= 'd0;
-		yi_q21 <= 'd0;
-	end
 end
 
-
 /*****************************************************************/
-/**                              Q22                           **/
+/**                              Q22                            **/
 /*****************************************************************/
-// GR22 current iteration number
+// Data propagated from left to right
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_q22 	<= 'd0;	
@@ -3002,7 +2888,7 @@ always @(posedge clk or posedge rst) begin
 		xi_q22 <= 'd0;
 		yi_q22 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_q22)
 			0: begin
 				if(start_q22_reg) begin
@@ -3034,17 +2920,12 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_q22 <= 'd0;
-		yi_q22 <= 'd0;
-	end
 end
-
 
 /*****************************************************************/
 /**                              Q23                            **/
 /*****************************************************************/
-// GR23 current iteration number
+// Data propagated from left to right
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_q23 	<= 'd0;	
@@ -3074,7 +2955,7 @@ always @(posedge clk or posedge rst) begin
 		xi_q23 <= 'd0;
 		yi_q23 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_q23)
 			0: begin
 				if(start_q23_reg) begin
@@ -3106,17 +2987,13 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_q23 <= 'd0;
-		yi_q23 <= 'd0;
-	end
 end
 
 
 /*****************************************************************/
 /**                              Q24                            **/
 /*****************************************************************/
-// GR24 current iteration number
+// Data propagated from left to right
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_q24 	<= 'd0;	
@@ -3146,7 +3023,7 @@ always @(posedge clk or posedge rst) begin
 		xi_q24 <= 'd0;
 		yi_q24 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_q24)
 			0: begin
 				if(start_q24_reg) begin
@@ -3178,17 +3055,13 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_q24 <= 'd0;
-		yi_q24 <= 'd0;
-	end
 end
 
 
 /*****************************************************************/
 /**                              Q25                            **/
 /*****************************************************************/
-// GR25 current iteration number
+// Data propagated from left to right
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_q25 	<= 'd0;	
@@ -3218,7 +3091,7 @@ always @(posedge clk or posedge rst) begin
 		xi_q25 <= 'd0;
 		yi_q25 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_q25)
 			0: begin
 				if(start_q25_reg) begin
@@ -3250,17 +3123,13 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_q25 <= 'd0;
-		yi_q25 <= 'd0;
-	end
 end
 
 
 /*****************************************************************/
 /**                              Q26                            **/
 /*****************************************************************/
-// GR26 current iteration number
+// Data propagated from left to right
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_q26 	<= 'd0;	
@@ -3290,7 +3159,7 @@ always @(posedge clk or posedge rst) begin
 		xi_q26 <= 'd0;
 		yi_q26 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_q26)
 			0: begin
 				if(start_q26_reg) begin
@@ -3322,17 +3191,13 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_q26 <= 'd0;
-		yi_q26 <= 'd0;
-	end
 end
 
 
 /*****************************************************************/
 /**                              Q27                            **/
 /*****************************************************************/
-// GR27 current iteration number
+// Data propagated from left to right
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_q27 	<= 'd0;	
@@ -3362,7 +3227,7 @@ always @(posedge clk or posedge rst) begin
 		xi_q27 <= 'd0;
 		yi_q27 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_q27)
 			0: begin
 				if(start_q27_reg) begin
@@ -3394,17 +3259,13 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_q27 <= 'd0;
-		yi_q27 <= 'd0;
-	end
 end
 
 
 /*****************************************************************/
 /**                              Q28                            **/
 /*****************************************************************/
-// GR28 current iteration number
+// Data propagated from left to right
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_q28 	<= 'd0;	
@@ -3434,7 +3295,7 @@ always @(posedge clk or posedge rst) begin
 		xi_q28 <= 'd0;
 		yi_q28 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_q28)
 			0: begin
 				if(start_q28_reg) begin
@@ -3466,16 +3327,12 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_q28 <= 'd0;
-		yi_q28 <= 'd0;
-	end
 end
 
 /*****************************************************************/
 /**                              Q31                            **/
 /*****************************************************************/
-// GR31 current iteration number
+// Data propagated from left to right
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_q31 	<= 'd0;	
@@ -3505,7 +3362,7 @@ always @(posedge clk or posedge rst) begin
 		xi_q31 <= 'd0;
 		yi_q31 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_q31)
 			0: begin
 				if(start_q31_reg) begin
@@ -3537,16 +3394,12 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_q31 <= 'd0;
-		yi_q31 <= 'd0;
-	end
 end
 
 /*****************************************************************/
 /**                              Q32                            **/
 /*****************************************************************/
-// GR32 current iteration number
+// Data propagated from left to right
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_q32 	<= 'd0;	
@@ -3576,7 +3429,7 @@ always @(posedge clk or posedge rst) begin
 		xi_q32 <= 'd0;
 		yi_q32 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_q32)
 			0: begin
 				if(start_q32_reg) begin
@@ -3608,16 +3461,12 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_q32 <= 'd0;
-		yi_q32 <= 'd0;
-	end
 end
 
 /*****************************************************************/
 /**                              Q33                            **/
 /*****************************************************************/
-// GR33 current iteration number
+// Data propagated from left to right
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_q33 	<= 'd0;	
@@ -3647,7 +3496,7 @@ always @(posedge clk or posedge rst) begin
 		xi_q33 <= 'd0;
 		yi_q33 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_q33)
 			0: begin
 				if(start_q33_reg) begin
@@ -3679,16 +3528,12 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_q33 <= 'd0;
-		yi_q33 <= 'd0;
-	end
 end
 
 /*****************************************************************/
 /**                              Q34                            **/
 /*****************************************************************/
-// GR34 current iteration number
+// Data propagated from left to right
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_q34 	<= 'd0;	
@@ -3718,7 +3563,7 @@ always @(posedge clk or posedge rst) begin
 		xi_q34 <= 'd0;
 		yi_q34 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_q34)
 			0: begin
 				if(start_q34_reg) begin
@@ -3750,16 +3595,12 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_q34 <= 'd0;
-		yi_q34 <= 'd0;
-	end
 end
 
 /*****************************************************************/
 /**                              Q35                            **/
 /*****************************************************************/
-// GR35 current iteration number
+// Data propagated from left to right
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_q35 	<= 'd0;	
@@ -3789,7 +3630,7 @@ always @(posedge clk or posedge rst) begin
 		xi_q35 <= 'd0;
 		yi_q35 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_q35)
 			0: begin
 				if(start_q35_reg) begin
@@ -3821,16 +3662,12 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_q35 <= 'd0;
-		yi_q35 <= 'd0;
-	end
 end
 
 /*****************************************************************/
 /**                              Q36                            **/
 /*****************************************************************/
-// GR36 current iteration number
+// Data propagated from left to right
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_q36 	<= 'd0;	
@@ -3860,7 +3697,7 @@ always @(posedge clk or posedge rst) begin
 		xi_q36 <= 'd0;
 		yi_q36 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_q36)
 			0: begin
 				if(start_q36_reg) begin
@@ -3892,16 +3729,12 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_q36 <= 'd0;
-		yi_q36 <= 'd0;
-	end
 end
 
 /*****************************************************************/
 /**                              Q37                            **/
 /*****************************************************************/
-// GR37 current iteration number
+// Data propagated from left to right
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_q37 	<= 'd0;	
@@ -3931,7 +3764,7 @@ always @(posedge clk or posedge rst) begin
 		xi_q37 <= 'd0;
 		yi_q37 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_q37)
 			0: begin
 				if(start_q37_reg) begin
@@ -3963,16 +3796,12 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_q37 <= 'd0;
-		yi_q37 <= 'd0;
-	end
 end
 
 /*****************************************************************/
 /**                              Q38                            **/
 /*****************************************************************/
-// GR38 current iteration number
+// Data propagated from left to right
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_q38 	<= 'd0;	
@@ -4002,7 +3831,7 @@ always @(posedge clk or posedge rst) begin
 		xi_q38 <= 'd0;
 		yi_q38 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_q38)
 			0: begin
 				if(start_q38_reg) begin
@@ -4034,18 +3863,12 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_q38 <= 'd0;
-		yi_q38 <= 'd0;
-	end
 end
-
-
 
 /*****************************************************************/
 /**                              Q41                            **/
 /*****************************************************************/
-// GR41 current iteration number
+// Data propagated from left to right
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_q41 	<= 'd0;	
@@ -4075,7 +3898,7 @@ always @(posedge clk or posedge rst) begin
 		xi_q41 <= 'd0;
 		yi_q41 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_q41)
 			0: begin
 				if(start_q41_reg) begin
@@ -4107,17 +3930,13 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_q41 <= 'd0;
-		xi_q41 <= 'd0;
-	end
 end
 
 
 /*****************************************************************/
 /**                              Q42                            **/
 /*****************************************************************/
-// GR42 current iteration number
+// Data propagated from left to right
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_q42 	<= 'd0;	
@@ -4147,7 +3966,7 @@ always @(posedge clk or posedge rst) begin
 		xi_q42 <= 'd0;
 		yi_q42 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_q42)
 			0: begin
 				if(start_q42_reg) begin
@@ -4179,17 +3998,12 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_q42 <= 'd0;
-		xi_q42 <= 'd0;
-	end
 end
-
 
 /*****************************************************************/
 /**                              Q43                            **/
 /*****************************************************************/
-// GR43 current iteration number
+// Data propagated from left to right
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_q43 	<= 'd0;	
@@ -4219,7 +4033,7 @@ always @(posedge clk or posedge rst) begin
 		xi_q43 <= 'd0;
 		yi_q43 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_q43)
 			0: begin
 				if(start_q43_reg) begin
@@ -4251,17 +4065,13 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_q43 <= 'd0;
-		xi_q43 <= 'd0;
-	end
 end
 
 
 /*****************************************************************/
 /**                              Q44                            **/
 /*****************************************************************/
-// GR44 current iteration number
+// Data propagated from left to right
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_q44 	<= 'd0;	
@@ -4291,7 +4101,7 @@ always @(posedge clk or posedge rst) begin
 		xi_q44 <= 'd0;
 		yi_q44 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_q44)
 			0: begin
 				if(start_q44_reg) begin
@@ -4323,17 +4133,13 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_q44 <= 'd0;
-		xi_q44 <= 'd0;
-	end
 end
 
 
 /*****************************************************************/
 /**                              Q45                            **/
 /*****************************************************************/
-// GR45 current iteration number
+// Data propagated from left to right
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_q45 	<= 'd0;	
@@ -4363,7 +4169,7 @@ always @(posedge clk or posedge rst) begin
 		xi_q45 <= 'd0;
 		yi_q45 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_q45)
 			0: begin
 				if(start_q45_reg) begin
@@ -4395,17 +4201,13 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_q45 <= 'd0;
-		xi_q45 <= 'd0;
-	end
 end
 
 
 /*****************************************************************/
 /**                              Q46                            **/
 /*****************************************************************/
-// GR46 current iteration number
+// Data propagated from left to right
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_q46 	<= 'd0;	
@@ -4435,7 +4237,7 @@ always @(posedge clk or posedge rst) begin
 		xi_q46 <= 'd0;
 		yi_q46 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_q46)
 			0: begin
 				if(start_q46_reg) begin
@@ -4467,17 +4269,13 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_q46 <= 'd0;
-		xi_q46 <= 'd0;
-	end
 end
 
 
 /*****************************************************************/
 /**                              Q47                            **/
 /*****************************************************************/
-// GR47 current iteration number
+// Data propagated from left to right
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_q47 	<= 'd0;	
@@ -4507,7 +4305,7 @@ always @(posedge clk or posedge rst) begin
 		xi_q47 <= 'd0;
 		yi_q47 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_q47)
 			0: begin
 				if(start_q47_reg) begin
@@ -4539,17 +4337,13 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_q47 <= 'd0;
-		xi_q47 <= 'd0;
-	end
 end
 
 
 /*****************************************************************/
 /**                              Q48                            **/
 /*****************************************************************/
-// GR48 current iteration number
+// Data propagated from left to right
 always @(posedge clk or posedge rst) begin
 	if (rst) begin
 		iter_q48 	<= 'd0;	
@@ -4579,7 +4373,7 @@ always @(posedge clk or posedge rst) begin
 		xi_q48 <= 'd0;
 		yi_q48 <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(iter_q48)
 			0: begin
 				if(start_q48_reg) begin
@@ -4611,13 +4405,7 @@ always @(posedge clk or posedge rst) begin
 			end
 		endcase
 	end
-	else begin
-		xi_q48 <= 'd0;
-		xi_q48 <= 'd0;
-	end
 end
-
-
 
 /*****************************************************************/
 /**                           MK_Q row1                         **/
@@ -4628,33 +4416,29 @@ always @(posedge clk or posedge rst) begin
 		xi_mk1_q <= 'd0;
 		yi_mk1_q <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(1)
 			iter_last_q11: begin
-				xi_mk1_q <= xo_q11;
-				yi_mk1_q <= yo_q11;
+				xi_mk1_q <= xi_q11;
+				yi_mk1_q <= yi_q11;
 			end
 			iter_last_q12: begin
-				xi_mk1_q <= xo_q12;
-				yi_mk1_q <= yo_q12;
+				xi_mk1_q <= xi_q12;
+				yi_mk1_q <= yi_q12;
 			end
 			iter_last_q13: begin
-				xi_mk1_q <= xo_q13;
-				yi_mk1_q <= yo_q13;
+				xi_mk1_q <= xi_q13;
+				yi_mk1_q <= yi_q13;
 			end
 			iter_last_q14: begin
-				xi_mk1_q <= xo_q14;
-				yi_mk1_q <= yo_q14;
+				xi_mk1_q <= xi_q14;
+				yi_mk1_q <= yi_q14;
 			end
 			default: begin
 				xi_mk1_q <= 'd0;
 				yi_mk1_q <= 'd0;
 			end
 		endcase
-	end
-	else begin
-		xi_mk1_q <= 'd0;
-		yi_mk1_q <= 'd0;
 	end
 end
 
@@ -4664,33 +4448,29 @@ always @(posedge clk or posedge rst) begin
 		xi_mk2_q <= 'd0;
 		yi_mk2_q <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(1)
 			iter_last_q15: begin
-				xi_mk2_q <= xo_q15;
-				yi_mk2_q <= yo_q15;
+				xi_mk2_q <= xi_q15;
+				yi_mk2_q <= yi_q15;
 			end
 			iter_last_q16: begin
-				xi_mk2_q <= xo_q16;
-				yi_mk2_q <= yo_q16;
+				xi_mk2_q <= xi_q16;
+				yi_mk2_q <= yi_q16;
 			end
 			iter_last_q17: begin
-				xi_mk2_q <= xo_q17;
-				yi_mk2_q <= yo_q17;
+				xi_mk2_q <= xi_q17;
+				yi_mk2_q <= yi_q17;
 			end
 			iter_last_q18: begin
-				xi_mk2_q <= xo_q18;
-				yi_mk2_q <= yo_q18;
+				xi_mk2_q <= xi_q18;
+				yi_mk2_q <= yi_q18;
 			end
 			default: begin
 				xi_mk2_q <= 'd0;
 				yi_mk2_q <= 'd0;
 			end
 		endcase
-	end
-	else begin
-		xi_mk2_q <= 'd0;
-		yi_mk2_q <= 'd0;
 	end
 end
 
@@ -4702,33 +4482,29 @@ always @(posedge clk or posedge rst) begin
 		xi_mk3_q <= 'd0;
 		yi_mk3_q <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(1)
 			iter_last_q21: begin
-				xi_mk3_q <= xo_q21;
-				yi_mk3_q <= yo_q21;
+				xi_mk3_q <= xi_q21;
+				yi_mk3_q <= yi_q21;
 			end
 			iter_last_q22: begin
-				xi_mk3_q <= xo_q22;
-				yi_mk3_q <= yo_q22;
+				xi_mk3_q <= xi_q22;
+				yi_mk3_q <= yi_q22;
 			end
 			iter_last_q23: begin
-				xi_mk3_q <= xo_q23;
-				yi_mk3_q <= yo_q23;
+				xi_mk3_q <= xi_q23;
+				yi_mk3_q <= yi_q23;
 			end
 			iter_last_q24: begin
-				xi_mk3_q <= xo_q24;
-				yi_mk3_q <= yo_q24;
+				xi_mk3_q <= xi_q24;
+				yi_mk3_q <= yi_q24;
 			end
 			default: begin
 				xi_mk3_q <= 'd0;
 				yi_mk3_q <= 'd0;
 			end
 		endcase
-	end
-	else begin
-		xi_mk3_q <= 'd0;
-		yi_mk3_q <= 'd0;
 	end
 end
 
@@ -4737,33 +4513,29 @@ always @(posedge clk or posedge rst) begin
 		xi_mk4_q <= 'd0;
 		yi_mk4_q <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(1)
 			iter_last_q25: begin
-				xi_mk4_q <= xo_q25;
-				yi_mk4_q <= yo_q25;
+				xi_mk4_q <= xi_q25;
+				yi_mk4_q <= yi_q25;
 			end
 			iter_last_q26: begin
-				xi_mk4_q <= xo_q26;
-				yi_mk4_q <= yo_q26;
+				xi_mk4_q <= xi_q26;
+				yi_mk4_q <= yi_q26;
 			end
 			iter_last_q27: begin
-				xi_mk4_q <= xo_q27;
-				yi_mk4_q <= yo_q27;
+				xi_mk4_q <= xi_q27;
+				yi_mk4_q <= yi_q27;
 			end
 			iter_last_q28: begin
-				xi_mk4_q <= xo_q28;
-				yi_mk4_q <= yo_q28;
+				xi_mk4_q <= xi_q28;
+				yi_mk4_q <= yi_q28;
 			end
 			default: begin
 				xi_mk4_q <= 'd0;
 				yi_mk4_q <= 'd0;
 			end
 		endcase
-	end
-	else begin
-		xi_mk4_q <= 'd0;
-		yi_mk4_q <= 'd0;
 	end
 end
 
@@ -4775,33 +4547,29 @@ always @(posedge clk or posedge rst) begin
 		xi_mk5_q <= 'd0;
 		yi_mk5_q <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(1)
 			iter_last_q31: begin
-				xi_mk5_q <= xo_q31;
-				yi_mk5_q <= yo_q31;
+				xi_mk5_q <= xi_q31;
+				yi_mk5_q <= yi_q31;
 			end
 			iter_last_q32: begin
-				xi_mk5_q <= xo_q32;
-				yi_mk5_q <= yo_q32;
+				xi_mk5_q <= xi_q32;
+				yi_mk5_q <= yi_q32;
 			end
 			iter_last_q33: begin
-				xi_mk5_q <= xo_q33;
-				yi_mk5_q <= yo_q33;
+				xi_mk5_q <= xi_q33;
+				yi_mk5_q <= yi_q33;
 			end
 			iter_last_q34: begin
-				xi_mk5_q <= xo_q34;
-				yi_mk5_q <= yo_q34;
+				xi_mk5_q <= xi_q34;
+				yi_mk5_q <= yi_q34;
 			end
 			default: begin
 				xi_mk5_q <= 'd0;
 				yi_mk5_q <= 'd0;
 			end
 		endcase
-	end
-	else begin
-		xi_mk5_q <= 'd0;
-		yi_mk5_q <= 'd0;
 	end
 end
 
@@ -4810,33 +4578,29 @@ always @(posedge clk or posedge rst) begin
 		xi_mk6_q <= 'd0;
 		yi_mk6_q <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(1)
 			iter_last_q35: begin
-				xi_mk6_q <= xo_q35;
-				yi_mk6_q <= yo_q35;
+				xi_mk6_q <= xi_q35;
+				yi_mk6_q <= yi_q35;
 			end
 			iter_last_q36: begin
-				xi_mk6_q <= xo_q36;
-				yi_mk6_q <= yo_q36;
+				xi_mk6_q <= xi_q36;
+				yi_mk6_q <= yi_q36;
 			end
 			iter_last_q37: begin
-				xi_mk6_q <= xo_q37;
-				yi_mk6_q <= yo_q37;
+				xi_mk6_q <= xi_q37;
+				yi_mk6_q <= yi_q37;
 			end
 			iter_last_q38: begin
-				xi_mk6_q <= xo_q38;
-				yi_mk6_q <= yo_q38;
+				xi_mk6_q <= xi_q38;
+				yi_mk6_q <= yi_q38;
 			end
 			default: begin
 				xi_mk6_q <= 'd0;
 				yi_mk6_q <= 'd0;
 			end
 		endcase
-	end
-	else begin
-		xi_mk6_q <= 'd0;
-		yi_mk6_q <= 'd0;
 	end
 end
 
@@ -4848,29 +4612,25 @@ always @(posedge clk or posedge rst) begin
 		xi_mk7_q <= 'd0;
 		yi_mk7_q <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(1)
 			iter_last_q41: begin
-				xi_mk7_q <= xo_q41;
-				yi_mk7_q <= yo_q41;
+				xi_mk7_q <= xi_q41;
+				yi_mk7_q <= yi_q41;
 			end
 			iter_last_q42: begin
-				xi_mk7_q <= xo_q42;
-				yi_mk7_q <= yo_q42;
+				xi_mk7_q <= xi_q42;
+				yi_mk7_q <= yi_q42;
 			end
 			iter_last_q43: begin
-				xi_mk7_q <= xo_q43;
-				yi_mk7_q <= yo_q43;
+				xi_mk7_q <= xi_q43;
+				yi_mk7_q <= yi_q43;
 			end
 			iter_last_q44: begin
-				xi_mk7_q <= xo_q44;
-				yi_mk7_q <= yo_q44;
+				xi_mk7_q <= xi_q44;
+				yi_mk7_q <= yi_q44;
 			end
 		endcase
-	end
-	else begin
-		xi_mk7_q <= 'd0;
-		yi_mk7_q <= 'd0;
 	end
 end
 
@@ -4879,33 +4639,29 @@ always @(posedge clk or posedge rst) begin
 		xi_mk8_q <= 'd0;
 		yi_mk8_q <= 'd0;
 	end
-	else if(OP_wire) begin
+	else begin
 		case(1)
 			iter_last_q45: begin
-				xi_mk8_q <= xo_q45;
-				yi_mk8_q <= yo_q45;
+				xi_mk8_q <= xi_q45;
+				yi_mk8_q <= yi_q45;
 			end
 			iter_last_q46: begin
-				xi_mk8_q <= xo_q46;
-				yi_mk8_q <= yo_q46;
+				xi_mk8_q <= xi_q46;
+				yi_mk8_q <= yi_q46;
 			end
 			iter_last_q47: begin
-				xi_mk8_q <= xo_q47;
-				yi_mk8_q <= yo_q47;
+				xi_mk8_q <= xi_q47;
+				yi_mk8_q <= yi_q47;
 			end
 			iter_last_q48: begin
-				xi_mk8_q <= xo_q48;
-				yi_mk8_q <= yo_q48;
+				xi_mk8_q <= xi_q48;
+				yi_mk8_q <= yi_q48;
 			end
 			default: begin
 				xi_mk8_q <= 'd0;
 				yi_mk8_q <= 'd0;
 			end
 		endcase
-	end
-	else begin
-		xi_mk8_q <= 'd0;
-		yi_mk8_q <= 'd0;
 	end
 end
 
