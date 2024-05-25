@@ -171,8 +171,12 @@ function [Q_cordic, R_cordic] = Cordic_QR(K_cordic, Q_scaled, R_scaled, row_R, c
 					Q_cordic(q_fix+1,reverse_Q) = -Q_cordic(q_fix+1,reverse_Q);
 				end
 			end
-			x_pre = zeros(col_Q, 1);
-			y_pre = zeros(col_Q, 1);
+			x_pre_Q = zeros(col_Q, 1);
+			y_pre_Q = zeros(col_Q, 1);
+			x_pre_R = zeros(col_R, 1);
+			y_pre_R = zeros(col_R, 1);
+			x_pre_GG = 0;
+			y_pre_GG = 0;
 			disp(['k = ', num2str(p_fix), ' row', num2str(q_fix), num2str(q_fix+1), ': '])
 			for iter = 0 : iter_num-1
 				% vectoring mode
@@ -188,16 +192,20 @@ function [Q_cordic, R_cordic] = Cordic_QR(K_cordic, Q_scaled, R_scaled, row_R, c
 					R_cordic(q_fix+1, p_fix) = Y_vect;
 				end
 				
-				if iter == 0 || iter == 4 || iter == 8 || iter == 12
+				if iter == 0 || iter == 4 || iter == 8
 					fprintf('\nd = ');
 				end
 				fprintf('%g ', d);
-				if iter == 3 || iter == 7 || iter == 11 || iter == 15
+				if iter == 3 || iter == 7 || iter == 11
 					fprintf('\n');
 				end
 				
+				if iter == 0 || iter == 4 || iter == 8
+					x_pre_GG = fi(x_vect, R_sign, R_len, R_frac, F);
+					y_pre_GG = fi(y_vect, R_sign, R_len, R_frac, F);
+				end
 				% print info
-				print_GG_info(p_fix, iter, X_vect, Y_vect, R_frac)
+				print_GG_info(p_fix, iter, x_pre_GG, y_pre_GG, X_vect, Y_vect, R_frac)
 				print_GG_MK_info(p_fix, iter, R_cordic(q_fix, p_fix), R_cordic(q_fix+1, p_fix), R_frac)
 
 				% rotation mode
@@ -213,10 +221,16 @@ function [Q_cordic, R_cordic] = Cordic_QR(K_cordic, Q_scaled, R_scaled, row_R, c
 						R_cordic(q_fix  , p_fix+rot_R) = X_rot_R;
 						R_cordic(q_fix+1, p_fix+rot_R) = Y_rot_R;
 					end
+					
+					if iter == 0 || iter == 4 || iter == 8
+						x_pre_R(rot_R) = fi(x_rot_R, R_sign, R_len, R_frac, F);
+						y_pre_R(rot_R) = fi(y_rot_R, R_sign, R_len, R_frac, F);
+					end
 					% print info
-					print_GR_info(p_fix, rot_R, iter, X_rot_R, Y_rot_R, R_frac);
+					print_GR_info(p_fix, rot_R, iter, x_pre_R(rot_R), y_pre_R(rot_R), X_rot_R, Y_rot_R, R_frac);
 					print_GR_MK_info(p_fix, rot_R, iter, R_cordic(p_fix, p_fix+rot_R), R_cordic(p_fix+1, p_fix+rot_R), R_frac);
 				end
+				
 				% compute Q (As the processing of R)
 				for rot_Q = 1 : col_Q
 					x_rot_Q = Q_cordic(q_fix  , rot_Q); 
@@ -231,13 +245,12 @@ function [Q_cordic, R_cordic] = Cordic_QR(K_cordic, Q_scaled, R_scaled, row_R, c
 						Q_cordic(q_fix+1, rot_Q) = Y_rot_Q;
 					end
 					
-					
-					if iter == 0 || iter == 4 || iter == 8 || iter == 12
-						x_pre(rot_Q) = fi(x_rot_Q, Q_sign, Q_len, Q_frac, F);
-						y_pre(rot_Q) = fi(y_rot_Q, Q_sign, Q_len, Q_frac, F);
+					if iter == 0 || iter == 4 || iter == 8
+						x_pre_Q(rot_Q) = fi(x_rot_Q, Q_sign, Q_len, Q_frac, F);
+						y_pre_Q(rot_Q) = fi(y_rot_Q, Q_sign, Q_len, Q_frac, F);
 					end
 					% print info
-					print_Q_info(p_fix, rot_Q, iter, x_pre(rot_Q), y_pre(rot_Q), X_rot_Q, Y_rot_Q, Q_frac);
+					print_Q_info(p_fix, rot_Q, iter, x_pre_Q(rot_Q), y_pre_Q(rot_Q), X_rot_Q, Y_rot_Q, Q_frac);
 					print_Q_MK_info(p_fix, rot_Q, iter, Q_cordic(q_fix , rot_Q), Q_cordic(q_fix+1, rot_Q), Q_frac);
 				end
 			end
@@ -309,19 +322,23 @@ function display_result(A, Q_float, Q_fix, R_float, R_fix, A_float, A_fix, Q_fra
 end
 
 % print info for hardware debugging
-function print_GG_info(k, iter, X, Y, R_frac)
+function print_GG_info(k, iter, x, y, X, Y, R_frac)
 	X = X * 2^(R_frac);
 	Y = Y * 2^(R_frac);
-	if iter == 3 || iter == 7 || iter == 11 || iter == 14
-		disp(['GG', num2str(k), '  Iteration ', num2str(iter+1),' times: ', 'X = ', num2str(X),'; Y = ', num2str(Y), num2str(X)])
-	end
+	x = x * 2^(R_frac);
+	y = y * 2^(R_frac);
+	if iter == 3 || iter == 7 || iter == 11
+		disp(['GG', num2str(k), '  Iteration ', num2str(iter+1),' times: ',  'input: ', 'X = ', sprintf('%5d', x), '; Y = ', sprintf('%5d', y), ' output: ', 'X = ', sprintf('%5d', X), '; Y = ', sprintf('%5d', Y)])
+    end
 end
 
-function print_GR_info(k, r, iter, X, Y, R_frac)
+function print_GR_info(k, r, iter, x, y, X, Y, R_frac)
 	X = X * 2^(R_frac);
 	Y = Y * 2^(R_frac);
-    if iter == 3 || iter == 7 || iter == 11 || iter == 14
-        disp(['GR', num2str(k), num2str(r), ' Iteration ', num2str(iter+1),' times: ', 'X = ', num2str(X),'; Y = ', num2str(Y)])
+	x = x * 2^(R_frac);
+	y = y * 2^(R_frac);
+    if iter == 3 || iter == 7 || iter == 11
+        disp(['GR', num2str(k), num2str(r), ' Iteration ', num2str(iter+1),' times: ',  'input: ', 'X = ', sprintf('%5d', x), '; Y = ', sprintf('%5d', y), ' output: ', 'X = ', sprintf('%5d', X), '; Y = ', sprintf('%5d', Y)])
     end
 end
 
@@ -330,7 +347,7 @@ function print_Q_info(k, r, iter, x, y, X, Y, Q_frac)
 	Y = Y * 2^(Q_frac);
 	x = x * 2^(Q_frac);
 	y = y * 2^(Q_frac);
-    if iter == 3 || iter == 7 || iter == 11 || iter == 14
+    if iter == 3 || iter == 7 || iter == 11
         disp(['Q', num2str(k), num2str(r), '  Iteration ', num2str(iter+1), ' times: ', 'input: ', 'X = ', sprintf('%5d', x), '; Y = ', sprintf('%5d', y), ' output: ', 'X = ', sprintf('%5d', X), '; Y = ', sprintf('%5d', Y)])
     end
 end
@@ -338,24 +355,24 @@ end
 function print_GG_MK_info(k, iter, X, Y, R_frac)
 	X = X * 2^(R_frac);
 	Y = Y * 2^(R_frac);
-	if iter == 15
-		disp(['GG', num2str(k), '  Multiplied by K:   ', 'X = ', num2str(X),'; Y = ', num2str(Y)])
+	if iter == 11
+		disp(['MK:   ', 'X = ', num2str(X),'; Y = ', num2str(Y)])
     end
 end
 
 function print_GR_MK_info(k, r, iter, X, Y, R_frac)
 	X = X * 2^(R_frac);
 	Y = Y * 2^(R_frac);
-	if iter == 15  
-		disp(['GR', num2str(k), num2str(r), ' Multiplied by K:   ', 'X = ', num2str(X),'; Y = ', num2str(Y)])
+	if iter == 11
+		disp(['MK:   ', 'X = ', num2str(X),'; Y = ', num2str(Y)])
 	end
 end
 
 function print_Q_MK_info(k, r, iter, X, Y, Q_frac)
 	X = X * 2^(Q_frac);
 	Y = Y * 2^(Q_frac);
-	if iter == 15  
-		disp(['Q', num2str(k), num2str(r), ' Multiplied by K:   ', 'X = ', num2str(X),'; Y = ', num2str(Y)])
+	if iter == 11
+		disp(['MK:   ', 'X = ', num2str(X),'; Y = ', num2str(Y)])
 	end
 end
 

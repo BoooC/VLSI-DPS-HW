@@ -14,7 +14,7 @@ module qr_cordic #(
 	parameter ROW_NUM_R = 8,	parameter COL_NUM_R = 4,
 	parameter ROW_NUM_Q = 8,	parameter COL_NUM_Q = 8,
 	
-	parameter ITER_NUM 	= 12,	parameter ITER_K 	= 13, 	parameter ITER_ONE_CYCLE = 4,
+	parameter ITER_NUM 	= 8,	parameter ITER_K 	= 9, 	parameter ITER_ONE_CYCLE = 4,
 	parameter ITER_WID 	= 4
 )
 (	input 	   	      	                     clk,
@@ -802,6 +802,11 @@ reg last_multk_q46_reg;
 reg last_multk_q47_reg;
 reg last_multk_q48_reg;
 
+reg last_multk_gr31_dly1;
+reg last_multk_gg4_dly1;
+reg last_multk_gg4_dly2;
+reg last_multk_gg4_dly3;
+
 // Q is a ROM stored 8x8 identity matrix
 reg signed [Q_WID-1:0] Q_ROM [0:ROW_NUM_Q-1][0:COL_NUM_Q-1];
 
@@ -1003,11 +1008,6 @@ wire finish_q46		= last_multk_q46  || last_multk_q46_reg;
 wire finish_q47		= last_multk_q47  || last_multk_q47_reg;
 wire finish_q48		= last_multk_q48  || last_multk_q48_reg;
 
-wire wr_R_r13 		= mk_count_gg4 == 'd3 && iter_gg4 == 'd0;
-wire wr_R_r34 		= mk_count_gg4 == 'd4 && iter_gg4 == 'd0;
-wire wr_R_r24 		= mk_count_gg4 == 'd4 && iter_gg4 == 'd1;
-wire wr_R_r14 		= mk_count_gg4 == 'd4 && iter_gg4 == 'd2;
-
 wire nop_gg1 		= initial_read 		| finish_gg1;
 wire nop_gg2 		= mk_count_gr11 <= 'd1 | finish_gg2 | multk_gg2;
 wire nop_gg3 		= mk_count_gr21 <= 'd1 | finish_gg3 | multk_gg3;
@@ -1016,13 +1016,13 @@ wire nop_gg4 		= mk_count_gr31 <= 'd1 | finish_gg4 | multk_gg4;
 wire qr_finish		= last_multk_q48;
 
 // output
-assign rd_A 		= en && (~iter_last_gg1);
+assign rd_A 		= en;
 
 assign wr_Q_1 		= finish_q11 & (!wr_Q_1_end);
 assign wr_Q_2 		= finish_q21 & (!wr_Q_2_end);
 assign wr_Q_3 		= finish_q31 & (!wr_Q_3_end);
 assign wr_Q_4 		= finish_q41 & (!wr_Q_4_end);
-assign wr_Q_5 		= finish_q36 & (!wr_Q_5_end);
+assign wr_Q_5 		= finish_q41 & (!wr_Q_5_end);
 assign wr_Q_6 		= finish_q31 & (!wr_Q_6_end);
 assign wr_Q_7 		= finish_q21 & (!wr_Q_7_end);
 assign wr_Q_8 		= finish_q11 & (!wr_Q_8_end);
@@ -1116,17 +1116,17 @@ always @(posedge clk or posedge rst) begin
 	end
 	else begin
 		case(1)
-			last_multk_gg1 	: wr_R_data <= xo_mk1;
-			last_multk_gg2 	: wr_R_data <= xo_mk2;
-			last_multk_gg3 	: wr_R_data <= xo_mk3;
-			last_multk_gg4 	: wr_R_data <= xo_mk4;
-			last_multk_gr21 : wr_R_data <= xo_gg2;
-			last_multk_gr31 : wr_R_data <= xo_gg3;
-			wr_R_r13 		: wr_R_data <= yo_gg3;
-			wr_R_r34 		: wr_R_data <= xo_gg4;
-			wr_R_r24 		: wr_R_data <= yo_gg4;
-			wr_R_r14 		: wr_R_data <= yo_gg4;
-			default 		: wr_R_data <= 'd0;
+			last_multk_gg1 		: wr_R_data <= xo_mk1;
+			last_multk_gg2 		: wr_R_data <= xo_mk2;
+			last_multk_gr21 	: wr_R_data <= xo_gg2;
+			last_multk_gg3 		: wr_R_data <= xo_mk3;
+			last_multk_gr31 	: wr_R_data <= xo_gg3;
+			last_multk_gr31_dly1: wr_R_data <= yo_gg3;
+			last_multk_gg4 		: wr_R_data <= xo_mk4;
+			last_multk_gg4_dly1 : wr_R_data <= xo_gg4;
+			last_multk_gg4_dly2 : wr_R_data <= yo_gg4;
+			last_multk_gg4_dly3 : wr_R_data <= yo_gg4;
+			default 			: wr_R_data <= 'd0;
 		endcase
 	end
 end
@@ -1136,9 +1136,29 @@ always @(posedge clk or posedge rst) begin
 		wr_R <= 'd0;
 	end
 	else begin
-		wr_R <= last_multk_gg1 | last_multk_gg2 | last_multk_gg3 | last_multk_gg4 | last_multk_gr21 | last_multk_gr31 | wr_R_r13 | wr_R_r34 | wr_R_r24 | wr_R_r14;
+		wr_R <= last_multk_gg1 | 
+				last_multk_gg2 | last_multk_gr21 | 
+				last_multk_gg3 | last_multk_gr31 | last_multk_gr31_dly1 | 
+				last_multk_gg4 | last_multk_gg4_dly1 | last_multk_gg4_dly2 | last_multk_gg4_dly3;
 	end
 end
+
+// R out valid control
+always @(posedge clk or posedge rst) begin
+	if (rst) begin
+		last_multk_gr31_dly1 	<= 1'b0;
+		last_multk_gg4_dly1		<= 1'b0;
+		last_multk_gg4_dly2		<= 1'b0;
+		last_multk_gg4_dly3		<= 1'b0;
+	end
+	else begin
+		last_multk_gr31_dly1 	<= last_multk_gr31;
+		last_multk_gg4_dly1		<= last_multk_gg4;
+		last_multk_gg4_dly2		<= last_multk_gg4_dly1;
+		last_multk_gg4_dly3		<= last_multk_gg4_dly2;
+	end
+end
+
 
 // Q outputs reversed data
 always @(posedge clk or posedge rst) begin
@@ -2132,20 +2152,20 @@ always @(posedge clk or posedge rst) begin
 	else begin
 		case(1)
 			iter_last_gg1: begin
-				xi_mk1 <= xi_gg1;
-				yi_mk1 <= yi_gg1;
+				xi_mk1 <= xo_gg1;
+				yi_mk1 <= yo_gg1;
 			end
 			iter_last_gr11: begin
-				xi_mk1 <= xi_gr11;
-				yi_mk1 <= yi_gr11;
+				xi_mk1 <= xo_gr11;
+				yi_mk1 <= yo_gr11;
 			end
 			iter_last_gr12: begin
-				xi_mk1 <= xi_gr12;
-				yi_mk1 <= yi_gr12;
+				xi_mk1 <= xo_gr12;
+				yi_mk1 <= yo_gr12;
 			end
 			iter_last_gr13: begin
-				xi_mk1 <= xi_gr13;
-				yi_mk1 <= yi_gr13;
+				xi_mk1 <= xo_gr13;
+				yi_mk1 <= yo_gr13;
 			end
 			default: begin
 				xi_mk1 <= 'd0;
@@ -2167,16 +2187,16 @@ always @(posedge clk or posedge rst) begin
 	else begin
 		case(1)
 			iter_last_gg2: begin
-				xi_mk2 <= xi_gg2;
-				yi_mk2 <= yi_gg2;
+				xi_mk2 <= xo_gg2;
+				yi_mk2 <= yo_gg2;
 			end
 			iter_last_gr21: begin
-				xi_mk2 <= xi_gr21;
-				yi_mk2 <= yi_gr21;
+				xi_mk2 <= xo_gr21;
+				yi_mk2 <= yo_gr21;
 			end
 			iter_last_gr22: begin
-				xi_mk2 <= xi_gr22;
-				yi_mk2 <= yi_gr22;
+				xi_mk2 <= xo_gr22;
+				yi_mk2 <= yo_gr22;
 			end
 			default: begin
 				xi_mk2 <= 'd0;
@@ -2198,12 +2218,12 @@ always @(posedge clk or posedge rst) begin
 	else begin
 		case(1)
 			iter_last_gg3: begin
-				xi_mk3 <= xi_gg3;
-				yi_mk3 <= yi_gg3;
+				xi_mk3 <= xo_gg3;
+				yi_mk3 <= yo_gg3;
 			end
 			iter_last_gr31: begin
-				xi_mk3 <= xi_gr31;
-				yi_mk3 <= yi_gr31;
+				xi_mk3 <= xo_gr31;
+				yi_mk3 <= yo_gr31;
 			end
 			default: begin
 				xi_mk3 <= 'd0;
@@ -2225,8 +2245,8 @@ always @(posedge clk or posedge rst) begin
 	else begin
 		case(1)
 			iter_last_gg4: begin
-				xi_mk4 <= xi_gg4;
-				yi_mk4 <= yi_gg4;
+				xi_mk4 <= xo_gg4;
+				yi_mk4 <= yo_gg4;
 			end
 			default: begin
 				xi_mk4 <= 'd0;
@@ -4419,20 +4439,20 @@ always @(posedge clk or posedge rst) begin
 	else begin
 		case(1)
 			iter_last_q11: begin
-				xi_mk1_q <= xi_q11;
-				yi_mk1_q <= yi_q11;
+				xi_mk1_q <= xo_q11;
+				yi_mk1_q <= yo_q11;
 			end
 			iter_last_q12: begin
-				xi_mk1_q <= xi_q12;
-				yi_mk1_q <= yi_q12;
+				xi_mk1_q <= xo_q12;
+				yi_mk1_q <= yo_q12;
 			end
 			iter_last_q13: begin
-				xi_mk1_q <= xi_q13;
-				yi_mk1_q <= yi_q13;
+				xi_mk1_q <= xo_q13;
+				yi_mk1_q <= yo_q13;
 			end
 			iter_last_q14: begin
-				xi_mk1_q <= xi_q14;
-				yi_mk1_q <= yi_q14;
+				xi_mk1_q <= xo_q14;
+				yi_mk1_q <= yo_q14;
 			end
 			default: begin
 				xi_mk1_q <= 'd0;
@@ -4451,20 +4471,20 @@ always @(posedge clk or posedge rst) begin
 	else begin
 		case(1)
 			iter_last_q15: begin
-				xi_mk2_q <= xi_q15;
-				yi_mk2_q <= yi_q15;
+				xi_mk2_q <= xo_q15;
+				yi_mk2_q <= yo_q15;
 			end
 			iter_last_q16: begin
-				xi_mk2_q <= xi_q16;
-				yi_mk2_q <= yi_q16;
+				xi_mk2_q <= xo_q16;
+				yi_mk2_q <= yo_q16;
 			end
 			iter_last_q17: begin
-				xi_mk2_q <= xi_q17;
-				yi_mk2_q <= yi_q17;
+				xi_mk2_q <= xo_q17;
+				yi_mk2_q <= yo_q17;
 			end
 			iter_last_q18: begin
-				xi_mk2_q <= xi_q18;
-				yi_mk2_q <= yi_q18;
+				xi_mk2_q <= xo_q18;
+				yi_mk2_q <= yo_q18;
 			end
 			default: begin
 				xi_mk2_q <= 'd0;
@@ -4485,20 +4505,20 @@ always @(posedge clk or posedge rst) begin
 	else begin
 		case(1)
 			iter_last_q21: begin
-				xi_mk3_q <= xi_q21;
-				yi_mk3_q <= yi_q21;
+				xi_mk3_q <= xo_q21;
+				yi_mk3_q <= yo_q21;
 			end
 			iter_last_q22: begin
-				xi_mk3_q <= xi_q22;
-				yi_mk3_q <= yi_q22;
+				xi_mk3_q <= xo_q22;
+				yi_mk3_q <= yo_q22;
 			end
 			iter_last_q23: begin
-				xi_mk3_q <= xi_q23;
-				yi_mk3_q <= yi_q23;
+				xi_mk3_q <= xo_q23;
+				yi_mk3_q <= yo_q23;
 			end
 			iter_last_q24: begin
-				xi_mk3_q <= xi_q24;
-				yi_mk3_q <= yi_q24;
+				xi_mk3_q <= xo_q24;
+				yi_mk3_q <= yo_q24;
 			end
 			default: begin
 				xi_mk3_q <= 'd0;
@@ -4516,20 +4536,20 @@ always @(posedge clk or posedge rst) begin
 	else begin
 		case(1)
 			iter_last_q25: begin
-				xi_mk4_q <= xi_q25;
-				yi_mk4_q <= yi_q25;
+				xi_mk4_q <= xo_q25;
+				yi_mk4_q <= yo_q25;
 			end
 			iter_last_q26: begin
-				xi_mk4_q <= xi_q26;
-				yi_mk4_q <= yi_q26;
+				xi_mk4_q <= xo_q26;
+				yi_mk4_q <= yo_q26;
 			end
 			iter_last_q27: begin
-				xi_mk4_q <= xi_q27;
-				yi_mk4_q <= yi_q27;
+				xi_mk4_q <= xo_q27;
+				yi_mk4_q <= yo_q27;
 			end
 			iter_last_q28: begin
-				xi_mk4_q <= xi_q28;
-				yi_mk4_q <= yi_q28;
+				xi_mk4_q <= xo_q28;
+				yi_mk4_q <= yo_q28;
 			end
 			default: begin
 				xi_mk4_q <= 'd0;
@@ -4550,20 +4570,20 @@ always @(posedge clk or posedge rst) begin
 	else begin
 		case(1)
 			iter_last_q31: begin
-				xi_mk5_q <= xi_q31;
-				yi_mk5_q <= yi_q31;
+				xi_mk5_q <= xo_q31;
+				yi_mk5_q <= yo_q31;
 			end
 			iter_last_q32: begin
-				xi_mk5_q <= xi_q32;
-				yi_mk5_q <= yi_q32;
+				xi_mk5_q <= xo_q32;
+				yi_mk5_q <= yo_q32;
 			end
 			iter_last_q33: begin
-				xi_mk5_q <= xi_q33;
-				yi_mk5_q <= yi_q33;
+				xi_mk5_q <= xo_q33;
+				yi_mk5_q <= yo_q33;
 			end
 			iter_last_q34: begin
-				xi_mk5_q <= xi_q34;
-				yi_mk5_q <= yi_q34;
+				xi_mk5_q <= xo_q34;
+				yi_mk5_q <= yo_q34;
 			end
 			default: begin
 				xi_mk5_q <= 'd0;
@@ -4581,20 +4601,20 @@ always @(posedge clk or posedge rst) begin
 	else begin
 		case(1)
 			iter_last_q35: begin
-				xi_mk6_q <= xi_q35;
-				yi_mk6_q <= yi_q35;
+				xi_mk6_q <= xo_q35;
+				yi_mk6_q <= yo_q35;
 			end
 			iter_last_q36: begin
-				xi_mk6_q <= xi_q36;
-				yi_mk6_q <= yi_q36;
+				xi_mk6_q <= xo_q36;
+				yi_mk6_q <= yo_q36;
 			end
 			iter_last_q37: begin
-				xi_mk6_q <= xi_q37;
-				yi_mk6_q <= yi_q37;
+				xi_mk6_q <= xo_q37;
+				yi_mk6_q <= yo_q37;
 			end
 			iter_last_q38: begin
-				xi_mk6_q <= xi_q38;
-				yi_mk6_q <= yi_q38;
+				xi_mk6_q <= xo_q38;
+				yi_mk6_q <= yo_q38;
 			end
 			default: begin
 				xi_mk6_q <= 'd0;
@@ -4615,20 +4635,20 @@ always @(posedge clk or posedge rst) begin
 	else begin
 		case(1)
 			iter_last_q41: begin
-				xi_mk7_q <= xi_q41;
-				yi_mk7_q <= yi_q41;
+				xi_mk7_q <= xo_q41;
+				yi_mk7_q <= yo_q41;
 			end
 			iter_last_q42: begin
-				xi_mk7_q <= xi_q42;
-				yi_mk7_q <= yi_q42;
+				xi_mk7_q <= xo_q42;
+				yi_mk7_q <= yo_q42;
 			end
 			iter_last_q43: begin
-				xi_mk7_q <= xi_q43;
-				yi_mk7_q <= yi_q43;
+				xi_mk7_q <= xo_q43;
+				yi_mk7_q <= yo_q43;
 			end
 			iter_last_q44: begin
-				xi_mk7_q <= xi_q44;
-				yi_mk7_q <= yi_q44;
+				xi_mk7_q <= xo_q44;
+				yi_mk7_q <= yo_q44;
 			end
 		endcase
 	end
@@ -4642,20 +4662,20 @@ always @(posedge clk or posedge rst) begin
 	else begin
 		case(1)
 			iter_last_q45: begin
-				xi_mk8_q <= xi_q45;
-				yi_mk8_q <= yi_q45;
+				xi_mk8_q <= xo_q45;
+				yi_mk8_q <= yo_q45;
 			end
 			iter_last_q46: begin
-				xi_mk8_q <= xi_q46;
-				yi_mk8_q <= yi_q46;
+				xi_mk8_q <= xo_q46;
+				yi_mk8_q <= yo_q46;
 			end
 			iter_last_q47: begin
-				xi_mk8_q <= xi_q47;
-				yi_mk8_q <= yi_q47;
+				xi_mk8_q <= xo_q47;
+				yi_mk8_q <= yo_q47;
 			end
 			iter_last_q48: begin
-				xi_mk8_q <= xi_q48;
-				yi_mk8_q <= yi_q48;
+				xi_mk8_q <= xo_q48;
+				yi_mk8_q <= yo_q48;
 			end
 			default: begin
 				xi_mk8_q <= 'd0;

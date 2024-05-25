@@ -13,13 +13,16 @@ set_fix_multiple_port_nets -all -buffer_constants [get_designs *]
 #Synthesis all design
 #compile -map_effort high -area_effort high
 #compile -map_effort high -area_effort high -inc
-#compile_ultra
-compile_ultra -area
-#compile
+#compile_ultra 
+#compile_ultra -timing_high_effort_script
+#compile_ultra -area_high_effort_script
+#compile_ultra -area
+compile
 
 write -format ddc     -hierarchy -output "qr_cordic_syn.ddc"
 write_sdf -version 1.0  qr_cordic_syn.sdf
 write -format verilog -hierarchy -output qr_cordic_syn.v
 report_area > area.log
 report_timing > timing.log
+report_power > power.log
 report_qor   >  qr_cordic_syn.qor

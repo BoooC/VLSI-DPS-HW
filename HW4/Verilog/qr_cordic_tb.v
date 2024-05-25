@@ -16,7 +16,7 @@
 	`define A_MEM  	"data/pattern3/input_A_matrix.txt"
 	`define R_GOLD 	"data/pattern3/output_R_matrix_golden.txt"
 	`define Q_GOLD 	"data/pattern3/output_Q_matrix_golden.txt"
-`else 
+`else
 	`define A_MEM  	"data/input_A_matrix.txt"
 	`define R_GOLD 	"data/output_R_matrix_golden.txt"
 	`define Q_GOLD 	"data/output_Q_matrix_golden.txt"
